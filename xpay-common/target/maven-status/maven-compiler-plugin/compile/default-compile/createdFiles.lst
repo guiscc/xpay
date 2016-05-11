@@ -1,0 +1,6 @@
+com/xpay/common/utils/HttpReq.class
+com/xpay/common/utils/HttpRequester.class
+com/xpay/common/utils/XMLUtils.class
+com/xpay/common/utils/HttpCfg.class
+com/xpay/common/utils/HttpRequester$1.class
+com/xpay/common/utils/HttpRep.class
