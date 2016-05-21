@@ -18,7 +18,7 @@ import java.util.Map;
  * @Author pangyiyang
  * @Date 16/5/21 下午4:11
  */
-public class DaifuUtil {
+public class UnionpayEncryptUtil {
 
 //    private static final String pfxPath = "/Users/pang/Desktop/works/cert/700000000000001_acp.pfx" ;
     private static final String pfxPath = "/Users/pang/Desktop/works/cert/acp_test_sign.pfx" ;
@@ -26,7 +26,7 @@ public class DaifuUtil {
 //    private static final String cerPath = "/Users/pang/Desktop/works/cert/verify_sign_acp.cer" ;
     private static final String cerPath = "/Users/pang/Desktop/works/cert/acp_test_enc.cer" ;
     private static final String encPath = "/Users/pang/Desktop/works/cert/acp_test_enc.cer" ;
-    private static final Logger logger = LoggerFactory.getLogger(DaifuUtil.class) ;
+    private static final Logger logger = LoggerFactory.getLogger(UnionpayEncryptUtil.class) ;
 
     /**
      * 获取证书ID
