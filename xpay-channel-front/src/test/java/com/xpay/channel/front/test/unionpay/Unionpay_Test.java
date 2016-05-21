@@ -1,17 +1,14 @@
 package com.xpay.channel.front.test.unionpay;
 
 import com.xpay.channel.common.dto.daikou.RealNameAuthReqDto;
-import com.xpay.channel.common.exception.VldException;
 import com.xpay.channel.common.model.ChannelRemark;
 import com.xpay.channel.common.util.DateUtil;
-import com.xpay.channel.front.channel.daikou.unionpay.sdk.SDKConfig;
 import com.xpay.channel.front.facade.AgentCollectChannelFacade;
 import com.xpay.channel.front.mapping.DaifuChannelMappingFactory;
 import com.xpay.channel.front.test.BaseTest;
 import org.junit.Test;
 
 import javax.annotation.Resource;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -86,10 +83,10 @@ public class Unionpay_Test extends BaseTest {
         ////////
 
         //////////如果商户号开通了  商户对敏感信息加密的权限那么，需要对 卡号accNo，pin和phoneNo，cvn2，expired加密（如果这些上送的话），对敏感信息加密使用：
-        data.put("encryptCertId",DaifuUtil.getCertId());
-        String accNo = DaifuUtil.encryptData("6216261000000000018" , "UTF-8") ;//AcpService.encryptData("6216261000000000018", "UTF-8");
+        data.put("encryptCertId", UnionpayEncryptUtil.getCertId());
+        String accNo = UnionpayEncryptUtil.encryptData("6216261000000000018" , "UTF-8") ;//AcpService.encryptData("6216261000000000018", "UTF-8");
         data.put("accNo", accNo);
-        String customerInfoStr = DaifuUtil.encryptData(customerInfoMap,"6216261000000000018","UTF-8") ;//AcpService.getCustomerInfoWithEncrypt(customerInfoMap,"6216261000000000018",DemoBase.encoding_UTF8);
+        String customerInfoStr = UnionpayEncryptUtil.encryptData(customerInfoMap,"6216261000000000018","UTF-8") ;//AcpService.getCustomerInfoWithEncrypt(customerInfoMap,"6216261000000000018",DemoBase.encoding_UTF8);
         //////////
 
         data.put("customerInfo", customerInfoStr);
