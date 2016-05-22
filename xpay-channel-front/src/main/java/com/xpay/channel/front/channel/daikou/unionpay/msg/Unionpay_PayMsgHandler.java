@@ -129,6 +129,19 @@ public class Unionpay_PayMsgHandler extends FreemarkChannelMsgHandlerImpl<PayReq
             Map<String , String> respMap = JsonUtil.jsonTomMap(jsonMap) ;
             boolean signFlag = UnionpayUtil.verSign(respMap , req.getChannelRemark().getCerPath());
             logger.info("#####[银联代扣] 验证签名信息结果:" + signFlag);
+            String respCode = respMap.get("respCode") ;
+            String respMsg = respMap.get("respMsg") ;
+            String bankNo = respMap.get("queryId") ;
+            repDto.setChannelOrderno(req.getChannelOrderNo());
+            repDto.setAmount(req.getAmount());
+            repDto.setRtnCode(respCode);
+            repDto.setRtnMsg(respMsg);
+            repDto.setBankNo(bankNo);
+            if("00".equals(respCode)){
+                repDto.setTradeStatus(EnumTradeStatus.SUCCESS);
+            }else{
+                repDto.setTradeStatus(EnumTradeStatus.FAIL);
+            }
         } catch (UnsupportedEncodingException e) {
             logger.error("#####[银联代扣] 解参时 参数转换错误." , e);
             throw new ResolveMsgException(EnumSysRtnCode.R0005 , EnumTradeStatus.UNKNOW);
@@ -137,6 +150,6 @@ public class Unionpay_PayMsgHandler extends FreemarkChannelMsgHandlerImpl<PayReq
             throw new ResolveMsgException(EnumSysRtnCode.R0000 , EnumTradeStatus.UNKNOW);
         }
 
-        return super.resolveMsg(req, rtnMsg, channelConfig);
+        return repDto;
     }
 }
