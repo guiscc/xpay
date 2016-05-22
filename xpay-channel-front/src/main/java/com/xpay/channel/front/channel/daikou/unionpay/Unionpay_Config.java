@@ -31,6 +31,10 @@ public class Unionpay_Config extends ChannelConfig {
     private String daikouUrl ;
     private String encCerPath ;
 
+    //查询
+    private String queryUrl ;
+    private String queryTxnType ;
+
 
     public String getAuthUrl() {
         return authUrl;
@@ -182,5 +186,21 @@ public class Unionpay_Config extends ChannelConfig {
 
     public void setEncCerPath(String encCerPath) {
         this.encCerPath = encCerPath;
+    }
+
+    public String getQueryUrl() {
+        return queryUrl;
+    }
+
+    public void setQueryUrl(String queryUrl) {
+        this.queryUrl = queryUrl;
+    }
+
+    public String getQueryTxnType() {
+        return queryTxnType;
+    }
+
+    public void setQueryTxnType(String queryTxnType) {
+        this.queryTxnType = queryTxnType;
     }
 }

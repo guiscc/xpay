@@ -32,6 +32,10 @@
                 <property name="notifyUrl" value="${unionpay.daikou.notifyUrl}"/>
                 <property name="daikouUrl" value="${unionpay.daikou.daikouUrl}"/>
                 <property name="encCerPath" value="${unionpay.daikou.encCerPath}"/>
+                <property name="queryUrl" value="${unionpay.daikou.queryUrl}"/>
+
+                <!--查询-->
+                <property name="queryTxnType" value="${unionpay.daikou.queryTxnType}"/>
 
             </bean>
         </property>
@@ -44,6 +48,9 @@
                 <entry key-ref="PAY">
                     <bean class="com.xpay.channel.front.channel.daikou.unionpay.msg.Unionpay_PayMsgHandler"/>
                 </entry>
+                <entry key-ref="PAYQUERY">
+                    <bean class="com.xpay.channel.front.channel.daikou.unionpay.msg.Unionpay_PayQueryMsgHandler"/>
+                </entry>
             </map>
         </property>
 
@@ -54,6 +61,9 @@
                 </entry>
                 <entry key-ref="PAY">
                     <bean class="com.xpay.channel.front.channel.daikou.unionpay.vld.Unionpay_PayVld"/>
+                </entry>
+                <entry key-ref="PAYQUERY">
+                    <bean class="com.xpay.channel.front.channel.daikou.unionpay.vld.Unionpay_PayQueryVld"/>
                 </entry>
             </map>
         </property>

@@ -1,9 +1,6 @@
 package com.xpay.channel.front.facade;
 
-import com.xpay.channel.common.dto.daikou.PayRepDto;
-import com.xpay.channel.common.dto.daikou.PayReqDto;
-import com.xpay.channel.common.dto.daikou.RealNameAuthRepDto;
-import com.xpay.channel.common.dto.daikou.RealNameAuthReqDto;
+import com.xpay.channel.common.dto.daikou.*;
 import com.xpay.channel.common.exception.BuildMsgException;
 import com.xpay.channel.common.exception.CommuException;
 import com.xpay.channel.common.exception.ResolveMsgException;
@@ -35,6 +32,16 @@ public interface AgentCollectChannelFacade {
      * @throws ResolveMsgException
      */
     public PayRepDto pay(PayReqDto reqDto)throws VldException, BuildMsgException, CommuException, ResolveMsgException;
+
+    /**
+     * 代扣结果查询
+     * @return
+     * @throws VldException
+     * @throws BuildMsgException
+     * @throws CommuException
+     * @throws ResolveMsgException
+     */
+    public PayQueryRepDto payQuery(PayQueryReqDto reqDto) throws VldException, BuildMsgException, CommuException, ResolveMsgException ;
 
 
 }

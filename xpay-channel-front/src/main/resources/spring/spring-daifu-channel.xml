@@ -22,6 +22,9 @@
     <bean id="PAY" class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean">
         <property name="staticField" value="com.xpay.channel.common.enums.EnumTradeType.PAY"></property>
     </bean>
+    <bean id="PAYQUERY" class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean">
+        <property name="staticField" value="com.xpay.channel.common.enums.EnumTradeType.PAYQUERY"></property>
+    </bean>
 
     <!--配置文件基类bean-->
     <bean name="channelConfig" class="com.xpay.channel.front.utils.ChannelConfig">

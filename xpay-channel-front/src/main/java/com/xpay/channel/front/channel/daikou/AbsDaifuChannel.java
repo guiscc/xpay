@@ -1,10 +1,7 @@
 package com.xpay.channel.front.channel.daikou;
 
 
-import com.xpay.channel.common.dto.daikou.PayRepDto;
-import com.xpay.channel.common.dto.daikou.PayReqDto;
-import com.xpay.channel.common.dto.daikou.RealNameAuthRepDto;
-import com.xpay.channel.common.dto.daikou.RealNameAuthReqDto;
+import com.xpay.channel.common.dto.daikou.*;
 import com.xpay.channel.common.enums.EnumTradeType;
 import com.xpay.channel.common.exception.BuildMsgException;
 import com.xpay.channel.common.exception.CommuException;
@@ -61,6 +58,17 @@ public abstract class AbsDaifuChannel implements AgentCollectChannelFacade {
         channelActionProcess.setChannelMsgHandler(this.getChannelMsgHandler().get(EnumTradeType.PAY));
         channelActionProcess.setChannelConfig(this.getChannelConfig());
         PayRepDto repDto = channelActionProcess.doProcess(reqDto);
+        return repDto;
+    }
+
+    @Override
+    public PayQueryRepDto payQuery(PayQueryReqDto reqDto) throws VldException, BuildMsgException, CommuException, ResolveMsgException {
+        ChannelActionProcess<PayQueryReqDto, PayQueryRepDto> channelActionProcess = new ChannelActionProcess<PayQueryReqDto, PayQueryRepDto>();
+        channelActionProcess.setChannelValidate(this.getChannelValidateHandler().get(EnumTradeType.PAYQUERY));
+        channelActionProcess.setChannelTongXinHandler(this.getChannelTongXinHandler());
+        channelActionProcess.setChannelMsgHandler(this.getChannelMsgHandler().get(EnumTradeType.PAYQUERY));
+        channelActionProcess.setChannelConfig(this.getChannelConfig());
+        PayQueryRepDto repDto = channelActionProcess.doProcess(reqDto);
         return repDto;
     }
 

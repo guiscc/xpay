@@ -1,8 +1,6 @@
 package com.xpay.channel.front.test.unionpay;
 
-import com.xpay.channel.common.dto.daikou.PayRepDto;
-import com.xpay.channel.common.dto.daikou.PayReqDto;
-import com.xpay.channel.common.dto.daikou.RealNameAuthReqDto;
+import com.xpay.channel.common.dto.daikou.*;
 import com.xpay.channel.common.model.ChannelRemark;
 import com.xpay.channel.common.util.DateUtil;
 import com.xpay.channel.front.facade.AgentCollectChannelFacade;
@@ -62,6 +60,24 @@ public class Unionpay_Test extends BaseTest {
         logger.info("#####[银联代扣] 请求参数:" + reqDto);
         AgentCollectChannelFacade facade = daifuChannelMappingFactory.getChannelBean("AC_UNIONPAY_CD_01") ;
         PayRepDto repDto = facade.pay(reqDto) ;
+        logger.info("#####[银联代扣] 返回参数:" + repDto);
+    }
+
+    @Test
+    public void payQuery() throws Exception{
+        PayQueryReqDto reqDto = new PayQueryReqDto() ;
+        ChannelRemark channelRemark = new ChannelRemark() ;
+        channelRemark.setMerchantNo("777290058123381");
+        channelRemark.setCerPath("/Users/pang/Desktop/works/cert/verify_sign_acp.cer");
+        channelRemark.setPfxPath("/Users/pang/Desktop/works/cert/700000000000001_acp.pfx") ;
+        channelRemark.setPwd("000000") ;
+        reqDto.setChannelRemark(channelRemark);
+
+        reqDto.setChannelCreateDate(DateUtil.StringToDate("20160522162502" , "yyyyMMddHHmmss"));
+        reqDto.setOriChannelOrderNo("20160522162502007");
+        logger.info("#####[银联代扣] 请求参数:" + reqDto);
+        AgentCollectChannelFacade facade = daifuChannelMappingFactory.getChannelBean("AC_UNIONPAY_CD_01") ;
+        PayQueryRepDto repDto = facade.payQuery(reqDto) ;
         logger.info("#####[银联代扣] 返回参数:" + repDto);
     }
 
