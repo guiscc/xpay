@@ -1,5 +1,7 @@
 package com.xpay.channel.front.utils;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 /**
  * 前置平台配置文件公共参数类
  * Created by suxinxin on 14/12/25.
@@ -81,5 +83,10 @@ public class ChannelConfig {
 
     public void setCharset(String charset) {
         this.charset = charset;
+    }
+
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this) ;
     }
 }

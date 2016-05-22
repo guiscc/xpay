@@ -124,8 +124,8 @@ public class UnionpayUtil {
         httpCfg.setUrl(url);
 
 
-        String signBytes = UnionpayUtil.sign(data, "UTF-8"); //签名
-        data.put("signature", signBytes); //签名
+//        String signBytes = UnionpayUtil.sign(data, "UTF-8"); //签名
+//        data.put("signature", signBytes); //签名
         System.out.println("发送信息:" + data);
 
         HttpRequester httpRequester = new HttpRequester(httpCfg);

@@ -50,6 +50,11 @@ public class BaseReqDTO {
      * http 请求报文头
      */
     private Map<String, String> headMap ;
+
+    /**
+     * 请求地址
+     */
+    private String bankUrl ;
     
     private ChannelRemark channelRemark ;
 
@@ -125,7 +130,15 @@ public class BaseReqDTO {
 		this.map = map;
 	}
 
-	@Override
+    public String getBankUrl() {
+        return bankUrl;
+    }
+
+    public void setBankUrl(String bankUrl) {
+        this.bankUrl = bankUrl;
+    }
+
+    @Override
     public String toString() {
     	return ToStringBuilder.reflectionToString(this) ;
     }

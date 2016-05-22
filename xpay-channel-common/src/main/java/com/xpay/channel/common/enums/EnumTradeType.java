@@ -14,6 +14,8 @@ public enum EnumTradeType {
     REFUNDQUERY("查询退款"),
     REFUNDCALLBACK("退款回调"),
     CHECKFILE("对账"),
+
+    AUTH("实名认证"),
     ;
 
     EnumTradeType(String value) {

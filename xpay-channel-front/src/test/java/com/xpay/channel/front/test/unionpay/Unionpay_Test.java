@@ -1,5 +1,7 @@
 package com.xpay.channel.front.test.unionpay;
 
+import com.xpay.channel.common.dto.daikou.PayRepDto;
+import com.xpay.channel.common.dto.daikou.PayReqDto;
 import com.xpay.channel.common.dto.daikou.RealNameAuthReqDto;
 import com.xpay.channel.common.model.ChannelRemark;
 import com.xpay.channel.common.util.DateUtil;
@@ -7,6 +9,8 @@ import com.xpay.channel.front.facade.AgentCollectChannelFacade;
 import com.xpay.channel.front.mapping.DaifuChannelMappingFactory;
 import com.xpay.channel.front.test.BaseTest;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.annotation.Resource;
 import java.util.Date;
@@ -23,9 +27,10 @@ public class Unionpay_Test extends BaseTest {
     @Resource
     private DaifuChannelMappingFactory daifuChannelMappingFactory ;
 
+    private static final Logger logger = LoggerFactory.getLogger(Unionpay_Test.class) ;
 
     @Test
-    public void testAuth() throws Exception {
+    public void auth() throws Exception {
         RealNameAuthReqDto reqDto = new RealNameAuthReqDto() ;
         ChannelRemark channelRemark = new ChannelRemark() ;
         reqDto.setChannelRemark(channelRemark) ;
@@ -36,6 +41,28 @@ public class Unionpay_Test extends BaseTest {
         String channelOrderNo = DateUtil.DateStampToStringNoSp(new Date()) ;
         AgentCollectChannelFacade facade = daifuChannelMappingFactory.getChannelBean("AC_UNIONPAY_CD_01") ;
         facade.auth(reqDto) ;
+    }
+
+    @Test
+    public void pay() throws Exception{
+        PayReqDto reqDto = new PayReqDto() ;
+        ChannelRemark channelRemark = new ChannelRemark() ;
+        channelRemark.setMerchantNo("777290058123381");
+//        channelRemark.setCerPath("/Users/pang/Desktop/works/cert/verify_sign_acp.cer") ;
+        channelRemark.setCerPath("/Users/pang/Desktop/works/cert/verify_sign_acp.cer");
+        channelRemark.setPfxPath("/Users/pang/Desktop/works/cert/700000000000001_acp.pfx") ;
+        channelRemark.setPwd("000000") ;
+        reqDto.setChannelRemark(channelRemark);
+        reqDto.setCardNo("6216261000000000018");
+        reqDto.setHolderName("全渠道");
+        reqDto.setCertNo("341126197709218366");
+        reqDto.setMobileNo("13552535506");
+        reqDto.setChannelOrderNo(DateUtil.DateStampToStringNoSp(new Date()));
+        reqDto.setAmount(2l);
+        logger.info("#####[银联代扣] 请求参数:" + reqDto);
+        AgentCollectChannelFacade facade = daifuChannelMappingFactory.getChannelBean("AC_UNIONPAY_CD_01") ;
+        PayRepDto repDto = facade.pay(reqDto) ;
+        logger.info("#####[银联代扣] 返回参数:" + repDto);
     }
 
     @Test
@@ -102,9 +129,8 @@ public class Unionpay_Test extends BaseTest {
         /**对请求参数进行签名并发送http post请求，接收同步应答报文**/
         String sign = UnionpayUtil.sign(data,"UTF-8") ;//AcpService.sign(contentData,DemoBase.encoding_UTF8);			 //报文中certId,signature的值是在signData方法中获取并自动赋值的，只要证书配置正确即可。
         data.put("signature" , sign) ;			 //交易请求url从配置文件读取对应属性文件acp_sdk.properties中的 acpsdk.backTransUrl
-        data.put("backUrl", "www.baidu.com");
 
-        UnionpayUtil.process(data,"https://101.231.204.80:5000/gateway/api/appTransReq.do");
+        UnionpayUtil.process(data,"https://101.231.204.80:5000/gateway/api/backTransReq.do");
     }
 
 }

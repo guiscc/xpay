@@ -2,6 +2,7 @@ package com.xpay.channel.common.util;
 
 import com.alibaba.fastjson.JSON;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -18,5 +19,12 @@ public class JsonUtil {
 			return "" ;
 		}
 		return JSON.toJSONString(map) ;
+	}
+
+	public static Map<String , String> jsonTomMap(String json){
+		if(json == null || "".equals(json)){
+			return new HashMap<String , String>() ;
+		}
+		return JSON.parseObject(json , Map.class) ;
 	}
 }
