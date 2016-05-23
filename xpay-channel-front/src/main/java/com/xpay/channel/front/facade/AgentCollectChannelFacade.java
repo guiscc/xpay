@@ -43,5 +43,15 @@ public interface AgentCollectChannelFacade {
      */
     public PayQueryRepDto payQuery(PayQueryReqDto reqDto) throws VldException, BuildMsgException, CommuException, ResolveMsgException ;
 
+    /**
+     * 退货
+     * @param reqDto
+     * @return
+     * @throws VldException
+     * @throws BuildMsgException
+     * @throws CommuException
+     * @throws ResolveMsgException
+     */
+    public RefundRepDto refund(RefundReqDto reqDto) throws VldException, BuildMsgException, CommuException, ResolveMsgException ;
 
 }

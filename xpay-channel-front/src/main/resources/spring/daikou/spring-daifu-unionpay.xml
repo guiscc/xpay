@@ -36,6 +36,10 @@
 
                 <!--查询-->
                 <property name="queryTxnType" value="${unionpay.daikou.queryTxnType}"/>
+                <!--退货-->
+                <property name="refundTxnType" value="${unionpay.daikou.refundTxnType}"/>
+
+
 
             </bean>
         </property>
@@ -51,6 +55,9 @@
                 <entry key-ref="PAYQUERY">
                     <bean class="com.xpay.channel.front.channel.daikou.unionpay.msg.Unionpay_PayQueryMsgHandler"/>
                 </entry>
+                <entry key-ref="REFUND">
+                    <bean class="com.xpay.channel.front.channel.daikou.unionpay.msg.Unionpay_RefundMsgHandler"/>
+                </entry>
             </map>
         </property>
 
@@ -64,6 +71,9 @@
                 </entry>
                 <entry key-ref="PAYQUERY">
                     <bean class="com.xpay.channel.front.channel.daikou.unionpay.vld.Unionpay_PayQueryVld"/>
+                </entry>
+                <entry key-ref="REFUND">
+                    <bean class="com.xpay.channel.front.channel.daikou.unionpay.vld.Unionpay_RefundVld"/>
                 </entry>
             </map>
         </property>

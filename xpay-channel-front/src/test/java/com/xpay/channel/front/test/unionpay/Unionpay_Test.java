@@ -55,9 +55,11 @@ public class Unionpay_Test extends BaseTest {
         reqDto.setHolderName("全渠道");
         reqDto.setCertNo("341126197709218366");
         reqDto.setMobileNo("13552535506");
-        reqDto.setChannelOrderNo(DateUtil.DateStampToStringNoSp(new Date()));
+        String channelOrderNo = DateUtil.DateStampToStringNoSp(new Date());
+        reqDto.setChannelOrderNo(channelOrderNo);
         reqDto.setAmount(2l);
         logger.info("#####[银联代扣] 请求参数:" + reqDto);
+        System.err.println();
         AgentCollectChannelFacade facade = daifuChannelMappingFactory.getChannelBean("AC_UNIONPAY_CD_01") ;
         PayRepDto repDto = facade.pay(reqDto) ;
         logger.info("#####[银联代扣] 返回参数:" + repDto);
@@ -79,6 +81,26 @@ public class Unionpay_Test extends BaseTest {
         AgentCollectChannelFacade facade = daifuChannelMappingFactory.getChannelBean("AC_UNIONPAY_CD_01") ;
         PayQueryRepDto repDto = facade.payQuery(reqDto) ;
         logger.info("#####[银联代扣] 返回参数:" + repDto);
+    }
+
+    @Test
+    public void refund() throws Exception{
+        RefundReqDto reqDto = new RefundReqDto() ;
+        ChannelRemark channelRemark = new ChannelRemark() ;
+        channelRemark.setMerchantNo("777290058123381");
+        channelRemark.setCerPath("/Users/pang/Desktop/works/cert/verify_sign_acp.cer");
+        channelRemark.setPfxPath("/Users/pang/Desktop/works/cert/700000000000001_acp.pfx") ;
+        channelRemark.setPwd("000000") ;
+        reqDto.setChannelRemark(channelRemark);
+        reqDto.setAmount(1l);
+        reqDto.setChannelRefundNo(DateUtil.DateStampToStringNoSp(new Date()));
+
+        reqDto.setChannelCreateDate(DateUtil.StringToDate("20160522162502" , "yyyyMMddHHmmss"));
+        reqDto.setOriBankNo("201605221625022662098");
+        logger.info("#####[银联代扣退货] 请求参数:" + reqDto);
+        AgentCollectChannelFacade facade = daifuChannelMappingFactory.getChannelBean("AC_UNIONPAY_CD_01") ;
+        RefundRepDto repDto = facade.refund(reqDto) ;
+        logger.info("#####[银联代扣退货] 返回参数:" + repDto);
     }
 
     @Test

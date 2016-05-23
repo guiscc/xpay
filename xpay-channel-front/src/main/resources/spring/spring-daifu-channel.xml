@@ -25,6 +25,9 @@
     <bean id="PAYQUERY" class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean">
         <property name="staticField" value="com.xpay.channel.common.enums.EnumTradeType.PAYQUERY"></property>
     </bean>
+    <bean id="REFUND" class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean">
+        <property name="staticField" value="com.xpay.channel.common.enums.EnumTradeType.REFUND"></property>
+    </bean>
 
     <!--配置文件基类bean-->
     <bean name="channelConfig" class="com.xpay.channel.front.utils.ChannelConfig">
@@ -43,5 +46,5 @@
         </property>
     </bean>
 
-    <import resource="daifu/spring-daifu-unionpay.xml"/>
+    <import resource="daikou/spring-daifu-unionpay.xml"/>
 </beans>

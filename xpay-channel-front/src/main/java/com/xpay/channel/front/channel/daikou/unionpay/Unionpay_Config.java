@@ -35,6 +35,9 @@ public class Unionpay_Config extends ChannelConfig {
     private String queryUrl ;
     private String queryTxnType ;
 
+    //退货
+    private String refundTxnType ;
+
 
     public String getAuthUrl() {
         return authUrl;
@@ -202,5 +205,13 @@ public class Unionpay_Config extends ChannelConfig {
 
     public void setQueryTxnType(String queryTxnType) {
         this.queryTxnType = queryTxnType;
+    }
+
+    public String getRefundTxnType() {
+        return refundTxnType;
+    }
+
+    public void setRefundTxnType(String refundTxnType) {
+        this.refundTxnType = refundTxnType;
     }
 }
