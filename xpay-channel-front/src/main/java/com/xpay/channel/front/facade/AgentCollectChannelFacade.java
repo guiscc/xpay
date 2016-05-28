@@ -65,4 +65,39 @@ public interface AgentCollectChannelFacade {
      */
     public CancelRepDto cancel(CancelReqDto reqDto) throws VldException, BuildMsgException, CommuException, ResolveMsgException ;
 
+
+    /**
+     * 代扣回调
+     * @param reqDto
+     * @return
+     * @throws VldException
+     * @throws BuildMsgException
+     * @throws CommuException
+     * @throws ResolveMsgException
+     */
+    public PayCallbackRepDto payCallback(PayCallbackReqDto reqDto)throws VldException, BuildMsgException, CommuException, ResolveMsgException ;
+
+    /**
+     * 代扣退款回调
+     * @param reqDto
+     * @return
+     * @throws VldException
+     * @throws BuildMsgException
+     * @throws CommuException
+     * @throws ResolveMsgException
+     */
+    public RefundCallbackRepDto refundCallback(RefundCallbackReqDto reqDto)throws VldException, BuildMsgException, CommuException, ResolveMsgException ;
+
+    /**
+     * 代扣交易取消回调
+     * @param reqDto
+     * @return
+     * @throws VldException
+     * @throws BuildMsgException
+     * @throws CommuException
+     * @throws ResolveMsgException
+     */
+    public CancelCallbackRepDto cancelCallback(CancelCallbackReqDto reqDto)throws VldException, BuildMsgException, CommuException, ResolveMsgException ;
+
+
 }

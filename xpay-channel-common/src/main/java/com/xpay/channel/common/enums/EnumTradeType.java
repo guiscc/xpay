@@ -17,6 +17,7 @@ public enum EnumTradeType {
 
     AUTH("实名认证"),
     CANCEL("消费取消"),
+    CANCELCALLBACK("取消回调"),
     ;
 
     EnumTradeType(String value) {

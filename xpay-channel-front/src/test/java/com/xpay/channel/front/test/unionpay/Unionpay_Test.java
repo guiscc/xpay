@@ -85,8 +85,8 @@ public class Unionpay_Test extends BaseTest {
         channelRemark.setPwd("000000") ;
         reqDto.setChannelRemark(channelRemark);
 
-        reqDto.setChannelCreateDate(DateUtil.StringToDate("20160528145236" , "yyyyMMddHHmmss"));
-        reqDto.setOriChannelOrderNo("20160528145236586");
+        reqDto.setChannelCreateDate(DateUtil.StringToDate("20160528153441" , "yyyyMMddHHmmss"));
+        reqDto.setOriChannelOrderNo("20160528153441872");
         //201605281452366012488
 
         logger.info("#####[银联代扣] 请求参数:" + reqDto);
@@ -107,8 +107,8 @@ public class Unionpay_Test extends BaseTest {
         reqDto.setAmount(5l);
         reqDto.setChannelRefundNo(DateUtil.DateStampToStringNoSp(new Date()));
 
-        reqDto.setChannelCreateDate(DateUtil.StringToDate("20160528142333" , "yyyyMMddHHmmss"));
-        reqDto.setOriBankNo("201605281423335997928");
+        reqDto.setChannelCreateDate(DateUtil.StringToDate("20160528153441" , "yyyyMMddHHmmss"));
+        reqDto.setOriBankNo("201605281534410748018");
         logger.info("#####[银联代扣退货] 请求参数:" + reqDto);
         AgentCollectChannelFacade facade = daifuChannelMappingFactory.getChannelBean("AC_UNIONPAY_CD_01") ;
         RefundRepDto repDto = facade.refund(reqDto) ;
@@ -127,11 +127,20 @@ public class Unionpay_Test extends BaseTest {
         reqDto.setAmount(5l);
         reqDto.setChannelCancelNo(DateUtil.DateStampToStringNoSp(new Date()));
 
-        reqDto.setChannelCreateDate(DateUtil.StringToDate("20160528145236" , "yyyyMMddHHmmss"));
-        reqDto.setOriBankNo("201605281452366012488");
+        reqDto.setChannelCreateDate(DateUtil.StringToDate("20160528153441" , "yyyyMMddHHmmss"));
+        reqDto.setOriBankNo("201605281534410748018");
         logger.info("#####[银联消费取消] 请求参数:" + reqDto);
         AgentCollectChannelFacade facade = daifuChannelMappingFactory.getChannelBean("AC_UNIONPAY_CD_01") ;
         CancelRepDto repDto = facade.cancel(reqDto) ;
+        logger.info("#####[银联消费取消] 返回参数:" + repDto);
+    }
+
+    @Test
+    public void payCallback()throws Exception{
+        PayCallbackReqDto reqDto = new PayCallbackReqDto() ;
+        logger.info("#####[银联消费取消] 请求参数:" + reqDto);
+        AgentCollectChannelFacade facade = daifuChannelMappingFactory.getChannelBean("AC_UNIONPAY_CD_01") ;
+        PayCallbackRepDto repDto = facade.payCallback(reqDto) ;
         logger.info("#####[银联消费取消] 返回参数:" + repDto);
     }
 

@@ -31,6 +31,15 @@
     <bean id="CANCEL" class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean">
         <property name="staticField" value="com.xpay.channel.common.enums.EnumTradeType.CANCEL"></property>
     </bean>
+    <bean id="PAYCALLBACK" class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean">
+        <property name="staticField" value="com.xpay.channel.common.enums.EnumTradeType.PAYCALLBACK"></property>
+    </bean>
+    <bean id="REFUNDCALLBACK" class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean">
+        <property name="staticField" value="com.xpay.channel.common.enums.EnumTradeType.REFUNDCALLBACK"></property>
+    </bean>
+    <bean id="CANCELCALLBACK" class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean">
+        <property name="staticField" value="com.xpay.channel.common.enums.EnumTradeType.CANCELCALLBACK"></property>
+    </bean>
 
     <!--配置文件基类bean-->
     <bean name="channelConfig" class="com.xpay.channel.front.utils.ChannelConfig">

@@ -65,6 +65,15 @@
                 <entry key-ref="CANCEL">
                     <bean class="com.xpay.channel.front.channel.daikou.unionpay.msg.Unionpay_CancelMsgHandler"/>
                 </entry>
+                <entry key-ref="PAYCALLBACK">
+                    <bean class="com.xpay.channel.front.channel.daikou.unionpay.msg.Unionpay_PayCallbackMsgHandler"/>
+                </entry>
+                <entry key-ref="REFUNDCALLBACK">
+                    <bean class="com.xpay.channel.front.channel.daikou.unionpay.msg.Unionpay_RefundCallbackMsgHandler"/>
+                </entry>
+                <entry key-ref="CANCELCALLBACK">
+                    <bean class="com.xpay.channel.front.channel.daikou.unionpay.msg.Unionpay_CancelCallbackMsgHandler"/>
+                </entry>
             </map>
 
 
@@ -86,6 +95,15 @@
                 </entry>
                 <entry key-ref="CANCEL">
                     <bean class="com.xpay.channel.front.channel.daikou.unionpay.vld.Unionpay_CancelVld"/>
+                </entry>
+                <entry key-ref="PAYCALLBACK">
+                    <bean class="com.xpay.channel.front.channel.daikou.unionpay.vld.Unionpay_PayCallbackVld"/>
+                </entry>
+                <entry key-ref="REFUNDCALLBACK">
+                    <bean class="com.xpay.channel.front.channel.daikou.unionpay.vld.Unionpay_RefundCallbackVld"/>
+                </entry>
+                <entry key-ref="CANCELCALLBACK">
+                    <bean class="com.xpay.channel.front.channel.daikou.unionpay.vld.Unionpay_CancelCallbackVld"/>
                 </entry>
             </map>
         </property>

@@ -94,6 +94,36 @@ public abstract class AbsDaifuChannel implements AgentCollectChannelFacade {
         return repDto;
     }
 
+    @Override
+    public PayCallbackRepDto payCallback(PayCallbackReqDto reqDto) throws VldException, BuildMsgException, CommuException, ResolveMsgException {
+        ChannelActionProcess<PayCallbackReqDto, PayCallbackRepDto> channelActionProcess = new ChannelActionProcess<PayCallbackReqDto, PayCallbackRepDto>();
+        channelActionProcess.setChannelValidate(this.getChannelValidateHandler().get(EnumTradeType.PAYCALLBACK));
+        channelActionProcess.setChannelMsgHandler(this.getChannelMsgHandler().get(EnumTradeType.PAYCALLBACK));
+        channelActionProcess.setChannelConfig(this.getChannelConfig());
+        PayCallbackRepDto repDto = channelActionProcess.doProcess(reqDto);
+        return repDto;
+    }
+
+    @Override
+    public RefundCallbackRepDto refundCallback(RefundCallbackReqDto reqDto) throws VldException, BuildMsgException, CommuException, ResolveMsgException {
+        ChannelActionProcess<RefundCallbackReqDto, RefundCallbackRepDto> channelActionProcess = new ChannelActionProcess<RefundCallbackReqDto, RefundCallbackRepDto>();
+        channelActionProcess.setChannelValidate(this.getChannelValidateHandler().get(EnumTradeType.REFUNDCALLBACK));
+        channelActionProcess.setChannelMsgHandler(this.getChannelMsgHandler().get(EnumTradeType.REFUNDCALLBACK));
+        channelActionProcess.setChannelConfig(this.getChannelConfig());
+        RefundCallbackRepDto repDto = channelActionProcess.doProcess(reqDto);
+        return repDto;
+    }
+
+    @Override
+    public CancelCallbackRepDto cancelCallback(CancelCallbackReqDto reqDto) throws VldException, BuildMsgException, CommuException, ResolveMsgException {
+        ChannelActionProcess<CancelCallbackReqDto, CancelCallbackRepDto> channelActionProcess = new ChannelActionProcess<CancelCallbackReqDto, CancelCallbackRepDto>();
+        channelActionProcess.setChannelValidate(this.getChannelValidateHandler().get(EnumTradeType.CANCELCALLBACK));
+        channelActionProcess.setChannelMsgHandler(this.getChannelMsgHandler().get(EnumTradeType.CANCELCALLBACK));
+        channelActionProcess.setChannelConfig(this.getChannelConfig());
+        CancelCallbackRepDto repDto = channelActionProcess.doProcess(reqDto);
+        return repDto;
+    }
+
     public ChannelTongXinHandler getChannelTongXinHandler() {
         return channelTongXinHandler;
     }
