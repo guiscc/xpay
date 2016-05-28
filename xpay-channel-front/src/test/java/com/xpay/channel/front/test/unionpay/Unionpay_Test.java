@@ -53,6 +53,7 @@ public class Unionpay_Test extends BaseTest {
     @Test
     public void pay() throws Exception{
         PayReqDto reqDto = new PayReqDto() ;
+        reqDto.setCreateDate(new Date());
         ChannelRemark channelRemark = new ChannelRemark() ;
         channelRemark.setMerchantNo("777290058123381");
 //        channelRemark.setCerPath("/Users/pang/Desktop/works/cert/verify_sign_acp.cer") ;
