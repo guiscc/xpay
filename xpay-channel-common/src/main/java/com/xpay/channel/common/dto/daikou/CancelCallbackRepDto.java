@@ -12,7 +12,7 @@ public class CancelCallbackRepDto extends BaseRepDTO {
     private String responseBody ;
     private long amount ;
     private String oriChannelOrderNo ;
-    private String channelRefundNo ;
+    private String channelCancelNo ;
 
     public String getResponseBody() {
         return responseBody;
@@ -38,11 +38,11 @@ public class CancelCallbackRepDto extends BaseRepDTO {
         this.oriChannelOrderNo = oriChannelOrderNo;
     }
 
-    public String getChannelRefundNo() {
-        return channelRefundNo;
+    public String getChannelCancelNo() {
+        return channelCancelNo;
     }
 
-    public void setChannelRefundNo(String channelRefundNo) {
-        this.channelRefundNo = channelRefundNo;
+    public void setChannelCancelNo(String channelCancelNo) {
+        this.channelCancelNo = channelCancelNo;
     }
 }

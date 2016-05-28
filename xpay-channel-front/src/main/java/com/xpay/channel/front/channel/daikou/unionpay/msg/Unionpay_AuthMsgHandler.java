@@ -60,7 +60,7 @@ public class Unionpay_AuthMsgHandler extends FreemarkChannelMsgHandlerImpl<RealN
             data.put("merId", req.getChannelRemark().getMerchantNo());
             data.put("accessType", StringUtils.trim(config.getAccessType()));
             data.put("orderId", req.getChannelOrderNo());
-            data.put("txnTime", DateUtil.DateToString(new Date(), "yyyyMMddHHmmss"));
+            data.put("txnTime", DateUtil.DateToString(req.getChannelCreateDate(), "yyyyMMddHHmmss"));
             data.put("accType", StringUtils.trim(config.getAccType()));
 
             Map<String, String> customerInfoMap = new HashMap<String, String>();

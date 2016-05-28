@@ -85,8 +85,8 @@ public class Unionpay_Test extends BaseTest {
         channelRemark.setPwd("000000") ;
         reqDto.setChannelRemark(channelRemark);
 
-        reqDto.setChannelCreateDate(DateUtil.StringToDate("20160528153441" , "yyyyMMddHHmmss"));
-        reqDto.setOriChannelOrderNo("20160528153441872");
+        reqDto.setChannelCreateDate(DateUtil.StringToDate("20160528181316" , "yyyyMMddHHmmss"));
+        reqDto.setOriChannelOrderNo("20160528181316971");
         //201605281452366012488
 
         logger.info("#####[银联代扣] 请求参数:" + reqDto);
@@ -107,8 +107,8 @@ public class Unionpay_Test extends BaseTest {
         reqDto.setAmount(5l);
         reqDto.setChannelRefundNo(DateUtil.DateStampToStringNoSp(new Date()));
 
-        reqDto.setChannelCreateDate(DateUtil.StringToDate("20160528153441" , "yyyyMMddHHmmss"));
-        reqDto.setOriBankNo("201605281534410748018");
+        reqDto.setChannelCreateDate(DateUtil.StringToDate("20160528181316" , "yyyyMMddHHmmss"));
+        reqDto.setOriBankNo("201605281813166252808");
         logger.info("#####[银联代扣退货] 请求参数:" + reqDto);
         AgentCollectChannelFacade facade = daifuChannelMappingFactory.getChannelBean("AC_UNIONPAY_CD_01") ;
         RefundRepDto repDto = facade.refund(reqDto) ;
@@ -127,8 +127,8 @@ public class Unionpay_Test extends BaseTest {
         reqDto.setAmount(5l);
         reqDto.setChannelCancelNo(DateUtil.DateStampToStringNoSp(new Date()));
 
-        reqDto.setChannelCreateDate(DateUtil.StringToDate("20160528153441" , "yyyyMMddHHmmss"));
-        reqDto.setOriBankNo("201605281534410748018");
+        reqDto.setChannelCreateDate(DateUtil.StringToDate("20160528181316" , "yyyyMMddHHmmss"));
+        reqDto.setOriBankNo("201605281813166252808");
         logger.info("#####[银联消费取消] 请求参数:" + reqDto);
         AgentCollectChannelFacade facade = daifuChannelMappingFactory.getChannelBean("AC_UNIONPAY_CD_01") ;
         CancelRepDto repDto = facade.cancel(reqDto) ;

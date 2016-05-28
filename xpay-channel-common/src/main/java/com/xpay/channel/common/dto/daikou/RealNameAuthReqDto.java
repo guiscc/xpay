@@ -4,6 +4,8 @@ import com.xpay.channel.common.dto.BaseReqDTO;
 import com.xpay.channel.common.enums.EnumCardType;
 import com.xpay.channel.common.enums.EnumCertType;
 
+import java.util.Date;
+
 /**
  * @Remark 实名认证dto
  * @Author pangyiyang
@@ -46,6 +48,11 @@ public class RealNameAuthReqDto extends BaseReqDTO {
      * 手机号
      */
     private String mobileNo ;
+
+    /**
+     * 订单创建时间
+     */
+    private Date channelCreateDate ;
 
     public String getCardNo() {
         return cardNo;
@@ -117,5 +124,13 @@ public class RealNameAuthReqDto extends BaseReqDTO {
 
     public void setMobileNo(String mobileNo) {
         this.mobileNo = mobileNo;
+    }
+
+    public Date getChannelCreateDate() {
+        return channelCreateDate;
+    }
+
+    public void setChannelCreateDate(Date channelCreateDate) {
+        this.channelCreateDate = channelCreateDate;
     }
 }
