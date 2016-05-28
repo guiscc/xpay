@@ -40,6 +40,8 @@
                 <property name="refundTxnType" value="${unionpay.daikou.refundTxnType}"/>
                 <!--实名认证-->
                 <property name="authSubTxnType" value="${unionpay.daikou.authSubTxnType}"/>
+                <!--消费取消-->
+                <property name="cancelTxnType" value="${unionpay.daikou.cancelTxnType}"/>
 
 
 
@@ -60,7 +62,12 @@
                 <entry key-ref="REFUND">
                     <bean class="com.xpay.channel.front.channel.daikou.unionpay.msg.Unionpay_RefundMsgHandler"/>
                 </entry>
+                <entry key-ref="CANCEL">
+                    <bean class="com.xpay.channel.front.channel.daikou.unionpay.msg.Unionpay_CancelMsgHandler"/>
+                </entry>
             </map>
+
+
         </property>
 
         <property name="channelValidateHandler">
@@ -76,6 +83,9 @@
                 </entry>
                 <entry key-ref="REFUND">
                     <bean class="com.xpay.channel.front.channel.daikou.unionpay.vld.Unionpay_RefundVld"/>
+                </entry>
+                <entry key-ref="CANCEL">
+                    <bean class="com.xpay.channel.front.channel.daikou.unionpay.vld.Unionpay_CancelVld"/>
                 </entry>
             </map>
         </property>

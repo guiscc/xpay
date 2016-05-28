@@ -54,4 +54,15 @@ public interface AgentCollectChannelFacade {
      */
     public RefundRepDto refund(RefundReqDto reqDto) throws VldException, BuildMsgException, CommuException, ResolveMsgException ;
 
+    /**
+     * 消费取消
+     * @param reqDto
+     * @return
+     * @throws VldException
+     * @throws BuildMsgException
+     * @throws CommuException
+     * @throws ResolveMsgException
+     */
+    public CancelRepDto cancel(CancelReqDto reqDto) throws VldException, BuildMsgException, CommuException, ResolveMsgException ;
+
 }

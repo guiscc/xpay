@@ -41,6 +41,8 @@ public class Unionpay_Config extends ChannelConfig {
     //实名
     private String authSubTxnType ;
 
+    //消费取消
+    private String cancelTxnType ;
 
     public String getAuthUrl() {
         return authUrl;
@@ -224,5 +226,13 @@ public class Unionpay_Config extends ChannelConfig {
 
     public void setAuthSubTxnType(String authSubTxnType) {
         this.authSubTxnType = authSubTxnType;
+    }
+
+    public String getCancelTxnType() {
+        return cancelTxnType;
+    }
+
+    public void setCancelTxnType(String cancelTxnType) {
+        this.cancelTxnType = cancelTxnType;
     }
 }

@@ -85,9 +85,9 @@ public class Unionpay_Test extends BaseTest {
         channelRemark.setPwd("000000") ;
         reqDto.setChannelRemark(channelRemark);
 
-        reqDto.setChannelCreateDate(DateUtil.StringToDate("20160528142333" , "yyyyMMddHHmmss"));
-        reqDto.setOriChannelOrderNo("20160528142333168");
-        //201605281411265991368
+        reqDto.setChannelCreateDate(DateUtil.StringToDate("20160528145236" , "yyyyMMddHHmmss"));
+        reqDto.setOriChannelOrderNo("20160528145236586");
+        //201605281452366012488
 
         logger.info("#####[银联代扣] 请求参数:" + reqDto);
         AgentCollectChannelFacade facade = daifuChannelMappingFactory.getChannelBean("AC_UNIONPAY_CD_01") ;
@@ -113,6 +113,26 @@ public class Unionpay_Test extends BaseTest {
         AgentCollectChannelFacade facade = daifuChannelMappingFactory.getChannelBean("AC_UNIONPAY_CD_01") ;
         RefundRepDto repDto = facade.refund(reqDto) ;
         logger.info("#####[银联代扣退货] 返回参数:" + repDto);
+    }
+
+    @Test
+    public void cancel() throws Exception{
+        CancelReqDto reqDto = new CancelReqDto() ;
+        ChannelRemark channelRemark = new ChannelRemark() ;
+        channelRemark.setMerchantNo("777290058123381");
+        channelRemark.setCerPath("/Users/pang/Desktop/works/cert/verify_sign_acp.cer");
+        channelRemark.setPfxPath("/Users/pang/Desktop/works/cert/700000000000001_acp.pfx") ;
+        channelRemark.setPwd("000000") ;
+        reqDto.setChannelRemark(channelRemark);
+        reqDto.setAmount(5l);
+        reqDto.setChannelCancelNo(DateUtil.DateStampToStringNoSp(new Date()));
+
+        reqDto.setChannelCreateDate(DateUtil.StringToDate("20160528145236" , "yyyyMMddHHmmss"));
+        reqDto.setOriBankNo("201605281452366012488");
+        logger.info("#####[银联消费取消] 请求参数:" + reqDto);
+        AgentCollectChannelFacade facade = daifuChannelMappingFactory.getChannelBean("AC_UNIONPAY_CD_01") ;
+        CancelRepDto repDto = facade.cancel(reqDto) ;
+        logger.info("#####[银联消费取消] 返回参数:" + repDto);
     }
 
     @Test

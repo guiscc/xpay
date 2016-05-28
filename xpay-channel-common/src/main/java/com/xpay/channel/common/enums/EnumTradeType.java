@@ -16,6 +16,7 @@ public enum EnumTradeType {
     CHECKFILE("对账"),
 
     AUTH("实名认证"),
+    CANCEL("消费取消"),
     ;
 
     EnumTradeType(String value) {

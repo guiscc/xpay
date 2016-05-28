@@ -28,6 +28,9 @@
     <bean id="REFUND" class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean">
         <property name="staticField" value="com.xpay.channel.common.enums.EnumTradeType.REFUND"></property>
     </bean>
+    <bean id="CANCEL" class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean">
+        <property name="staticField" value="com.xpay.channel.common.enums.EnumTradeType.CANCEL"></property>
+    </bean>
 
     <!--配置文件基类bean-->
     <bean name="channelConfig" class="com.xpay.channel.front.utils.ChannelConfig">

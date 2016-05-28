@@ -83,6 +83,17 @@ public abstract class AbsDaifuChannel implements AgentCollectChannelFacade {
         return repDto;
     }
 
+    @Override
+    public CancelRepDto cancel(CancelReqDto reqDto) throws VldException, BuildMsgException, CommuException, ResolveMsgException {
+        ChannelActionProcess<CancelReqDto, CancelRepDto> channelActionProcess = new ChannelActionProcess<CancelReqDto, CancelRepDto>();
+        channelActionProcess.setChannelValidate(this.getChannelValidateHandler().get(EnumTradeType.CANCEL));
+        channelActionProcess.setChannelTongXinHandler(this.getChannelTongXinHandler());
+        channelActionProcess.setChannelMsgHandler(this.getChannelMsgHandler().get(EnumTradeType.CANCEL));
+        channelActionProcess.setChannelConfig(this.getChannelConfig());
+        CancelRepDto repDto = channelActionProcess.doProcess(reqDto);
+        return repDto;
+    }
+
     public ChannelTongXinHandler getChannelTongXinHandler() {
         return channelTongXinHandler;
     }
