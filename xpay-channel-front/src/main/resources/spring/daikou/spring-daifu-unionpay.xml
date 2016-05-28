@@ -38,6 +38,8 @@
                 <property name="queryTxnType" value="${unionpay.daikou.queryTxnType}"/>
                 <!--退货-->
                 <property name="refundTxnType" value="${unionpay.daikou.refundTxnType}"/>
+                <!--实名认证-->
+                <property name="authSubTxnType" value="${unionpay.daikou.authSubTxnType}"/>
 
 
 

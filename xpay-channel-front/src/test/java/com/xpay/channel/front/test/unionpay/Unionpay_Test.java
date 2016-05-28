@@ -31,14 +31,23 @@ public class Unionpay_Test extends BaseTest {
     public void auth() throws Exception {
         RealNameAuthReqDto reqDto = new RealNameAuthReqDto() ;
         ChannelRemark channelRemark = new ChannelRemark() ;
-        reqDto.setChannelRemark(channelRemark) ;
-        channelRemark.setMerchantNo("777290058123381") ;
-        channelRemark.setPfxPath("/Users/pang/Desktop/works/cert/700000000000001_acp.pfx");
+        channelRemark.setMerchantNo("777290058123381");
+//        channelRemark.setCerPath("/Users/pang/Desktop/works/cert/verify_sign_acp.cer") ;
         channelRemark.setCerPath("/Users/pang/Desktop/works/cert/verify_sign_acp.cer");
-        channelRemark.setPwd("000000");
-        String channelOrderNo = DateUtil.DateStampToStringNoSp(new Date()) ;
+        channelRemark.setPfxPath("/Users/pang/Desktop/works/cert/700000000000001_acp.pfx") ;
+        channelRemark.setPwd("000000") ;
+        reqDto.setChannelRemark(channelRemark);
+        reqDto.setCardNo("6216261000000000018");
+        reqDto.setHolderName("全渠道");
+        reqDto.setCertNo("341126197709218366");
+        reqDto.setMobileNo("13552535506");
+        String channelOrderNo = DateUtil.DateStampToStringNoSp(new Date());
+        reqDto.setChannelOrderNo(channelOrderNo);
+        logger.info("#####[银联代扣] 请求参数:" + reqDto);
+        System.err.println();
         AgentCollectChannelFacade facade = daifuChannelMappingFactory.getChannelBean("AC_UNIONPAY_CD_01") ;
-        facade.auth(reqDto) ;
+        RealNameAuthRepDto repDto = facade.auth(reqDto) ;
+        logger.info("#####[银联代扣] 返回参数:" + repDto);
     }
 
     @Test

@@ -42,6 +42,10 @@ public class RealNameAuthReqDto extends BaseReqDTO {
      * 渠道单号
      */
     private String channelOrderNo ;
+    /**
+     * 手机号
+     */
+    private String mobileNo ;
 
     public String getCardNo() {
         return cardNo;
@@ -105,5 +109,13 @@ public class RealNameAuthReqDto extends BaseReqDTO {
 
     public void setChannelOrderNo(String channelOrderNo) {
         this.channelOrderNo = channelOrderNo;
+    }
+
+    public String getMobileNo() {
+        return mobileNo;
+    }
+
+    public void setMobileNo(String mobileNo) {
+        this.mobileNo = mobileNo;
     }
 }
