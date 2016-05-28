@@ -131,13 +131,15 @@ public class Unionpay_RefundMsgHandler extends FreemarkChannelMsgHandlerImpl<Ref
                 repDto.setBankFinishTime(DateUtil.StringToDate(traceTime , "MMddHHmmss"));
             }
             repDto.setChannelFinishTime(new Date());
-            if("00".equals(respCode) && "00".equals(oriRespCode)){
-                repDto.setTradeStatus(EnumTradeStatus.SUCCESS);
+            if("00".equals(respCode)){
+                repDto.setTradeStatus(EnumTradeStatus.PROCESS);
+            }else if("03".equals(respCode) || "04".equals(respCode) || "05".equals(respCode)){
+                repDto.setTradeStatus(EnumTradeStatus.UNKNOW);
             }else{
                 repDto.setTradeStatus(EnumTradeStatus.FAIL);
-                repDto.setRtnCode(respCode);
-                repDto.setRtnMsg(respMsg);
             }
+            repDto.setOriChannelOrderNo(req.getOriChannelOrderNo());
+            repDto.setAmount(req.getAmount());
         } catch (UnsupportedEncodingException e) {
             logger.error("#####[银联代扣退货] 解参时 参数转换错误." , e);
             throw new ResolveMsgException(EnumSysRtnCode.R0005 , EnumTradeStatus.UNKNOW);

@@ -132,6 +132,8 @@ public class Unionpay_PayQueryMsgHandler extends FreemarkChannelMsgHandlerImpl<P
             repDto.setChannelFinishTime(new Date());
             if("00".equals(respCode) && "00".equals(oriRespCode)){
                 repDto.setTradeStatus(EnumTradeStatus.SUCCESS);
+            }else if("03".equals(respCode) || "04".equals(respCode) || "05".equals(respCode)){
+                repDto.setTradeStatus(EnumTradeStatus.UNKNOW);
             }else{
                 repDto.setTradeStatus(EnumTradeStatus.FAIL);
                 repDto.setRtnMsg(respMsg);

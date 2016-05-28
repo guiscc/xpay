@@ -60,7 +60,7 @@ public class Unionpay_PayMsgHandler extends FreemarkChannelMsgHandlerImpl<PayReq
             data.put("merId", req.getChannelRemark().getMerchantNo());
             data.put("accessType", StringUtils.trim(config.getAccessType()));
             data.put("orderId", req.getChannelOrderNo());
-            data.put("txnTime", DateUtil.DateToString(new Date(), "yyyyMMddHHmmss"));
+            data.put("txnTime", DateUtil.DateToString(req.getCreateDate(), "yyyyMMddHHmmss"));
             data.put("currencyCode", StringUtils.trim(config.getDaikouCurrencyCode()));
             data.put("txnAmt", String.valueOf(req.getAmount()));
             data.put("accType", StringUtils.trim(config.getAccType()));
@@ -138,7 +138,9 @@ public class Unionpay_PayMsgHandler extends FreemarkChannelMsgHandlerImpl<PayReq
             repDto.setRtnMsg(respMsg);
             repDto.setBankNo(bankNo);
             if("00".equals(respCode)){
-                repDto.setTradeStatus(EnumTradeStatus.SUCCESS);
+                repDto.setTradeStatus(EnumTradeStatus.PROCESS);
+            }else if("03".equals(respCode) || "04".equals(respCode) || "05".equals(respCode)){
+                repDto.setTradeStatus(EnumTradeStatus.UNKNOW);
             }else{
                 repDto.setTradeStatus(EnumTradeStatus.FAIL);
             }

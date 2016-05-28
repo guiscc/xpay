@@ -66,7 +66,7 @@ public class Unionpay_Test extends BaseTest {
         reqDto.setMobileNo("13552535506");
         String channelOrderNo = DateUtil.DateStampToStringNoSp(new Date());
         reqDto.setChannelOrderNo(channelOrderNo);
-        reqDto.setAmount(2l);
+        reqDto.setAmount(5l);
         logger.info("#####[银联代扣] 请求参数:" + reqDto);
         System.err.println();
         AgentCollectChannelFacade facade = daifuChannelMappingFactory.getChannelBean("AC_UNIONPAY_CD_01") ;
@@ -84,8 +84,10 @@ public class Unionpay_Test extends BaseTest {
         channelRemark.setPwd("000000") ;
         reqDto.setChannelRemark(channelRemark);
 
-        reqDto.setChannelCreateDate(DateUtil.StringToDate("20160522162502" , "yyyyMMddHHmmss"));
-        reqDto.setOriChannelOrderNo("20160522162502007");
+        reqDto.setChannelCreateDate(DateUtil.StringToDate("20160528142333" , "yyyyMMddHHmmss"));
+        reqDto.setOriChannelOrderNo("20160528142333168");
+        //201605281411265991368
+
         logger.info("#####[银联代扣] 请求参数:" + reqDto);
         AgentCollectChannelFacade facade = daifuChannelMappingFactory.getChannelBean("AC_UNIONPAY_CD_01") ;
         PayQueryRepDto repDto = facade.payQuery(reqDto) ;
@@ -101,11 +103,11 @@ public class Unionpay_Test extends BaseTest {
         channelRemark.setPfxPath("/Users/pang/Desktop/works/cert/700000000000001_acp.pfx") ;
         channelRemark.setPwd("000000") ;
         reqDto.setChannelRemark(channelRemark);
-        reqDto.setAmount(1l);
+        reqDto.setAmount(5l);
         reqDto.setChannelRefundNo(DateUtil.DateStampToStringNoSp(new Date()));
 
-        reqDto.setChannelCreateDate(DateUtil.StringToDate("20160522162502" , "yyyyMMddHHmmss"));
-        reqDto.setOriBankNo("201605221625022662098");
+        reqDto.setChannelCreateDate(DateUtil.StringToDate("20160528142333" , "yyyyMMddHHmmss"));
+        reqDto.setOriBankNo("201605281423335997928");
         logger.info("#####[银联代扣退货] 请求参数:" + reqDto);
         AgentCollectChannelFacade facade = daifuChannelMappingFactory.getChannelBean("AC_UNIONPAY_CD_01") ;
         RefundRepDto repDto = facade.refund(reqDto) ;

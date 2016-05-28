@@ -4,6 +4,8 @@ import com.xpay.channel.common.dto.BaseReqDTO;
 import com.xpay.channel.common.enums.EnumCardType;
 import com.xpay.channel.common.enums.EnumCertType;
 
+import java.util.Date;
+
 /**
  * @Remark 扣款請求
  * @Author pangyiyang
@@ -51,6 +53,10 @@ public class PayReqDto extends BaseReqDTO {
      * 手机号
      */
     private String mobileNo ;
+    /**
+     * 订单创建时间
+     */
+    private Date createDate ;
 
     public String getCardNo() {
         return cardNo;
@@ -130,5 +136,13 @@ public class PayReqDto extends BaseReqDTO {
 
     public void setMobileNo(String mobileNo) {
         this.mobileNo = mobileNo;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
     }
 }
