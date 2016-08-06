@@ -1,0 +1,29 @@
+/**
+ * Alipay.com Inc.
+ * Copyright (c) 2004-2016 All Rights Reserved.
+ */
+package com.xpay.payment.biz.facade;
+
+import com.xpay.payment.common.facade.dto.AgentPayFacade;
+import com.xpay.payment.common.facade.dto.agentpay.AgentPayRepDTO;
+import com.xpay.payment.common.facade.dto.agentpay.AgentPayReqDTO;
+import com.xpay.payment.common.facade.dto.agentpay.QueryPayRepDTO;
+import com.xpay.payment.common.facade.dto.agentpay.QueryPayReqDTO;
+
+/**
+ * @author qinshou
+ * @version $Id: AgentPayFacadeImpl.java, v 0.1 16/7/31 下午12:06 sxfans Exp $
+ */
+public class AgentPayFacadeImpl implements AgentPayFacade {
+
+    @Override
+    public AgentPayRepDTO pay(AgentPayReqDTO agentPayReqDTO) {
+
+        return null;
+    }
+
+    @Override
+    public QueryPayRepDTO queryPay(QueryPayReqDTO queryPayReqDTO) {
+        return null;
+    }
+}
