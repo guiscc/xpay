@@ -2,7 +2,7 @@
  * Alipay.com Inc.
  * Copyright (c) 2004-2016 All Rights Reserved.
  */
-package com.xpay.payment.common.facade.dto.agentpay;
+package com.xpay.payment.common.dto.agentpay;
 
 /**
  * @author qinshou

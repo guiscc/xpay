@@ -1,9 +1,9 @@
-package com.xpay.payment.common.facade.dto;
+package com.xpay.payment.common.facade;
 
-import com.xpay.payment.common.facade.dto.agentpay.AgentPayRepDTO;
-import com.xpay.payment.common.facade.dto.agentpay.AgentPayReqDTO;
-import com.xpay.payment.common.facade.dto.agentpay.QueryPayRepDTO;
-import com.xpay.payment.common.facade.dto.agentpay.QueryPayReqDTO;
+import com.xpay.payment.common.dto.agentpay.AgentPayRepDTO;
+import com.xpay.payment.common.dto.agentpay.AgentPayReqDTO;
+import com.xpay.payment.common.dto.agentpay.QueryPayReqDTO;
+import com.xpay.payment.common.dto.agentpay.QueryPayRepDTO;
 
 /**
  * @author qinshou
