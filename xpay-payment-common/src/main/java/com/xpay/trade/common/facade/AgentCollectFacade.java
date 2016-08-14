@@ -2,12 +2,12 @@
  * Alipay.com Inc.
  * Copyright (c) 2004-2016 All Rights Reserved.
  */
-package com.xpay.payment.common.facade;
+package com.xpay.trade.common.facade;
 
-import com.xpay.payment.common.dto.agentcollect.AgentCollectRepDTO;
-import com.xpay.payment.common.dto.agentcollect.AgentCollectReqDTO;
-import com.xpay.payment.common.dto.agentcollect.QueryCollectRepDTO;
-import com.xpay.payment.common.dto.agentcollect.QueryCollectReqDTO;
+import com.xpay.trade.common.dto.agentcollect.AgentCollectRepDTO;
+import com.xpay.trade.common.dto.agentcollect.AgentCollectReqDTO;
+import com.xpay.trade.common.dto.agentcollect.QueryCollectRepDTO;
+import com.xpay.trade.common.dto.agentcollect.QueryCollectReqDTO;
 
 /**
  * @author qinshou

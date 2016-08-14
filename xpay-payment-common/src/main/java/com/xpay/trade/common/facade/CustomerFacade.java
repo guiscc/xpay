@@ -2,10 +2,10 @@
  * Alipay.com Inc.
  * Copyright (c) 2004-2016 All Rights Reserved.
  */
-package com.xpay.payment.common.facade;
+package com.xpay.trade.common.facade;
 
-import com.xpay.payment.common.dto.customer.AuthRealNameRepDTO;
-import com.xpay.payment.common.dto.customer.AuthRealNameReqDTO;
+import com.xpay.trade.common.dto.customer.AuthRealNameRepDTO;
+import com.xpay.trade.common.dto.customer.AuthRealNameReqDTO;
 
 /**
  * 实名认证

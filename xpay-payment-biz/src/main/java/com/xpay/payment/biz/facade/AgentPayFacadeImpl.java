@@ -4,11 +4,11 @@
  */
 package com.xpay.payment.biz.facade;
 
-import com.xpay.payment.common.facade.dto.AgentPayFacade;
-import com.xpay.payment.common.facade.dto.agentpay.AgentPayRepDTO;
-import com.xpay.payment.common.facade.dto.agentpay.AgentPayReqDTO;
-import com.xpay.payment.common.facade.dto.agentpay.QueryPayRepDTO;
-import com.xpay.payment.common.facade.dto.agentpay.QueryPayReqDTO;
+import com.xpay.trade.common.facade.AgentPayFacade;
+import com.xpay.trade.common.dto.agentpay.AgentPayRepDTO;
+import com.xpay.trade.common.dto.agentpay.AgentPayReqDTO;
+import com.xpay.trade.common.dto.agentpay.QueryPayRepDTO;
+import com.xpay.trade.common.dto.agentpay.QueryPayReqDTO;
 
 /**
  * @author qinshou

@@ -4,9 +4,17 @@
  */
 package com.xpay.payment.biz.facade;
 
-import com.xpay.payment.common.facade.dto.CustomerFacade;
-import com.xpay.payment.common.facade.dto.customer.CustomerRepDTO;
-import com.xpay.payment.common.facade.dto.customer.CustomerReqDTO;
+import com.xpay.payment.biz.CustomerBiz;
+import com.xpay.payment.biz.convert.AuthRealNameConvert;
+import com.xpay.trade.common.facade.CustomerFacade;
+import com.xpay.trade.common.dto.customer.AuthRealNameRepDTO;
+import com.xpay.trade.common.dto.customer.AuthRealNameReqDTO;
+import com.xpay.trade.common.vo.AuthRealNameRepVO;
+import com.xpay.trade.common.vo.AuthRealNameReqVO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.annotation.Resource;
 
 /**
  * @author qinshou
@@ -14,8 +22,25 @@ import com.xpay.payment.common.facade.dto.customer.CustomerReqDTO;
  */
 public class CustomerFacadeImpl implements CustomerFacade {
 
+    private Logger logger = LoggerFactory.getLogger(CustomerFacadeImpl.class);
+    /**
+     * 客户实现业务层
+     */
+    @Resource
+    private CustomerBiz customerBiz;
+
     @Override
-    public CustomerRepDTO authRealName(CustomerReqDTO customerReqDTO) {
-        return null;
+    public AuthRealNameRepDTO authRealName(AuthRealNameReqDTO customerReqDTO) {
+        AuthRealNameRepDTO authRealNameRepDTO = new AuthRealNameRepDTO();
+        try {
+            AuthRealNameReqVO authRealNameReqVO = AuthRealNameConvert.getAuthRealNameReqVO(customerReqDTO);
+
+            AuthRealNameRepVO authRealNameRepVO = customerBiz.authRealName(authRealNameReqVO);
+
+            authRealNameRepDTO = AuthRealNameConvert.getAuthRealNameRepVO(authRealNameRepVO);
+        } catch (Exception e) {
+            logger.error("代付错误", e);
+        }
+        return authRealNameRepDTO;
     }
 }
