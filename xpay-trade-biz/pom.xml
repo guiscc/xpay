@@ -10,7 +10,13 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>xpay-trade-dao</artifactId>
+    <artifactId>xpay-trade-biz</artifactId>
 
-
+    <dependencies>
+        <dependency>
+            <groupId>com.xpay</groupId>
+            <artifactId>xpay-trade-common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 </project>
