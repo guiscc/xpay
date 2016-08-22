@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+    <bean id="tradeFacade" class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+        <property name="serviceUrl"
+                  value="http://127.0.0.1:8083/xpay-trade-server/hessian/tradeFacade"/>
+        <property name="serviceInterface" value="com.xpay.trade.common.facade.TradeFacade"/>
+        <property name="overloadEnabled" value="false"/>
+    </bean>
+</beans>

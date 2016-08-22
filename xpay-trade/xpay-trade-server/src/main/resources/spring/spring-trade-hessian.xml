@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+    <bean name="tradeFacade" class="com.xpay.trade.facade.TradeFacadeImpl">
+        <property name="tradeBiz" ref="tradeBiz"/>
+    </bean>
+
+    <bean name="tradeFacadeHessian" class="com.xpay.trade.hessian.SimpleCustomServiceExporter">
+        <property name="service" ref="tradeFacade"/>
+        <property name="serviceInterface" value="com.xpay.trade.common.facade.TradeFacade"/>
+    </bean>
+
+    <bean id="simpleUrlHandlerMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="urlMap">
+            <map>
+                <entry key="/tradeFacade" value-ref="tradeFacadeHessian"/>
+            </map>
+        </property>
+    </bean>
+</beans>

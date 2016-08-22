@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+
+<mapper namespace="com.xpay.trade.service.dao.TradeDao">
+
+    <resultMap id="BaseResultMap" type="TradeEntity">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="bizOrderNo" property="bizOrderNo"/>
+        <result column="tradeOrderNo" property="tradeOrderNo"/>
+        <result column="tradeType" property="tradeType"/>
+        <result column="tradeSubType" property="tradeSubType"/>
+
+        <result column="orderTime" property="orderTime"/>
+        <result column="expireTime" property="expireTime"/>
+        <result column="payNo" property="payNo"/>
+        <result column="payAmount" property="payAmount"/>
+        <result column="payTime" property="payTime"/>
+
+        <result column="tradeStatus" property="tradeStatus"/>
+        <result column="createTime" property="createTime"/>
+        <result column="updateTime" property="updateTime"/>
+    </resultMap>
+
+    <sql id="column">
+        id,bizOrderNo,tradeOrderNo,tradeType,tradeSubType,orderTime,expireTime,payNo,payAmount,payTime,tradeStatus,createTime,updateTime
+	</sql>
+
+    <insert id="add" parameterType="TradeEntity"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into trade_order
+        (<include refid="column"/>)
+        values
+        (#{id,jdbcType=BIGINT},
+        #{bizOrderNo},
+        #{tradeOrderNo},
+        #{tradeType},
+        #{tradeSubType},
+        #{orderTime},
+        #{expireTime},
+        #{payNo},
+        #{payAmount},
+        #{payTime},
+        #{tradeStatus},
+        #{createTime},
+        #{updateTime})
+    </insert>
+
+    <select id="getByBizOrderNo" resultMap="BaseResultMap"
+            parameterType="java.lang.String">
+        select
+        <include refid="column"/>
+        from trade_order
+        where bizOrderNo = #{bizOrderNo}
+    </select>
+
+    <update id="updateOrderStatus" parameterType="TradeEntity">
+        update trade_order
+        set tradeStatus=#{tradeStatus},updateTime=#{updateTime}
+        where
+        <choose>
+            <when test="bizOrderNo != null and bizOrderNo != ''">
+                bizOrderNo = #{bizOrderNo}
+            </when>
+            <otherwise>
+                tradeOrderNo = #{tradeOrderNo}
+            </otherwise>
+        </choose>
+    </update>
+
+</mapper>
