@@ -23,21 +23,21 @@ public class TestTrade extends BaseTest {
     @Resource
     private TradeService tradeService;
 
-        @Test
+    @Test
     public void getByBizOrderNo() {
-        TradeRepVO tradeRepVO = tradeService.getByBizOrderNo("2016081412060002");
+        TradeRepVO tradeRepVO = tradeService.getByBizOrderNo("2016081412060001");
         System.out.println(tradeRepVO);
     }
 
     @Test
     public void add() {
         TradeReqVO tradeReqVO = new TradeReqVO();
-        tradeReqVO.setBizOrderNo("2016081412060002");
+        tradeReqVO.setBizOrderNo("2016081412060005");
         tradeReqVO.setTradeType(EnumTradeType.PAYMENT);
         tradeReqVO.setTradeSubType(EnumTradeSubType.CASHREFUND);
-        tradeReqVO.setOrderTime(new Date());
+        tradeReqVO.setBizOrderTime(new Date());
         tradeReqVO.setExpireTime(new Date());
-        tradeReqVO.setPayAmount(new BigDecimal(1));
+        tradeReqVO.setPayAmt(new BigDecimal("1.11"));
         tradeReqVO.setPayTime(new Date());
         tradeReqVO.setGoodsName("测试商品001");
         tradeReqVO.setTradeStatus(EnumTradeStatus.WATING);
@@ -45,7 +45,7 @@ public class TestTrade extends BaseTest {
         System.out.println(tradeRepVO.toString());
     }
 
-    //    @Test
+    @Test
     public void updateOrderStatus() {
         boolean flag = tradeService.updateOrderStatus("2016081412060001", EnumTradeStatus.FAIL);
         System.out.println(flag);

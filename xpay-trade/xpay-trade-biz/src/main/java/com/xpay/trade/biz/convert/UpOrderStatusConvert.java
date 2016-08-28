@@ -17,8 +17,7 @@ public class UpOrderStatusConvert {
         return upOrderStatusReqVO;
     }
 
-    public static UpOrderStatusRepDTO getUpOrderStatusRepDTO(UpOrderStatusRepVO upOrderStatusRepVO) {
-        UpOrderStatusRepDTO upOrderStatusRepDTO = new UpOrderStatusRepDTO();
+    public static UpOrderStatusRepDTO getUpOrderStatusRepDTO(UpOrderStatusRepDTO upOrderStatusRepDTO,UpOrderStatusRepVO upOrderStatusRepVO) {
         upOrderStatusRepDTO.setOrderStatus(upOrderStatusRepVO.getOrderStatus());
         upOrderStatusRepDTO.setBizOrderNo(upOrderStatusRepVO.getBizOrderNo());
         return upOrderStatusRepDTO;

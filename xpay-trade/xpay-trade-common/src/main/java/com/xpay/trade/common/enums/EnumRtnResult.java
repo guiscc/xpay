@@ -1,38 +1,35 @@
 package com.xpay.trade.common.enums;
 
+import com.xpay.common.enums.EnumRtnStatus;
+
 /**
  * Created by sxfans on 16/8/21.
  */
 public enum EnumRtnResult {
 
-    /**
-     * 成功
-     */
-    S000000("SUCCESS", "成功"),
+    S000000(EnumRtnStatus.SUCCESS, "成功"),
 
-    /**
-     * 交易系统失败
-     */
-    E000000("FAIL", "失败"),
+    E000000(EnumRtnStatus.FAIL, "失败"),
+    E000001(EnumRtnStatus.FAIL, "查询的订单不存在"),
+    E000002(EnumRtnStatus.FAIL, "修改失败"),
+    E000003(EnumRtnStatus.FAIL, "订单状态失败"),
 
-    /**
-     * 外围系统失败
-     */
-    U00000("UNKNOW", "未知异常");
+    U00000(EnumRtnStatus.UNKNOW, "未知异常");
 
-    EnumRtnResult(String status, String msg) {
+    EnumRtnResult(EnumRtnStatus status, String msg) {
         this.status = status;
         this.msg = msg;
     }
 
-    public static final String SUCCESS = "SUCCESS";
-    public static final String FAIL = "FAIL";
-    public static final String UNKNOW = "UNKNOW";
+    private EnumRtnStatus status;
+    private String        msg;
 
-    private String status;
-    private String msg;
-
-    public String getStatus() {
+    /**
+     * Getter method for property status.
+     *
+     * @return property value of status
+     **/
+    public EnumRtnStatus getStatus() {
         return status;
     }
 

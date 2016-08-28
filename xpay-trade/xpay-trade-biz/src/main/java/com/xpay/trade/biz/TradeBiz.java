@@ -1,6 +1,7 @@
 package com.xpay.trade.biz;
 
 import com.xpay.trade.common.enums.EnumTradeStatus;
+import com.xpay.trade.common.exception.XpayTradeException;
 import com.xpay.trade.common.vo.*;
 
 /**
@@ -15,7 +16,7 @@ public interface TradeBiz {
      * @param tradeReqVO
      * @return
      */
-    public TradeRepVO trade(TradeReqVO tradeReqVO);
+    public TradeRepVO trade(TradeReqVO tradeReqVO) throws XpayTradeException;
 
     /**
      * 查询
@@ -23,7 +24,7 @@ public interface TradeBiz {
      * @param bizOrderNo
      * @return
      */
-    public QueryTradeRepVO queryTrade(String bizOrderNo);
+    public QueryTradeRepVO queryTrade(String bizOrderNo) throws XpayTradeException;
 
 
     /**
@@ -31,5 +32,5 @@ public interface TradeBiz {
      *
      * @return
      */
-    public UpOrderStatusRepVO updateOrderStatus(String bizOrderNo, EnumTradeStatus orderStatus);
+    public UpOrderStatusRepVO updateOrderStatus(String bizOrderNo, EnumTradeStatus orderStatus) throws XpayTradeException;
 }

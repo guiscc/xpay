@@ -1,5 +1,8 @@
 package com.xpay.trade.common.dto;
 
+import com.xpay.trade.common.enums.EnumTradeStatus;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import java.math.BigDecimal;
 
 /**
@@ -11,22 +14,22 @@ public class TradeRepDTO extends BaseRepDTO {
     /**
      * 业务订单号
      */
-    private String bizOrderNo;
+    private String          bizOrderNo;
 
     /**
      * 交易订单号
      */
-    private String tradeOrderNo;
+    private String          tradeOrderNo;
 
     /**
      * 订单状态
      */
-    private String orderStatus;
+    private EnumTradeStatus tradeStatus;
 
     /**
      * 金额
      */
-    private BigDecimal amt;
+    private BigDecimal      payAmt;
 
     public String getBizOrderNo() {
         return bizOrderNo;
@@ -36,20 +39,40 @@ public class TradeRepDTO extends BaseRepDTO {
         this.bizOrderNo = bizOrderNo;
     }
 
-    public String getOrderStatus() {
-        return orderStatus;
+    /**
+     * Getter method for property tradeStatus.
+     *
+     * @return property value of tradeStatus
+     **/
+    public EnumTradeStatus getTradeStatus() {
+        return tradeStatus;
     }
 
-    public void setOrderStatus(String orderStatus) {
-        this.orderStatus = orderStatus;
+    /**
+     * Setter method for property tradeStatus.
+     *
+     * @param tradeStatus value to be assigned to property tradeStatus
+     **/
+    public void setTradeStatus(EnumTradeStatus tradeStatus) {
+        this.tradeStatus = tradeStatus;
     }
 
-    public BigDecimal getAmt() {
-        return amt;
+    /**
+     * Getter method for property payAmt.
+     *
+     * @return property value of payAmt
+     **/
+    public BigDecimal getPayAmt() {
+        return payAmt;
     }
 
-    public void setAmt(BigDecimal amt) {
-        this.amt = amt;
+    /**
+     * Setter method for property payAmt.
+     *
+     * @param payAmt value to be assigned to property payAmt
+     **/
+    public void setPayAmt(BigDecimal payAmt) {
+        this.payAmt = payAmt;
     }
 
     public String getTradeOrderNo() {
@@ -58,5 +81,10 @@ public class TradeRepDTO extends BaseRepDTO {
 
     public void setTradeOrderNo(String tradeOrderNo) {
         this.tradeOrderNo = tradeOrderNo;
+    }
+
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this);
     }
 }

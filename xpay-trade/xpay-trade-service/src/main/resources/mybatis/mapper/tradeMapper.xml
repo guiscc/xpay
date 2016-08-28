@@ -11,10 +11,10 @@
         <result column="tradeType" property="tradeType"/>
         <result column="tradeSubType" property="tradeSubType"/>
 
-        <result column="orderTime" property="orderTime"/>
+        <result column="bizOrderTime" property="bizOrderTime"/>
         <result column="expireTime" property="expireTime"/>
         <result column="payNo" property="payNo"/>
-        <result column="payAmount" property="payAmount"/>
+        <result column="payAmt" property="payAmt"/>
         <result column="payTime" property="payTime"/>
 
         <result column="tradeStatus" property="tradeStatus"/>
@@ -23,7 +23,7 @@
     </resultMap>
 
     <sql id="column">
-        id,bizOrderNo,tradeOrderNo,tradeType,tradeSubType,orderTime,expireTime,payNo,payAmount,payTime,tradeStatus,createTime,updateTime
+        id,bizOrderNo,tradeOrderNo,tradeType,tradeSubType,bizOrderTime,expireTime,payNo,payAmt,payTime,tradeStatus,createTime,updateTime
 	</sql>
 
     <insert id="add" parameterType="TradeEntity"
@@ -36,10 +36,10 @@
         #{tradeOrderNo},
         #{tradeType},
         #{tradeSubType},
-        #{orderTime},
+        #{bizOrderTime},
         #{expireTime},
         #{payNo},
-        #{payAmount},
+        #{payAmt},
         #{payTime},
         #{tradeStatus},
         #{createTime},

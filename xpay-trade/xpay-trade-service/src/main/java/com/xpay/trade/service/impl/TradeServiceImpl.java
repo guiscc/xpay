@@ -5,6 +5,7 @@ import com.xpay.common.utils.sequence.Sequence;
 import com.xpay.trade.common.enums.EnumTradeStatus;
 import com.xpay.trade.common.enums.EnumTradeSubType;
 import com.xpay.trade.common.enums.EnumTradeType;
+import com.xpay.trade.common.vo.QueryTradeRepVO;
 import com.xpay.trade.common.vo.TradeRepVO;
 import com.xpay.trade.common.vo.TradeReqVO;
 import com.xpay.trade.service.TradeService;
@@ -26,7 +27,7 @@ public class TradeServiceImpl implements TradeService {
      * 交易持久化类
      */
     @Resource
-    private TradeDao tradeDao;
+    private TradeDao        tradeDao;
 
     private static Sequence sequence = new RandomSequenceImpl();
 
@@ -39,7 +40,7 @@ public class TradeServiceImpl implements TradeService {
             if (flag == 1) {
                 oldTradeEntity = tradeEntity;
             } else {
-                return new TradeRepVO();
+                return null;
             }
         }
         TradeRepVO tradeRepVO = this.convertTradeRepVO(oldTradeEntity);
@@ -49,6 +50,9 @@ public class TradeServiceImpl implements TradeService {
     @Override
     public TradeRepVO getByBizOrderNo(String bizOrderNo) {
         TradeEntity tradeEntity = tradeDao.getByBizOrderNo(bizOrderNo);
+        if(tradeEntity == null){
+            return null;
+        }
         TradeRepVO tradeRepVO = this.convertTradeRepVO(tradeEntity);
         return tradeRepVO;
     }
@@ -78,8 +82,8 @@ public class TradeServiceImpl implements TradeService {
         tradeEntity.setTradeType(tradeReqVO.getTradeType().getKey());
         tradeEntity.setTradeSubType(tradeReqVO.getTradeSubType().getKey());
         tradeEntity.setExpireTime(tradeReqVO.getExpireTime());
-        tradeEntity.setOrderTime(tradeReqVO.getOrderTime());
-        tradeEntity.setPayAmount(tradeReqVO.getPayAmount());
+        tradeEntity.setBizOrderTime(tradeReqVO.getBizOrderTime());
+        tradeEntity.setPayAmt(tradeReqVO.getPayAmt());
         tradeEntity.setPayTime(tradeReqVO.getPayTime());
         tradeEntity.setTradeStatus(tradeReqVO.getTradeStatus().getKey());
         tradeEntity.setCreateTime(new Date());
@@ -97,14 +101,14 @@ public class TradeServiceImpl implements TradeService {
         tradeRepVO.setTradeStatus(EnumTradeStatus.toTradeStatus(tradeEntity.getTradeStatus()));
         tradeRepVO.setPayTime(tradeEntity.getPayTime());
         tradeRepVO.setPayNo(tradeEntity.getPayNo());
-        tradeRepVO.setPayAmount(tradeEntity.getPayAmount());
+        tradeRepVO.setPayAmt(tradeEntity.getPayAmt());
         tradeRepVO.setBizOrderNo(tradeEntity.getBizOrderNo());
         tradeRepVO.setTradeTpye(EnumTradeType.toTradeType(tradeEntity.getTradeType()));
         tradeRepVO.setTradeSubType(EnumTradeSubType.toTradeSubType(tradeEntity.getTradeSubType()));
         tradeRepVO.setCreateTime(tradeEntity.getCreateTime());
         tradeRepVO.setExpireTime(tradeEntity.getExpireTime());
         tradeRepVO.setId(tradeEntity.getId());
-        tradeRepVO.setOrderTime(tradeEntity.getOrderTime());
+        tradeRepVO.setBizOrderTime(tradeEntity.getBizOrderTime());
         tradeRepVO.setUpdateTime(tradeEntity.getUpdateTime());
         return tradeRepVO;
     }

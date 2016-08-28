@@ -39,7 +39,7 @@ public class TradeEntity {
     /**
      * 业务方生成订单时间
      */
-    private Date orderTime;
+    private Date bizOrderTime;
 
     /**
      * 过期时间
@@ -49,7 +49,7 @@ public class TradeEntity {
     /**
      * 实际支付金额
      */
-    private BigDecimal payAmount;
+    private BigDecimal payAmt;
 
     /**
      * 支付时间
@@ -124,12 +124,22 @@ public class TradeEntity {
         this.tradeStatus = tradeStatus;
     }
 
-    public Date getOrderTime() {
-        return orderTime;
+    /**
+     * Getter method for property bizOrderTime.
+     *
+     * @return property value of bizOrderTime
+     **/
+    public Date getBizOrderTime() {
+        return bizOrderTime;
     }
 
-    public void setOrderTime(Date orderTime) {
-        this.orderTime = orderTime;
+    /**
+     * Setter method for property bizOrderTime.
+     *
+     * @param bizOrderTime value to be assigned to property bizOrderTime
+     **/
+    public void setBizOrderTime(Date bizOrderTime) {
+        this.bizOrderTime = bizOrderTime;
     }
 
     public Date getExpireTime() {
@@ -140,12 +150,22 @@ public class TradeEntity {
         this.expireTime = expireTime;
     }
 
-    public BigDecimal getPayAmount() {
-        return payAmount;
+    /**
+     * Getter method for property payAmt.
+     *
+     * @return property value of payAmt
+     **/
+    public BigDecimal getPayAmt() {
+        return payAmt;
     }
 
-    public void setPayAmount(BigDecimal payAmount) {
-        this.payAmount = payAmount;
+    /**
+     * Setter method for property payAmt.
+     *
+     * @param payAmt value to be assigned to property payAmt
+     **/
+    public void setPayAmt(BigDecimal payAmt) {
+        this.payAmt = payAmt;
     }
 
     public Date getPayTime() {
