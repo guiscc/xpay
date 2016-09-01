@@ -4,8 +4,8 @@
  */
 package com.xpay.payment.biz;
 
-import com.xpay.trade.common.vo.AuthRealNameRepVO;
-import com.xpay.trade.common.vo.AuthRealNameReqVO;
+import com.xpay.payment.common.vo.AuthRealNameRepVO;
+import com.xpay.payment.common.vo.AuthRealNameReqVO;
 
 /**
  * @author qinshou

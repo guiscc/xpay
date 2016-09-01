@@ -2,19 +2,25 @@
  * Alipay.com Inc.
  * Copyright (c) 2004-2016 All Rights Reserved.
  */
-package com.xpay.payment.service.entity;
+package com.xpay.payment.common.model;
+
+import com.xpay.common.enums.EnumCurrency;
+import com.xpay.common.enums.EnumPaySubTool;
+import com.xpay.common.enums.EnumPayTool;
+import com.xpay.payment.common.enums.EnumPayStatus;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
 /**
  * @author qinshou
- * @version $Id: PaymentEntity.java, v 0.1 16/8/29 上午2:11 sxfans Exp $
+ * @version $Id: PayOrderModel.java, v 0.1 16/8/29 下午3:24 sxfans Exp $
  */
-public class PaymentEntity {
+public class PayOrderModel {
 
     /**
-     * 主键
+     * 持久化主键
      */
     private String id;
 
@@ -24,22 +30,22 @@ public class PaymentEntity {
     private String payOrderNo;
 
     /**
-     * 交易单号
+     * 交易订单号
      */
     private String tradeOrderNo;
 
     /**
-     * 支付工具
+     *
      */
-    private byte payTool;
+    private EnumPayTool payTool;
 
     /**
-     * 支付工具子类型
+     *
      */
-    private byte paySubTool;
+    private EnumPaySubTool paySubTool;
 
     /**
-     * 渠道编码
+     *
      */
     private String channelCode;
 
@@ -51,7 +57,7 @@ public class PaymentEntity {
     /**
      * 货币类型
      */
-    private byte currency;
+    private EnumCurrency currency;
 
     /**
      * 用户id
@@ -61,7 +67,7 @@ public class PaymentEntity {
     /**
      * 支付状态
      */
-    private byte payStatus;
+    private EnumPayStatus payStatus;
 
     /**
      * 创建时间
@@ -137,7 +143,7 @@ public class PaymentEntity {
      *
      * @return property value of payTool
      **/
-    public byte getPayTool() {
+    public EnumPayTool getPayTool() {
         return payTool;
     }
 
@@ -146,7 +152,7 @@ public class PaymentEntity {
      *
      * @param payTool value to be assigned to property payTool
      **/
-    public void setPayTool(byte payTool) {
+    public void setPayTool(EnumPayTool payTool) {
         this.payTool = payTool;
     }
 
@@ -155,7 +161,7 @@ public class PaymentEntity {
      *
      * @return property value of paySubTool
      **/
-    public byte getPaySubTool() {
+    public EnumPaySubTool getPaySubTool() {
         return paySubTool;
     }
 
@@ -164,7 +170,7 @@ public class PaymentEntity {
      *
      * @param paySubTool value to be assigned to property paySubTool
      **/
-    public void setPaySubTool(byte paySubTool) {
+    public void setPaySubTool(EnumPaySubTool paySubTool) {
         this.paySubTool = paySubTool;
     }
 
@@ -209,7 +215,7 @@ public class PaymentEntity {
      *
      * @return property value of currency
      **/
-    public byte getCurrency() {
+    public EnumCurrency getCurrency() {
         return currency;
     }
 
@@ -218,7 +224,7 @@ public class PaymentEntity {
      *
      * @param currency value to be assigned to property currency
      **/
-    public void setCurrency(byte currency) {
+    public void setCurrency(EnumCurrency currency) {
         this.currency = currency;
     }
 
@@ -245,7 +251,7 @@ public class PaymentEntity {
      *
      * @return property value of payStatus
      **/
-    public byte getPayStatus() {
+    public EnumPayStatus getPayStatus() {
         return payStatus;
     }
 
@@ -254,7 +260,7 @@ public class PaymentEntity {
      *
      * @param payStatus value to be assigned to property payStatus
      **/
-    public void setPayStatus(byte payStatus) {
+    public void setPayStatus(EnumPayStatus payStatus) {
         this.payStatus = payStatus;
     }
 
@@ -310,5 +316,10 @@ public class PaymentEntity {
      **/
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this);
     }
 }

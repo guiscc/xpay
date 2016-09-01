@@ -1,69 +1,79 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
+<mapper namespace="com.xpay.payment.service.dao.PaymentDao">
 
-<mapper namespace="com.xpay.trade.service.dao.TradeDao">
-
-    <resultMap id="BaseResultMap" type="TradeEntity">
+    <resultMap id="BaseResultMap" type="PaymentEntity">
         <id column="id" property="id" jdbcType="BIGINT"/>
-        <result column="bizOrderNo" property="bizOrderNo"/>
+
+        <result column="payOrderNo" property="payOrderNo"/>
         <result column="tradeOrderNo" property="tradeOrderNo"/>
-        <result column="tradeType" property="tradeType"/>
-        <result column="tradeSubType" property="tradeSubType"/>
 
-        <result column="bizOrderTime" property="bizOrderTime"/>
-        <result column="expireTime" property="expireTime"/>
-        <result column="payNo" property="payNo"/>
+        <result column="payTool" property="payTool"/>
+        <result column="paySubTool" property="paySubTool"/>
+
+        <result column="channelCode" property="channelCode"/>
         <result column="payAmt" property="payAmt"/>
-        <result column="payTime" property="payTime"/>
 
-        <result column="tradeStatus" property="tradeStatus"/>
+        <result column="currency" property="currency"/>
+        <result column="userId" property="userId"/>
+        <result column="payStatus" property="payStatus"/>
+
         <result column="createTime" property="createTime"/>
         <result column="updateTime" property="updateTime"/>
+        <result column="remark" property="remark"/>
     </resultMap>
 
     <sql id="column">
-        id,bizOrderNo,tradeOrderNo,tradeType,tradeSubType,bizOrderTime,expireTime,payNo,payAmt,payTime,tradeStatus,createTime,updateTime
+        id,payOrderNo,tradeOrderNo,payTool,paySubTool,channelCode,payAmt,
+        currency,userId,payStatus,createTime,updateTime,remark
 	</sql>
 
-    <insert id="add" parameterType="TradeEntity"
+    <insert id="add" parameterType="PaymentEntity"
             useGeneratedKeys="true" keyProperty="id">
-        insert into trade_order
+        insert into pay_order
         (<include refid="column"/>)
         values
         (#{id,jdbcType=BIGINT},
-        #{bizOrderNo},
+        #{payOrderNo},
         #{tradeOrderNo},
-        #{tradeType},
-        #{tradeSubType},
-        #{bizOrderTime},
-        #{expireTime},
-        #{payNo},
+        #{payTool},
+        #{paySubTool},
+        #{channelCode},
         #{payAmt},
-        #{payTime},
-        #{tradeStatus},
+        #{currency},
+        #{userId},
+        #{payStatus},
         #{createTime},
-        #{updateTime})
+        #{updateTime},
+        #{remark})
     </insert>
 
-    <select id="getByBizOrderNo" resultMap="BaseResultMap"
-            parameterType="java.lang.String">
+    <select id="getByOrderNo" resultMap="BaseResultMap" parameterType="PaymentEntity">
         select
         <include refid="column"/>
-        from trade_order
-        where bizOrderNo = #{bizOrderNo}
-    </select>
-
-    <update id="updateOrderStatus" parameterType="TradeEntity">
-        update trade_order
-        set tradeStatus=#{tradeStatus},updateTime=#{updateTime}
+        from pay_order
         where
         <choose>
-            <when test="bizOrderNo != null and bizOrderNo != ''">
-                bizOrderNo = #{bizOrderNo}
+            <when test="tradeOrderNo != null and tradeOrderNo != ''">
+                tradeOrderNo = #{tradeOrderNo}
             </when>
             <otherwise>
+                payOrderNo = #{payOrderNo}
+            </otherwise>
+        </choose>
+    </select>
+
+    <update id="updateOrderStatus" parameterType="PaymentEntity">
+        update pay_order
+        set payStatus=#{payStatus},updateTime=#{updateTime}
+        where
+        <choose>
+            <when test="tradeOrderNo != null and tradeOrderNo != ''">
                 tradeOrderNo = #{tradeOrderNo}
+            </when>
+            <otherwise>
+                payOrderNo = #{payOrderNo}
             </otherwise>
         </choose>
     </update>

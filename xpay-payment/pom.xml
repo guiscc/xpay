@@ -7,16 +7,19 @@
         <groupId>com.xpay</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
+
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>xpay-payment-common</artifactId>
+    <artifactId>xpay-payment</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>xpay-payment-common</module>
+        <module>xpay-payment-service</module>
+        <module>xpay-payment-biz</module>
+        <module>xpay-payment-server</module>
+    </modules>
 
     <dependencies>
-        <dependency>
-            <groupId>com.xpay</groupId>
-            <artifactId>xpay-common</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
     </dependencies>
 </project>
