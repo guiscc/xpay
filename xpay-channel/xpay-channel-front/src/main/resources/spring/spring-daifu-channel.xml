@@ -54,6 +54,7 @@
             <map key-type="java.lang.String"
                  value-type="com.xpay.channel.front.facade.AgentCollectChannelFacade">
                 <entry key="AC_UNIONPAY_CD_01" value-ref="unionpay"/>
+
             </map>
         </property>
     </bean>

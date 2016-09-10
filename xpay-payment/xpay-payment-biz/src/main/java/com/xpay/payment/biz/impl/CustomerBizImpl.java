@@ -7,6 +7,9 @@ package com.xpay.payment.biz.impl;
 import com.xpay.payment.biz.CustomerBiz;
 import com.xpay.payment.common.vo.AuthRealNameRepVO;
 import com.xpay.payment.common.vo.AuthRealNameReqVO;
+import com.xpay.payment.common.vo.agentcollect.BreakSignRepVO;
+import com.xpay.payment.common.vo.agentcollect.BreakSignReqVO;
+import com.xpay.payment.common.vo.agentcollect.SignRepVO;
 import org.springframework.stereotype.Component;
 
 /**
@@ -15,8 +18,20 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class CustomerBizImpl implements CustomerBiz {
+
+
     @Override
     public AuthRealNameRepVO authRealName(AuthRealNameReqVO authRealNameReqDTO) {
+        return null;
+    }
+
+    @Override
+    public SignRepVO sign(SignRepVO signRepVO) {
+        return null;
+    }
+
+    @Override
+    public BreakSignRepVO breakSign(BreakSignReqVO breakSignReqVO) {
         return null;
     }
 }

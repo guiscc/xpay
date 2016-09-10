@@ -6,9 +6,8 @@ package com.xpay.payment.server.facade;
 
 import com.xpay.payment.biz.CustomerBiz;
 import com.xpay.payment.biz.convert.AuthRealNameConvert;
+import com.xpay.payment.common.dto.customer.*;
 import com.xpay.payment.common.facade.CustomerFacade;
-import com.xpay.payment.common.dto.customer.AuthRealNameRepDTO;
-import com.xpay.payment.common.dto.customer.AuthRealNameReqDTO;
 import com.xpay.payment.common.vo.AuthRealNameRepVO;
 import com.xpay.payment.common.vo.AuthRealNameReqVO;
 import org.slf4j.Logger;
@@ -34,13 +33,33 @@ public class CustomerFacadeImpl implements CustomerFacade {
         AuthRealNameRepDTO authRealNameRepDTO = new AuthRealNameRepDTO();
         try {
             AuthRealNameReqVO authRealNameReqVO = AuthRealNameConvert.getAuthRealNameReqVO(customerReqDTO);
-
             AuthRealNameRepVO authRealNameRepVO = customerBiz.authRealName(authRealNameReqVO);
-
             authRealNameRepDTO = AuthRealNameConvert.getAuthRealNameRepVO(authRealNameRepVO);
         } catch (Exception e) {
-            logger.error("代付错误", e);
+            logger.error("实名认证错误", e);
         }
         return authRealNameRepDTO;
+    }
+
+    @Override
+    public SignRepDTO sign(SignReqDTO DTO) {
+        SignRepDTO signRepDTO = new SignRepDTO();
+        
+        return null;
+    }
+
+    @Override
+    public ConfirmSignRepDTO confirmSign(ConfirmSignReqDTO confirmSignRepDTO) {
+        return null;
+    }
+
+    @Override
+    public ConfirmSignRepDTO breakSign(ConfirmSignRepDTO confirmSignRepDTO) {
+        return null;
+    }
+
+
+    public void sign() {
+
     }
 }
