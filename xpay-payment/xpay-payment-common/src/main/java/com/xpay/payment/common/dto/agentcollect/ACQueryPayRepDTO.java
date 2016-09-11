@@ -4,19 +4,21 @@
  */
 package com.xpay.payment.common.dto.agentcollect;
 
-import com.xpay.payment.common.dto.BaseRepDTO;
-import com.xpay.payment.common.enums.EnumPayStatus;
-
 import java.math.BigDecimal;
 
 /**
  * @author qinshou
- * @version $Id: AgentCollectRepDTO.java, v 0.1 16/7/31 上午11:08 sxfans Exp $
+ * @version $Id: ACQueryPayRepDTO.java, v 0.1 16/7/31 上午11:10 sxfans Exp $
  */
-public class AgentCollectRepDTO extends BaseRepDTO{
+public class ACQueryPayRepDTO {
 
     /**
-     * 交易单号
+     * 主键
+     */
+    private String id;
+
+    /**
+     * 交易号
      */
     private String tradeOrderNo;
 
@@ -26,14 +28,27 @@ public class AgentCollectRepDTO extends BaseRepDTO{
     private String payOrderNo;
 
     /**
-     * 付款金额
+     * 支付金额
      */
     private BigDecimal payAmt;
 
     /**
-     * 支付状态
-     */
-    private EnumPayStatus payStatus;
+     * Getter method for property id.
+     *
+     * @return property value of id
+     **/
+    public String getId() {
+        return id;
+    }
+
+    /**
+     * Setter method for property id.
+     *
+     * @param id value to be assigned to property id
+     **/
+    public void setId(String id) {
+        this.id = id;
+    }
 
     /**
      * Getter method for property tradeOrderNo.
@@ -87,23 +102,5 @@ public class AgentCollectRepDTO extends BaseRepDTO{
      **/
     public void setPayAmt(BigDecimal payAmt) {
         this.payAmt = payAmt;
-    }
-
-    /**
-     * Getter method for property payStatus.
-     *
-     * @return property value of payStatus
-     **/
-    public EnumPayStatus getPayStatus() {
-        return payStatus;
-    }
-
-    /**
-     * Setter method for property payStatus.
-     *
-     * @param payStatus value to be assigned to property payStatus
-     **/
-    public void setPayStatus(EnumPayStatus payStatus) {
-        this.payStatus = payStatus;
     }
 }

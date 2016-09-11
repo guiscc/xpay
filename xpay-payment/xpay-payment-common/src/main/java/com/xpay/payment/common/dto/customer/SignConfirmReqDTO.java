@@ -8,9 +8,9 @@ import com.xpay.payment.common.dto.BaseReqDTO;
 
 /**
  * @author qinshou
- * @version $Id: ConfirmSignReqDTO.java, v 0.1 16/9/6 下午4:12 sxfans Exp $
+ * @version $Id: SignConfirmReqVO.java, v 0.1 16/9/6 下午4:12 sxfans Exp $
  */
-public class ConfirmSignReqDTO extends BaseReqDTO{
+public class SignConfirmReqDTO extends BaseReqDTO{
 
     /**
      * 签约号

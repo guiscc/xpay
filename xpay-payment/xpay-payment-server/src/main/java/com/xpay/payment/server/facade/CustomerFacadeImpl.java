@@ -6,10 +6,15 @@ package com.xpay.payment.server.facade;
 
 import com.xpay.payment.biz.CustomerBiz;
 import com.xpay.payment.biz.convert.AuthRealNameConvert;
+import com.xpay.payment.biz.convert.SignBreakConvert;
+import com.xpay.payment.biz.convert.SignConfirmConvert;
+import com.xpay.payment.biz.convert.SignConvert;
 import com.xpay.payment.common.dto.customer.*;
+import com.xpay.payment.common.exception.XpayPaymentException;
 import com.xpay.payment.common.facade.CustomerFacade;
 import com.xpay.payment.common.vo.AuthRealNameRepVO;
 import com.xpay.payment.common.vo.AuthRealNameReqVO;
+import com.xpay.payment.common.vo.customer.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,19 +27,20 @@ import javax.annotation.Resource;
 public class CustomerFacadeImpl implements CustomerFacade {
 
     private Logger logger = LoggerFactory.getLogger(CustomerFacadeImpl.class);
-    /**
-     * 客户实现业务层
-     */
+
     @Resource
     private CustomerBiz customerBiz;
 
     @Override
     public AuthRealNameRepDTO authRealName(AuthRealNameReqDTO customerReqDTO) {
         AuthRealNameRepDTO authRealNameRepDTO = new AuthRealNameRepDTO();
+        AuthRealNameReqVO authRealNameReqVO = new AuthRealNameReqVO();
         try {
-            AuthRealNameReqVO authRealNameReqVO = AuthRealNameConvert.getAuthRealNameReqVO(customerReqDTO);
+            authRealNameReqVO = AuthRealNameConvert.getAuthRealNameReqVO(authRealNameReqVO, customerReqDTO);
             AuthRealNameRepVO authRealNameRepVO = customerBiz.authRealName(authRealNameReqVO);
-            authRealNameRepDTO = AuthRealNameConvert.getAuthRealNameRepVO(authRealNameRepVO);
+            authRealNameRepDTO = AuthRealNameConvert.getAuthRealNameRepVO(authRealNameRepDTO, authRealNameRepVO);
+        } catch (XpayPaymentException e) {
+            logger.error("实名认证错误", e);
         } catch (Exception e) {
             logger.error("实名认证错误", e);
         }
@@ -42,24 +48,50 @@ public class CustomerFacadeImpl implements CustomerFacade {
     }
 
     @Override
-    public SignRepDTO sign(SignReqDTO DTO) {
+    public SignRepDTO sign(SignReqDTO signReqDTO) {
         SignRepDTO signRepDTO = new SignRepDTO();
-        
-        return null;
+        SignReqVO signReqVO = new SignReqVO();
+        try {
+            signReqVO = SignConvert.getSignReqVO(signReqVO, signReqDTO);
+            SignRepVO signRepVO = customerBiz.sign(signReqVO);
+            signRepDTO = SignConvert.getSignRepDTO(signRepDTO, signRepVO);
+        } catch (XpayPaymentException e) {
+            logger.error("签约异常:", e);
+        } catch (Exception e) {
+            logger.error("签约异常:", e);
+        }
+        return signRepDTO;
     }
 
     @Override
-    public ConfirmSignRepDTO confirmSign(ConfirmSignReqDTO confirmSignRepDTO) {
-        return null;
+    public SignConfirmRepDTO signConfirm(SignConfirmReqDTO signConfirmReqDTO) {
+        SignConfirmRepDTO signConfirmRepDTO = new SignConfirmRepDTO();
+        SignConfirmReqVO signConfirmReqVO = new SignConfirmReqVO();
+        try {
+            signConfirmReqVO = SignConfirmConvert.getConfirmSignReqVO(signConfirmReqVO, signConfirmReqDTO);
+            SignConfirmRepVO signConfirmRepVO = customerBiz.signConfirm(signConfirmReqVO);
+            signConfirmRepDTO = SignConfirmConvert.getConfirmSignRepDTO(signConfirmRepDTO, signConfirmRepVO);
+        } catch (XpayPaymentException e) {
+            logger.error("签约确认异常:", e);
+        } catch (Exception e) {
+            logger.error("签约确认异常:", e);
+        }
+        return signConfirmRepDTO;
     }
 
     @Override
-    public ConfirmSignRepDTO breakSign(ConfirmSignRepDTO confirmSignRepDTO) {
-        return null;
-    }
-
-
-    public void sign() {
-
+    public SignBreakRepDTO signBreak(SignBreakReqDTO signBreakReqDTO) {
+        SignBreakRepDTO signBreakRepDTO = new SignBreakRepDTO();
+        SignBreakReqVO signBreakReqVO = new SignBreakReqVO();
+        try {
+            signBreakReqVO = SignBreakConvert.getSignBreakReqVO(signBreakReqVO, signBreakReqDTO);
+            SignBreakRepVO signBreakRepVO = customerBiz.signBreak(signBreakReqVO);
+            signBreakRepDTO = SignBreakConvert.getSignBreakRepDTO(signBreakRepDTO, signBreakRepVO);
+        } catch (XpayPaymentException e) {
+            logger.error("解约异常:", e);
+        } catch (Exception e) {
+            logger.error("解约异常:", e);
+        }
+        return signBreakRepDTO;
     }
 }

@@ -36,7 +36,7 @@ public interface CustomerFacade {
      * @param confirmSignRepDTO
      * @return
      */
-    public ConfirmSignRepDTO confirmSign(ConfirmSignReqDTO confirmSignRepDTO);
+    public SignConfirmRepDTO signConfirm(SignConfirmReqDTO confirmSignRepDTO);
 
     /**
      * 解约
@@ -44,5 +44,5 @@ public interface CustomerFacade {
      * @param confirmSignRepDTO
      * @return
      */
-    public BreakSignRepDTO breakSign(BreakSignReqDTO confirmSignRepDTO);
+    public SignBreakRepDTO signBreak(SignBreakReqDTO confirmSignRepDTO);
 }

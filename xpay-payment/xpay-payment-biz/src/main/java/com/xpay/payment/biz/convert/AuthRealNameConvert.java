@@ -22,9 +22,10 @@ public class AuthRealNameConvert {
     /**
      * @return
      */
-    public static AuthRealNameReqVO getAuthRealNameReqVO(AuthRealNameReqDTO authRealNameReqDTO) {
-        logger.info("##########请求参数:", authRealNameReqDTO);
-        AuthRealNameReqVO authRealNameReqVO = new AuthRealNameReqVO();
+    public static AuthRealNameReqVO getAuthRealNameReqVO(AuthRealNameReqVO authRealNameReqVO,
+                                                         AuthRealNameReqDTO authRealNameReqDTO) {
+        logger.info("请求模型:", authRealNameReqDTO.toString());
+        logger.info("转换请求模型:", authRealNameReqVO.toString());
         return authRealNameReqVO;
     }
 
@@ -32,8 +33,10 @@ public class AuthRealNameConvert {
      * @param authRealNameRepVO
      * @return
      */
-    public static AuthRealNameRepDTO getAuthRealNameRepVO(AuthRealNameRepVO authRealNameRepVO) {
-        AuthRealNameRepDTO authRealNameRepDTO = new AuthRealNameRepDTO();
+    public static AuthRealNameRepDTO getAuthRealNameRepVO(AuthRealNameRepDTO authRealNameRepDTO,
+                                                          AuthRealNameRepVO authRealNameRepVO) {
+        logger.info("响应模型:", authRealNameRepVO.toString());
+        logger.info("转换响应模型:", authRealNameRepDTO.toString());
         return authRealNameRepDTO;
     }
 }

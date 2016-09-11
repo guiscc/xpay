@@ -4,11 +4,10 @@
  */
 package com.xpay.payment.biz;
 
+import com.xpay.payment.common.exception.XpayPaymentException;
 import com.xpay.payment.common.vo.AuthRealNameRepVO;
 import com.xpay.payment.common.vo.AuthRealNameReqVO;
-import com.xpay.payment.common.vo.agentcollect.BreakSignRepVO;
-import com.xpay.payment.common.vo.agentcollect.BreakSignReqVO;
-import com.xpay.payment.common.vo.agentcollect.SignRepVO;
+import com.xpay.payment.common.vo.customer.*;
 
 /**
  * @author qinshou
@@ -22,7 +21,7 @@ public interface CustomerBiz {
      * @param authRealNameReqDTO
      * @return
      */
-    public AuthRealNameRepVO authRealName(AuthRealNameReqVO authRealNameReqDTO);
+    public AuthRealNameRepVO authRealName(AuthRealNameReqVO authRealNameReqDTO) throws XpayPaymentException;
 
     /**
      * 签约
@@ -30,13 +29,21 @@ public interface CustomerBiz {
      * @param signRepVO
      * @return
      */
-    public SignRepVO sign(SignRepVO signRepVO);
+    public SignRepVO sign(SignReqVO signRepVO) throws XpayPaymentException;
+
+    /**
+     * 签约绑卡确认
+     *
+     * @param signConfirmReqVO
+     * @return
+     */
+    public SignConfirmRepVO signConfirm(SignConfirmReqVO signConfirmReqVO) throws XpayPaymentException;
 
     /**
      * 解约
      *
-     * @param breakSignReqVO
+     * @param signBreakReqVO
      * @return
      */
-    public BreakSignRepVO breakSign(BreakSignReqVO breakSignReqVO);
+    public SignBreakRepVO signBreak(SignBreakReqVO signBreakReqVO) throws XpayPaymentException;
 }

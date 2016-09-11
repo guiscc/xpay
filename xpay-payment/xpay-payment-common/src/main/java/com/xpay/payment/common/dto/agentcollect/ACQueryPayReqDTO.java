@@ -8,9 +8,9 @@ import com.xpay.payment.common.dto.BaseReqDTO;
 
 /**
  * @author qinshou
- * @version $Id: QueryCollectReqDTO.java, v 0.1 16/7/31 上午11:10 sxfans Exp $
+ * @version $Id: ACQueryPayReqDTO.java, v 0.1 16/7/31 上午11:10 sxfans Exp $
  */
-public class QueryCollectReqDTO extends BaseReqDTO{
+public class ACQueryPayReqDTO extends BaseReqDTO{
 
     /**
      * 交易订单号

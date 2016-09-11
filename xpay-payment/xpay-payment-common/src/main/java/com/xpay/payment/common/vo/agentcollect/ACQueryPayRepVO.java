@@ -6,7 +6,7 @@ package com.xpay.payment.common.vo.agentcollect;
 
 /**
  * @author qinshou
- * @version $Id: BreakSignRepVO.java, v 0.1 16/9/6 下午4:25 sxfans Exp $
+ * @version $Id: ACQueryPayRepVO.java, v 0.1 16/9/10 下午4:47 sxfans Exp $
  */
-public class BreakSignRepVO {
+public class ACQueryPayRepVO {
 }

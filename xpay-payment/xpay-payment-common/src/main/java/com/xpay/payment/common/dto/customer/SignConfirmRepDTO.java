@@ -9,14 +9,14 @@ import com.xpay.payment.common.enums.EnumSignStatus;
 
 /**
  * @author qinshou
- * @version $Id: BreakSignRepDTO.java, v 0.1 16/9/6 下午4:20 sxfans Exp $
+ * @version $Id: SignConfirmRepVO.java, v 0.1 16/9/6 下午4:12 sxfans Exp $
  */
-public class BreakSignRepDTO extends BaseRepDTO {
+public class SignConfirmRepDTO extends BaseRepDTO{
 
     /**
      * 签约号
      */
-    private String breakSignNo;
+    private String signNo;
 
     /**
      * 签约状态
@@ -24,21 +24,21 @@ public class BreakSignRepDTO extends BaseRepDTO {
     private EnumSignStatus signStatus;
 
     /**
-     * Getter method for property breakSignNo.
+     * Getter method for property signNo.
      *
-     * @return property value of breakSignNo
+     * @return property value of signNo
      **/
-    public String getBreakSignNo() {
-        return breakSignNo;
+    public String getSignNo() {
+        return signNo;
     }
 
     /**
-     * Setter method for property breakSignNo.
+     * Setter method for property signNo.
      *
-     * @param breakSignNo value to be assigned to property breakSignNo
+     * @param signNo value to be assigned to property signNo
      **/
-    public void setBreakSignNo(String breakSignNo) {
-        this.breakSignNo = breakSignNo;
+    public void setSignNo(String signNo) {
+        this.signNo = signNo;
     }
 
     /**

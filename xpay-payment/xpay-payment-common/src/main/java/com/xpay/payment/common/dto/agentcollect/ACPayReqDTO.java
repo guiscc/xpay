@@ -11,9 +11,9 @@ import java.util.Date;
 
 /**
  * @author qinshou
- * @version $Id: AgentCollectReqDTO.java, v 0.1 16/7/31 上午11:09 sxfans Exp $
+ * @version $Id: ACPayReqDTO.java, v 0.1 16/7/31 上午11:09 sxfans Exp $
  */
-public class AgentCollectReqDTO extends BaseRepDTO {
+public class ACPayReqDTO extends BaseRepDTO {
 
     /**
      * 交易单号

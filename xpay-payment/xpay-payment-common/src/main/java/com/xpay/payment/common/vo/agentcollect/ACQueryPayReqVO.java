@@ -6,7 +6,7 @@ package com.xpay.payment.common.vo.agentcollect;
 
 /**
  * @author qinshou
- * @version $Id: AgentCollectReqVO.java, v 0.1 16/8/7 下午10:57 sxfans Exp $
+ * @version $Id: ACQueryPayReqVO.java, v 0.1 16/9/10 下午4:46 sxfans Exp $
  */
-public class AgentCollectReqVO {
+public class ACQueryPayReqVO {
 }

@@ -5,11 +5,12 @@
 package com.xpay.payment.biz.impl;
 
 import com.xpay.payment.biz.CustomerBiz;
+import com.xpay.payment.common.exception.XpayPaymentException;
 import com.xpay.payment.common.vo.AuthRealNameRepVO;
 import com.xpay.payment.common.vo.AuthRealNameReqVO;
-import com.xpay.payment.common.vo.agentcollect.BreakSignRepVO;
-import com.xpay.payment.common.vo.agentcollect.BreakSignReqVO;
-import com.xpay.payment.common.vo.agentcollect.SignRepVO;
+import com.xpay.payment.common.vo.customer.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 /**
@@ -19,19 +20,27 @@ import org.springframework.stereotype.Component;
 @Component
 public class CustomerBizImpl implements CustomerBiz {
 
+    private static final Logger logger = LoggerFactory.getLogger(CustomerBizImpl.class);
 
     @Override
     public AuthRealNameRepVO authRealName(AuthRealNameReqVO authRealNameReqDTO) {
+        logger.info("暂未实现");
         return null;
     }
 
     @Override
-    public SignRepVO sign(SignRepVO signRepVO) {
+    public SignRepVO sign(SignReqVO signRepVO) throws XpayPaymentException {
+
         return null;
     }
 
     @Override
-    public BreakSignRepVO breakSign(BreakSignReqVO breakSignReqVO) {
+    public SignConfirmRepVO signConfirm(SignConfirmReqVO signConfirmReqVO) throws XpayPaymentException {
+        return null;
+    }
+
+    @Override
+    public SignBreakRepVO signBreak(SignBreakReqVO signBreakReqVO) {
         return null;
     }
 }

@@ -4,7 +4,7 @@
  */
 package com.xpay.payment.common.dto;
 
-import com.xpay.payment.common.enums.EnumRtnResult;
+import com.xpay.common.enums.EnumRtnResult;
 
 import java.io.Serializable;
 import java.util.Date;
