@@ -15,7 +15,16 @@ public enum EnumSignStatus {
 
     SIGN_WAITING((byte) 3, "签约未确认"),
 
-    BREAKSIGN_FAIL((byte) 4, "解约成功");
+    BREAKSIGN_SUCCESS((byte) 4, "解约成功");
+
+    public static EnumSignStatus toSignStatus(byte key) {
+        for (EnumSignStatus type : EnumSignStatus.values()) {
+            if (type.key == key) {
+                return type;
+            }
+        }
+        return null;
+    }
 
     /**
      *

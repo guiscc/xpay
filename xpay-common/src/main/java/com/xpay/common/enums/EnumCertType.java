@@ -6,20 +6,38 @@ package com.xpay.common.enums;
  */
 public enum EnumCertType {
 
-    IDCARD("身份证");
+    IDCARD((byte) 0, "身份证");
 
-    EnumCertType(String key) {
+
+    private byte key;
+    private String msg;
+
+    EnumCertType(byte key, String msg) {
         this.key = key;
+        this.msg = msg;
     }
 
-    private String key;
+    /**
+     * 支付工具
+     *
+     * @param key
+     * @return
+     */
+    public static EnumCertType toCerType(byte key) {
+        for (EnumCertType type : EnumCertType.values()) {
+            if (type.key == key) {
+                return type;
+            }
+        }
+        return null;
+    }
 
     /**
      * Getter method for property key.
      *
      * @return property value of key
      **/
-    public String getKey() {
+    public byte getKey() {
         return key;
     }
 
@@ -28,7 +46,25 @@ public enum EnumCertType {
      *
      * @param key value to be assigned to property key
      **/
-    public void setKey(String key) {
+    public void setKey(byte key) {
         this.key = key;
+    }
+
+    /**
+     * Getter method for property msg.
+     *
+     * @return property value of msg
+     **/
+    public String getMsg() {
+        return msg;
+    }
+
+    /**
+     * Setter method for property msg.
+     *
+     * @param msg value to be assigned to property msg
+     **/
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 }

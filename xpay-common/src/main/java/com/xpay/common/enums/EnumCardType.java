@@ -9,13 +9,30 @@ package com.xpay.common.enums;
  * @version $Id: EnumCardType.java, v 0.1 16/8/31 下午6:40 sxfans Exp $
  */
 public enum EnumCardType {
-    DEBIT("借记卡"),
-    CREDIT("贷记卡");
+    DEBIT((byte) 0, "借记卡"),
+    CREDIT((byte) 1, "贷记卡");
 
-    EnumCardType(String msg) {
+    EnumCardType(byte key, String msg) {
+        this.key = key;
         this.msg = msg;
     }
 
+    /**
+     * 支付工具
+     *
+     * @param key
+     * @return
+     */
+    public static EnumCardType toCardType(byte key) {
+        for (EnumCardType type : EnumCardType.values()) {
+            if (type.key == key) {
+                return type;
+            }
+        }
+        return null;
+    }
+
+    private byte key;
     private String msg;
 
     /**
@@ -34,5 +51,23 @@ public enum EnumCardType {
      **/
     public void setMsg(String msg) {
         this.msg = msg;
+    }
+
+    /**
+     * Getter method for property key.
+     *
+     * @return property value of key
+     **/
+    public byte getKey() {
+        return key;
+    }
+
+    /**
+     * Setter method for property key.
+     *
+     * @param key value to be assigned to property key
+     **/
+    public void setKey(byte key) {
+        this.key = key;
     }
 }

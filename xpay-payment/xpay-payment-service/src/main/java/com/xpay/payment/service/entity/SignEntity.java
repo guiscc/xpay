@@ -2,21 +2,20 @@
  * Alipay.com Inc.
  * Copyright (c) 2004-2016 All Rights Reserved.
  */
-package com.xpay.payment.common.vo.customer;
-
-
-import com.xpay.common.enums.EnumCardType;
-import com.xpay.common.enums.EnumCertType;
-import com.xpay.payment.common.enums.EnumSignStatus;
-import org.apache.commons.lang3.builder.ToStringBuilder;
+package com.xpay.payment.service.entity;
 
 import java.util.Date;
 
 /**
  * @author qinshou
- * @version $Id: SignReqVO.java, v 0.1 16/9/6 下午4:22 sxfans Exp $
+ * @version $Id: SignEntity.java, v 0.1 16/9/11 上午10:15 sxfans Exp $
  */
-public class SignReqVO {
+public class SignEntity {
+
+    /**
+     * 主键
+     */
+    private long id;
 
     /**
      * 签约号
@@ -36,7 +35,7 @@ public class SignReqVO {
     /**
      * 卡类型
      */
-    private EnumCardType cardType;
+    private byte cardType;
 
     /**
      * 持卡人姓名
@@ -46,7 +45,7 @@ public class SignReqVO {
     /**
      * 证件类型
      */
-    private EnumCertType cerType;
+    private byte cerType;
 
     /**
      * 证件号
@@ -64,21 +63,6 @@ public class SignReqVO {
     private String mobileNo;
 
     /**
-     * 签约状态
-     */
-    private EnumSignStatus signStatus;
-
-    /**
-     * 用户id
-     */
-    private String userId;
-
-    /**
-     * 备注
-     */
-    private String remark;
-
-    /**
      * 签约时间
      */
     private Date signCreateDT;
@@ -92,6 +76,39 @@ public class SignReqVO {
      * 解约时间
      */
     private Date breakSignDT;
+
+    /**
+     * 签约状态
+     */
+    private byte signStatus;
+
+    /**
+     * 用户id
+     */
+    private String userId;
+
+    /**
+     * 备注
+     */
+    private String remark;
+
+    /**
+     * Getter method for property id.
+     *
+     * @return property value of id
+     **/
+    public long getId() {
+        return id;
+    }
+
+    /**
+     * Setter method for property id.
+     *
+     * @param id value to be assigned to property id
+     **/
+    public void setId(long id) {
+        this.id = id;
+    }
 
     /**
      * Getter method for property signNo.
@@ -148,6 +165,24 @@ public class SignReqVO {
     }
 
     /**
+     * Getter method for property cardType.
+     *
+     * @return property value of cardType
+     **/
+    public byte getCardType() {
+        return cardType;
+    }
+
+    /**
+     * Setter method for property cardType.
+     *
+     * @param cardType value to be assigned to property cardType
+     **/
+    public void setCardType(byte cardType) {
+        this.cardType = cardType;
+    }
+
+    /**
      * Getter method for property holderName.
      *
      * @return property value of holderName
@@ -163,6 +198,24 @@ public class SignReqVO {
      **/
     public void setHolderName(String holderName) {
         this.holderName = holderName;
+    }
+
+    /**
+     * Getter method for property cerType.
+     *
+     * @return property value of cerType
+     **/
+    public byte getCerType() {
+        return cerType;
+    }
+
+    /**
+     * Setter method for property cerType.
+     *
+     * @param cerType value to be assigned to property cerType
+     **/
+    public void setCerType(byte cerType) {
+        this.cerType = cerType;
     }
 
     /**
@@ -220,11 +273,47 @@ public class SignReqVO {
     }
 
     /**
+     * Getter method for property signCreateDT.
+     *
+     * @return property value of signCreateDT
+     **/
+    public Date getSignCreateDT() {
+        return signCreateDT;
+    }
+
+    /**
+     * Setter method for property signCreateDT.
+     *
+     * @param signCreateDT value to be assigned to property signCreateDT
+     **/
+    public void setSignCreateDT(Date signCreateDT) {
+        this.signCreateDT = signCreateDT;
+    }
+
+    /**
+     * Getter method for property signFinishDT.
+     *
+     * @return property value of signFinishDT
+     **/
+    public Date getSignFinishDT() {
+        return signFinishDT;
+    }
+
+    /**
+     * Setter method for property signFinishDT.
+     *
+     * @param signFinishDT value to be assigned to property signFinishDT
+     **/
+    public void setSignFinishDT(Date signFinishDT) {
+        this.signFinishDT = signFinishDT;
+    }
+
+    /**
      * Getter method for property signStatus.
      *
      * @return property value of signStatus
      **/
-    public EnumSignStatus getSignStatus() {
+    public byte getSignStatus() {
         return signStatus;
     }
 
@@ -233,7 +322,7 @@ public class SignReqVO {
      *
      * @param signStatus value to be assigned to property signStatus
      **/
-    public void setSignStatus(EnumSignStatus signStatus) {
+    public void setSignStatus(byte signStatus) {
         this.signStatus = signStatus;
     }
 
@@ -274,78 +363,6 @@ public class SignReqVO {
     }
 
     /**
-     * Getter method for property cardType.
-     *
-     * @return property value of cardType
-     **/
-    public EnumCardType getCardType() {
-        return cardType;
-    }
-
-    /**
-     * Setter method for property cardType.
-     *
-     * @param cardType value to be assigned to property cardType
-     **/
-    public void setCardType(EnumCardType cardType) {
-        this.cardType = cardType;
-    }
-
-    /**
-     * Getter method for property cerType.
-     *
-     * @return property value of cerType
-     **/
-    public EnumCertType getCerType() {
-        return cerType;
-    }
-
-    /**
-     * Setter method for property cerType.
-     *
-     * @param cerType value to be assigned to property cerType
-     **/
-    public void setCerType(EnumCertType cerType) {
-        this.cerType = cerType;
-    }
-
-    /**
-     * Getter method for property signCreateDT.
-     *
-     * @return property value of signCreateDT
-     **/
-    public Date getSignCreateDT() {
-        return signCreateDT;
-    }
-
-    /**
-     * Setter method for property signCreateDT.
-     *
-     * @param signCreateDT value to be assigned to property signCreateDT
-     **/
-    public void setSignCreateDT(Date signCreateDT) {
-        this.signCreateDT = signCreateDT;
-    }
-
-    /**
-     * Getter method for property signFinishDT.
-     *
-     * @return property value of signFinishDT
-     **/
-    public Date getSignFinishDT() {
-        return signFinishDT;
-    }
-
-    /**
-     * Setter method for property signFinishDT.
-     *
-     * @param signFinishDT value to be assigned to property signFinishDT
-     **/
-    public void setSignFinishDT(Date signFinishDT) {
-        this.signFinishDT = signFinishDT;
-    }
-
-    /**
      * Getter method for property breakSignDT.
      *
      * @return property value of breakSignDT
@@ -361,10 +378,5 @@ public class SignReqVO {
      **/
     public void setBreakSignDT(Date breakSignDT) {
         this.breakSignDT = breakSignDT;
-    }
-
-    @Override
-    public String toString() {
-        return ToStringBuilder.reflectionToString(this);
     }
 }

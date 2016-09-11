@@ -30,7 +30,7 @@ public class CustomerBizImpl implements CustomerBiz {
 
     @Override
     public SignRepVO sign(SignReqVO signRepVO) throws XpayPaymentException {
-
+        
         return null;
     }
 
