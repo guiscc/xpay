@@ -7,6 +7,8 @@ package com.xpay.payment.test;
 import com.xpay.common.enums.EnumCardType;
 import com.xpay.common.enums.EnumCertType;
 import com.xpay.payment.common.enums.EnumSignStatus;
+import com.xpay.payment.common.vo.customer.SignBreakRepVO;
+import com.xpay.payment.common.vo.customer.SignBreakReqVO;
 import com.xpay.payment.common.vo.customer.SignRepVO;
 import com.xpay.payment.common.vo.customer.SignReqVO;
 import com.xpay.payment.service.SignService;
@@ -63,6 +65,20 @@ public class TestSign extends BaseTest {
 
     @Test
     public void breakSign() {
+        SignReqVO signReqVO = new SignReqVO();
+        signReqVO.setSignNo("201608121212");
+        signReqVO.setBreakSignNo("201608121212");
+        signReqVO.setSignStatus(EnumSignStatus.BREAKSIGN_SUCCESS);
+        signReqVO.setBreakSignDT(new Date());
+
+        SignBreakReqVO signBreakReqVO = new SignBreakReqVO();
+        SignBreakRepVO signBreakRepVO = signService.signBreak(signBreakReqVO);
+        System.out.println("######" + signBreakRepVO);
+    }
+
+
+    @Test
+    public void updateStatus() {
         SignReqVO signReqVO = new SignReqVO();
         signReqVO.setSignNo("201608121212");
         signReqVO.setBreakSignNo("201608121212");

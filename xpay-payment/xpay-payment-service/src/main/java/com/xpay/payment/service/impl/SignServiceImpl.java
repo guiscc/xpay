@@ -4,15 +4,18 @@
  */
 package com.xpay.payment.service.impl;
 
-import com.xpay.payment.common.vo.customer.SignRepVO;
-import com.xpay.payment.common.vo.customer.SignReqVO;
+import com.xpay.payment.common.enums.EnumSignStatus;
+import com.xpay.payment.common.vo.customer.*;
 import com.xpay.payment.service.SignService;
+import com.xpay.payment.service.convert.SignBreakConvert;
+import com.xpay.payment.service.convert.SignConfirmConvert;
 import com.xpay.payment.service.convert.SignConvert;
 import com.xpay.payment.service.dao.SignDao;
 import com.xpay.payment.service.entity.SignEntity;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Date;
 
 /**
  * @author qinshou
@@ -36,6 +39,34 @@ public class SignServiceImpl implements SignService {
             }
         }
         return signRepVO;
+    }
+
+    @Override
+    public SignConfirmRepVO signConfirm(SignConfirmReqVO signConfirmReqVO) {
+        SignEntity signEntity = new SignEntity();
+        signEntity = SignConfirmConvert.getSignEntity(signEntity, signConfirmReqVO);
+        int flag = signDao.updateStatus(signEntity);
+        if (flag == 1) {
+            SignConfirmRepVO signConfirmRepVO = new SignConfirmRepVO();
+            signConfirmRepVO = SignConfirmConvert.getSignConfirmRepVO(signConfirmRepVO, signEntity);
+            return signConfirmRepVO;
+        }
+        return null;
+    }
+
+    @Override
+    public SignBreakRepVO signBreak(SignBreakReqVO signBreakReqVO) {
+        SignEntity signEntity = new SignEntity();
+        signEntity = SignBreakConvert.getSignEntity(signEntity, signBreakReqVO);
+        signEntity.setBreakSignDT(new Date());
+        signEntity.setSignStatus(EnumSignStatus.BREAKSIGN_SUCCESS.getKey());
+        int flag = signDao.updateStatus(signEntity);
+        if (flag == 1) {
+            SignBreakRepVO signBreakRepVO = new SignBreakRepVO();
+            signBreakRepVO = SignBreakConvert.getSignBreakRepVO(signBreakRepVO, signEntity);
+            return signBreakRepVO;
+        }
+        return null;
     }
 
     @Override

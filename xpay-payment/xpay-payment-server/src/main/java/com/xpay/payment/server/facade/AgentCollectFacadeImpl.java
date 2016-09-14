@@ -7,16 +7,11 @@ package com.xpay.payment.server.facade;
 import com.xpay.payment.biz.AgentCollectBiz;
 import com.xpay.payment.biz.convert.ACPayConvert;
 import com.xpay.payment.biz.convert.ACQueryPayConvert;
-import com.xpay.payment.common.dto.agentcollect.ACPayRepDTO;
-import com.xpay.payment.common.dto.agentcollect.ACQueryPayReqDTO;
+import com.xpay.payment.biz.convert.ACRepairConvert;
+import com.xpay.payment.common.dto.agentcollect.*;
 import com.xpay.payment.common.exception.XpayPaymentException;
 import com.xpay.payment.common.facade.AgentCollectFacade;
-import com.xpay.payment.common.dto.agentcollect.ACPayReqDTO;
-import com.xpay.payment.common.dto.agentcollect.ACQueryPayRepDTO;
-import com.xpay.payment.common.vo.agentcollect.ACPayRepVO;
-import com.xpay.payment.common.vo.agentcollect.ACPayReqVO;
-import com.xpay.payment.common.vo.agentcollect.ACQueryPayRepVO;
-import com.xpay.payment.common.vo.agentcollect.ACQueryPayReqVO;
+import com.xpay.payment.common.vo.agentcollect.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,7 +25,6 @@ public class AgentCollectFacadeImpl implements AgentCollectFacade {
 
     private Logger logger = LoggerFactory.getLogger(AgentCollectFacadeImpl.class);
 
-    @Resource
     private AgentCollectBiz agentCollectBiz;
 
     @Override
@@ -64,5 +58,40 @@ public class AgentCollectFacadeImpl implements AgentCollectFacade {
             logger.error("查询代收异常:", e);
         }
         return acQueryPayRepDTO;
+    }
+
+    @Override
+    public ACRepairRepDTO repair(ACRepairReqDTO acRepairReqDTO) {
+        ACRepairReqVO acRepairReqVO = new ACRepairReqVO();
+        ACRepairRepDTO acRepairRepDTO = new ACRepairRepDTO();
+        try {
+            acRepairReqVO = ACRepairConvert.getACRepairReqVO(acRepairReqVO, acRepairReqDTO);
+            ACRepairRepVO acRepairRepVO = agentCollectBiz.repair(acRepairReqVO);
+            acRepairRepDTO = ACRepairConvert.getACRepairRepDTO(acRepairRepDTO, acRepairRepVO);
+        } catch (XpayPaymentException e) {
+            logger.error("补单异常", e);
+        } catch (Exception e) {
+            logger.error("补单异常", e);
+        }
+        return acRepairRepDTO;
+    }
+
+
+    /**
+     * Getter method for property agentCollectBiz.
+     *
+     * @return property value of agentCollectBiz
+     **/
+    public AgentCollectBiz getAgentCollectBiz() {
+        return agentCollectBiz;
+    }
+
+    /**
+     * Setter method for property agentCollectBiz.
+     *
+     * @param agentCollectBiz value to be assigned to property agentCollectBiz
+     **/
+    public void setAgentCollectBiz(AgentCollectBiz agentCollectBiz) {
+        this.agentCollectBiz = agentCollectBiz;
     }
 }

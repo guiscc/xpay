@@ -4,10 +4,7 @@
  */
 package com.xpay.payment.common.facade;
 
-import com.xpay.payment.common.dto.agentcollect.ACPayRepDTO;
-import com.xpay.payment.common.dto.agentcollect.ACPayReqDTO;
-import com.xpay.payment.common.dto.agentcollect.ACQueryPayRepDTO;
-import com.xpay.payment.common.dto.agentcollect.ACQueryPayReqDTO;
+import com.xpay.payment.common.dto.agentcollect.*;
 
 /**
  * @author qinshou
@@ -18,16 +15,24 @@ public interface AgentCollectFacade {
     /**
      * 代收
      *
-     * @param ACPayReqDTO
+     * @param acPayReqDTO
      * @return
      */
-    public ACPayRepDTO pay(ACPayReqDTO ACPayReqDTO);
+    public ACPayRepDTO pay(ACPayReqDTO acPayReqDTO);
 
     /**
      * 查询代收
      *
-     * @param ACQueryPayReqDTO
+     * @param acQueryPayReqDTO
      * @return
      */
-    public ACQueryPayRepDTO queryPay(ACQueryPayReqDTO ACQueryPayReqDTO);
+    public ACQueryPayRepDTO queryPay(ACQueryPayReqDTO acQueryPayReqDTO);
+
+    /**
+     * 补单
+     *
+     * @param acRepairReqDTO
+     * @return
+     */
+    public ACRepairRepDTO repair(ACRepairReqDTO acRepairReqDTO);
 }

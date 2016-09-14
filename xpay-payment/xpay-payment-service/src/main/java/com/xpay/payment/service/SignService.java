@@ -4,8 +4,7 @@
  */
 package com.xpay.payment.service;
 
-import com.xpay.payment.common.vo.customer.SignRepVO;
-import com.xpay.payment.common.vo.customer.SignReqVO;
+import com.xpay.payment.common.vo.customer.*;
 
 /**
  * @author qinshou
@@ -21,6 +20,21 @@ public interface SignService {
      */
 
     public SignRepVO add(SignReqVO signReqVO);
+
+    /**
+     * 签约确认
+     *
+     * @param signConfirmReqVO
+     * @return
+     */
+    public SignConfirmRepVO signConfirm(SignConfirmReqVO signConfirmReqVO);
+
+    /**
+     * 解约
+     *
+     * @return
+     */
+    public SignBreakRepVO signBreak(SignBreakReqVO signBreakReqVO);
 
     /**
      * 更新签约信息

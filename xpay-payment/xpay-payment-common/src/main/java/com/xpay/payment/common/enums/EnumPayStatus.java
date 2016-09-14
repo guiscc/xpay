@@ -4,6 +4,8 @@
  */
 package com.xpay.payment.common.enums;
 
+import org.omg.CORBA.UNKNOWN;
+
 /**
  * @author qinshou
  * @version $Id: EnumPayStatus.java, v 0.1 16/8/30 下午12:49 sxfans Exp $
@@ -14,7 +16,9 @@ public enum EnumPayStatus {
 
     SUCCESS((byte) 1, "支付成功"),
 
-    WAITING((byte) 3, "等待付款");
+    WAITING((byte) 3, "等待付款"),
+
+    UNKNOWN((byte) 4, "未知");
 
     EnumPayStatus(byte key, String val) {
         this.key = key;
@@ -23,6 +27,7 @@ public enum EnumPayStatus {
 
     /**
      * 支付工具
+     *
      * @param key
      * @return
      */

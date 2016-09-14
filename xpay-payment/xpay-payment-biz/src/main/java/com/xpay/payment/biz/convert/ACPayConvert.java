@@ -6,6 +6,7 @@ package com.xpay.payment.biz.convert;
 
 import com.xpay.payment.common.dto.agentcollect.ACPayRepDTO;
 import com.xpay.payment.common.dto.agentcollect.ACPayReqDTO;
+import com.xpay.payment.common.model.PayOrderModel;
 import com.xpay.payment.common.vo.agentcollect.ACPayRepVO;
 import com.xpay.payment.common.vo.agentcollect.ACPayReqVO;
 import org.slf4j.Logger;
@@ -43,5 +44,25 @@ public class ACPayConvert {
         logger.info("响应模型:", acPayRepVO.toString());
         logger.info("转换响应模型:", acPayRepDTO.toString());
         return acPayRepDTO;
+    }
+
+    /**
+     *
+     * @param payOrderModel
+     * @param acPayReqVO
+     * @return
+     */
+    public static PayOrderModel getPayOrderModel(PayOrderModel payOrderModel, ACPayReqVO acPayReqVO) {
+        return payOrderModel;
+    }
+
+    /**
+     *
+     * @param acPayRepVO
+     * @param payOrderModel
+     * @return
+     */
+    public static ACPayRepVO getACPayRepVO(ACPayRepVO acPayRepVO, PayOrderModel payOrderModel) {
+        return acPayRepVO;
     }
 }

@@ -5,10 +5,7 @@
 package com.xpay.payment.biz;
 
 import com.xpay.payment.common.exception.XpayPaymentException;
-import com.xpay.payment.common.vo.agentcollect.ACPayReqVO;
-import com.xpay.payment.common.vo.agentcollect.ACQueryPayRepVO;
-import com.xpay.payment.common.vo.agentcollect.ACQueryPayReqVO;
-import com.xpay.payment.common.vo.agentcollect.ACPayRepVO;
+import com.xpay.payment.common.vo.agentcollect.*;
 
 /**
  * @author qinshou
@@ -21,6 +18,7 @@ public interface AgentCollectBiz {
      *
      * @param acPayReqVO
      * @return
+     * @throws XpayPaymentException
      */
     public ACPayRepVO pay(ACPayReqVO acPayReqVO) throws XpayPaymentException;
 
@@ -29,7 +27,17 @@ public interface AgentCollectBiz {
      *
      * @param acQueryPayReqVO
      * @return
+     * @throws XpayPaymentException
      */
     public ACQueryPayRepVO queryPay(ACQueryPayReqVO acQueryPayReqVO) throws XpayPaymentException;
+
+    /**
+     * 补单
+     *
+     * @param acRepairReqVO
+     * @return
+     * @throws XpayPaymentException
+     */
+    public ACRepairRepVO repair(ACRepairReqVO acRepairReqVO) throws XpayPaymentException;
 
 }
