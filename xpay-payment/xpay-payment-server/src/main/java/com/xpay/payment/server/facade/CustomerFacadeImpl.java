@@ -12,13 +12,11 @@ import com.xpay.payment.biz.convert.SignConvert;
 import com.xpay.payment.common.dto.customer.*;
 import com.xpay.payment.common.exception.XpayPaymentException;
 import com.xpay.payment.common.facade.CustomerFacade;
-import com.xpay.payment.common.vo.AuthRealNameRepVO;
-import com.xpay.payment.common.vo.AuthRealNameReqVO;
+import com.xpay.payment.common.vo.customer.AuthRealNameRepVO;
+import com.xpay.payment.common.vo.customer.AuthRealNameReqVO;
 import com.xpay.payment.common.vo.customer.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import javax.annotation.Resource;
 
 /**
  * @author qinshou

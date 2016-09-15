@@ -4,103 +4,36 @@
  */
 package com.xpay.payment.common.dto.agentcollect;
 
-import java.math.BigDecimal;
+import com.xpay.payment.common.dto.BaseRepDTO;
+import com.xpay.payment.common.dto.PayOrderDTO;
+
 
 /**
  * @author qinshou
  * @version $Id: ACQueryPayRepDTO.java, v 0.1 16/7/31 上午11:10 sxfans Exp $
  */
-public class ACQueryPayRepDTO {
+public class ACQueryPayRepDTO extends BaseRepDTO{
 
     /**
-     * 主键
+     * 支付订单号
      */
-    private String id;
+    private PayOrderDTO payOrderDTO = new PayOrderDTO();
 
     /**
-     * 交易号
-     */
-    private String tradeOrderNo;
-
-    /**
-     * 支付单号
-     */
-    private String payOrderNo;
-
-    /**
-     * 支付金额
-     */
-    private BigDecimal payAmt;
-
-    /**
-     * Getter method for property id.
+     * Getter method for property payOrderDTO.
      *
-     * @return property value of id
+     * @return property value of payOrderDTO
      **/
-    public String getId() {
-        return id;
+    public PayOrderDTO getPayOrderDTO() {
+        return payOrderDTO;
     }
 
     /**
-     * Setter method for property id.
+     * Setter method for property payOrderDTO.
      *
-     * @param id value to be assigned to property id
+     * @param payOrderDTO value to be assigned to property payOrderDTO
      **/
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    /**
-     * Getter method for property tradeOrderNo.
-     *
-     * @return property value of tradeOrderNo
-     **/
-    public String getTradeOrderNo() {
-        return tradeOrderNo;
-    }
-
-    /**
-     * Setter method for property tradeOrderNo.
-     *
-     * @param tradeOrderNo value to be assigned to property tradeOrderNo
-     **/
-    public void setTradeOrderNo(String tradeOrderNo) {
-        this.tradeOrderNo = tradeOrderNo;
-    }
-
-    /**
-     * Getter method for property payOrderNo.
-     *
-     * @return property value of payOrderNo
-     **/
-    public String getPayOrderNo() {
-        return payOrderNo;
-    }
-
-    /**
-     * Setter method for property payOrderNo.
-     *
-     * @param payOrderNo value to be assigned to property payOrderNo
-     **/
-    public void setPayOrderNo(String payOrderNo) {
-        this.payOrderNo = payOrderNo;
-    }
-
-    /**
-     * Getter method for property payAmt.
-     *
-     * @return property value of payAmt
-     **/
-    public BigDecimal getPayAmt() {
-        return payAmt;
-    }
-
-    /**
-     * Setter method for property payAmt.
-     *
-     * @param payAmt value to be assigned to property payAmt
-     **/
-    public void setPayAmt(BigDecimal payAmt) {
-        this.payAmt = payAmt;
+    public void setPayOrderDTO(PayOrderDTO payOrderDTO) {
+        this.payOrderDTO = payOrderDTO;
     }
 }

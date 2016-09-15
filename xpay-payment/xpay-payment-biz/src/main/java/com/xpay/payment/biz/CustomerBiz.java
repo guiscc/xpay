@@ -5,8 +5,8 @@
 package com.xpay.payment.biz;
 
 import com.xpay.payment.common.exception.XpayPaymentException;
-import com.xpay.payment.common.vo.AuthRealNameRepVO;
-import com.xpay.payment.common.vo.AuthRealNameReqVO;
+import com.xpay.payment.common.vo.customer.AuthRealNameRepVO;
+import com.xpay.payment.common.vo.customer.AuthRealNameReqVO;
 import com.xpay.payment.common.vo.customer.*;
 
 /**

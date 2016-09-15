@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+    <bean id="testAgentCollectFacade" class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+        <property name="serviceUrl"
+                  value="http://127.0.0.1:8083/xpay-payment-server/hessian/agentCollectFacade"/>
+        <property name="serviceInterface" value="com.xpay.payment.common.facade.AgentCollectFacade"/>
+        <property name="overloadEnabled" value="false"/>
+    </bean>
+
+    <bean id="testCustomerFacade" class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+        <property name="serviceUrl"
+                  value="http://127.0.0.1:8083/xpay-payment-server/hessian/customerFacade"/>
+        <property name="serviceInterface" value="com.xpay.payment.common.facade.CustomerFacade"/>
+        <property name="overloadEnabled" value="false"/>
+    </bean>
+</beans>

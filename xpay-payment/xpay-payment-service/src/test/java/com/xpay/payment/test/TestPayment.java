@@ -26,19 +26,19 @@ public class TestPayment extends BaseTest {
     @Resource
     private PaymentService paymentService;
 
-    //    @Test
+    @Test
     public void getByTradeOrderNo() {
         PayOrderModel payOrderModel = paymentService.getByTradeOrderNo("13a");
         System.out.println(payOrderModel);
     }
 
-    //    @Test
+    @Test
     public void getByPayOrderNo() {
         PayOrderModel payOrderModel = paymentService.getByPayOrderNo("12a");
         System.out.println(payOrderModel);
     }
 
-    //    @Test
+    @Test
     public void updatePayOrderStatus() {
         UpPayOrderStatusReqVO upOrderStatusReqVO = new UpPayOrderStatusReqVO();
         upOrderStatusReqVO.setTradeOrderNo("13");

@@ -5,19 +5,16 @@
 package com.xpay.payment.biz.impl;
 
 import com.xpay.payment.biz.CustomerBiz;
-import com.xpay.payment.common.enums.EnumSignStatus;
 import com.xpay.payment.common.exception.XpayPaymentException;
-import com.xpay.payment.common.vo.AuthRealNameRepVO;
-import com.xpay.payment.common.vo.AuthRealNameReqVO;
+import com.xpay.payment.common.vo.customer.AuthRealNameRepVO;
+import com.xpay.payment.common.vo.customer.AuthRealNameReqVO;
 import com.xpay.payment.common.vo.customer.*;
 import com.xpay.payment.service.SignService;
-import com.xpay.trade.common.exception.XpayTradeException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
-import java.util.Date;
 
 /**
  * @author qinshou

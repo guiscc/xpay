@@ -23,6 +23,13 @@ public class ACRepairConvert {
      */
     public static ACRepairRepDTO getACRepairRepDTO(ACRepairRepDTO acRepairRepDTO,
                                                    ACRepairRepVO acRepairRepVO) {
+        PayOrderModel payOrderModel = acRepairRepVO.getPayOrderModel();
+        if (payOrderModel != null) {
+            acRepairRepDTO.getPayOrderDTO().setPayOrderNo(payOrderModel.getPayOrderNo());
+            acRepairRepDTO.getPayOrderDTO().setPayStatus(payOrderModel.getPayStatus());
+            acRepairRepDTO.getPayOrderDTO().setTradeOrderNo(payOrderModel.getTradeOrderNo());
+            acRepairRepDTO.getPayOrderDTO().setPayAmt(payOrderModel.getPayAmt());
+        }
         return acRepairRepDTO;
     }
 
@@ -33,17 +40,19 @@ public class ACRepairConvert {
      */
     public static ACRepairReqVO getACRepairReqVO(ACRepairReqVO acRepairReqVO,
                                                  ACRepairReqDTO acRepairReqDTO) {
+        acRepairReqVO.setPayOrderNo(acRepairReqVO.getPayOrderNo());
+        acRepairReqVO.setTradeOrderNo(acRepairReqVO.getTradeOrderNo());
         return acRepairReqVO;
     }
 
     /**
-     *
      * @param acRepairRepVO
      * @param payOrderModel
      * @return
      */
     public static ACRepairRepVO getACRepairRepVO(ACRepairRepVO acRepairRepVO,
                                                  PayOrderModel payOrderModel) {
+        acRepairRepVO.setPayOrderModel(payOrderModel);
         return acRepairRepVO;
     }
 }

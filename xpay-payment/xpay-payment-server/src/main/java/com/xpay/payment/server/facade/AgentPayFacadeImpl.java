@@ -18,7 +18,6 @@ public class AgentPayFacadeImpl implements AgentPayFacade {
 
     @Override
     public AgentPayRepDTO pay(AgentPayReqDTO agentPayReqDTO) {
-
         return null;
     }
 

@@ -6,8 +6,8 @@ package com.xpay.payment.biz.convert;
 
 import com.xpay.payment.common.dto.customer.AuthRealNameRepDTO;
 import com.xpay.payment.common.dto.customer.AuthRealNameReqDTO;
-import com.xpay.payment.common.vo.AuthRealNameRepVO;
-import com.xpay.payment.common.vo.AuthRealNameReqVO;
+import com.xpay.payment.common.vo.customer.AuthRealNameRepVO;
+import com.xpay.payment.common.vo.customer.AuthRealNameReqVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
