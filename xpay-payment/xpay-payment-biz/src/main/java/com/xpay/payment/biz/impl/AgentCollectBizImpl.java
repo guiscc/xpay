@@ -31,13 +31,14 @@ public class AgentCollectBizImpl implements AgentCollectBiz {
     public ACPayRepVO pay(ACPayReqVO acPayReqVO) throws XpayPaymentException {
         PayOrderModel payOrderModel = new PayOrderModel();
         payOrderModel = ACPayConvert.getPayOrderModel(payOrderModel, acPayReqVO);
+        payOrderModel.setPayStatus(EnumPayStatus.WAITING);
         PayOrderModel addModel = paymentService.add(payOrderModel);
         if (addModel == null) {
             throw new XpayPaymentException(EnumRtnResult.E000004);
         }
         ACPayRepVO acPayRepVO = new ACPayRepVO();
-        ACPayConvert.getACPayRepVO(acPayRepVO, payOrderModel);
-        return null;
+        acPayRepVO = ACPayConvert.getACPayRepVO(acPayRepVO, addModel);
+        return acPayRepVO;
     }
 
     @Override

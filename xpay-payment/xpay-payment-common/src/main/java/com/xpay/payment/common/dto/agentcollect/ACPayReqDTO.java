@@ -52,16 +52,6 @@ public class ACPayReqDTO extends BaseRepDTO {
     private String userId;
 
     /**
-     * 支付状态
-     */
-    private EnumPayStatus payStatus;
-
-    /**
-     *  创建时间
-     */
-    private Date createTime;
-
-    /**
      * 备注
      */
     private String remark;
@@ -190,42 +180,6 @@ public class ACPayReqDTO extends BaseRepDTO {
      **/
     public void setUserId(String userId) {
         this.userId = userId;
-    }
-
-    /**
-     * Getter method for property payStatus.
-     *
-     * @return property value of payStatus
-     **/
-    public EnumPayStatus getPayStatus() {
-        return payStatus;
-    }
-
-    /**
-     * Setter method for property payStatus.
-     *
-     * @param payStatus value to be assigned to property payStatus
-     **/
-    public void setPayStatus(EnumPayStatus payStatus) {
-        this.payStatus = payStatus;
-    }
-
-    /**
-     * Getter method for property createTime.
-     *
-     * @return property value of createTime
-     **/
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    /**
-     * Setter method for property createTime.
-     *
-     * @param createTime value to be assigned to property createTime
-     **/
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
     }
 
     /**

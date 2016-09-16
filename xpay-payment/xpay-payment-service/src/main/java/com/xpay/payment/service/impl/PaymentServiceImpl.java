@@ -4,6 +4,8 @@
  */
 package com.xpay.payment.service.impl;
 
+import com.xpay.common.utils.sequence.RandomSequenceImpl;
+import com.xpay.common.utils.sequence.Sequence;
 import com.xpay.payment.common.model.PayOrderModel;
 import com.xpay.payment.service.PaymentService;
 import com.xpay.payment.service.convert.PaymentConvert;
@@ -24,12 +26,17 @@ public class PaymentServiceImpl implements PaymentService {
     @Resource
     public PaymentDao paymentDao;
 
+    private static Sequence sequence = new RandomSequenceImpl();
+
     @Override
     public PayOrderModel add(PayOrderModel payOrderModel) {
         PaymentEntity paymentEntity = new PaymentEntity();
         paymentEntity = PaymentConvert.convertPayOrderModel(paymentEntity, payOrderModel);
         PaymentEntity oldPaymentEntity = paymentDao.getByOrderNo(paymentEntity);
         if (oldPaymentEntity == null) {
+            String seqNo = sequence.getSeq(null);
+            paymentEntity.setPayOrderNo(seqNo);
+            paymentEntity.setCreateTime(new Date());
             int flag = paymentDao.add(paymentEntity);
             if (flag == 1) {
                 oldPaymentEntity = paymentEntity;
