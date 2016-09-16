@@ -40,8 +40,8 @@ public class ACRepairConvert {
      */
     public static ACRepairReqVO getACRepairReqVO(ACRepairReqVO acRepairReqVO,
                                                  ACRepairReqDTO acRepairReqDTO) {
-        acRepairReqVO.setPayOrderNo(acRepairReqVO.getPayOrderNo());
-        acRepairReqVO.setTradeOrderNo(acRepairReqVO.getTradeOrderNo());
+        acRepairReqVO.setPayOrderNo(acRepairReqDTO.getPayOrderNo());
+        acRepairReqVO.setTradeOrderNo(acRepairReqDTO.getTradeOrderNo());
         return acRepairReqVO;
     }
 

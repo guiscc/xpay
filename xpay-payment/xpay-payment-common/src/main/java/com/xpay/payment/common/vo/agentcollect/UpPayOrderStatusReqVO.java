@@ -5,6 +5,7 @@
 package com.xpay.payment.common.vo.agentcollect;
 
 import com.xpay.payment.common.enums.EnumPayStatus;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
  * @author qinshou
@@ -56,5 +57,9 @@ public class UpPayOrderStatusReqVO {
      **/
     public void setTradeOrderNo(String tradeOrderNo) {
         this.tradeOrderNo = tradeOrderNo;
+    }
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this);
     }
 }

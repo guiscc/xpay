@@ -18,12 +18,12 @@ public class BaseRepDTO implements Serializable {
     /**
      * 返回状态
      */
-    private EnumRtnResult rtnResult;
+    private EnumRtnResult rtnResult = EnumRtnResult.S000000;
 
     /**
      * 服务器时间
      */
-    private Date serverDate;
+    private Date serverDate = new Date();
 
     /**
      * Getter method for property rtnResult.

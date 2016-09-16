@@ -5,6 +5,7 @@
 package com.xpay.payment.common.dto.agentcollect;
 
 import com.xpay.payment.common.dto.BaseReqDTO;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
  * @author qinshou
@@ -58,5 +59,10 @@ public class ACQueryPayReqDTO extends BaseReqDTO{
      **/
     public void setPayOrderNo(String payOrderNo) {
         this.payOrderNo = payOrderNo;
+    }
+
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this);
     }
 }

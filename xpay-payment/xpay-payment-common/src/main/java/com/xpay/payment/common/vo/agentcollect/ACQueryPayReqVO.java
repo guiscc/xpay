@@ -4,6 +4,8 @@
  */
 package com.xpay.payment.common.vo.agentcollect;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 /**
  * @author qinshou
  * @version $Id: ACQueryPayReqVO.java, v 0.1 16/9/10 下午4:46 sxfans Exp $
@@ -54,5 +56,9 @@ public class ACQueryPayReqVO {
      **/
     public void setPayOrderNo(String payOrderNo) {
         this.payOrderNo = payOrderNo;
+    }
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this);
     }
 }

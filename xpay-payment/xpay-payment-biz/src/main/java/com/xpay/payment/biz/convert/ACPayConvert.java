@@ -29,8 +29,8 @@ public class ACPayConvert {
      */
     public static ACPayReqVO getACPayReqVO(ACPayReqVO acPayReqVO,
                                            ACPayReqDTO acPayReqDTO) {
-        logger.info("请求模型:", acPayReqDTO.toString());
-        logger.info("转换请求模型:", acPayReqVO.toString());
+        logger.info("请求模型:", acPayReqDTO);
+        logger.info("转换请求模型:", acPayReqVO);
         return acPayReqVO;
     }
 
@@ -41,8 +41,8 @@ public class ACPayConvert {
      */
     public static ACPayRepDTO getACPayRepDTO(ACPayRepDTO acPayRepDTO,
                                              ACPayRepVO acPayRepVO) {
-        logger.info("响应模型:", acPayRepVO.toString());
-        logger.info("转换响应模型:", acPayRepDTO.toString());
+        logger.info("响应模型:", acPayRepVO);
+        logger.info("转换响应模型:", acPayRepDTO);
         return acPayRepDTO;
     }
 

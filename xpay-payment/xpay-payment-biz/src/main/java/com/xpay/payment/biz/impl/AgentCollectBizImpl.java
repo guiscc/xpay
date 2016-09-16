@@ -44,7 +44,7 @@ public class AgentCollectBizImpl implements AgentCollectBiz {
     public ACQueryPayRepVO queryPay(ACQueryPayReqVO acQueryPayReqVO) throws XpayPaymentException {
         ACQueryPayRepVO acQueryPayRepVO = new ACQueryPayRepVO();
         PayOrderModel payOrderModel = null;
-        if (StringUtils.isBlank(acQueryPayReqVO.getPayOrderNo())) {
+        if (StringUtils.isNotBlank(acQueryPayReqVO.getPayOrderNo())) {
             payOrderModel = paymentService.getByPayOrderNo(acQueryPayReqVO.getPayOrderNo());
         } else {
             payOrderModel = paymentService.getByTradeOrderNo(acQueryPayReqVO.getTradeOrderNo());
@@ -69,6 +69,11 @@ public class AgentCollectBizImpl implements AgentCollectBiz {
         }
         if (EnumPayStatus.UNKNOWN.getKey() == payOrderModel.getPayStatus().getKey()) {
             System.out.println("需要补单");
+            payOrderModel.setPayStatus(EnumPayStatus.SUCCESS);
+            boolean flag = paymentService.update(payOrderModel);
+            if(!flag){
+                throw new XpayPaymentException(EnumRtnResult.E000004);
+            }
         }
         ACRepairRepVO acRepairRepVO = new ACRepairRepVO();
         acRepairRepVO = ACRepairConvert.getACRepairRepVO(acRepairRepVO, payOrderModel);

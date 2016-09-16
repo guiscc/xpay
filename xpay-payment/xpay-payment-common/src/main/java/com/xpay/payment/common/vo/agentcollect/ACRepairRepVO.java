@@ -5,6 +5,7 @@
 package com.xpay.payment.common.vo.agentcollect;
 
 import com.xpay.payment.common.model.PayOrderModel;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
  * @author qinshou
@@ -33,5 +34,9 @@ public class ACRepairRepVO {
      **/
     public void setPayOrderModel(PayOrderModel payOrderModel) {
         this.payOrderModel = payOrderModel;
+    }
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this);
     }
 }

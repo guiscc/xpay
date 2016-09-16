@@ -11,6 +11,7 @@ public enum EnumRtnResult {
     E000001(EnumRtnStatus.FAIL, "查询的订单不存在"),
     E000002(EnumRtnStatus.FAIL, "修改失败"),
     E000003(EnumRtnStatus.FAIL, "订单状态失败"),
+    E000004(EnumRtnStatus.FAIL, "持久化订单异常"),
 
     U00000(EnumRtnStatus.UNKNOW, "未知异常");
 

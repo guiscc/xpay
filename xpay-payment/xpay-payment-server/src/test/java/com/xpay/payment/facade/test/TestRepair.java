@@ -4,7 +4,13 @@
  */
 package com.xpay.payment.facade.test;
 
+import com.xpay.payment.common.dto.agentcollect.ACRepairRepDTO;
+import com.xpay.payment.common.dto.agentcollect.ACRepairReqDTO;
+import com.xpay.payment.common.facade.AgentCollectFacade;
+import com.xpay.payment.common.vo.agentcollect.ACRepairRepVO;
 import org.junit.Test;
+
+import javax.annotation.Resource;
 
 /**
  * @author qinshou
@@ -12,8 +18,22 @@ import org.junit.Test;
  */
 public class TestRepair extends BaseTest {
 
-    @Test
-    public void repair(){
+    @Resource
+    private AgentCollectFacade agentCollectFacade;
 
+    @Test
+    public void repairByTradeOrderNo() {
+        ACRepairReqDTO acRepairReqDTO = new ACRepairReqDTO();
+        acRepairReqDTO.setTradeOrderNo("13");
+        ACRepairRepDTO acRepairRepDTO = agentCollectFacade.repair(acRepairReqDTO);
+        System.out.println("######"+acRepairRepDTO);
+    }
+
+    @Test
+    public void repairPaymentOrderNo() {
+        ACRepairReqDTO acRepairReqDTO = new ACRepairReqDTO();
+        acRepairReqDTO.setPayOrderNo("12");
+        ACRepairRepDTO acRepairRepDTO = agentCollectFacade.repair(acRepairReqDTO);
+        System.out.println("######"+ acRepairRepDTO);
     }
 }

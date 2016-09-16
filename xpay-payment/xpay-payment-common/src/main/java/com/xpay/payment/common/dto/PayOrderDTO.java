@@ -5,6 +5,7 @@
 package com.xpay.payment.common.dto;
 
 import com.xpay.payment.common.enums.EnumPayStatus;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -105,5 +106,10 @@ public class PayOrderDTO implements Serializable{
      **/
     public void setPayStatus(EnumPayStatus payStatus) {
         this.payStatus = payStatus;
+    }
+
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this);
     }
 }

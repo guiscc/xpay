@@ -28,9 +28,9 @@ public class ACQueryPayConvert {
      */
     public static ACQueryPayReqVO getACQueryPayReqVO(ACQueryPayReqVO acQueryPayReqVO,
                                                      ACQueryPayReqDTO acQueryPayReqDTO) {
-        logger.info("请求模型:", acQueryPayReqDTO.toString());
+        logger.info("请求模型:", acQueryPayReqDTO);
         acQueryPayReqVO.setPayOrderNo(acQueryPayReqDTO.getPayOrderNo());
-        acQueryPayReqDTO.setTradeOrderNo(acQueryPayReqDTO.getTradeOrderNo());
+        acQueryPayReqVO.setTradeOrderNo(acQueryPayReqDTO.getTradeOrderNo());
         logger.info("转换请求模型:", acQueryPayReqVO.toString());
         return acQueryPayReqVO;
     }

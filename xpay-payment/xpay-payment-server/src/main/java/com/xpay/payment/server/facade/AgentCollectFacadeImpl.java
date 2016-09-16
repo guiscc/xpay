@@ -4,6 +4,7 @@
  */
 package com.xpay.payment.server.facade;
 
+import com.xpay.common.enums.EnumRtnResult;
 import com.xpay.payment.biz.AgentCollectBiz;
 import com.xpay.payment.biz.convert.ACPayConvert;
 import com.xpay.payment.biz.convert.ACQueryPayConvert;
@@ -37,8 +38,10 @@ public class AgentCollectFacadeImpl implements AgentCollectFacade {
             acPayRepDTO = ACPayConvert.getACPayRepDTO(acPayRepDTO, acPayRepVO);
         } catch (XpayPaymentException e) {
             logger.error("代收异常:", e);
+            acPayRepDTO.setRtnResult(e.getRtnResult());
         } catch (Exception e) {
             logger.error("代收异常:", e);
+            acPayRepDTO.setRtnResult(EnumRtnResult.E000000);
         }
         return acPayRepDTO;
     }
@@ -54,8 +57,10 @@ public class AgentCollectFacadeImpl implements AgentCollectFacade {
             acQueryPayRepDTO = ACQueryPayConvert.getACQueryPayRepDTO(acQueryPayRepDTO, acQueryPayRepVO);
         } catch (XpayPaymentException e) {
             logger.error("查询代收异常:", e);
+            acQueryPayRepDTO.setRtnResult(e.getRtnResult());
         } catch (Exception e) {
             logger.error("查询代收异常:", e);
+            acQueryPayRepDTO.setRtnResult(EnumRtnResult.E000000);
         }
         return acQueryPayRepDTO;
     }
@@ -70,8 +75,10 @@ public class AgentCollectFacadeImpl implements AgentCollectFacade {
             acRepairRepDTO = ACRepairConvert.getACRepairRepDTO(acRepairRepDTO, acRepairRepVO);
         } catch (XpayPaymentException e) {
             logger.error("补单异常", e);
+            acRepairRepDTO.setRtnResult(e.getRtnResult());
         } catch (Exception e) {
             logger.error("补单异常", e);
+            acRepairRepDTO.setRtnResult(EnumRtnResult.E000000);
         }
         return acRepairRepDTO;
     }

@@ -6,6 +6,7 @@ package com.xpay.payment.common.dto.agentcollect;
 
 import com.xpay.payment.common.dto.BaseRepDTO;
 import com.xpay.payment.common.dto.PayOrderDTO;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 
 /**
@@ -35,5 +36,10 @@ public class ACQueryPayRepDTO extends BaseRepDTO{
      **/
     public void setPayOrderDTO(PayOrderDTO payOrderDTO) {
         this.payOrderDTO = payOrderDTO;
+    }
+
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this);
     }
 }
