@@ -72,7 +72,7 @@ public class AgentCollectBizImpl implements AgentCollectBiz {
             System.out.println("需要补单");
             payOrderModel.setPayStatus(EnumPayStatus.SUCCESS);
             boolean flag = paymentService.update(payOrderModel);
-            if(!flag){
+            if (!flag) {
                 throw new XpayPaymentException(EnumRtnResult.E000004);
             }
         }

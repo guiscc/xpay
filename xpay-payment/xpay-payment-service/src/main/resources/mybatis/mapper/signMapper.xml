@@ -55,11 +55,48 @@
         #{remark})
     </insert>
 
-    <select id="get" resultMap="BaseResultMap" parameterType="SignEntity">
+    <update id="update" parameterType="SignEntity">
+        update cif_sign
+        <set>
+            <if test="cardNo != null and cardNo != ''">
+                cardNo = #{cardNo}
+            </if>
+            <if test="cardType != null and cardNo != ''">
+                cardType = #{cardType}
+            </if>
+            <if test="holderName != null and holderName != ''">
+                holderName = #{holderName}
+            </if>
+            <if test="cerType != null and cerType != ''">
+                holderName = #{cerType}
+            </if>
+            <if test="cerNo != null and cerNo != ''">
+                holderName = #{cerNo}
+            </if>
+            <if test="expireDate != null and expireDate != ''">
+                holderName = #{expireDate}
+            </if>
+            <if test="mobileNo != null and mobileNo != ''">
+                mobileNo = #{mobileNo}
+            </if>
+        </set>
+        <where>
+            userId = #{userId} and cardNo = #{cardNo}
+        </where>
+    </update>
+
+    <select id="getBySignNo" resultMap="BaseResultMap" parameterType="SignEntity">
         select
         <include refid="column"/>
         from cif_sign
         where signNo = #{signNo}
+    </select>
+
+    <select id="getByCardNoAndName" resultMap="BaseResultMap" parameterType="SignEntity">
+        select
+        <include refid="column"/>
+        from cif_sign
+        where cardNo = #{cardNo} and userId = #{userId};
     </select>
 
     <update id="updateStatus" parameterType="SignEntity">

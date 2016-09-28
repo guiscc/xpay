@@ -21,6 +21,14 @@ public interface SignDao {
      * @return
      */
     public int add(SignEntity signEntity);
+    
+    /**
+     * 修改签约信息
+     *
+     * @param signEntity
+     * @return
+     */
+    public int update(SignEntity signEntity);
 
     /**
      * 修改状态
@@ -31,17 +39,18 @@ public interface SignDao {
     public int updateStatus(SignEntity signEntity);
 
     /**
-     * 修改签约信息
+     * 查找签约信息
      *
      * @param signEntity
      * @return
      */
-    public int updateInfo(SignEntity signEntity);
+    public SignEntity getBySignNo(SignEntity signEntity);
 
     /**
-     * 查找
+     * 查找签约信息
+     *
      * @param signEntity
      * @return
      */
-    public SignEntity get(SignEntity signEntity);
+    public SignEntity getByCardNoAndName(SignEntity signEntity);
 }

@@ -22,6 +22,14 @@ public interface SignService {
     public SignRepVO add(SignReqVO signReqVO);
 
     /**
+     * 更新签约信息
+     *
+     * @param signReqVO
+     * @return
+     */
+    public SignRepVO update(SignReqVO signReqVO);
+
+    /**
      * 签约确认
      *
      * @param signConfirmReqVO
@@ -50,5 +58,13 @@ public interface SignService {
      * @param signReqVO
      * @return
      */
-    public SignRepVO get(SignReqVO signReqVO);
+    public SignRepVO getBySignNo(SignReqVO signReqVO);
+
+    /**
+     * 查找卡号和名称
+     *
+     * @param signReqVO
+     * @return
+     */
+    public SignRepVO getByCardAndName(SignReqVO signReqVO);
 }

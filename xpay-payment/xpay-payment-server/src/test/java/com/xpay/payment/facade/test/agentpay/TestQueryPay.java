@@ -2,13 +2,14 @@
  * Alipay.com Inc.
  * Copyright (c) 2004-2016 All Rights Reserved.
  */
-package com.xpay.payment.facade.test;
+package com.xpay.payment.facade.test.agentpay;
 
 import com.xpay.payment.biz.AgentCollectBiz;
 import com.xpay.payment.common.dto.agentcollect.ACQueryPayRepDTO;
 import com.xpay.payment.common.dto.agentcollect.ACQueryPayReqDTO;
 import com.xpay.payment.common.dto.agentpay.QueryPayReqDTO;
 import com.xpay.payment.common.facade.AgentCollectFacade;
+import com.xpay.payment.facade.test.BaseTest;
 import org.junit.Test;
 
 import javax.annotation.Resource;

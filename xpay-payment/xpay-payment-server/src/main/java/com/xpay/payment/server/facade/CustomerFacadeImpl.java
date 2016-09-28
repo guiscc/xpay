@@ -4,6 +4,7 @@
  */
 package com.xpay.payment.server.facade;
 
+import com.xpay.common.enums.EnumRtnResult;
 import com.xpay.payment.biz.CustomerBiz;
 import com.xpay.payment.biz.convert.AuthRealNameConvert;
 import com.xpay.payment.biz.convert.SignBreakConvert;
@@ -37,8 +38,10 @@ public class CustomerFacadeImpl implements CustomerFacade {
             AuthRealNameRepVO authRealNameRepVO = customerBiz.authRealName(authRealNameReqVO);
             authRealNameRepDTO = AuthRealNameConvert.getAuthRealNameRepVO(authRealNameRepDTO, authRealNameRepVO);
         } catch (XpayPaymentException e) {
+            authRealNameRepDTO.setRtnResult(e.getRtnResult());
             logger.error("实名认证错误", e);
         } catch (Exception e) {
+            authRealNameRepDTO.setRtnResult(EnumRtnResult.E000000);
             logger.error("实名认证错误", e);
         }
         return authRealNameRepDTO;
@@ -53,8 +56,10 @@ public class CustomerFacadeImpl implements CustomerFacade {
             SignRepVO signRepVO = customerBiz.sign(signReqVO);
             signRepDTO = SignConvert.getSignRepDTO(signRepDTO, signRepVO);
         } catch (XpayPaymentException e) {
+            signRepDTO.setRtnResult(e.getRtnResult());
             logger.error("签约异常:", e);
         } catch (Exception e) {
+            signRepDTO.setRtnResult(EnumRtnResult.E000000);
             logger.error("签约异常:", e);
         }
         return signRepDTO;
@@ -69,8 +74,10 @@ public class CustomerFacadeImpl implements CustomerFacade {
             SignConfirmRepVO signConfirmRepVO = customerBiz.signConfirm(signConfirmReqVO);
             signConfirmRepDTO = SignConfirmConvert.getConfirmSignRepDTO(signConfirmRepDTO, signConfirmRepVO);
         } catch (XpayPaymentException e) {
+            signConfirmRepDTO.setRtnResult(e.getRtnResult());
             logger.error("签约确认异常:", e);
         } catch (Exception e) {
+            signConfirmRepDTO.setRtnResult(EnumRtnResult.E000000);
             logger.error("签约确认异常:", e);
         }
         return signConfirmRepDTO;
@@ -85,8 +92,10 @@ public class CustomerFacadeImpl implements CustomerFacade {
             SignBreakRepVO signBreakRepVO = customerBiz.signBreak(signBreakReqVO);
             signBreakRepDTO = SignBreakConvert.getSignBreakRepDTO(signBreakRepDTO, signBreakRepVO);
         } catch (XpayPaymentException e) {
+            signBreakRepDTO.setRtnResult(e.getRtnResult());
             logger.error("解约异常:", e);
         } catch (Exception e) {
+            signBreakRepDTO.setRtnResult(EnumRtnResult.E000000);
             logger.error("解约异常:", e);
         }
         return signBreakRepDTO;

@@ -2,7 +2,7 @@
  * Alipay.com Inc.
  * Copyright (c) 2004-2016 All Rights Reserved.
  */
-package com.xpay.payment.facade.test;
+package com.xpay.payment.facade.test.agentpay;
 
 import com.xpay.common.enums.EnumCurrency;
 import com.xpay.common.enums.EnumPaySubTool;
@@ -10,6 +10,7 @@ import com.xpay.common.enums.EnumPayTool;
 import com.xpay.payment.common.dto.agentcollect.ACPayRepDTO;
 import com.xpay.payment.common.dto.agentcollect.ACPayReqDTO;
 import com.xpay.payment.common.facade.AgentCollectFacade;
+import com.xpay.payment.facade.test.BaseTest;
 import org.junit.Test;
 
 import javax.annotation.Resource;

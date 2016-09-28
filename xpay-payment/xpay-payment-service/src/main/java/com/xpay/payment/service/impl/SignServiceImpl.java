@@ -31,14 +31,24 @@ public class SignServiceImpl implements SignService {
     public SignRepVO add(SignReqVO signReqVO) {
         SignEntity signEntity = new SignEntity();
         signEntity = SignConvert.getSignEntity(signEntity, signReqVO);
-        SignRepVO signRepVO = this.get(signReqVO);
-        if (signRepVO == null) {
-            int flag = signDao.add(signEntity);
-            if (flag == 1) {
-                signRepVO = SignConvert.getSignRepVO(new SignRepVO(), signEntity);
-            }
+        int flag = signDao.add(signEntity);
+        if (flag == 1) {
+            SignRepVO signRepVO = SignConvert.getSignRepVO(new SignRepVO(), signEntity);
+            return signRepVO;
         }
-        return signRepVO;
+        return null;
+    }
+
+    @Override
+    public SignRepVO update(SignReqVO signReqVO) {
+        SignEntity signEntity = new SignEntity();
+        signEntity = SignConvert.getSignEntity(signEntity, signReqVO);
+        int flag = signDao.update(signEntity);
+        if (flag == 1) {
+            SignRepVO signRepVO = SignConvert.getSignRepVO(new SignRepVO(), signEntity);
+            return signRepVO;
+        }
+        return null;
     }
 
     @Override
@@ -81,10 +91,23 @@ public class SignServiceImpl implements SignService {
     }
 
     @Override
-    public SignRepVO get(SignReqVO signReqVO) {
+    public SignRepVO getBySignNo(SignReqVO signReqVO) {
         SignEntity signEntity = new SignEntity();
         signEntity = SignConvert.getSignEntity(signEntity, signReqVO);
-        SignEntity oldSignEntity = signDao.get(signEntity);
+        SignEntity oldSignEntity = signDao.getBySignNo(signEntity);
+        if (oldSignEntity == null) {
+            return null;
+        }
+        SignRepVO signRepVO = new SignRepVO();
+        signRepVO = SignConvert.getSignRepVO(signRepVO, oldSignEntity);
+        return signRepVO;
+    }
+
+    @Override
+    public SignRepVO getByCardAndName(SignReqVO signReqVO) {
+        SignEntity signEntity = new SignEntity();
+        signEntity = SignConvert.getSignEntity(signEntity, signReqVO);
+        SignEntity oldSignEntity = signDao.getByCardNoAndName(signEntity);
         if (oldSignEntity == null) {
             return null;
         }

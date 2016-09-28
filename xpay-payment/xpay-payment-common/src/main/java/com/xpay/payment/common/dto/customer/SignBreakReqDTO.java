@@ -5,6 +5,7 @@
 package com.xpay.payment.common.dto.customer;
 
 import com.xpay.payment.common.dto.BaseReqDTO;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
  * @author qinshou
@@ -13,7 +14,30 @@ import com.xpay.payment.common.dto.BaseReqDTO;
 public class SignBreakReqDTO extends BaseReqDTO {
 
     /**
-     * 解约号
+     * 签约号
      */
-    private String breakSignNo;
+    private String signNo;
+
+    /**
+     * Getter method for property signNo.
+     *
+     * @return property value of signNo
+     **/
+    public String getSignNo() {
+        return signNo;
+    }
+
+    /**
+     * Setter method for property signNo.
+     *
+     * @param signNo value to be assigned to property signNo
+     **/
+    public void setSignNo(String signNo) {
+        this.signNo = signNo;
+    }
+
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this);
+    }
 }

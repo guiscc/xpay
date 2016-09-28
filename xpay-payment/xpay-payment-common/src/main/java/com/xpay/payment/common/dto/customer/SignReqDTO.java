@@ -7,6 +7,7 @@ package com.xpay.payment.common.dto.customer;
 import com.xpay.common.enums.EnumCardType;
 import com.xpay.common.enums.EnumCertType;
 import com.xpay.payment.common.dto.BaseReqDTO;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.util.Date;
 
@@ -62,9 +63,14 @@ public class SignReqDTO extends BaseReqDTO {
     private String signOrderNo;
 
     /**
-     * 订单创建时间
+     * 用户id
      */
-    private Date createDT;
+    private String userId;
+
+    /**
+     * 备注
+     */
+    private String remark;
 
     /**
      * Getter method for property cardNo.
@@ -229,21 +235,43 @@ public class SignReqDTO extends BaseReqDTO {
     }
 
     /**
-     * Getter method for property createDT.
+     * Getter method for property userId.
      *
-     * @return property value of createDT
+     * @return property value of userId
      **/
-    public Date getCreateDT() {
-        return createDT;
+    public String getUserId() {
+        return userId;
     }
 
     /**
-     * Setter method for property createDT.
+     * Setter method for property userId.
      *
-     * @param createDT value to be assigned to property createDT
+     * @param userId value to be assigned to property userId
      **/
-    public void setCreateDT(Date createDT) {
-        this.createDT = createDT;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
+    /**
+     * Getter method for property remark.
+     *
+     * @return property value of remark
+     **/
+    public String getRemark() {
+        return remark;
+    }
+
+    /**
+     * Setter method for property remark.
+     *
+     * @param remark value to be assigned to property remark
+     **/
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this);
+    }
 }

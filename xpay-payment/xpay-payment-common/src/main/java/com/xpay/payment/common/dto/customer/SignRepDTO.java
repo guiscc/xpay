@@ -6,6 +6,7 @@ package com.xpay.payment.common.dto.customer;
 
 import com.xpay.common.enums.EnumRtnStatus;
 import com.xpay.payment.common.dto.BaseRepDTO;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
  * @author qinshou
@@ -57,5 +58,10 @@ public class SignRepDTO extends BaseRepDTO {
      **/
     public void setSignNo(String signNo) {
         this.signNo = signNo;
+    }
+
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this);
     }
 }

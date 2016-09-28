@@ -24,6 +24,11 @@ public class SignReqVO {
     private String signNo;
 
     /**
+     * 签约请求号
+     */
+    private String signOrderNo;
+
+    /**
      * 解约号
      */
     private String breakSignNo;
@@ -56,7 +61,12 @@ public class SignReqVO {
     /**
      * 有效期
      */
-    private Date expireDate;
+    private String expireDate;
+
+    /**
+     * cvv2
+     */
+    private String cvv2;
 
     /**
      * 手机号
@@ -188,7 +198,7 @@ public class SignReqVO {
      *
      * @return property value of expireDate
      **/
-    public Date getExpireDate() {
+    public String getExpireDate() {
         return expireDate;
     }
 
@@ -197,7 +207,7 @@ public class SignReqVO {
      *
      * @param expireDate value to be assigned to property expireDate
      **/
-    public void setExpireDate(Date expireDate) {
+    public void setExpireDate(String expireDate) {
         this.expireDate = expireDate;
     }
 
@@ -361,6 +371,42 @@ public class SignReqVO {
      **/
     public void setBreakSignDT(Date breakSignDT) {
         this.breakSignDT = breakSignDT;
+    }
+
+    /**
+     * Getter method for property cvv2.
+     *
+     * @return property value of cvv2
+     **/
+    public String getCvv2() {
+        return cvv2;
+    }
+
+    /**
+     * Setter method for property cvv2.
+     *
+     * @param cvv2 value to be assigned to property cvv2
+     **/
+    public void setCvv2(String cvv2) {
+        this.cvv2 = cvv2;
+    }
+
+    /**
+     * Getter method for property signOrderNo.
+     *
+     * @return property value of signOrderNo
+     **/
+    public String getSignOrderNo() {
+        return signOrderNo;
+    }
+
+    /**
+     * Setter method for property signOrderNo.
+     *
+     * @param signOrderNo value to be assigned to property signOrderNo
+     **/
+    public void setSignOrderNo(String signOrderNo) {
+        this.signOrderNo = signOrderNo;
     }
 
     @Override

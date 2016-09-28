@@ -55,7 +55,7 @@ public class SignEntity {
     /**
      * 有效期
      */
-    private Date expireDate;
+    private String expireDate;
 
     /**
      * 手机号
@@ -241,7 +241,7 @@ public class SignEntity {
      *
      * @return property value of expireDate
      **/
-    public Date getExpireDate() {
+    public String getExpireDate() {
         return expireDate;
     }
 
@@ -250,7 +250,7 @@ public class SignEntity {
      *
      * @param expireDate value to be assigned to property expireDate
      **/
-    public void setExpireDate(Date expireDate) {
+    public void setExpireDate(String expireDate) {
         this.expireDate = expireDate;
     }
 

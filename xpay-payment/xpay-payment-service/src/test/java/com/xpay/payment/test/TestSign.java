@@ -35,7 +35,7 @@ public class TestSign extends BaseTest {
         signReqVO.setHolderName("苏信心");
         signReqVO.setCerType(EnumCertType.IDCARD);
         signReqVO.setCerNo("410205111122223");
-        signReqVO.setExpireDate(new Date());
+        signReqVO.setExpireDate("12/31");
         signReqVO.setMobileNo("18317888059");
         signReqVO.setSignCreateDT(new Date());
         signReqVO.setSignStatus(EnumSignStatus.SIGN_WAITING);
@@ -49,7 +49,7 @@ public class TestSign extends BaseTest {
     public void getSign() {
         SignReqVO signReqVO = new SignReqVO();
         signReqVO.setSignNo("201608121212");
-        SignRepVO signRepVO = signService.get(signReqVO);
+        SignRepVO signRepVO = signService.getBySignNo(signReqVO);
         System.out.println(signRepVO);
     }
 
