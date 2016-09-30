@@ -6,7 +6,7 @@
         <groupId>com.xpay</groupId>
         <artifactId>xpay-parent</artifactId>
         <version>1.0</version>
-        <relativePath>../pom.xml</relativePath>
+        <relativePath>../../pom.xml</relativePath>
     </parent>
     <artifactId>xpay-trade-biz</artifactId>
     <modelVersion>4.0.0</modelVersion>
