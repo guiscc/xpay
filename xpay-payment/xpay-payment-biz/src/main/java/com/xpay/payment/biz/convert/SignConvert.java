@@ -30,11 +30,11 @@ public class SignConvert {
      * @return
      */
     public static SignRepDTO getSignRepDTO(SignRepDTO signRepDTO, SignRepVO signRepVO) {
-        logger.info("响应模型:", signRepDTO);
+        logger.info("响应模型:{}", signRepDTO);
         signRepDTO.setSignNo(signRepDTO.getSignNo());
         signRepDTO.setSignStatus(signRepDTO.getSignStatus());
         signRepDTO.setServerDate(new Date());
-        logger.info("转换响应模型:", signRepVO);
+        logger.info("转换响应模型:{}", signRepVO);
         return signRepDTO;
     }
 
@@ -44,7 +44,7 @@ public class SignConvert {
      * @return
      */
     public static SignReqVO getSignReqVO(SignReqVO signReqVO, SignReqDTO signReqDTO) {
-        logger.info("请求模型:", signReqDTO.toString());
+        logger.info("请求模型:{}", signReqDTO.toString());
         signReqVO.setUserId(signReqDTO.getUserId());
         signReqVO.setCardNo(signReqDTO.getCardNo());
         signReqVO.setCardType(signReqDTO.getCardType());
@@ -56,7 +56,7 @@ public class SignConvert {
         signReqVO.setMobileNo(signReqDTO.getMobileNo());
         signReqVO.setSignOrderNo(signReqDTO.getSignOrderNo());
         signReqVO.setRemark(signReqDTO.getRemark());
-        logger.info("转换请求模型:", signReqVO.toString());
+        logger.info("转换请求模型:{}", signReqVO.toString());
         return signReqVO;
     }
 }

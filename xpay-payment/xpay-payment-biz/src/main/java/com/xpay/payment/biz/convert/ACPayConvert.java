@@ -30,7 +30,7 @@ public class ACPayConvert {
      */
     public static ACPayReqVO getACPayReqVO(ACPayReqVO acPayReqVO,
                                            ACPayReqDTO acPayReqDTO) {
-        logger.info("请求模型:", acPayReqDTO);
+        logger.info("请求模型:{}", acPayReqDTO);
         acPayReqVO.setTradeOrderNo(acPayReqDTO.getTradeOrderNo());
         acPayReqVO.setPayTool(acPayReqDTO.getPayTool());
         acPayReqVO.setPaySubTool(acPayReqDTO.getPaySubTool());
@@ -39,7 +39,7 @@ public class ACPayConvert {
         acPayReqVO.setCurrency(acPayReqDTO.getCurrency());
         acPayReqVO.setUserId(acPayReqDTO.getUserId());
         acPayReqVO.setRemark(acPayReqDTO.getRemark());
-        logger.info("转换请求模型:", acPayReqVO);
+        logger.info("转换请求模型:{}", acPayReqVO);
         return acPayReqVO;
     }
 
@@ -50,7 +50,7 @@ public class ACPayConvert {
      */
     public static ACPayRepDTO getACPayRepDTO(ACPayRepDTO acPayRepDTO,
                                              ACPayRepVO acPayRepVO) {
-        logger.info("响应模型:", acPayRepVO);
+        logger.info("响应模型:{}", acPayRepVO);
         PayOrderDTO payOrderDTO = acPayRepDTO.getPayOrderDTO();
         PayOrderModel payOrderModel = acPayRepVO.getPayOrderModel();
         if (payOrderModel != null) {
@@ -59,7 +59,7 @@ public class ACPayConvert {
             payOrderDTO.setPayStatus(payOrderModel.getPayStatus());
             payOrderDTO.setPayAmt(payOrderModel.getPayAmt());
         }
-        logger.info("转换响应模型:", acPayRepDTO);
+        logger.info("转换响应模型:{}", acPayRepDTO);
         return acPayRepDTO;
     }
 

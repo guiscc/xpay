@@ -21,15 +21,15 @@ public class SignBreakConvert {
 
     public static SignBreakReqVO getSignBreakReqVO(SignBreakReqVO signBreakReqVO,
                                                    SignBreakReqDTO signBreakReqDTO) {
-        logger.info("请求模型:", signBreakReqDTO.toString());
-        logger.info("转换请求模型:", signBreakReqVO.toString());
+        logger.info("请求模型:{}", signBreakReqDTO.toString());
+        logger.info("转换请求模型:{}", signBreakReqVO.toString());
         return signBreakReqVO;
     }
 
     public static SignBreakRepDTO getSignBreakRepDTO(SignBreakRepDTO signBreakRepDTO,
                                                      SignBreakRepVO signBreakRepVO) {
-        logger.info("响应模型:", signBreakRepVO.toString());
-        logger.info("转换响应模型:", signBreakRepDTO.toString());
+        logger.info("响应模型:{}", signBreakRepVO.toString());
+        logger.info("转换响应模型:{}", signBreakRepDTO.toString());
         return signBreakRepDTO;
     }
 }

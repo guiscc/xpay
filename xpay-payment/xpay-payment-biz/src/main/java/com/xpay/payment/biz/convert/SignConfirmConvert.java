@@ -27,8 +27,8 @@ public class SignConfirmConvert {
      */
     public static SignConfirmReqVO getConfirmSignReqVO(SignConfirmReqVO signConfirmReqVO,
                                                        SignConfirmReqDTO signConfirmReqDTO) {
-        logger.info("请求模型:", signConfirmReqDTO.toString());
-        logger.info("转换请求模型:", signConfirmReqVO.toString());
+        logger.info("请求模型:{}", signConfirmReqDTO.toString());
+        logger.info("转换请求模型:{}", signConfirmReqVO.toString());
         return signConfirmReqVO;
     }
 
@@ -40,8 +40,8 @@ public class SignConfirmConvert {
      */
     public static SignConfirmRepDTO getConfirmSignRepDTO(SignConfirmRepDTO signConfirmRepDTO,
                                                          SignConfirmRepVO signConfirmRepVO) {
-        logger.info("响应模型:", signConfirmRepVO.toString());
-        logger.info("转换响应模型:", signConfirmRepDTO.toString());
+        logger.info("响应模型:{}", signConfirmRepVO.toString());
+        logger.info("转换响应模型:{}", signConfirmRepDTO.toString());
         return signConfirmRepDTO;
     }
 
