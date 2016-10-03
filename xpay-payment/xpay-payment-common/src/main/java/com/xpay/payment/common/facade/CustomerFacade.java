@@ -25,24 +25,24 @@ public interface CustomerFacade {
     /**
      * 签约绑卡
      *
-     * @param DTO
+     * @param signReqDTO
      * @return
      */
-    public SignRepDTO sign(SignReqDTO DTO);
+    public SignRepDTO sign(SignReqDTO signReqDTO);
 
     /**
      * 签约确认
      *
-     * @param confirmSignRepDTO
+     * @param confirmSignReqDTO
      * @return
      */
-    public SignConfirmRepDTO signConfirm(SignConfirmReqDTO confirmSignRepDTO);
+    public ConfirmSignRepDTO confirmSign(ConfirmSignReqDTO confirmSignReqDTO);
 
     /**
      * 解约
      *
-     * @param confirmSignRepDTO
+     * @param breakSignReqDTO
      * @return
      */
-    public SignBreakRepDTO signBreak(SignBreakReqDTO confirmSignRepDTO);
+    public BreakSignRepDTO breakSign(BreakSignReqDTO breakSignReqDTO);
 }

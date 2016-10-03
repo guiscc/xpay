@@ -6,10 +6,19 @@
         <artifactId>xpay-parent</artifactId>
         <groupId>com.xpay</groupId>
         <version>1.0</version>
+        <relativePath>../../pom.xml</relativePath>
     </parent>
 
     <artifactId>xpay-trade-common</artifactId>
     <modelVersion>4.0.0</modelVersion>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.xpay</groupId>
+            <artifactId>xpay-common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 </project>
