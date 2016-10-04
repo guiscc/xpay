@@ -4,6 +4,7 @@
  */
 package com.xpay.payment.facade.test.customer;
 
+import com.xpay.payment.common.dto.customer.SignConfirmRepDTO;
 import com.xpay.payment.common.dto.customer.SignConfirmReqDTO;
 import com.xpay.payment.common.facade.CustomerFacade;
 import com.xpay.payment.facade.test.BaseTest;
@@ -21,9 +22,18 @@ public class TestSignConfirm extends BaseTest {
     private CustomerFacade customerFacade;
 
     @Test
-    public void signConfirm(){
+    public void signConfirmNoExit() {
         SignConfirmReqDTO signConfirmReqDTO = new SignConfirmReqDTO();
         signConfirmReqDTO.setSignNo("112233");
-        customerFacade.signConfirm(signConfirmReqDTO);
+        SignConfirmRepDTO signConfirmRepDTO = customerFacade.signConfirm(signConfirmReqDTO);
+        System.out.println(signConfirmRepDTO);
+    }
+
+    @Test
+    public void signConfirm() {
+        SignConfirmReqDTO signConfirmReqDTO = new SignConfirmReqDTO();
+        signConfirmReqDTO.setSignNo("2016100417274586800006525");
+        SignConfirmRepDTO signConfirmRepDTO = customerFacade.signConfirm(signConfirmReqDTO);
+        System.out.println(signConfirmRepDTO);
     }
 }

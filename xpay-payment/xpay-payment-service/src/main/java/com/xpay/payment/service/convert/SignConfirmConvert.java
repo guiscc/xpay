@@ -24,9 +24,7 @@ public class SignConfirmConvert {
     public static SignEntity getSignEntity(SignEntity signEntity,
                                            SignConfirmReqVO signConfirmReqVO) {
         signEntity.setSignNo(signConfirmReqVO.getSignNo());
-        signEntity.setSignFinishDT(new Date());
-        signEntity.setSignStatus(EnumSignStatus.SIGN_SUCCESS.getKey());
-        return new SignEntity();
+        return signEntity;
     }
 
     /**

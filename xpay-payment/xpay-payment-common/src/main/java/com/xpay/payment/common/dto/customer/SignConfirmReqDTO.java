@@ -5,6 +5,7 @@
 package com.xpay.payment.common.dto.customer;
 
 import com.xpay.payment.common.dto.BaseReqDTO;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
  * @author qinshou
@@ -56,5 +57,10 @@ public class SignConfirmReqDTO extends BaseReqDTO{
      **/
     public void setVerifyCode(String verifyCode) {
         this.verifyCode = verifyCode;
+    }
+
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this);
     }
 }

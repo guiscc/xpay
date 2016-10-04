@@ -55,6 +55,10 @@ public class SignServiceImpl implements SignService {
     @Override
     public SignConfirmRepVO signConfirm(SignConfirmReqVO signConfirmReqVO) {
         SignEntity signEntity = new SignEntity();
+
+        signEntity.setSignStatus(EnumSignStatus.SIGN_SUCCESS.getKey()); //设置签约状态
+        signEntity.setSignFinishDT(new Date());
+
         signEntity = SignConfirmConvert.getSignEntity(signEntity, signConfirmReqVO);
         int flag = signDao.updateStatus(signEntity);
         if (flag == 1) {

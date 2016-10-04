@@ -5,6 +5,7 @@
 package com.xpay.payment.common.vo.customer;
 
 import com.xpay.payment.common.enums.EnumSignStatus;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.util.Date;
 
@@ -82,5 +83,10 @@ public class SignConfirmRepVO {
      **/
     public void setSignFinishDT(Date signFinishDT) {
         this.signFinishDT = signFinishDT;
+    }
+
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this);
     }
 }

@@ -32,4 +32,6 @@ public class SignConfirmReqVO {
     public void setSignNo(String signNo) {
         this.signNo = signNo;
     }
+
+
 }
