@@ -110,6 +110,7 @@ public class CustomerBizImpl implements CustomerBiz {
         }
 
         //签约状态为成功
+        signBreakReqVO.setBreakSignNo(sequence.getSeq(null));
         SignBreakRepVO signBreakRepVO = signService.signBreak(signBreakReqVO);
         if (signBreakRepVO == null) {
             throw new XpayPaymentException(EnumRtnResult.E000009);

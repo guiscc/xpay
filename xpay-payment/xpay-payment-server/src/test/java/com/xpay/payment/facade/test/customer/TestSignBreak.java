@@ -24,7 +24,7 @@ public class TestSignBreak extends BaseTest {
     @Test
     public void signBreak() {
         SignBreakReqDTO signBreakReqDTO = new SignBreakReqDTO();
-        signBreakReqDTO.setSignNo("112233");
+        signBreakReqDTO.setSignNo("2016100417274586800006525");
         SignBreakRepDTO signBreakRepDTO = customerFacade.signBreak(signBreakReqDTO);
         System.out.println(signBreakRepDTO);
     }

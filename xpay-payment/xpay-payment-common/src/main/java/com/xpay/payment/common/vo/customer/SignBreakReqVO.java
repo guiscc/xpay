@@ -4,6 +4,8 @@
  */
 package com.xpay.payment.common.vo.customer;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 /**
  * @author qinshou
  * @version $Id: SignBreakReqVO.java, v 0.1 16/9/6 下午4:25 sxfans Exp $
@@ -54,5 +56,10 @@ public class SignBreakReqVO {
      **/
     public void setBreakSignNo(String breakSignNo) {
         this.breakSignNo = breakSignNo;
+    }
+
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this);
     }
 }
