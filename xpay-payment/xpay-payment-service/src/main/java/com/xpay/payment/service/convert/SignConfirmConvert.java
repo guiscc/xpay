@@ -35,6 +35,6 @@ public class SignConfirmConvert {
         signConfirmRepVO.setSignNo(signEntity.getSignNo());
         signConfirmRepVO.setSignStatus(EnumSignStatus.toSignStatus(signEntity.getSignStatus()));
         signConfirmRepVO.setSignFinishDT(signEntity.getSignFinishDT());
-        return new SignConfirmRepVO();
+        return signConfirmRepVO;
     }
 }
