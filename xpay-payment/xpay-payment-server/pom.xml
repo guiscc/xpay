@@ -112,7 +112,7 @@
     </profiles>
 
     <build>
-        <finalName>xpay-trade-server</finalName>
+        <finalName>xpay-payment-server</finalName>
         <resources>
             <!-- 保证所有的resources下的配置文件能被编译打包 -->
             <resource>
