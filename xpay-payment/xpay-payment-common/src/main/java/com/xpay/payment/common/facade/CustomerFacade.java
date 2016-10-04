@@ -33,16 +33,16 @@ public interface CustomerFacade {
     /**
      * 签约确认
      *
-     * @param confirmSignReqDTO
+     * @param confirmSignRepDTO
      * @return
      */
-    public ConfirmSignRepDTO confirmSign(ConfirmSignReqDTO confirmSignReqDTO);
+    public SignConfirmRepDTO signConfirm(SignConfirmReqDTO confirmSignRepDTO);
 
     /**
      * 解约
      *
-     * @param breakSignReqDTO
+     * @param confirmSignRepDTO
      * @return
      */
-    public BreakSignRepDTO breakSign(BreakSignReqDTO breakSignReqDTO);
+    public SignBreakRepDTO signBreak(SignBreakReqDTO confirmSignRepDTO);
 }
