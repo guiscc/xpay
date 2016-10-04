@@ -5,6 +5,8 @@
 package com.xpay.payment.biz.impl;
 
 import com.xpay.common.enums.EnumRtnResult;
+import com.xpay.common.utils.sequence.RandomSequenceImpl;
+import com.xpay.common.utils.sequence.Sequence;
 import com.xpay.payment.biz.CustomerBiz;
 import com.xpay.payment.common.enums.EnumSignStatus;
 import com.xpay.payment.common.exception.XpayPaymentException;
@@ -30,6 +32,8 @@ public class CustomerBizImpl implements CustomerBiz {
     @Resource
     private SignService signService;
 
+    private static Sequence sequence = new RandomSequenceImpl();
+
     @Override
     public AuthRealNameRepVO authRealName(AuthRealNameReqVO authRealNameReqDTO) {
         logger.info("暂未实现");
@@ -46,7 +50,7 @@ public class CustomerBizImpl implements CustomerBiz {
             //如果存在并且成功返回异常,签约已经成功
             if (EnumSignStatus.SIGN_SUCCESS.equals(oldSignRepVO.getSignStatus())) {
                 throw new XpayPaymentException(EnumRtnResult.E000006);
-            } else { //如果不存在修改签约信息
+            } else { //如果存在修改签约信息
                 boolean flag = signService.updateStatus(signReqVO);
                 if (!flag) {
                     throw new XpayPaymentException(EnumRtnResult.E000005);
@@ -54,6 +58,9 @@ public class CustomerBizImpl implements CustomerBiz {
             }
             return oldSignRepVO;
         } else {
+            String seqNo = sequence.getSeq(null);
+            signReqVO.setSignNo(seqNo); //设置签约号
+            signReqVO.setSignStatus(EnumSignStatus.SIGN_WAITING); //设置签约状态
             SignRepVO signRepVO = signService.add(signReqVO);
             //如果信息为空则新增签约信息失败
             if (signRepVO == null) {
