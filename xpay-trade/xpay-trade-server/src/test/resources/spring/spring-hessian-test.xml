@@ -3,7 +3,7 @@
 <beans>
     <bean id="tradeFacade" class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
         <property name="serviceUrl"
-                  value="http://127.0.0.1:8083/xpay-trade-server/hessian/tradeFacade"/>
+                  value="http://139.196.17.122:8081/hessian/tradeFacade"/>
         <property name="serviceInterface" value="com.xpay.trade.common.facade.TradeFacade"/>
         <property name="overloadEnabled" value="false"/>
     </bean>

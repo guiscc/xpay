@@ -24,7 +24,7 @@ public class BaseTest {
     @Resource
     private TradeFacade tradeFacade;
 
-    //    @Test
+    @Test
     public void getTradeByBizOrderNo() {
         QueryTradeReqDTO queryTradeReqDTO = new QueryTradeReqDTO();
         queryTradeReqDTO.setBizOrderNo("2016081412060001");
