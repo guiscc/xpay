@@ -6,6 +6,7 @@ package com.xpay.payment.common.dto.customer;
 
 import com.xpay.common.enums.EnumRtnStatus;
 import com.xpay.payment.common.dto.BaseRepDTO;
+import com.xpay.payment.common.enums.EnumSignStatus;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
@@ -17,30 +18,12 @@ public class SignRepDTO extends BaseRepDTO {
     /**
      * 状态
      */
-    private EnumRtnStatus signStatus;
+    private EnumSignStatus signStatus;
 
     /**
      * 签约号
      */
     private String signNo;
-
-    /**
-     * Getter method for property signStatus.
-     *
-     * @return property value of signStatus
-     **/
-    public EnumRtnStatus getSignStatus() {
-        return signStatus;
-    }
-
-    /**
-     * Setter method for property signStatus.
-     *
-     * @param signStatus value to be assigned to property signStatus
-     **/
-    public void setSignStatus(EnumRtnStatus signStatus) {
-        this.signStatus = signStatus;
-    }
 
     /**
      * Getter method for property signNo.
@@ -58,6 +41,24 @@ public class SignRepDTO extends BaseRepDTO {
      **/
     public void setSignNo(String signNo) {
         this.signNo = signNo;
+    }
+
+    /**
+     * Getter method for property signStatus.
+     *
+     * @return property value of signStatus
+     **/
+    public EnumSignStatus getSignStatus() {
+        return signStatus;
+    }
+
+    /**
+     * Setter method for property signStatus.
+     *
+     * @param signStatus value to be assigned to property signStatus
+     **/
+    public void setSignStatus(EnumSignStatus signStatus) {
+        this.signStatus = signStatus;
     }
 
     @Override

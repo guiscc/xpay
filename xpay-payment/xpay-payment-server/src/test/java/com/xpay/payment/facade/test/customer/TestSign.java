@@ -30,8 +30,31 @@ public class TestSign extends BaseTest {
     @Resource
     private CustomerFacade customerFacade;
 
+
+    /**
+     * 新增签约信息
+     */
     @Test
     public void sign() {
+        SignReqDTO signReqDTO = new SignReqDTO();
+        signReqDTO.setUserId("208811112222");
+        signReqDTO.setCardNo("6111122222");
+        signReqDTO.setCardType(EnumCardType.CREDIT);
+        signReqDTO.setCertNo("41020511112222333");
+        signReqDTO.setCertType(EnumCertType.IDCARD);
+        signReqDTO.setCvv2("003");
+        signReqDTO.setExpireDate("0312");
+        signReqDTO.setHolderName("sxfans");
+        signReqDTO.setMobileNo("18317888050");
+        signReqDTO.setSignOrderNo("201609179999");
+        signReqDTO.setRemark("test");
+        signReqDTO.setReqClientDT(new Date());
+        SignRepDTO signRepDTO = customerFacade.sign(signReqDTO);
+        System.out.println(signRepDTO.toString());
+    }
+
+    @Test
+    public void signRepeat() {
         SignReqDTO signReqDTO = new SignReqDTO();
         signReqDTO.setUserId("208811112222");
         signReqDTO.setCardNo("6111122222");
@@ -45,9 +68,7 @@ public class TestSign extends BaseTest {
         signReqDTO.setSignOrderNo("201609179999");
         signReqDTO.setRemark("test");
         signReqDTO.setReqClientDT(new Date());
-        logger.info("######Tests",signReqDTO);
-        System.out.println(SignConvert.getSignReqVO(new SignReqVO(),signReqDTO));
-//        SignRepDTO signRepDTO = customerFacade.sign(signReqDTO);
-//        System.out.println(signRepDTO.toString());
+        SignRepDTO signRepDTO = customerFacade.sign(signReqDTO);
+        System.out.println(signRepDTO.toString());
     }
 }

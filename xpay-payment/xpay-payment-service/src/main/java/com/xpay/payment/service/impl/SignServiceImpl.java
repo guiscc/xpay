@@ -31,6 +31,7 @@ public class SignServiceImpl implements SignService {
     public SignRepVO add(SignReqVO signReqVO) {
         SignEntity signEntity = new SignEntity();
         signEntity = SignConvert.getSignEntity(signEntity, signReqVO);
+        signEntity.setSignCreateDT(new Date());
         int flag = signDao.add(signEntity);
         if (flag == 1) {
             SignRepVO signRepVO = SignConvert.getSignRepVO(new SignRepVO(), signEntity);
