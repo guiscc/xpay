@@ -6,6 +6,7 @@
         <artifactId>xpay-parent</artifactId>
         <groupId>com.xpay</groupId>
         <version>1.0</version>
+        <relativePath>../../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>xpay-payment-common</artifactId>
