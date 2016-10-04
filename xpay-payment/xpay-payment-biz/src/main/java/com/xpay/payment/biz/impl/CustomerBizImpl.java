@@ -44,7 +44,7 @@ public class CustomerBizImpl implements CustomerBiz {
     public SignRepVO sign(SignReqVO signReqVO) throws XpayPaymentException {
 
         //查询签约信息是否存在
-        SignRepVO oldSignRepVO = signService.getBySignNo(signReqVO);
+        SignRepVO oldSignRepVO = signService.getByCardAndName(signReqVO);
 
         if (oldSignRepVO != null) {
             //如果存在并且成功返回异常,签约已经成功
