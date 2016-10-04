@@ -8,6 +8,8 @@ import com.xpay.payment.common.dto.BaseRepDTO;
 import com.xpay.payment.common.enums.EnumSignStatus;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import java.util.Date;
+
 /**
  * @author qinshou
  * @version $Id: SignBreakRepDTO.java, v 0.1 16/9/6 下午4:20 sxfans Exp $
@@ -15,9 +17,19 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 public class SignBreakRepDTO extends BaseRepDTO {
 
     /**
+     * 签约信息
+     */
+    private String signNo;
+
+    /**
      * 签约号
      */
     private String breakSignNo;
+
+    /**
+     * 签约日期
+     */
+    private Date breakSignDT;
 
     /**
      * 签约状态
@@ -58,6 +70,42 @@ public class SignBreakRepDTO extends BaseRepDTO {
      **/
     public void setSignStatus(EnumSignStatus signStatus) {
         this.signStatus = signStatus;
+    }
+
+    /**
+     * Getter method for property signNo.
+     *
+     * @return property value of signNo
+     **/
+    public String getSignNo() {
+        return signNo;
+    }
+
+    /**
+     * Setter method for property signNo.
+     *
+     * @param signNo value to be assigned to property signNo
+     **/
+    public void setSignNo(String signNo) {
+        this.signNo = signNo;
+    }
+
+    /**
+     * Getter method for property breakSignDT.
+     *
+     * @return property value of breakSignDT
+     **/
+    public Date getBreakSignDT() {
+        return breakSignDT;
+    }
+
+    /**
+     * Setter method for property breakSignDT.
+     *
+     * @param breakSignDT value to be assigned to property breakSignDT
+     **/
+    public void setBreakSignDT(Date breakSignDT) {
+        this.breakSignDT = breakSignDT;
     }
 
     @Override
