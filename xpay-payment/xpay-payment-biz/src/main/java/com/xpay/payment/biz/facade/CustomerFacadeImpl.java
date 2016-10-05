@@ -2,7 +2,7 @@
  * Alipay.com Inc.
  * Copyright (c) 2004-2016 All Rights Reserved.
  */
-package com.xpay.payment.server.facade;
+package com.xpay.payment.biz.facade;
 
 import com.xpay.common.enums.EnumRtnResult;
 import com.xpay.payment.biz.CustomerBiz;

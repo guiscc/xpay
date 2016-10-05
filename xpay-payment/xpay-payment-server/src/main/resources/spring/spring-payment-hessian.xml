@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 <beans>
-    <bean name="agentCollectFacade" class="com.xpay.payment.server.facade.AgentCollectFacadeImpl">
+    <bean name="agentCollectFacade" class="com.xpay.payment.biz.facade.AgentCollectFacadeImpl">
         <property name="agentCollectBiz" ref="agentCollectBiz"/>
     </bean>
-    <bean name="customerFacade" class="com.xpay.payment.server.facade.CustomerFacadeImpl">
+    <bean name="customerFacade" class="com.xpay.payment.biz.facade.CustomerFacadeImpl">
         <property name="customerBiz" ref="customerBiz"/>
     </bean>
 
