@@ -21,5 +21,6 @@
     <mappers>
         <mapper resource="mybatis/mapper/paymentMapper.xml"/>
         <mapper resource="mybatis/mapper/signMapper.xml"/>
+        <mapper resource="mybatis/mapper/cardBinMapper.xml"/>
     </mappers>
 </configuration>

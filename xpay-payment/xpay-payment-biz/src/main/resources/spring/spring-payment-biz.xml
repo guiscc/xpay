@@ -15,4 +15,6 @@
     <bean id="agentCollectBiz" class="com.xpay.payment.biz.impl.AgentCollectBizImpl"/>
 
     <bean id="customerBiz" class="com.xpay.payment.biz.impl.CustomerBizImpl"/>
+
+    <bean id="masterDataBiz" class="com.xpay.payment.biz.impl.MasterDataBizImpl"/>
 </beans>

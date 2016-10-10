@@ -7,6 +7,10 @@
     <bean name="customerFacade" class="com.xpay.payment.biz.facade.CustomerFacadeImpl">
         <property name="customerBiz" ref="customerBiz"/>
     </bean>
+    <bean name="masterDataFacade" class="com.xpay.payment.biz.facade.MasterDataFacadeImpl">
+        <property name="masterDataBiz" ref="masterDataBiz"/>
+    </bean>
+
 
     <bean name="agentCollectFacadeHessian" class="com.xpay.payment.server.hessian.SimpleCustomServiceExporter">
         <property name="service" ref="agentCollectFacade"/>
@@ -18,11 +22,17 @@
         <property name="serviceInterface" value="com.xpay.payment.common.facade.CustomerFacade"/>
     </bean>
 
+    <bean name="masterDataFacadeHessian" class="com.xpay.payment.server.hessian.SimpleCustomServiceExporter">
+        <property name="service" ref="masterDataFacade"/>
+        <property name="serviceInterface" value="com.xpay.payment.common.facade.MasterDataFacade"/>
+    </bean>
+
     <bean id="simpleUrlHandlerMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
         <property name="urlMap">
             <map>
                 <entry key="/agentCollectFacade" value-ref="agentCollectFacadeHessian"/>
                 <entry key="/customerFacade" value-ref="customerFacadeHessian"/>
+                <entry key="/masterDataFacade" value-ref="masterDataFacadeHessian"/>
             </map>
         </property>
     </bean>

@@ -24,7 +24,6 @@ import javax.annotation.Resource;
  * @author qinshou
  * @version $Id: CustomerBizImpl.java, v 0.1 16/8/7 上午1:06 sxfans Exp $
  */
-@Component
 public class CustomerBizImpl implements CustomerBiz {
 
     private static final Logger logger = LoggerFactory.getLogger(CustomerBizImpl.class);

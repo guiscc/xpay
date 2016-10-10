@@ -14,4 +14,11 @@
         <property name="serviceInterface" value="com.xpay.payment.common.facade.CustomerFacade"/>
         <property name="overloadEnabled" value="false"/>
     </bean>
+
+    <bean id="testMasterDataFacade" class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+        <property name="serviceUrl"
+                  value="http://127.0.0.1:8083/xpay-payment-server/hessian/masterDataFacade"/>
+        <property name="serviceInterface" value="com.xpay.payment.common.facade.MasterDataFacade"/>
+        <property name="overloadEnabled" value="false"/>
+    </bean>
 </beans>
