@@ -5,9 +5,9 @@
 package com.xpay.payment.common.model;
 
 import com.xpay.common.enums.EnumCurrency;
+import com.xpay.common.enums.EnumPayStatus;
 import com.xpay.common.enums.EnumPaySubTool;
 import com.xpay.common.enums.EnumPayTool;
-import com.xpay.payment.common.enums.EnumPayStatus;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.math.BigDecimal;

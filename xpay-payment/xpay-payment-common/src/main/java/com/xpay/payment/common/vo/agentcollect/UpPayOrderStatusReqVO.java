@@ -4,7 +4,7 @@
  */
 package com.xpay.payment.common.vo.agentcollect;
 
-import com.xpay.payment.common.enums.EnumPayStatus;
+import com.xpay.common.enums.EnumPayStatus;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**

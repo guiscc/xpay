@@ -4,12 +4,12 @@
  */
 package com.xpay.payment.biz.impl;
 
+import com.xpay.common.enums.EnumPayStatus;
 import com.xpay.common.enums.EnumRtnResult;
 import com.xpay.payment.biz.AgentCollectBiz;
 import com.xpay.payment.biz.convert.ACPayConvert;
 import com.xpay.payment.biz.convert.ACQueryPayConvert;
 import com.xpay.payment.biz.convert.ACRepairConvert;
-import com.xpay.payment.common.enums.EnumPayStatus;
 import com.xpay.payment.common.exception.XpayPaymentException;
 import com.xpay.payment.common.model.PayOrderModel;
 import com.xpay.payment.common.vo.agentcollect.*;

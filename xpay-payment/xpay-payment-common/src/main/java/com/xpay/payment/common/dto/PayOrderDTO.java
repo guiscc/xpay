@@ -4,7 +4,7 @@
  */
 package com.xpay.payment.common.dto;
 
-import com.xpay.payment.common.enums.EnumPayStatus;
+import com.xpay.common.enums.EnumPayStatus;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.io.Serializable;

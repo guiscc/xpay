@@ -5,9 +5,9 @@
 package com.xpay.payment.service.convert;
 
 import com.xpay.common.enums.EnumCurrency;
+import com.xpay.common.enums.EnumPayStatus;
 import com.xpay.common.enums.EnumPaySubTool;
 import com.xpay.common.enums.EnumPayTool;
-import com.xpay.payment.common.enums.EnumPayStatus;
 import com.xpay.payment.common.model.PayOrderModel;
 import com.xpay.payment.service.entity.PaymentEntity;
 import org.springframework.beans.BeanUtils;
