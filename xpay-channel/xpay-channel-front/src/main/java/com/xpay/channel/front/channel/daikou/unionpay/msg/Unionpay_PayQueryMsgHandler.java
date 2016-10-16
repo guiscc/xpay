@@ -1,10 +1,7 @@
 package com.xpay.channel.front.channel.daikou.unionpay.msg;
 
-import com.xpay.channel.common.dto.daikou.PayQueryRepDto;
-import com.xpay.channel.common.dto.daikou.PayQueryReqDto;
-import com.xpay.channel.common.dto.daikou.PayRepDto;
-import com.xpay.channel.common.dto.daikou.PayReqDto;
-import com.xpay.channel.common.enums.EnumCardType;
+import com.xpay.channel.common.dto.agentcollect.ACQueryPayRepDTO;
+import com.xpay.channel.common.dto.agentcollect.ACQueryPayReqDTO;
 import com.xpay.channel.common.enums.EnumSysRtnCode;
 import com.xpay.channel.common.enums.EnumTradeStatus;
 import com.xpay.channel.common.exception.BuildMsgException;
@@ -12,7 +9,6 @@ import com.xpay.channel.common.exception.ResolveMsgException;
 import com.xpay.channel.common.util.DateUtil;
 import com.xpay.channel.common.util.JsonUtil;
 import com.xpay.channel.front.channel.daikou.unionpay.Unionpay_Config;
-import com.xpay.channel.front.channel.daikou.unionpay.util.UnionpayEncryptUtil;
 import com.xpay.channel.front.channel.daikou.unionpay.util.UnionpayUtil;
 import com.xpay.channel.front.msg.impl.FreemarkChannelMsgHandlerImpl;
 import com.xpay.channel.front.utils.ChannelConfig;
@@ -30,7 +26,7 @@ import java.util.Map;
  * @Author pangyiyang
  * @Date 16/5/21 下午1:39
  */
-public class Unionpay_PayQueryMsgHandler extends FreemarkChannelMsgHandlerImpl<PayQueryReqDto,PayQueryRepDto> {
+public class Unionpay_PayQueryMsgHandler extends FreemarkChannelMsgHandlerImpl<ACQueryPayReqDTO,ACQueryPayRepDTO> {
     @Override
     protected String getTemplatePath() {
         return null;
@@ -39,7 +35,7 @@ public class Unionpay_PayQueryMsgHandler extends FreemarkChannelMsgHandlerImpl<P
     private static final Logger logger = LoggerFactory.getLogger(Unionpay_PayQueryMsgHandler.class) ;
 
     @Override
-    public PayQueryReqDto beforBuildMsg(PayQueryReqDto req, ChannelConfig channelConfig) throws BuildMsgException {
+    public ACQueryPayReqDTO beforBuildMsg(ACQueryPayReqDTO req, ChannelConfig channelConfig) throws BuildMsgException {
         try {
             req = super.beforBuildMsg(req, channelConfig);
             Unionpay_Config config = (Unionpay_Config) channelConfig;
@@ -79,7 +75,7 @@ public class Unionpay_PayQueryMsgHandler extends FreemarkChannelMsgHandlerImpl<P
     }
 
     @Override
-    public byte[] builderMsg(PayQueryReqDto req, ChannelConfig channelConfig) throws BuildMsgException {
+    public byte[] builderMsg(ACQueryPayReqDTO req, ChannelConfig channelConfig) throws BuildMsgException {
         String charset = channelConfig.getCharset() ;
         Map<String , String> data = (Map<String, String>) super.get("map");
         String mapJson = JsonUtil.mapToStr(data) ;
@@ -95,8 +91,8 @@ public class Unionpay_PayQueryMsgHandler extends FreemarkChannelMsgHandlerImpl<P
     }
 
     @Override
-    public PayQueryRepDto resolveMsg(PayQueryReqDto req, byte[] rtnMsg, ChannelConfig channelConfig) throws ResolveMsgException {
-        PayQueryRepDto repDto = new PayQueryRepDto() ;
+    public ACQueryPayRepDTO resolveMsg(ACQueryPayReqDTO req, byte[] rtnMsg, ChannelConfig channelConfig) throws ResolveMsgException {
+        ACQueryPayRepDTO repDto = new ACQueryPayRepDTO() ;
         repDto.setOriChannelOrderNo(req.getOriChannelOrderNo());
         repDto.setAmount(repDto.getAmount()) ;
         repDto.setRtnCode(EnumTradeStatus.UNKNOW.name()) ;

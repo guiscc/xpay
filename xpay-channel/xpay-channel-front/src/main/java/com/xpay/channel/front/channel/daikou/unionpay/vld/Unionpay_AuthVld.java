@@ -1,6 +1,5 @@
 package com.xpay.channel.front.channel.daikou.unionpay.vld;
 
-import com.xpay.channel.common.dto.daikou.RealNameAuthReqDto;
 import com.xpay.channel.common.enums.EnumSysRtnCode;
 import com.xpay.channel.common.enums.EnumTradeStatus;
 import com.xpay.channel.common.exception.VldException;

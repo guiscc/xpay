@@ -1,7 +1,5 @@
 package com.xpay.channel.front.channel.quick.billpay.msg;
 
-import com.xpay.channel.common.dto.quick.PayQueryRepDTO;
-import com.xpay.channel.common.dto.quick.PayQueryReqDTO;
 import com.xpay.channel.common.exception.ResolveMsgException;
 import com.xpay.channel.front.msg.impl.FreemarkChannelMsgHandlerImpl;
 import com.xpay.channel.front.utils.ChannelConfig;

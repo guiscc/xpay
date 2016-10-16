@@ -1,137 +1,63 @@
 package com.xpay.channel.common.dto;
 
-import com.xpay.channel.common.enums.EnumTradeStatus;
+import com.xpay.common.enums.EnumRtnResult;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import java.io.Serializable;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by suxinxin on 16/2/5.
  */
-public class BaseRepDTO {
-    /**
-     * 银行返回码
-     */
-    private String rtnCode;
+public class BaseRepDTO implements Serializable {
 
     /**
-     * 银行返回信息
+     * 返回状态
      */
-    private String rtnMsg;
-    
-    /**
-     * 银行返回流水号
-     */
-    private String bankNo ;
-    
-    /**
-     * 处理状态
-     */
-    private EnumTradeStatus tradeStatus ;
-    
-    /**
-     * 交易完成时间
-     */
-    private Date channelFinishTime;
+    private EnumRtnResult rtnResult  = EnumRtnResult.S000000;
 
     /**
-     * 银行返回时间
+     * 服务器时间
      */
-    private Date  bankFinishTime;
-    
-    /**
-     * 机构
-     */
-    private String instCode;
-    
-    /**
-     * 返回时间
-     */
-    private Date repTime ;
+    private Date          serverDate = new Date();
 
     /**
-     * 备注字段
-     */
-    private Map<String , String> map = new HashMap<String , String>() ;
-    
-    
-    public Date getRepTime() {
-		return repTime;
-	}
+     * Getter method for property rtnResult.
+     *
+     * @return property value of rtnResult
+     **/
+    public EnumRtnResult getRtnResult() {
+        return rtnResult;
+    }
 
-	public void setRepTime(Date repTime) {
-		this.repTime = repTime;
-	}
+    /**
+     * Setter method for property rtnResult.
+     *
+     * @param rtnResult value to be assigned to property rtnResult
+     **/
+    public void setRtnResult(EnumRtnResult rtnResult) {
+        this.rtnResult = rtnResult;
+    }
 
-	public Map<String, String> getMap() {
-		return map;
-	}
+    /**
+     * Getter method for property serverDate.
+     *
+     * @return property value of serverDate
+     **/
+    public Date getServerDate() {
+        return serverDate;
+    }
 
-	public void setMap(Map<String, String> map) {
-		this.map = map;
-	}
+    /**
+     * Setter method for property serverDate.
+     *
+     * @param serverDate value to be assigned to property serverDate
+     **/
+    public void setServerDate(Date serverDate) {
+        this.serverDate = serverDate;
+    }
 
-	public String getRtnCode() {
-		return rtnCode;
-	}
-
-	public void setRtnCode(String rtnCode) {
-		this.rtnCode = rtnCode;
-	}
-
-	public String getRtnMsg() {
-		return rtnMsg;
-	}
-
-	public void setRtnMsg(String rtnMsg) {
-		this.rtnMsg = rtnMsg;
-	}
-
-	public EnumTradeStatus getTradeStatus() {
-		return tradeStatus;
-	}
-
-	public void setTradeStatus(EnumTradeStatus tradeStatus) {
-		this.tradeStatus = tradeStatus;
-	}
-	
-
-	public String getBankNo() {
-		return bankNo;
-	}
-
-	public void setBankNo(String bankNo) {
-		this.bankNo = bankNo;
-	}
-
-	public Date getChannelFinishTime() {
-		return channelFinishTime;
-	}
-
-	public void setChannelFinishTime(Date channelFinishTime) {
-		this.channelFinishTime = channelFinishTime;
-	}
-
-	public Date getBankFinishTime() {
-		return bankFinishTime;
-	}
-
-	public void setBankFinishTime(Date bankFinishTime) {
-		this.bankFinishTime = bankFinishTime;
-	}
-
-	public String getInstCode() {
-		return instCode;
-	}
-
-	public void setInstCode(String instCode) {
-		this.instCode = instCode;
-	}
-
-	@Override
     public String toString() {
-    	return ToStringBuilder.reflectionToString(this) ;
+        return ToStringBuilder.reflectionToString(this);
     }
 }

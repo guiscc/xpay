@@ -1,7 +1,5 @@
 package com.xpay.channel.front.channel.daikou.unionpay.msg;
 
-import com.xpay.channel.common.dto.daikou.RealNameAuthRepDto;
-import com.xpay.channel.common.dto.daikou.RealNameAuthReqDto;
 import com.xpay.channel.common.enums.EnumCardType;
 import com.xpay.channel.common.enums.EnumSysRtnCode;
 import com.xpay.channel.common.enums.EnumTradeStatus;

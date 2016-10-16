@@ -1,7 +1,7 @@
 package com.xpay.channel.front.channel.daikou.unionpay.msg;
 
-import com.xpay.channel.common.dto.daikou.PayRepDto;
-import com.xpay.channel.common.dto.daikou.PayReqDto;
+import com.xpay.channel.common.dto.agentcollect.ACPayRepDTO;
+import com.xpay.channel.common.dto.agentcollect.ACPayReqDTO;
 import com.xpay.channel.common.enums.EnumCardType;
 import com.xpay.channel.common.enums.EnumSysRtnCode;
 import com.xpay.channel.common.enums.EnumTradeStatus;
@@ -19,7 +19,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.UnsupportedEncodingException;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,7 +27,7 @@ import java.util.Map;
  * @Author pangyiyang
  * @Date 16/5/21 下午1:39
  */
-public class Unionpay_PayMsgHandler extends FreemarkChannelMsgHandlerImpl<PayReqDto,PayRepDto> {
+public class Unionpay_PayMsgHandler extends FreemarkChannelMsgHandlerImpl<ACPayReqDTO,ACPayRepDTO> {
     @Override
     protected String getTemplatePath() {
         return null;
@@ -37,7 +36,7 @@ public class Unionpay_PayMsgHandler extends FreemarkChannelMsgHandlerImpl<PayReq
     private static final Logger logger = LoggerFactory.getLogger(Unionpay_PayMsgHandler.class) ;
 
     @Override
-    public PayReqDto beforBuildMsg(PayReqDto req, ChannelConfig channelConfig) throws BuildMsgException {
+    public ACPayReqDTO beforBuildMsg(ACPayReqDTO req, ChannelConfig channelConfig) throws BuildMsgException {
         try {
             req = super.beforBuildMsg(req, channelConfig);
             Unionpay_Config config = (Unionpay_Config) channelConfig;
@@ -95,7 +94,7 @@ public class Unionpay_PayMsgHandler extends FreemarkChannelMsgHandlerImpl<PayReq
     }
 
     @Override
-    public byte[] builderMsg(PayReqDto req, ChannelConfig channelConfig) throws BuildMsgException {
+    public byte[] builderMsg(ACPayReqDTO req, ChannelConfig channelConfig) throws BuildMsgException {
         String charset = channelConfig.getCharset() ;
         Map<String , String> data = (Map<String, String>) super.get("map");
         String mapJson = JsonUtil.mapToStr(data) ;
@@ -111,8 +110,8 @@ public class Unionpay_PayMsgHandler extends FreemarkChannelMsgHandlerImpl<PayReq
     }
 
     @Override
-    public PayRepDto resolveMsg(PayReqDto req, byte[] rtnMsg, ChannelConfig channelConfig) throws ResolveMsgException {
-        PayRepDto repDto = new PayRepDto() ;
+    public ACPayRepDTO resolveMsg(ACPayReqDTO req, byte[] rtnMsg, ChannelConfig channelConfig) throws ResolveMsgException {
+        ACPayRepDTO repDto = new ACPayRepDTO() ;
         repDto.setChannelOrderno(req.getChannelOrderNo()) ;
         repDto.setAmount(repDto.getAmount()) ;
         repDto.setRtnCode(EnumTradeStatus.UNKNOW.name()) ;

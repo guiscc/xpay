@@ -1,9 +1,5 @@
 package com.xpay.channel.front.channel.daikou.unionpay.msg;
 
-import com.xpay.channel.common.dto.daikou.CancelCallbackRepDto;
-import com.xpay.channel.common.dto.daikou.CancelCallbackReqDto;
-import com.xpay.channel.common.dto.daikou.PayCallbackRepDto;
-import com.xpay.channel.common.dto.daikou.PayCallbackReqDto;
 import com.xpay.channel.common.enums.EnumSysRtnCode;
 import com.xpay.channel.common.enums.EnumTradeStatus;
 import com.xpay.channel.common.exception.BuildMsgException;
@@ -17,7 +13,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Date;
-import java.util.Iterator;
 import java.util.Map;
 
 /**

@@ -1,7 +1,5 @@
 package com.xpay.channel.front.channel.quick.billpay.msg;
 
-import com.xpay.channel.common.dto.quick.PayQueryRepDTO;
-import com.xpay.channel.common.dto.quick.PayQueryReqDTO;
 import com.xpay.channel.common.enums.EnumSysRtnCode;
 import com.xpay.channel.common.enums.EnumTradeStatus;
 import com.xpay.channel.common.exception.BuildMsgException;

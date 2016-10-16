@@ -8,8 +8,6 @@ import com.xpay.channel.front.msg.impl.FreemarkChannelMsgHandlerImpl;
 import com.xpay.common.utils.XMLUtils;
 import org.dom4j.DocumentException;
 
-import com.xpay.channel.common.dto.quick.PayConfirmRepDTO;
-import com.xpay.channel.common.dto.quick.PayConfirmReqDTO;
 import com.xpay.channel.common.exception.BuildMsgException;
 import com.xpay.channel.common.exception.ResolveMsgException;
 import com.xpay.channel.common.util.DateUtil;

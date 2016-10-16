@@ -8,8 +8,6 @@ import com.xpay.channel.front.msg.impl.FreemarkChannelMsgHandlerImpl;
 import org.apache.commons.lang3.StringUtils;
 import org.dom4j.DocumentException;
 
-import com.xpay.channel.common.dto.quick.SignRepDTO;
-import com.xpay.channel.common.dto.quick.SignReqDTO;
 import com.xpay.channel.common.exception.BuildMsgException;
 import com.xpay.channel.common.exception.ResolveMsgException;
 import com.xpay.channel.front.channel.quick.billpay.Billpay_Config;

@@ -1,7 +1,6 @@
 package com.xpay.channel.front.channel.daikou.unionpay.vld;
 
-import com.xpay.channel.common.dto.daikou.PayQueryReqDto;
-import com.xpay.channel.common.dto.daikou.PayReqDto;
+import com.xpay.channel.common.dto.agentcollect.ACQueryPayReqDTO;
 import com.xpay.channel.common.enums.EnumSysRtnCode;
 import com.xpay.channel.common.enums.EnumTradeStatus;
 import com.xpay.channel.common.exception.VldException;
@@ -13,10 +12,10 @@ import org.apache.commons.lang3.StringUtils;
  * @Author pangyiyang
  * @Date 16/5/21 下午2:05
  */
-public class Unionpay_PayQueryVld extends BaseValidateImpl<PayQueryReqDto> {
+public class Unionpay_PayQueryVld extends BaseValidateImpl<ACQueryPayReqDTO> {
 
     @Override
-    public void validate(PayQueryReqDto param) throws VldException {
+    public void validate(ACQueryPayReqDTO param) throws VldException {
         super.validate(param);
 
         if(StringUtils.isBlank(param.getChannelRemark().getMerchantNo())){

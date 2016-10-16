@@ -10,12 +10,6 @@ import com.xpay.channel.front.mapping.QuickChannelMappingFactory;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.xpay.channel.common.dto.quick.PayConfirmReqDTO;
-import com.xpay.channel.common.dto.quick.PayQueryRepDTO;
-import com.xpay.channel.common.dto.quick.PayQueryReqDTO;
-import com.xpay.channel.common.dto.quick.SignConfirmReqDTO;
-import com.xpay.channel.common.dto.quick.SignRepDTO;
-import com.xpay.channel.common.dto.quick.SignReqDTO;
 import com.xpay.channel.common.enums.EnumCertType;
 import com.xpay.channel.common.exception.BuildMsgException;
 import com.xpay.channel.common.exception.CommuException;

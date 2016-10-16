@@ -1,6 +1,6 @@
 package com.xpay.channel.front.facade;
 
-import com.xpay.channel.common.dto.daikou.*;
+import com.xpay.channel.common.dto.agentcollect.*;
 import com.xpay.channel.common.exception.BuildMsgException;
 import com.xpay.channel.common.exception.CommuException;
 import com.xpay.channel.common.exception.ResolveMsgException;
@@ -31,7 +31,7 @@ public interface AgentCollectChannelFacade {
      * @throws CommuException
      * @throws ResolveMsgException
      */
-    public PayRepDto pay(PayReqDto reqDto)throws VldException, BuildMsgException, CommuException, ResolveMsgException;
+    public ACPayRepDTO pay(ACPayReqDTO reqDto)throws VldException, BuildMsgException, CommuException, ResolveMsgException;
 
     /**
      * 代扣结果查询
@@ -41,7 +41,7 @@ public interface AgentCollectChannelFacade {
      * @throws CommuException
      * @throws ResolveMsgException
      */
-    public PayQueryRepDto payQuery(PayQueryReqDto reqDto) throws VldException, BuildMsgException, CommuException, ResolveMsgException ;
+    public ACQueryPayRepDTO payQuery(ACQueryPayReqDTO reqDto) throws VldException, BuildMsgException, CommuException, ResolveMsgException ;
 
     /**
      * 退货

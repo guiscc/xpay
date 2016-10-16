@@ -1,9 +1,5 @@
 package com.xpay.channel.front.channel.daikou.unionpay.msg;
 
-import com.xpay.channel.common.dto.daikou.PayCallbackRepDto;
-import com.xpay.channel.common.dto.daikou.PayCallbackReqDto;
-import com.xpay.channel.common.dto.daikou.RefundCallbackRepDto;
-import com.xpay.channel.common.dto.daikou.RefundCallbackReqDto;
 import com.xpay.channel.common.enums.EnumSysRtnCode;
 import com.xpay.channel.common.enums.EnumTradeStatus;
 import com.xpay.channel.common.exception.BuildMsgException;

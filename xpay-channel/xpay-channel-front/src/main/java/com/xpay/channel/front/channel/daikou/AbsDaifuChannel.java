@@ -1,7 +1,7 @@
 package com.xpay.channel.front.channel.daikou;
 
 
-import com.xpay.channel.common.dto.daikou.*;
+import com.xpay.channel.common.dto.agentcollect.*;
 import com.xpay.channel.common.enums.EnumTradeType;
 import com.xpay.channel.common.exception.BuildMsgException;
 import com.xpay.channel.common.exception.CommuException;
@@ -51,24 +51,24 @@ public abstract class AbsDaifuChannel implements AgentCollectChannelFacade {
     }
 
     @Override
-    public PayRepDto pay(PayReqDto reqDto) throws VldException, BuildMsgException, CommuException, ResolveMsgException {
-        ChannelActionProcess<PayReqDto, PayRepDto> channelActionProcess = new ChannelActionProcess<PayReqDto, PayRepDto>();
+    public ACPayRepDTO pay(ACPayReqDTO reqDto) throws VldException, BuildMsgException, CommuException, ResolveMsgException {
+        ChannelActionProcess<ACPayReqDTO, ACPayRepDTO> channelActionProcess = new ChannelActionProcess<ACPayReqDTO, ACPayRepDTO>();
         channelActionProcess.setChannelValidate(this.getChannelValidateHandler().get(EnumTradeType.PAY));
         channelActionProcess.setChannelTongXinHandler(this.getChannelTongXinHandler());
         channelActionProcess.setChannelMsgHandler(this.getChannelMsgHandler().get(EnumTradeType.PAY));
         channelActionProcess.setChannelConfig(this.getChannelConfig());
-        PayRepDto repDto = channelActionProcess.doProcess(reqDto);
+        ACPayRepDTO repDto = channelActionProcess.doProcess(reqDto);
         return repDto;
     }
 
     @Override
-    public PayQueryRepDto payQuery(PayQueryReqDto reqDto) throws VldException, BuildMsgException, CommuException, ResolveMsgException {
-        ChannelActionProcess<PayQueryReqDto, PayQueryRepDto> channelActionProcess = new ChannelActionProcess<PayQueryReqDto, PayQueryRepDto>();
+    public ACQueryPayRepDTO payQuery(ACQueryPayReqDTO reqDto) throws VldException, BuildMsgException, CommuException, ResolveMsgException {
+        ChannelActionProcess<ACQueryPayReqDTO, ACQueryPayRepDTO> channelActionProcess = new ChannelActionProcess<ACQueryPayReqDTO, ACQueryPayRepDTO>();
         channelActionProcess.setChannelValidate(this.getChannelValidateHandler().get(EnumTradeType.PAYQUERY));
         channelActionProcess.setChannelTongXinHandler(this.getChannelTongXinHandler());
         channelActionProcess.setChannelMsgHandler(this.getChannelMsgHandler().get(EnumTradeType.PAYQUERY));
         channelActionProcess.setChannelConfig(this.getChannelConfig());
-        PayQueryRepDto repDto = channelActionProcess.doProcess(reqDto);
+        ACQueryPayRepDTO repDto = channelActionProcess.doProcess(reqDto);
         return repDto;
     }
 

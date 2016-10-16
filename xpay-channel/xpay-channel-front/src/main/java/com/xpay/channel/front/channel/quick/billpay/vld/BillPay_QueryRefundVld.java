@@ -1,6 +1,5 @@
 package com.xpay.channel.front.channel.quick.billpay.vld;
 
-import com.xpay.channel.common.dto.quick.PayQueryReqDTO;
 import com.xpay.channel.front.vld.BaseValidateImpl;
 
 /**

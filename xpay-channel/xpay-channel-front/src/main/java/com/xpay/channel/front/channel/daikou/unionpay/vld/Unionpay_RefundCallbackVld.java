@@ -1,6 +1,5 @@
 package com.xpay.channel.front.channel.daikou.unionpay.vld;
 
-import com.xpay.channel.common.dto.daikou.RefundCallbackReqDto;
 import com.xpay.channel.common.exception.VldException;
 import com.xpay.channel.front.vld.BaseValidateImpl;
 

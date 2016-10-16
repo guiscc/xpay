@@ -1,9 +1,5 @@
 package com.xpay.channel.front.channel.daikou.unionpay.msg;
 
-import com.xpay.channel.common.dto.daikou.CancelRepDto;
-import com.xpay.channel.common.dto.daikou.CancelReqDto;
-import com.xpay.channel.common.dto.daikou.RefundRepDto;
-import com.xpay.channel.common.dto.daikou.RefundReqDto;
 import com.xpay.channel.common.enums.EnumSysRtnCode;
 import com.xpay.channel.common.enums.EnumTradeStatus;
 import com.xpay.channel.common.exception.BuildMsgException;
