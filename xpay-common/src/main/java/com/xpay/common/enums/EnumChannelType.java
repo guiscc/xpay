@@ -10,29 +10,19 @@ package com.xpay.common.enums;
  */
 public enum EnumChannelType {
 
-    /**
-     * 认证
-     */
     AUTH((byte) 0, "认证"),
 
-    /**
-     * 支付
-     */
     PAY((byte) 1, "支付"),
-
-    /**
-     * 支付查询
-     */
+    PAYCALLBACK((byte) 2, "支付回调"),
     PAYQUERY((byte) 2, "支付查询"),
 
-    /**
-     * 退款
-     */
-    REFUND((byte) 3, "退款");
+    REFUND((byte) 3, "退款"),
+    REFUNDCALLBACK((byte) 4, "退款回调"),
+    REFUNDQUERY((byte)5,"退款查询"),
 
-    /**
-     *
-     */
+    CANCEL((byte) 4, "交易撤销"),
+    CANCELCALLBACK((byte)4,"撤销回调");
+
     private byte key;
 
     /**
