@@ -173,7 +173,8 @@ public class HttpRequester {
      * @return
      * @throws java.io.IOException
      */
-    public HttpRep sendPostForm(HttpReq httpRequest) throws Exception {
+    public HttpRep sendPostForm(HttpReq httpRequest) throws UnknownHostException, HttpHostConnectException,
+            ConnectTimeoutException, SocketTimeoutException, Exception {
         HttpPost httpPost = new HttpPost(httpCfg.getUrl());
         List<NameValuePair> params = new ArrayList<NameValuePair>();
         for (Map.Entry<String, String> entry : httpRequest.getParamMap().entrySet()) {
@@ -191,7 +192,8 @@ public class HttpRequester {
      * @return
      * @throws java.io.IOException
      */
-    public HttpRep sendGetForm(HttpReq httpRequest) throws Exception {
+    public HttpRep sendGetForm(HttpReq httpRequest) throws UnknownHostException, HttpHostConnectException,
+            ConnectTimeoutException, SocketTimeoutException, Exception {
         HttpGet httpGet = new HttpGet(httpCfg.getUrl());
         return this.send(httpRequest, httpGet);
     }
@@ -203,7 +205,8 @@ public class HttpRequester {
      * @return
      * @throws java.io.IOException
      */
-    public HttpRep sendPostString(HttpReq httpRequest) throws Exception {
+    public HttpRep sendPostString(HttpReq httpRequest) throws UnknownHostException, HttpHostConnectException,
+            ConnectTimeoutException, SocketTimeoutException, Exception {
         HttpPost httpPost = new HttpPost(httpCfg.getUrl());
         StringEntity formEntity = new StringEntity(httpRequest.getRequestBody(), httpCfg.getCharset());
         httpPost.setEntity(formEntity);                                  //添加请求post数据
