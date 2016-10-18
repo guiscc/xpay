@@ -6,7 +6,16 @@ package com.xpay.common.enums;
 public enum EnumRtnResult {
 
     S000000(EnumRtnStatus.SUCCESS, "成功"),
+    U00000(EnumRtnStatus.UNKNOW, "未知异常"),
 
+    /*00收银台*/
+    /*01交易*/
+    /*02核心支付*/
+    /*03渠道*/
+    /*04账务*/
+    /*05清算*/
+
+    /*交易E01*/
     E000000(EnumRtnStatus.FAIL, "失败"),
     E000001(EnumRtnStatus.FAIL, "查询的订单不存在"),
     E000002(EnumRtnStatus.FAIL, "修改失败"),
@@ -18,7 +27,14 @@ public enum EnumRtnResult {
     E000008(EnumRtnStatus.FAIL, "解约失败"),
     E000009(EnumRtnStatus.FAIL, "签约失败"),
 
-    U00000(EnumRtnStatus.UNKNOW, "未知异常");
+    /*核心支付E02*/
+
+    /*渠道E03*/
+    E030101(EnumRtnStatus.FAIL, "未知主机名"),
+    E030102(EnumRtnStatus.FAIL, "连接超时"),
+    E030103(EnumRtnStatus.UNKNOW, "读取超时"),
+    E030104(EnumRtnStatus.UNKNOW, "通信超时");
+
 
     EnumRtnResult(EnumRtnStatus status, String msg) {
         this.status = status;
