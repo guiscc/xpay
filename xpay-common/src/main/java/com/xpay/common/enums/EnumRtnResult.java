@@ -33,7 +33,8 @@ public enum EnumRtnResult {
     E030101(EnumRtnStatus.FAIL, "未知主机名"),
     E030102(EnumRtnStatus.FAIL, "连接超时"),
     E030103(EnumRtnStatus.UNKNOW, "读取超时"),
-    E030104(EnumRtnStatus.UNKNOW, "通信超时");
+    E030104(EnumRtnStatus.UNKNOW, "通信超时"),
+    E030201(EnumRtnStatus.FAIL, "拼装报文异常");
 
 
     EnumRtnResult(EnumRtnStatus status, String msg) {
