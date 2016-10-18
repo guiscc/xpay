@@ -4,12 +4,10 @@
  */
 package com.xpay.payment.service.convert;
 
-import com.xpay.payment.common.enums.EnumSignStatus;
+import com.xpay.common.enums.EnumSignStatus;
 import com.xpay.payment.common.vo.customer.SignConfirmRepVO;
 import com.xpay.payment.common.vo.customer.SignConfirmReqVO;
 import com.xpay.payment.service.entity.SignEntity;
-
-import java.util.Date;
 
 /**
  * @author qinshou

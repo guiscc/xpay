@@ -4,9 +4,8 @@
  */
 package com.xpay.payment.common.dto.customer;
 
-import com.xpay.common.enums.EnumRtnStatus;
+import com.xpay.common.enums.EnumSignStatus;
 import com.xpay.payment.common.dto.BaseRepDTO;
-import com.xpay.payment.common.enums.EnumSignStatus;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**

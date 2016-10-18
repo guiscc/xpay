@@ -6,7 +6,7 @@ package com.xpay.payment.test;
 
 import com.xpay.common.enums.EnumCardType;
 import com.xpay.common.enums.EnumCertType;
-import com.xpay.payment.common.enums.EnumSignStatus;
+import com.xpay.common.enums.EnumSignStatus;
 import com.xpay.payment.common.vo.customer.SignBreakRepVO;
 import com.xpay.payment.common.vo.customer.SignBreakReqVO;
 import com.xpay.payment.common.vo.customer.SignRepVO;

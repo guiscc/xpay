@@ -4,7 +4,7 @@
  */
 package com.xpay.payment.common.vo.customer;
 
-import com.xpay.payment.common.enums.EnumSignStatus;
+import com.xpay.common.enums.EnumSignStatus;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.util.Date;

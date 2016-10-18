@@ -4,7 +4,7 @@
  */
 package com.xpay.payment.service.impl;
 
-import com.xpay.payment.common.enums.EnumSignStatus;
+import com.xpay.common.enums.EnumSignStatus;
 import com.xpay.payment.common.vo.customer.*;
 import com.xpay.payment.service.SignService;
 import com.xpay.payment.service.convert.SignBreakConvert;
