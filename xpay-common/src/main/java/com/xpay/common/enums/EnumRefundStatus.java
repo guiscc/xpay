@@ -6,36 +6,20 @@ package com.xpay.common.enums;
 
 /**
  * @author qinshou
- * @version $Id: EnumPayStatus.java, v 0.1 16/8/30 下午12:49 sxfans Exp $
+ * @version $Id: EnumRefundStatus.java, v 0.1 16/10/23 下午1:06 sxfans Exp $
  */
-public enum EnumPayStatus {
-
+public enum EnumRefundStatus {
     FAIL((byte) 0, "支付失败"),
 
     SUCCESS((byte) 1, "支付成功"),
 
-    WAITING((byte) 3, "等待付款"),
+    PROCESS((byte) 3, "等待付款"),
 
     UNKNOW((byte) 4, "未知");
 
-    EnumPayStatus(byte key, String val) {
+    EnumRefundStatus(byte key, String val) {
         this.key = key;
         this.val = val;
-    }
-
-    /**
-     * 支付工具
-     *
-     * @param key
-     * @return
-     */
-    public static EnumPayStatus toPayTool(byte key) {
-        for (EnumPayStatus type : EnumPayStatus.values()) {
-            if (type.key == key) {
-                return type;
-            }
-        }
-        return null;
     }
 
     private byte key;
