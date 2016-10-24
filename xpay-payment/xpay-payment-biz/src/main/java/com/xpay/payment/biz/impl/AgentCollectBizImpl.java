@@ -68,7 +68,7 @@ public class AgentCollectBizImpl implements AgentCollectBiz {
         if (payOrderModel == null) {
             throw new XpayPaymentException(EnumRtnResult.E000001);
         }
-        if (EnumPayStatus.UNKNOWN.getKey() == payOrderModel.getPayStatus().getKey()) {
+        if (EnumPayStatus.UNKNOW.getKey() == payOrderModel.getPayStatus().getKey()) {
             System.out.println("需要补单");
             payOrderModel.setPayStatus(EnumPayStatus.SUCCESS);
             boolean flag = paymentService.update(payOrderModel);
