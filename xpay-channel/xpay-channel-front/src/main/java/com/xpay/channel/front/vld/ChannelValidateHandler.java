@@ -1,7 +1,7 @@
 package com.xpay.channel.front.vld;
 
 
-import com.xpay.channel.common.dto.BaseReqDTO;
+import com.xpay.channel.front.dto.BaseReqDTO;
 import com.xpay.channel.common.exception.VldException;
 
 /**

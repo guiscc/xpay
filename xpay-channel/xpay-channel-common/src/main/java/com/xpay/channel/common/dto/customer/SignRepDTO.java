@@ -4,10 +4,10 @@
  */
 package com.xpay.channel.common.dto.customer;
 
+import com.xpay.common.enums.EnumSignStatus;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import com.xpay.channel.common.dto.BaseRepDTO;
-import com.xpay.channel.common.enums.EnumSignStatus;
 
 /**
  * @author qinshou

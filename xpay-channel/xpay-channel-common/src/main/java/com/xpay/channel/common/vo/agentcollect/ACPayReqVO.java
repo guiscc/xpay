@@ -7,13 +7,8 @@ package com.xpay.channel.common.vo.agentcollect;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import com.xpay.channel.common.enums.EnumCardType;
-import com.xpay.channel.common.enums.EnumCertType;
+import com.xpay.common.enums.*;
 import org.apache.commons.lang3.builder.ToStringBuilder;
-
-import com.xpay.common.enums.EnumCurrency;
-import com.xpay.common.enums.EnumPaySubTool;
-import com.xpay.common.enums.EnumPayTool;
 
 /**
  * @author qinshou

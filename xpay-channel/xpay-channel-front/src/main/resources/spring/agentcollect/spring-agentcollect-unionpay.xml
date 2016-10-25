@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"
+       default-autowire="byName">
+
+    <!--银联自定义通信-->
+    <bean id="unionpayTonxinHandler"
+          class="com.xpay.channel.front.channel.agentcollect.unionpay.Unionpay_TongxinHandler"/>
+
+    <bean id="unionConfig" class="com.xpay.channel.front.channel.agentcollect.unionpay.Unionpay_Config"
+          parent="channelConfig">
+        <!--实名-->
+        <property name="authUrl" value="${unionpay.auth.authUrl}"/>
+        <property name="version" value="${unionpay.auth.version}"/>
+        <property name="certId" value="${unionpay.auth.certId}"/>
+        <property name="encryptCertId" value="${unionpay.auth.encryptCertId}"/>
+        <property name="signMethod" value="${unionpay.auth.signMethod}"/>
+        <property name="txnType" value="${unionpay.auth.txnType}"/>
+        <property name="txnSubType" value="${unionpay.auth.txnSubType}"/>
+        <property name="bizType" value="${unionpay.auth.bizType}"/>
+        <property name="channelType" value="${unionpay.auth.channelType}"/>
+        <property name="accessType" value="${unionpay.auth.accessType}"/>
+        <property name="accType" value="${unionpay.auth.accType}"/>
+        <!--代扣-->
+        <property name="daikouTxnType" value="${unionpay.daikou.txnType}"/>
+        <property name="daikouTxnSubType" value="${unionpay.daikou.txnSubType}"/>
+        <property name="daikouBizType" value="${unionpay.daikou.bizType}"/>
+        <property name="daikouCurrencyCode" value="${unionpay.daikou.currencyCode}"/>
+        <property name="certifTp" value="${unionpay.daikou.certifTp}"/>
+        <property name="notifyUrl" value="${unionpay.daikou.notifyUrl}"/>
+        <property name="daikouUrl" value="${unionpay.daikou.daikouUrl}"/>
+        <property name="encCerPath" value="${unionpay.daikou.encCerPath}"/>
+        <property name="queryUrl" value="${unionpay.daikou.queryUrl}"/>
+
+        <!--查询-->
+        <property name="queryTxnType" value="${unionpay.daikou.queryTxnType}"/>
+        <!--退货-->
+        <property name="refundTxnType" value="${unionpay.daikou.refundTxnType}"/>
+        <!--实名认证-->
+        <property name="authSubTxnType" value="${unionpay.daikou.authSubTxnType}"/>
+        <!--消费取消-->
+        <property name="cancelTxnType" value="${unionpay.daikou.cancelTxnType}"/>
+    </bean>
+
+    <!--银联处理器-->
+    <bean id="unionACChannelFacade" class="com.xpay.channel.front.channel.agentcollect.unionpay.Unionpay_ChannelFacadeImplImpl">
+        <!--注入通信-->
+        <property name="channelTongXinHandler" ref="unionpayTonxinHandler"/>
+
+        <!--注入配置-->
+        <property name="channelConfig" ref="unionConfig"/>
+
+        <!--报文处理器-->
+        <property name="channelMsgHandler">
+            <map>
+                <entry key-ref="AUTH">
+                    <bean class="com.xpay.channel.front.channel.agentcollect.unionpay.msg.Unionpay_AuthMsgHandler"/>
+                </entry>
+                <entry key-ref="PAY">
+                    <bean class="com.xpay.channel.front.channel.agentcollect.unionpay.msg.Unionpay_PayMsgHandler"/>
+                </entry>
+                <entry key-ref="PAYQUERY">
+                    <bean class="com.xpay.channel.front.channel.agentcollect.unionpay.msg.Unionpay_PayQueryMsgHandler"/>
+                </entry>
+                <entry key-ref="PAYCALLBACK">
+                    <bean class="com.xpay.channel.front.channel.agentcollect.unionpay.msg.Unionpay_PayCallbackMsgHandler"/>
+                </entry>
+
+                <entry key-ref="REFUND">
+                    <bean class="com.xpay.channel.front.channel.agentcollect.unionpay.msg.Unionpay_RefundMsgHandler"/>
+                </entry>
+                <entry key-ref="REFUNDCALLBACK">
+                    <bean class="com.xpay.channel.front.channel.agentcollect.unionpay.msg.Unionpay_RefundCallbackMsgHandler"/>
+                </entry>
+                <!--<entry key-ref="CANCEL">-->
+                <!--<bean class="com.xpay.channel.front.channel.agentcollect.unionpay.msg.Unionpay_CancelMsgHandler"/>-->
+                <!--</entry>-->
+                <!--<entry key-ref="CANCELCALLBACK">-->
+                <!--<bean class="com.xpay.channel.front.channel.agentcollect.unionpay.msg.Unionpay_CancelCallbackMsgHandler"/>-->
+                <!--</entry>-->
+            </map>
+        </property>
+
+        <!--校验器-->
+        <property name="channelValidateHandler">
+            <map>
+                <entry key-ref="AUTH">
+                    <bean class="com.xpay.channel.front.channel.agentcollect.unionpay.vld.Unionpay_AuthVld"/>
+                </entry>
+                <entry key-ref="PAY">
+                    <bean class="com.xpay.channel.front.channel.agentcollect.unionpay.vld.Unionpay_PayVld"/>
+                </entry>
+                <entry key-ref="PAYQUERY">
+                    <bean class="com.xpay.channel.front.channel.agentcollect.unionpay.vld.Unionpay_PayQueryVld"/>
+                </entry>
+                <entry key-ref="REFUND">
+                    <bean class="com.xpay.channel.front.channel.agentcollect.unionpay.vld.Unionpay_RefundVld"/>
+                </entry>
+                <entry key-ref="CANCEL">
+                    <bean class="com.xpay.channel.front.channel.agentcollect.unionpay.vld.Unionpay_CancelVld"/>
+                </entry>
+                <entry key-ref="PAYCALLBACK">
+                    <bean class="com.xpay.channel.front.channel.agentcollect.unionpay.vld.Unionpay_PayCallbackVld"/>
+                </entry>
+                <entry key-ref="REFUNDCALLBACK">
+                    <bean class="com.xpay.channel.front.channel.agentcollect.unionpay.vld.Unionpay_RefundCallbackVld"/>
+                </entry>
+                <entry key-ref="CANCELCALLBACK">
+                    <bean class="com.xpay.channel.front.channel.agentcollect.unionpay.vld.Unionpay_CancelCallbackVld"/>
+                </entry>
+            </map>
+        </property>
+    </bean>
+
+</beans>

@@ -6,9 +6,8 @@ package com.xpay.channel.common.vo.customer;
 
 import java.util.Date;
 
+import com.xpay.common.enums.EnumSignStatus;
 import org.apache.commons.lang3.builder.ToStringBuilder;
-
-import com.xpay.payment.common.enums.EnumSignStatus;
 
 /**
  * @author qinshou

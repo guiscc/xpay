@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"
+       default-autowire="byName">
+
+    <bean id="taobaoTongxinHandler" class="com.xpay.channel.front.channel.sms.taobao.TaoBao_TongxinHandler"/>
+
+    <bean id="taobaoSmsChannelFacade" class="com.xpay.channel.front.channel.sms.taobao.TaoBao_SmsChannelFacadeImpl">
+        <property name="channelTongXinHandler" ref="taobaoTongxinHandler"/>
+        <property name="channelConfig">
+            <bean class="com.xpay.channel.front.channel.sms.taobao.TaoBao_Config" parent="channelConfig">
+                <property name="appKey" value="${sms_taobao_appKey}"/>
+                <property name="appSecret" value="${sms_taobao_appSecret}"/>
+                <property name="template" value="${sms_taobao_templateName}"/>
+                <property name="normal" value="${sms_taobao_smsType}"/>
+                <property name="bankURL" value="${sms_taobao_smsUrl}"/>
+            </bean>
+        </property>
+
+        <property name="channelMsgHandler">
+            <map>
+                <entry key-ref="SMS">
+                    <bean class="com.xpay.channel.front.channel.sms.taobao.msg.TaoBao_SmsMsgHandler"/>
+                </entry>
+            </map>
+        </property>
+
+        <property name="channelValidateHandler">
+            <map>
+                <entry key-ref="SMS">
+                    <bean class="com.xpay.channel.front.channel.sms.taobao.vld.TaoBao_SmsVld"/>
+                </entry>
+            </map>
+        </property>
+    </bean>
+
+</beans>

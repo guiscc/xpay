@@ -21,7 +21,9 @@ public enum EnumChannelType {
     REFUNDQUERY((byte)5,"退款查询"),
 
     CANCEL((byte) 4, "交易撤销"),
-    CANCELCALLBACK((byte)4,"撤销回调");
+    CANCELCALLBACK((byte)5,"撤销回调"),
+
+    SMS((byte)6,"发短信");
 
     private byte key;
 

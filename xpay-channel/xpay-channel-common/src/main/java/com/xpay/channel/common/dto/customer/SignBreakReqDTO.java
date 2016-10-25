@@ -6,7 +6,7 @@ package com.xpay.channel.common.dto.customer;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-import com.xpay.payment.common.dto.BaseReqDTO;
+import com.xpay.channel.common.dto.BaseReqDTO;
 
 /**
  * @author qinshou

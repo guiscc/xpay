@@ -1,7 +1,7 @@
 package com.xpay.channel.front.msg;
 
-import com.xpay.channel.common.dto.BaseRepDTO;
-import com.xpay.channel.common.dto.BaseReqDTO;
+import com.xpay.channel.front.dto.BaseRepDTO;
+import com.xpay.channel.front.dto.BaseReqDTO;
 import com.xpay.channel.common.exception.BuildMsgException;
 import com.xpay.channel.common.exception.ResolveMsgException;
 import com.xpay.channel.front.utils.ChannelConfig;

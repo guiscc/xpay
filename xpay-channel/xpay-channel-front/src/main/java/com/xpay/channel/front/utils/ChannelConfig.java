@@ -15,12 +15,22 @@ public class ChannelConfig {
     /**
      * 密钥路径
      */
-    private String pxfPath;
+    private String pfxPath;
 
     /**
-     * 密码
+     * 密钥库密码
      */
-    private String pxfPass;
+    private String pfxPathPwd;
+
+    /**
+     * 公钥路径
+     */
+    private String cerPath;
+
+    /**
+     * 商户号
+     */
+    private String merchantNo;
 
     /**
      * 连接超时
@@ -45,12 +55,12 @@ public class ChannelConfig {
         this.bankURL = bankURL;
     }
 
-    public String getPxfPath() {
-        return pxfPath;
+    public String getPfxPath() {
+        return pfxPath;
     }
 
-    public void setPxfPath(String pxfPath) {
-        this.pxfPath = pxfPath;
+    public void setPfxPath(String pfxPath) {
+        this.pfxPath = pfxPath;
     }
 
     public String getConnTimeOut() {
@@ -59,14 +69,6 @@ public class ChannelConfig {
 
     public void setConnTimeOut(String connTimeOut) {
         this.connTimeOut = connTimeOut;
-    }
-
-    public String getPxfPass() {
-        return pxfPass;
-    }
-
-    public void setPxfPass(String pxfPass) {
-        this.pxfPass = pxfPass;
     }
 
     public String getReadTimeOut() {
@@ -85,8 +87,62 @@ public class ChannelConfig {
         this.charset = charset;
     }
 
+    /**
+     * Getter method for property pfxPathPwd.
+     *
+     * @return property value of pfxPathPwd
+     **/
+    public String getPfxPathPwd() {
+        return pfxPathPwd;
+    }
+
+    /**
+     * Setter method for property pfxPathPwd.
+     *
+     * @param pfxPathPwd value to be assigned to property pfxPathPwd
+     **/
+    public void setPfxPathPwd(String pfxPathPwd) {
+        this.pfxPathPwd = pfxPathPwd;
+    }
+
+    /**
+     * Getter method for property merchantNo.
+     *
+     * @return property value of merchantNo
+     **/
+    public String getMerchantNo() {
+        return merchantNo;
+    }
+
+    /**
+     * Setter method for property merchantNo.
+     *
+     * @param merchantNo value to be assigned to property merchantNo
+     **/
+    public void setMerchantNo(String merchantNo) {
+        this.merchantNo = merchantNo;
+    }
+
+    /**
+     * Getter method for property cerPath.
+     *
+     * @return property value of cerPath
+     **/
+    public String getCerPath() {
+        return cerPath;
+    }
+
+    /**
+     * Setter method for property cerPath.
+     *
+     * @param cerPath value to be assigned to property cerPath
+     **/
+    public void setCerPath(String cerPath) {
+        this.cerPath = cerPath;
+    }
+
     @Override
     public String toString() {
-        return ToStringBuilder.reflectionToString(this) ;
+        return ToStringBuilder.reflectionToString(this);
     }
 }

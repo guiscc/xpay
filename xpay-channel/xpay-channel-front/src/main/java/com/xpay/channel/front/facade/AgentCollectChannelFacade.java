@@ -1,27 +1,16 @@
 package com.xpay.channel.front.facade;
 
-import com.xpay.channel.common.dto.agentcollect.*;
 import com.xpay.channel.common.exception.BuildMsgException;
 import com.xpay.channel.common.exception.CommuException;
 import com.xpay.channel.common.exception.ResolveMsgException;
 import com.xpay.channel.common.exception.VldException;
+import com.xpay.channel.front.dto.agentcollect.*;
 
 /**
  * 代扣
  * Created by suxinxin on 16/3/25.
  */
 public interface AgentCollectChannelFacade {
-
-    /**
-     * 实名认证
-     * @param reqDto
-     * @return
-     * @throws VldException
-     * @throws BuildMsgException
-     * @throws CommuException
-     * @throws ResolveMsgException
-     */
-    public RealNameAuthRepDto auth(RealNameAuthReqDto reqDto) throws VldException, BuildMsgException, CommuException, ResolveMsgException;
 
     /**
      * 代扣
@@ -52,7 +41,7 @@ public interface AgentCollectChannelFacade {
      * @throws CommuException
      * @throws ResolveMsgException
      */
-    public RefundRepDto refund(RefundReqDto reqDto) throws VldException, BuildMsgException, CommuException, ResolveMsgException ;
+    public RefundRepDTO refund(RefundReqDTO reqDto) throws VldException, BuildMsgException, CommuException, ResolveMsgException ;
 
     /**
      * 消费取消
@@ -63,7 +52,7 @@ public interface AgentCollectChannelFacade {
      * @throws CommuException
      * @throws ResolveMsgException
      */
-    public CancelRepDto cancel(CancelReqDto reqDto) throws VldException, BuildMsgException, CommuException, ResolveMsgException ;
+    public CancelRepDTO cancel(CancelReqDTO reqDto) throws VldException, BuildMsgException, CommuException, ResolveMsgException ;
 
 
     /**
@@ -75,7 +64,7 @@ public interface AgentCollectChannelFacade {
      * @throws CommuException
      * @throws ResolveMsgException
      */
-    public PayCallbackRepDto payCallback(PayCallbackReqDto reqDto)throws VldException, BuildMsgException, CommuException, ResolveMsgException ;
+    public PayCallbackRepDTO payCallback(PayCallbackReqDTO reqDto)throws VldException, BuildMsgException, CommuException, ResolveMsgException ;
 
     /**
      * 代扣退款回调
@@ -86,7 +75,7 @@ public interface AgentCollectChannelFacade {
      * @throws CommuException
      * @throws ResolveMsgException
      */
-    public RefundCallbackRepDto refundCallback(RefundCallbackReqDto reqDto)throws VldException, BuildMsgException, CommuException, ResolveMsgException ;
+    public RefundCallbackRepDTO refundCallback(RefundCallbackReqDTO reqDto)throws VldException, BuildMsgException, CommuException, ResolveMsgException ;
 
     /**
      * 代扣交易取消回调
@@ -97,7 +86,7 @@ public interface AgentCollectChannelFacade {
      * @throws CommuException
      * @throws ResolveMsgException
      */
-    public CancelCallbackRepDto cancelCallback(CancelCallbackReqDto reqDto)throws VldException, BuildMsgException, CommuException, ResolveMsgException ;
+    public CancelCallbackRepDTO cancelCallback(CancelCallbackReqDTO reqDto)throws VldException, BuildMsgException, CommuException, ResolveMsgException ;
 
 
 }

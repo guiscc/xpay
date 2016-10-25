@@ -1,6 +1,6 @@
 package com.xpay.channel.front.tongxin;
 
-import com.xpay.channel.common.dto.BaseReqDTO;
+import com.xpay.channel.front.dto.BaseReqDTO;
 import com.xpay.channel.common.exception.CommuException;
 import com.xpay.channel.front.utils.ChannelConfig;
 

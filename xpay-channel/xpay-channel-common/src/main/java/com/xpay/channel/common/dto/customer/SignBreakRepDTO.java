@@ -6,10 +6,10 @@ package com.xpay.channel.common.dto.customer;
 
 import java.util.Date;
 
+import com.xpay.common.enums.EnumSignStatus;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-import com.xpay.payment.common.dto.BaseRepDTO;
-import com.xpay.payment.common.enums.EnumSignStatus;
+import com.xpay.channel.common.dto.BaseRepDTO;
 
 /**
  * @author qinshou

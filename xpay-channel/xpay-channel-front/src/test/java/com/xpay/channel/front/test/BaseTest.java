@@ -9,6 +9,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 //@ContextConfiguration(locations = {"classpath*:spring/spring-quick-channel.xml"})
-@ContextConfiguration(locations = {"classpath*:spring/spring-daifu-channel.xml"})
+@ContextConfiguration(locations = {"classpath*:spring/spring-channel.xml"})
 public class BaseTest {
 }

@@ -8,7 +8,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import com.xpay.common.enums.EnumCardType;
 import com.xpay.common.enums.EnumCertType;
-import com.xpay.payment.common.dto.BaseReqDTO;
+import com.xpay.channel.common.dto.BaseReqDTO;
 
 /**
  * @author qinshou

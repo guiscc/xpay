@@ -1,8 +1,8 @@
 package com.xpay.channel.common.dto.agentcollect;
 
 import com.xpay.channel.common.dto.BaseReqDTO;
-import com.xpay.channel.common.enums.EnumCardType;
-import com.xpay.channel.common.enums.EnumCertType;
+import com.xpay.common.enums.EnumCardType;
+import com.xpay.common.enums.EnumCertType;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.math.BigDecimal;

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd"
+       default-autowire="byName">
+    <context:property-placeholder location="classpath:config/**/*.properties" ignore-unresolvable="true"/>
+    <context:annotation-config/>
+
+    <!--通信Handler-->
+    <bean id="httpChannelHandler" class="com.xpay.channel.front.tongxin.impl.HttpChannelHandler"/>
+    <bean id="socketChannelHandler" class="com.xpay.channel.front.tongxin.impl.SocketChannelHandler"/>
+    <bean id="https1ChannelHandler" class="com.xpay.channel.front.tongxin.impl.Https1ChannelHandler"/>
+    <bean id="https2ChannelHandler" class="com.xpay.channel.front.tongxin.impl.Https2ChannelHandler"/>
+
+    <!--系统交易类型枚举定义-->
+    <bean id="AUTH" class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean">
+        <property name="staticField" value="com.xpay.common.enums.EnumChannelType.AUTH"/>
+    </bean>
+    <bean id="PAY" class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean">
+        <property name="staticField" value="com.xpay.common.enums.EnumChannelType.PAY"></property>
+    </bean>
+    <bean id="PAYQUERY" class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean">
+        <property name="staticField" value="com.xpay.common.enums.EnumChannelType.PAYQUERY"/>
+    </bean>
+    <bean id="REFUND" class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean">
+        <property name="staticField" value="com.xpay.common.enums.EnumChannelType.REFUND"/>
+    </bean>
+    <bean id="CANCEL" class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean">
+        <property name="staticField" value="com.xpay.common.enums.EnumChannelType.CANCEL"/>
+    </bean>
+    <bean id="PAYCALLBACK" class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean">
+        <property name="staticField" value="com.xpay.common.enums.EnumChannelType.PAYCALLBACK"/>
+    </bean>
+    <bean id="REFUNDCALLBACK" class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean">
+        <property name="staticField" value="com.xpay.common.enums.EnumChannelType.REFUNDCALLBACK"/>
+    </bean>
+    <bean id="CANCELCALLBACK" class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean">
+        <property name="staticField" value="com.xpay.common.enums.EnumChannelType.CANCELCALLBACK"/>
+    </bean>
+    <bean id="SMS" class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean">
+        <property name="staticField" value="com.xpay.common.enums.EnumChannelType.SMS"/>
+    </bean>
+
+    <!--配置文件基类bean-->
+    <bean name="channelConfig" class="com.xpay.channel.front.utils.ChannelConfig">
+        <property name="charset" value="${channel.charset}"/>
+        <property name="connTimeOut" value="${channel.connTimeout}"/>
+        <property name="readTimeOut" value="${channel.readTimeout}"/>
+    </bean>
+
+    <!--接口映射工厂-->
+    <bean id="ACChannelMappingFactory" class="com.xpay.channel.front.factory.ACChannelMappingFactory">
+        <property name="mappingMap">
+            <map key-type="java.lang.String"
+                 value-type="com.xpay.channel.front.facade.AgentCollectChannelFacade">
+                <entry key="AC_UNIONPAY_CD_01" value-ref="unionACChannelFacade"/>
+            </map>
+        </property>
+    </bean>
+
+    <bean id="SmsChannelMappingFactory" class="com.xpay.channel.front.factory.SmsChannelMappingFactory">
+        <property name="mappingMap">
+            <map key-type="java.lang.String"
+                 value-type="com.xpay.channel.front.facade.SmsChannelFacade">
+                <entry key="SMS_TAOBAO" value-ref="taobaoSmsChannelFacade"/>
+            </map>
+        </property>
+    </bean>
+
+    <import resource="agentcollect/spring-agentcollect-unionpay.xml"/>
+    <import resource="sms/spring-sms-taobao.xml"/>
+</beans>

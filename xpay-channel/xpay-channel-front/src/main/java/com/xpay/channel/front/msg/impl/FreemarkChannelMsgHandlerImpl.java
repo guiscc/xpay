@@ -4,13 +4,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.xpay.channel.front.msg.ChannelMsgHandler;
+import com.xpay.common.enums.EnumRtnResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.xpay.channel.common.dto.BaseRepDTO;
-import com.xpay.channel.common.dto.BaseReqDTO;
-import com.xpay.channel.common.enums.EnumSysRtnCode;
-import com.xpay.channel.common.enums.EnumTradeStatus;
+import com.xpay.channel.front.dto.BaseRepDTO;
+import com.xpay.channel.front.dto.BaseReqDTO;
 import com.xpay.channel.common.exception.BuildMsgException;
 import com.xpay.channel.common.exception.ResolveMsgException;
 import com.xpay.channel.front.utils.ChannelConfig;
@@ -40,7 +39,7 @@ public abstract class FreemarkChannelMsgHandlerImpl<REQ extends BaseReqDTO, REP 
             templateStr = FreeMarkerUtil.getInstance().getStrByTemplate(this.map.get(), getTemplatePath());
         } catch (Exception e) {
             logger.error("fmk拼装报文异常",e);
-            throw new BuildMsgException(EnumSysRtnCode.B0000, EnumTradeStatus.FAIL);
+            throw new BuildMsgException(EnumRtnResult.E030201);
         }
         return templateStr.getBytes();
     }
