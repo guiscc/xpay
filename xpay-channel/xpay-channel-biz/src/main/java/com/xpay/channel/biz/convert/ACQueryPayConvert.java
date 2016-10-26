@@ -8,8 +8,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.xpay.channel.common.dto.PayOrderDTO;
-import com.xpay.channel.common.dto.agentcollect.ACQueryPayRepDTO;
-import com.xpay.channel.common.dto.agentcollect.ACQueryPayReqDTO;
+import com.xpay.channel.common.dto.agentcollect.ACQueryPayRepChannelDTO;
+import com.xpay.channel.common.dto.agentcollect.ACQueryPayReqChannelDTO;
 import com.xpay.channel.common.model.PayOrderModel;
 import com.xpay.channel.common.vo.agentcollect.ACQueryPayRepVO;
 import com.xpay.channel.common.vo.agentcollect.ACQueryPayReqVO;
@@ -28,7 +28,7 @@ public class ACQueryPayConvert {
      * @return
      */
     public static ACQueryPayReqVO getACQueryPayReqVO(ACQueryPayReqVO acQueryPayReqVO,
-                                                     ACQueryPayReqDTO acQueryPayReqDTO) {
+                                                     ACQueryPayReqChannelDTO acQueryPayReqDTO) {
         logger.info("请求模型:{}", acQueryPayReqDTO);
         acQueryPayReqVO.setPayOrderNo(acQueryPayReqDTO.getPayOrderNo());
         logger.info("转换请求模型:{}", acQueryPayReqVO.toString());
@@ -40,8 +40,8 @@ public class ACQueryPayConvert {
      * @param acQueryPayRepVO
      * @return
      */
-    public static ACQueryPayRepDTO getACQueryPayRepDTO(ACQueryPayRepDTO acQueryPayRepDTO,
-                                                       ACQueryPayRepVO acQueryPayRepVO) {
+    public static ACQueryPayRepChannelDTO getACQueryPayRepDTO(ACQueryPayRepChannelDTO acQueryPayRepDTO,
+                                                              ACQueryPayRepVO acQueryPayRepVO) {
         logger.info("响应模型:{}", acQueryPayRepVO.toString());
         PayOrderDTO payOrderDTO = acQueryPayRepDTO.getPayOrderDTO();
         PayOrderModel payOrderModel = acQueryPayRepVO.getPayOrderModel();

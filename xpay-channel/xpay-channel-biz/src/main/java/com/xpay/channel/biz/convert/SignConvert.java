@@ -6,11 +6,11 @@ package com.xpay.channel.biz.convert;
 
 import java.util.Date;
 
+import com.xpay.channel.common.dto.customer.SignRepChannelDTO;
+import com.xpay.channel.common.dto.customer.SignReqChannelDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.xpay.channel.common.dto.customer.SignRepDTO;
-import com.xpay.channel.common.dto.customer.SignReqDTO;
 import com.xpay.channel.common.vo.customer.SignRepVO;
 import com.xpay.channel.common.vo.customer.SignReqVO;
 
@@ -28,7 +28,7 @@ public class SignConvert {
      * @param signRepVO
      * @return
      */
-    public static SignRepDTO getSignRepDTO(SignRepDTO signRepDTO, SignRepVO signRepVO) {
+    public static SignRepChannelDTO getSignRepDTO(SignRepChannelDTO signRepDTO, SignRepVO signRepVO) {
         logger.info("响应模型:{}", signRepVO);
         signRepDTO.setSignNo(signRepVO.getSignNo());
         signRepDTO.setSignStatus(signRepVO.getSignStatus());
@@ -42,7 +42,7 @@ public class SignConvert {
      *
      * @return
      */
-    public static SignReqVO getSignReqVO(SignReqVO signReqVO, SignReqDTO signReqDTO) {
+    public static SignReqVO getSignReqVO(SignReqVO signReqVO, SignReqChannelDTO signReqDTO) {
         logger.info("请求模型:{}", signReqDTO);
         signReqVO.setUserId(signReqDTO.getUserId());
         signReqVO.setCardNo(signReqDTO.getCardNo());

@@ -7,8 +7,8 @@ import com.xpay.channel.common.util.JsonUtil;
 import com.xpay.channel.front.channel.agentcollect.unionpay.Unionpay_Config;
 import com.xpay.channel.front.channel.agentcollect.unionpay.util.UnionpayEncryptUtil;
 import com.xpay.channel.front.channel.agentcollect.unionpay.util.UnionpayUtil;
-import com.xpay.channel.front.dto.agentcollect.RealNameAuthRepDTO;
-import com.xpay.channel.front.dto.agentcollect.RealNameAuthReqDTO;
+import com.xpay.channel.front.dto.agentcollect.RealNameAuthRepFrontFrontDTO;
+import com.xpay.channel.front.dto.agentcollect.RealNameAuthReqFrontFrontDTO;
 import com.xpay.channel.front.msg.impl.FreemarkChannelMsgHandlerImpl;
 import com.xpay.channel.front.utils.ChannelConfig;
 import com.xpay.common.enums.EnumCardType;
@@ -29,7 +29,7 @@ import java.util.Map;
  */
 public class Unionpay_AuthMsgHandler
                                     extends
-                                    FreemarkChannelMsgHandlerImpl<RealNameAuthReqDTO, RealNameAuthRepDTO> {
+                                    FreemarkChannelMsgHandlerImpl<RealNameAuthReqFrontFrontDTO, RealNameAuthRepFrontFrontDTO> {
     @Override
     protected String getTemplatePath() {
         return null;
@@ -38,7 +38,7 @@ public class Unionpay_AuthMsgHandler
     private static final Logger logger = LoggerFactory.getLogger(Unionpay_AuthMsgHandler.class);
 
     @Override
-    public RealNameAuthReqDTO beforBuildMsg(RealNameAuthReqDTO req, ChannelConfig channelConfig)
+    public RealNameAuthReqFrontFrontDTO beforBuildMsg(RealNameAuthReqFrontFrontDTO req, ChannelConfig channelConfig)
                                                                                                 throws BuildMsgException {
         try {
             req = super.beforBuildMsg(req, channelConfig);
@@ -94,7 +94,7 @@ public class Unionpay_AuthMsgHandler
     }
 
     @Override
-    public byte[] builderMsg(RealNameAuthReqDTO req, ChannelConfig channelConfig)
+    public byte[] builderMsg(RealNameAuthReqFrontFrontDTO req, ChannelConfig channelConfig)
                                                                                  throws BuildMsgException {
         String charset = channelConfig.getCharset();
         Map<String, String> data = (Map<String, String>) super.get("map");
@@ -111,9 +111,9 @@ public class Unionpay_AuthMsgHandler
     }
 
     @Override
-    public RealNameAuthRepDTO resolveMsg(RealNameAuthReqDTO req, byte[] rtnMsg,
-                                         ChannelConfig channelConfig) throws ResolveMsgException {
-        RealNameAuthRepDTO repDTO = new RealNameAuthRepDTO();
+    public RealNameAuthRepFrontFrontDTO resolveMsg(RealNameAuthReqFrontFrontDTO req, byte[] rtnMsg,
+                                                   ChannelConfig channelConfig) throws ResolveMsgException {
+        RealNameAuthRepFrontFrontDTO repDTO = new RealNameAuthRepFrontFrontDTO();
         if (rtnMsg == null || rtnMsg.length == 0) {
             throw new ResolveMsgException(EnumRtnResult.E030202);
         }

@@ -7,7 +7,7 @@ import com.xpay.channel.common.exception.VldException;
  * 接口公共验证参数
  * Created by suxinxin on 15/1/15.
  */
-public abstract class AbsChannelValidateHandlerImpl<T extends BaseReqDTO> implements ChannelValidateHandler<T> {
+public abstract class AbsChannelValidateHandlerImpl<T extends BaseReqFrontDTO> implements ChannelValidateHandler<T> {
 
     @Override
     public void validate(T t) throws VldException {

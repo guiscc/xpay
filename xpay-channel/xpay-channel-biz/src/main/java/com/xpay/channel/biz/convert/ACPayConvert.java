@@ -4,12 +4,12 @@
  */
 package com.xpay.channel.biz.convert;
 
+import com.xpay.channel.common.dto.agentcollect.ACPayReqChannelDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.xpay.channel.common.dto.PayOrderDTO;
-import com.xpay.channel.common.dto.agentcollect.ACPayRepDTO;
-import com.xpay.channel.common.dto.agentcollect.ACPayReqDTO;
+import com.xpay.channel.common.dto.agentcollect.ACPayRepChannelDTO;
 import com.xpay.channel.common.model.PayOrderModel;
 import com.xpay.channel.common.vo.agentcollect.ACPayRepVO;
 import com.xpay.channel.common.vo.agentcollect.ACPayReqVO;
@@ -29,7 +29,7 @@ public class ACPayConvert {
      * @param acPayReqDTO
      * @return
      */
-    public static ACPayReqVO getACPayReqVO(ACPayReqVO acPayReqVO, ACPayReqDTO acPayReqDTO) {
+    public static ACPayReqVO getACPayReqVO(ACPayReqVO acPayReqVO, ACPayReqChannelDTO acPayReqDTO) {
         logger.info("请求模型:{}", acPayReqDTO);
         acPayReqVO.setUserId(acPayReqDTO.getUserId());
         acPayReqVO.setPayAmt(acPayReqDTO.getAmount());
@@ -50,7 +50,7 @@ public class ACPayConvert {
      * @param acPayRepVO
      * @return
      */
-    public static ACPayRepDTO getACPayRepDTO(ACPayRepDTO acPayRepDTO, ACPayRepVO acPayRepVO) {
+    public static ACPayRepChannelDTO getACPayRepDTO(ACPayRepChannelDTO acPayRepDTO, ACPayRepVO acPayRepVO) {
         logger.info("响应模型:{}", acPayRepVO);
         PayOrderDTO payOrderDTO = acPayRepDTO.getPayOrderDTO();
         PayOrderModel payOrderModel = acPayRepVO.getPayOrderModel();

@@ -1,7 +1,7 @@
 package com.xpay.channel.front.msg;
 
-import com.xpay.channel.front.dto.BaseRepDTO;
-import com.xpay.channel.front.dto.BaseReqDTO;
+import com.xpay.channel.front.dto.BaseRepFrontDTO;
+import com.xpay.channel.front.dto.BaseReqFrontDTO;
 import com.xpay.channel.common.exception.BuildMsgException;
 import com.xpay.channel.common.exception.ResolveMsgException;
 import com.xpay.channel.front.utils.ChannelConfig;
@@ -10,7 +10,7 @@ import com.xpay.channel.front.utils.ChannelConfig;
  * 平台报文拼解组件
  * Created by suxinxin on 14/12/25.
  */
-public interface ChannelMsgHandler<REQ extends BaseReqDTO, REP extends BaseRepDTO> {
+public interface ChannelMsgHandler<REQ extends BaseReqFrontDTO, REP extends BaseRepFrontDTO> {
 
     /**
      * 创建报文

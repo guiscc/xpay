@@ -1,7 +1,7 @@
 package com.xpay.channel.front.channel.agentcollect.unionpay.msg;
 
-import com.xpay.channel.front.dto.agentcollect.ACQueryPayRepDTO;
-import com.xpay.channel.front.dto.agentcollect.ACQueryPayReqDTO;
+import com.xpay.channel.front.dto.agentcollect.ACQueryPayRepFrontFrontDTO;
+import com.xpay.channel.front.dto.agentcollect.ACQueryPayReqFrontFrontDTO;
 import com.xpay.channel.common.exception.BuildMsgException;
 import com.xpay.channel.common.exception.ResolveMsgException;
 import com.xpay.channel.common.util.DateUtil;
@@ -29,7 +29,7 @@ import java.util.Map;
  */
 public class Unionpay_PayQueryMsgHandler
                                         extends
-                                        FreemarkChannelMsgHandlerImpl<ACQueryPayReqDTO, ACQueryPayRepDTO> {
+                                        FreemarkChannelMsgHandlerImpl<ACQueryPayReqFrontFrontDTO, ACQueryPayRepFrontFrontDTO> {
     @Override
     protected String getTemplatePath() {
         return null;
@@ -38,7 +38,7 @@ public class Unionpay_PayQueryMsgHandler
     private static final Logger logger = LoggerFactory.getLogger(Unionpay_PayQueryMsgHandler.class);
 
     @Override
-    public ACQueryPayReqDTO beforBuildMsg(ACQueryPayReqDTO req, ChannelConfig channelConfig)
+    public ACQueryPayReqFrontFrontDTO beforBuildMsg(ACQueryPayReqFrontFrontDTO req, ChannelConfig channelConfig)
                                                                                             throws BuildMsgException {
         try {
             req = super.beforBuildMsg(req, channelConfig);
@@ -77,7 +77,7 @@ public class Unionpay_PayQueryMsgHandler
     }
 
     @Override
-    public byte[] builderMsg(ACQueryPayReqDTO req, ChannelConfig channelConfig)
+    public byte[] builderMsg(ACQueryPayReqFrontFrontDTO req, ChannelConfig channelConfig)
                                                                                throws BuildMsgException {
         String charset = channelConfig.getCharset();
         Map<String, String> data = (Map<String, String>) super.get("map");
@@ -94,9 +94,9 @@ public class Unionpay_PayQueryMsgHandler
     }
 
     @Override
-    public ACQueryPayRepDTO resolveMsg(ACQueryPayReqDTO req, byte[] rtnMsg,
-                                       ChannelConfig channelConfig) throws ResolveMsgException {
-        ACQueryPayRepDTO repDTO = new ACQueryPayRepDTO();
+    public ACQueryPayRepFrontFrontDTO resolveMsg(ACQueryPayReqFrontFrontDTO req, byte[] rtnMsg,
+                                                 ChannelConfig channelConfig) throws ResolveMsgException {
+        ACQueryPayRepFrontFrontDTO repDTO = new ACQueryPayRepFrontFrontDTO();
         repDTO.setBankOrderNo(req.getBankOrderNo());
         repDTO.setPayStatus(EnumPayStatus.UNKNOW);
         if (rtnMsg == null || rtnMsg.length == 0) {

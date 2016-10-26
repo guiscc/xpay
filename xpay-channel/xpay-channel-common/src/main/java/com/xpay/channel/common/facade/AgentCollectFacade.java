@@ -18,7 +18,7 @@ public interface AgentCollectFacade {
      * @param acPayReqDTO
      * @return
      */
-    public ACPayRepDTO pay(ACPayReqDTO acPayReqDTO);
+    public ACPayRepChannelDTO pay(ACPayReqChannelDTO acPayReqDTO);
 
     /**
      * 查询代收
@@ -26,7 +26,7 @@ public interface AgentCollectFacade {
      * @param acQueryPayReqDTO
      * @return
      */
-    public ACQueryPayRepDTO queryPay(ACQueryPayReqDTO acQueryPayReqDTO);
+    public ACQueryPayRepChannelDTO queryPay(ACQueryPayReqChannelDTO acQueryPayReqDTO);
 
     /**
      * 补单
@@ -34,5 +34,5 @@ public interface AgentCollectFacade {
      * @param acRepairReqDTO
      * @return
      */
-    public ACRepairRepDTO repair(ACRepairReqDTO acRepairReqDTO);
+    public ACRepairRepChannelDTO repair(ACRepairReqChannelDTO acRepairReqDTO);
 }

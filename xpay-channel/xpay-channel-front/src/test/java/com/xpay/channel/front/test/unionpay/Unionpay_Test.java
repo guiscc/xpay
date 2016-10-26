@@ -2,8 +2,8 @@
 //
 //import com.xpay.channel.common.dto.agentcollect.*;
 //import com.xpay.channel.common.util.DateUtil;
-//import com.xpay.channel.front.dto.agentcollect.RealNameAuthReqDTO;
-//import com.xpay.channel.front.facade.AgentCollectChannelFacade;
+//import com.xpay.channel.front.dto.agentcollect.RealNameAuthReqFrontFrontDTO;
+//import com.xpay.channel.front.facade.AgentCollectFrontFacade;
 //import com.xpay.channel.front.factory.ACChannelMappingFactory;
 //import com.xpay.channel.front.test.BaseTest;
 //import org.junit.Test;
@@ -29,7 +29,7 @@
 //
 //    @Test
 //    public void auth() throws Exception {
-//        RealNameAuthReqDTO reqDto = new RealNameAuthReqDTO() ;
+//        RealNameAuthReqFrontFrontDTO reqDto = new RealNameAuthReqFrontFrontDTO() ;
 //        ChannelRemark channelRemark = new ChannelRemark() ;
 //        channelRemark.setMerchantNo("777290058123381");
 ////        channelRemark.setCerPath("/Users/pang/Desktop/works/cert/verify_sign_acp.cer") ;
@@ -45,14 +45,14 @@
 //        reqDto.setChannelOrderNo(channelOrderNo);
 //        logger.info("#####[银联代扣] 请求参数:" + reqDto);
 //        System.err.println();
-//        AgentCollectChannelFacade facade = ACChannelMappingFactory.getChannelBean("AC_UNIONPAY_CD_01") ;
+//        AgentCollectFrontFacade facade = ACChannelMappingFactory.getChannelBean("AC_UNIONPAY_CD_01") ;
 //        RealNameAuthRepDto repDto = facade.auth(reqDto) ;
 //        logger.info("#####[银联代扣] 返回参数:" + repDto);
 //    }
 //
 //    @Test
 //    public void pay() throws Exception{
-//        ACPayReqDTO reqDto = new ACPayReqDTO() ;
+//        ACPayReqFrontFrontDTO reqDto = new ACPayReqFrontFrontDTO() ;
 //        reqDto.setCreateDate(new Date());
 //        ChannelRemark channelRemark = new ChannelRemark() ;
 //        channelRemark.setMerchantNo("777290058123381");
@@ -70,14 +70,14 @@
 //        reqDto.setAmount(5l);
 //        logger.info("#####[银联代扣] 请求参数:" + reqDto);
 //        System.err.println();
-//        AgentCollectChannelFacade facade = ACChannelMappingFactory.getChannelBean("AC_UNIONPAY_CD_01") ;
-//        ACPayRepDTO repDto = facade.pay(reqDto) ;
+//        AgentCollectFrontFacade facade = ACChannelMappingFactory.getChannelBean("AC_UNIONPAY_CD_01") ;
+//        ACPayRepFrontDTO repDto = facade.pay(reqDto) ;
 //        logger.info("#####[银联代扣] 返回参数:" + repDto);
 //    }
 //
 //    @Test
 //    public void payQuery() throws Exception{
-//        ACQueryPayReqDTO reqDto = new ACQueryPayReqDTO() ;
+//        ACQueryPayReqFrontFrontDTO reqDto = new ACQueryPayReqFrontFrontDTO() ;
 //        ChannelRemark channelRemark = new ChannelRemark() ;
 //        channelRemark.setMerchantNo("777290058123381");
 //        channelRemark.setCerPath("/Users/pang/Desktop/works/cert/verify_sign_acp.cer");
@@ -90,8 +90,8 @@
 //        //201605281452366012488
 //
 //        logger.info("#####[银联代扣] 请求参数:" + reqDto);
-//        AgentCollectChannelFacade facade = ACChannelMappingFactory.getChannelBean("AC_UNIONPAY_CD_01") ;
-//        ACQueryPayRepDTO repDto = facade.payQuery(reqDto) ;
+//        AgentCollectFrontFacade facade = ACChannelMappingFactory.getChannelBean("AC_UNIONPAY_CD_01") ;
+//        ACQueryPayRepFrontDTO repDto = facade.payQuery(reqDto) ;
 //        logger.info("#####[银联代扣] 返回参数:" + repDto);
 //    }
 //
@@ -110,7 +110,7 @@
 //        reqDto.setChannelCreateDate(DateUtil.StringToDate("20160528181316" , "yyyyMMddHHmmss"));
 //        reqDto.setOriBankNo("201605281813166252808");
 //        logger.info("#####[银联代扣退货] 请求参数:" + reqDto);
-//        AgentCollectChannelFacade facade = ACChannelMappingFactory.getChannelBean("AC_UNIONPAY_CD_01") ;
+//        AgentCollectFrontFacade facade = ACChannelMappingFactory.getChannelBean("AC_UNIONPAY_CD_01") ;
 //        RefundRepDto repDto = facade.refund(reqDto) ;
 //        logger.info("#####[银联代扣退货] 返回参数:" + repDto);
 //    }
@@ -130,7 +130,7 @@
 //        reqDto.setChannelCreateDate(DateUtil.StringToDate("20160528181316" , "yyyyMMddHHmmss"));
 //        reqDto.setOriBankNo("201605281813166252808");
 //        logger.info("#####[银联消费取消] 请求参数:" + reqDto);
-//        AgentCollectChannelFacade facade = ACChannelMappingFactory.getChannelBean("AC_UNIONPAY_CD_01") ;
+//        AgentCollectFrontFacade facade = ACChannelMappingFactory.getChannelBean("AC_UNIONPAY_CD_01") ;
 //        CancelRepDto repDto = facade.cancel(reqDto) ;
 //        logger.info("#####[银联消费取消] 返回参数:" + repDto);
 //    }
@@ -139,7 +139,7 @@
 //    public void payCallback()throws Exception{
 //        PayCallbackReqDto reqDto = new PayCallbackReqDto() ;
 //        logger.info("#####[银联消费取消] 请求参数:" + reqDto);
-//        AgentCollectChannelFacade facade = ACChannelMappingFactory.getChannelBean("AC_UNIONPAY_CD_01") ;
+//        AgentCollectFrontFacade facade = ACChannelMappingFactory.getChannelBean("AC_UNIONPAY_CD_01") ;
 //        PayCallbackRepDto repDto = facade.payCallback(reqDto) ;
 //        logger.info("#####[银联消费取消] 返回参数:" + repDto);
 //    }

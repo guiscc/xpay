@@ -5,8 +5,8 @@ import com.xpay.channel.common.exception.ResolveMsgException;
 import com.xpay.channel.common.util.DateUtil;
 import com.xpay.channel.common.util.JsonUtil;
 import com.xpay.channel.front.channel.agentcollect.unionpay.util.UnionpayUtil;
-import com.xpay.channel.front.dto.agentcollect.RefundCallbackRepDTO;
-import com.xpay.channel.front.dto.agentcollect.RefundCallbackReqDTO;
+import com.xpay.channel.front.dto.agentcollect.RefundCallbackRepFrontFrontDTO;
+import com.xpay.channel.front.dto.agentcollect.RefundCallbackReqFrontFrontDTO;
 import com.xpay.channel.front.msg.impl.FreemarkChannelMsgHandlerImpl;
 import com.xpay.channel.front.utils.ChannelConfig;
 import com.xpay.common.enums.EnumRefundStatus;
@@ -26,7 +26,7 @@ import java.util.Map;
  */
 public class Unionpay_RefundCallbackMsgHandler
                                               extends
-                                              FreemarkChannelMsgHandlerImpl<RefundCallbackReqDTO, RefundCallbackRepDTO> {
+                                              FreemarkChannelMsgHandlerImpl<RefundCallbackReqFrontFrontDTO, RefundCallbackRepFrontFrontDTO> {
 
     @Override
     protected String getTemplatePath() {
@@ -37,15 +37,15 @@ public class Unionpay_RefundCallbackMsgHandler
                                            .getLogger(Unionpay_RefundCallbackMsgHandler.class);
 
     @Override
-    public byte[] builderMsg(RefundCallbackReqDTO t, ChannelConfig channelConfig)
+    public byte[] builderMsg(RefundCallbackReqFrontFrontDTO t, ChannelConfig channelConfig)
                                                                                  throws BuildMsgException {
         return "".getBytes();
     }
 
     @Override
-    public RefundCallbackRepDTO resolveMsg(RefundCallbackReqDTO reqDTO, byte[] rtnMsg,
-                                           ChannelConfig channelConfig) throws ResolveMsgException {
-        RefundCallbackRepDTO repDTO = new RefundCallbackRepDTO();
+    public RefundCallbackRepFrontFrontDTO resolveMsg(RefundCallbackReqFrontFrontDTO reqDTO, byte[] rtnMsg,
+                                                     ChannelConfig channelConfig) throws ResolveMsgException {
+        RefundCallbackRepFrontFrontDTO repDTO = new RefundCallbackRepFrontFrontDTO();
         try {
             logger.info("#####[银联全渠道代扣退款] 异步回调 处理开始.");
             if (rtnMsg == null || rtnMsg.length == 0) {

@@ -1,6 +1,6 @@
 package com.xpay.channel.front.tongxin.impl;
 
-import com.xpay.channel.front.dto.BaseReqDTO;
+import com.xpay.channel.front.dto.BaseReqFrontDTO;
 import com.xpay.channel.common.exception.CommuException;
 import com.xpay.common.enums.EnumRtnResult;
 import com.xpay.common.utils.HttpCfg;
@@ -21,16 +21,16 @@ import java.net.UnknownHostException;
  * https双向认证
  * Created by suxinxin on 16/2/18.
  */
-public class Https2ChannelHandler<REQ extends BaseReqDTO> extends AbsChannelTongXinHandler<BaseReqDTO> {
+public class Https2ChannelHandler<REQ extends BaseReqFrontDTO> extends AbsChannelTongXinHandler<BaseReqFrontDTO> {
     private static final Logger logger = LoggerFactory.getLogger(Https2ChannelHandler.class);
 
     @Override
-    public byte[] send(BaseReqDTO baseReqDTO, byte[] reqMsg, ChannelConfig channelConfig)
+    public byte[] send(BaseReqFrontDTO baseReqFrontDTO, byte[] reqMsg, ChannelConfig channelConfig)
                                                                                          throws CommuException {
         try {
             HttpReq httpReq = new HttpReq(); //创建http请求数据
             httpReq.setRequestBody(new String(reqMsg, channelConfig.getCharset()));
-            httpReq.setHeadMap(baseReqDTO.getHeadMap());
+            httpReq.setHeadMap(baseReqFrontDTO.getHeadMap());
 
             HttpCfg httpCfg = new HttpCfg();
             httpCfg.setCharset(channelConfig.getCharset());

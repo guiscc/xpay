@@ -4,8 +4,8 @@
  */
 package com.xpay.channel.biz.convert;
 
-import com.xpay.channel.common.dto.agentcollect.ACRepairRepDTO;
-import com.xpay.channel.common.dto.agentcollect.ACRepairReqDTO;
+import com.xpay.channel.common.dto.agentcollect.ACRepairRepChannelDTO;
+import com.xpay.channel.common.dto.agentcollect.ACRepairReqChannelDTO;
 import com.xpay.channel.common.model.PayOrderModel;
 import com.xpay.channel.common.vo.agentcollect.ACRepairRepVO;
 import com.xpay.channel.common.vo.agentcollect.ACRepairReqVO;
@@ -21,8 +21,8 @@ public class ACRepairConvert {
      * @param acRepairRepVO
      * @return
      */
-    public static ACRepairRepDTO getACRepairRepDTO(ACRepairRepDTO acRepairRepDTO,
-                                                   ACRepairRepVO acRepairRepVO) {
+    public static ACRepairRepChannelDTO getACRepairRepDTO(ACRepairRepChannelDTO acRepairRepDTO,
+                                                          ACRepairRepVO acRepairRepVO) {
         PayOrderModel payOrderModel = acRepairRepVO.getPayOrderModel();
         if (payOrderModel != null) {
             acRepairRepDTO.getPayOrderDTO().setPayOrderNo(payOrderModel.getPayOrderNo());
@@ -39,7 +39,7 @@ public class ACRepairConvert {
      * @return
      */
     public static ACRepairReqVO getACRepairReqVO(ACRepairReqVO acRepairReqVO,
-                                                 ACRepairReqDTO acRepairReqDTO) {
+                                                 ACRepairReqChannelDTO acRepairReqDTO) {
         acRepairReqVO.setPayOrderNo(acRepairReqDTO.getPayOrderNo());
         acRepairReqVO.setTradeOrderNo(acRepairReqDTO.getBankOrderNo());
         return acRepairReqVO;

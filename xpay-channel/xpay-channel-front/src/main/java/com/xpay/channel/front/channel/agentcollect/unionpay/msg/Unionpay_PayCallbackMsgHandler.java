@@ -5,8 +5,8 @@ import com.xpay.channel.common.exception.ResolveMsgException;
 import com.xpay.channel.common.util.DateUtil;
 import com.xpay.channel.common.util.JsonUtil;
 import com.xpay.channel.front.channel.agentcollect.unionpay.util.UnionpayUtil;
-import com.xpay.channel.front.dto.agentcollect.PayCallbackRepDTO;
-import com.xpay.channel.front.dto.agentcollect.PayCallbackReqDTO;
+import com.xpay.channel.front.dto.agentcollect.PayCallbackRepFrontFrontDTO;
+import com.xpay.channel.front.dto.agentcollect.PayCallbackReqFrontFrontDTO;
 import com.xpay.channel.front.msg.impl.FreemarkChannelMsgHandlerImpl;
 import com.xpay.channel.front.utils.ChannelConfig;
 import com.xpay.common.enums.EnumPayStatus;
@@ -26,7 +26,7 @@ import java.util.Map;
  */
 public class Unionpay_PayCallbackMsgHandler
                                            extends
-                                           FreemarkChannelMsgHandlerImpl<PayCallbackReqDTO, PayCallbackRepDTO> {
+                                           FreemarkChannelMsgHandlerImpl<PayCallbackReqFrontFrontDTO, PayCallbackRepFrontFrontDTO> {
 
     @Override
     protected String getTemplatePath() {
@@ -37,15 +37,15 @@ public class Unionpay_PayCallbackMsgHandler
                                            .getLogger(Unionpay_PayCallbackMsgHandler.class);
 
     @Override
-    public byte[] builderMsg(PayCallbackReqDTO t, ChannelConfig channelConfig)
+    public byte[] builderMsg(PayCallbackReqFrontFrontDTO t, ChannelConfig channelConfig)
                                                                               throws BuildMsgException {
         return "".getBytes();
     }
 
     @Override
-    public PayCallbackRepDTO resolveMsg(PayCallbackReqDTO reqDTO, byte[] rtnMsg,
-                                        ChannelConfig channelConfig) throws ResolveMsgException {
-        PayCallbackRepDTO repDTO = new PayCallbackRepDTO();
+    public PayCallbackRepFrontFrontDTO resolveMsg(PayCallbackReqFrontFrontDTO reqDTO, byte[] rtnMsg,
+                                                  ChannelConfig channelConfig) throws ResolveMsgException {
+        PayCallbackRepFrontFrontDTO repDTO = new PayCallbackRepFrontFrontDTO();
         try {
             logger.info("#####[银联全渠道代扣] 异步回调 处理开始.");
             String jsonMap = new String(rtnMsg, channelConfig.getCharset());

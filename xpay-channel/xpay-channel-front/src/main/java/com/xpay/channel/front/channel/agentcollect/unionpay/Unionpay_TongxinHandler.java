@@ -1,6 +1,6 @@
 package com.xpay.channel.front.channel.agentcollect.unionpay;
 
-import com.xpay.channel.front.dto.BaseReqDTO;
+import com.xpay.channel.front.dto.BaseReqFrontDTO;
 import com.xpay.channel.common.exception.CommuException;
 import com.xpay.channel.front.tongxin.impl.Https2ChannelHandler;
 import com.xpay.channel.front.utils.ChannelConfig;
@@ -14,15 +14,15 @@ import java.util.Map;
 /**
  * Created by suxinxin on 16/2/19.
  */
-public class Unionpay_TongxinHandler<REQ extends BaseReqDTO> extends Https2ChannelHandler<REQ> {
+public class Unionpay_TongxinHandler<REQ extends BaseReqFrontDTO> extends Https2ChannelHandler<REQ> {
 
     private static final Logger logger = LoggerFactory.getLogger(Unionpay_TongxinHandler.class);
 
     @Override
-    public byte[] send(BaseReqDTO baseReqDTO, byte[] reqMsg, ChannelConfig channelConfig)
+    public byte[] send(BaseReqFrontDTO baseReqFrontDTO, byte[] reqMsg, ChannelConfig channelConfig)
                                                                                          throws CommuException {
 
-        super.send(baseReqDTO, reqMsg, channelConfig);
+        super.send(baseReqFrontDTO, reqMsg, channelConfig);
         byte results[] = null;
         Map<String, String> data = new HashMap<String, String>();
         String str = null;

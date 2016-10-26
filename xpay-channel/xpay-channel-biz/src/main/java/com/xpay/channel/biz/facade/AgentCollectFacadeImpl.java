@@ -28,9 +28,9 @@ public class AgentCollectFacadeImpl implements AgentCollectFacade {
     private AgentCollectBiz agentCollectBiz;
 
     @Override
-    public ACPayRepDTO pay(ACPayReqDTO acPayReqDTO) {
+    public ACPayRepChannelDTO pay(ACPayReqChannelDTO acPayReqDTO) {
         ACPayReqVO acPayReqVO = new ACPayReqVO();
-        ACPayRepDTO acPayRepDTO = new ACPayRepDTO();
+        ACPayRepChannelDTO acPayRepDTO = new ACPayRepChannelDTO();
         try {
             acPayReqVO = ACPayConvert.getACPayReqVO(acPayReqVO, acPayReqDTO);
             ACPayRepVO acPayRepVO = agentCollectBiz.pay(acPayReqVO);
@@ -46,9 +46,9 @@ public class AgentCollectFacadeImpl implements AgentCollectFacade {
     }
 
     @Override
-    public ACQueryPayRepDTO queryPay(ACQueryPayReqDTO acQueryPayReqDTO) {
+    public ACQueryPayRepChannelDTO queryPay(ACQueryPayReqChannelDTO acQueryPayReqDTO) {
         ACQueryPayReqVO acQueryPayReqVO = new ACQueryPayReqVO();
-        ACQueryPayRepDTO acQueryPayRepDTO = new ACQueryPayRepDTO();
+        ACQueryPayRepChannelDTO acQueryPayRepDTO = new ACQueryPayRepChannelDTO();
         try {
             acQueryPayReqVO = ACQueryPayConvert.getACQueryPayReqVO(acQueryPayReqVO,
                 acQueryPayReqDTO);
@@ -66,9 +66,9 @@ public class AgentCollectFacadeImpl implements AgentCollectFacade {
     }
 
     @Override
-    public ACRepairRepDTO repair(ACRepairReqDTO acRepairReqDTO) {
+    public ACRepairRepChannelDTO repair(ACRepairReqChannelDTO acRepairReqDTO) {
         ACRepairReqVO acRepairReqVO = new ACRepairReqVO();
-        ACRepairRepDTO acRepairRepDTO = new ACRepairRepDTO();
+        ACRepairRepChannelDTO acRepairRepDTO = new ACRepairRepChannelDTO();
         try {
             acRepairReqVO = ACRepairConvert.getACRepairReqVO(acRepairReqVO, acRepairReqDTO);
             ACRepairRepVO acRepairRepVO = agentCollectBiz.repair(acRepairReqVO);

@@ -4,11 +4,11 @@
  */
 package com.xpay.channel.biz.convert;
 
+import com.xpay.channel.common.dto.customer.AuthRealNameRepChannelDTO;
+import com.xpay.channel.common.dto.customer.AuthRealNameReqChannelDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.xpay.channel.common.dto.customer.AuthRealNameRepDTO;
-import com.xpay.channel.common.dto.customer.AuthRealNameReqDTO;
 import com.xpay.channel.common.vo.customer.AuthRealNameRepVO;
 import com.xpay.channel.common.vo.customer.AuthRealNameReqVO;
 
@@ -24,7 +24,7 @@ public class AuthRealNameConvert {
      * @return
      */
     public static AuthRealNameReqVO getAuthRealNameReqVO(AuthRealNameReqVO authRealNameReqVO,
-                                                         AuthRealNameReqDTO authRealNameReqDTO) {
+                                                         AuthRealNameReqChannelDTO authRealNameReqDTO) {
         logger.info("请求模型:{}", authRealNameReqDTO.toString());
         logger.info("转换请求模型:{}", authRealNameReqVO.toString());
         return authRealNameReqVO;
@@ -34,8 +34,8 @@ public class AuthRealNameConvert {
      * @param authRealNameRepVO
      * @return
      */
-    public static AuthRealNameRepDTO getAuthRealNameRepVO(AuthRealNameRepDTO authRealNameRepDTO,
-                                                          AuthRealNameRepVO authRealNameRepVO) {
+    public static AuthRealNameRepChannelDTO getAuthRealNameRepVO(AuthRealNameRepChannelDTO authRealNameRepDTO,
+                                                                 AuthRealNameRepVO authRealNameRepVO) {
         logger.info("响应模型:{}", authRealNameRepVO.toString());
         logger.info("转换响应模型:{}", authRealNameRepDTO.toString());
         return authRealNameRepDTO;

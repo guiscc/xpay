@@ -6,8 +6,8 @@ import com.xpay.channel.common.util.DateUtil;
 import com.xpay.channel.common.util.JsonUtil;
 import com.xpay.channel.front.channel.agentcollect.unionpay.Unionpay_Config;
 import com.xpay.channel.front.channel.agentcollect.unionpay.util.UnionpayUtil;
-import com.xpay.channel.front.dto.agentcollect.RefundRepDTO;
-import com.xpay.channel.front.dto.agentcollect.RefundReqDTO;
+import com.xpay.channel.front.dto.agentcollect.RefundRepFrontFrontDTO;
+import com.xpay.channel.front.dto.agentcollect.RefundReqFrontFrontDTO;
 import com.xpay.channel.front.msg.impl.FreemarkChannelMsgHandlerImpl;
 import com.xpay.channel.front.utils.ChannelConfig;
 import com.xpay.common.enums.EnumRefundStatus;
@@ -28,7 +28,7 @@ import java.util.Map;
  * @Date 16/5/23 下午8:10
  */
 public class Unionpay_RefundMsgHandler extends
-                                      FreemarkChannelMsgHandlerImpl<RefundReqDTO, RefundRepDTO> {
+                                      FreemarkChannelMsgHandlerImpl<RefundReqFrontFrontDTO, RefundRepFrontFrontDTO> {
     @Override
     protected String getTemplatePath() {
         return null;
@@ -37,7 +37,7 @@ public class Unionpay_RefundMsgHandler extends
     private static final Logger logger = LoggerFactory.getLogger(Unionpay_RefundMsgHandler.class);
 
     @Override
-    public RefundReqDTO beforBuildMsg(RefundReqDTO req, ChannelConfig channelConfig)
+    public RefundReqFrontFrontDTO beforBuildMsg(RefundReqFrontFrontDTO req, ChannelConfig channelConfig)
                                                                                     throws BuildMsgException {
         try {
             req = super.beforBuildMsg(req, channelConfig);
@@ -81,7 +81,7 @@ public class Unionpay_RefundMsgHandler extends
     }
 
     @Override
-    public byte[] builderMsg(RefundReqDTO req, ChannelConfig channelConfig)
+    public byte[] builderMsg(RefundReqFrontFrontDTO req, ChannelConfig channelConfig)
                                                                            throws BuildMsgException {
         String charset = channelConfig.getCharset();
         Map<String, String> data = (Map<String, String>) super.get("map");
@@ -98,9 +98,9 @@ public class Unionpay_RefundMsgHandler extends
     }
 
     @Override
-    public RefundRepDTO resolveMsg(RefundReqDTO req, byte[] rtnMsg, ChannelConfig channelConfig)
+    public RefundRepFrontFrontDTO resolveMsg(RefundReqFrontFrontDTO req, byte[] rtnMsg, ChannelConfig channelConfig)
                                                                                                 throws ResolveMsgException {
-        RefundRepDTO repDTO = new RefundRepDTO();
+        RefundRepFrontFrontDTO repDTO = new RefundRepFrontFrontDTO();
         repDTO.setBankOrderNo(req.getBankOrderNo());
         repDTO.setRefundAmt(repDTO.getRefundAmt());
         if (rtnMsg == null || rtnMsg.length == 0) {

@@ -45,15 +45,21 @@
     </bean>
 
     <!--银联处理器-->
-    <bean id="unionACChannelFacade" class="com.xpay.channel.front.channel.agentcollect.unionpay.Unionpay_ChannelFacadeImplImpl">
+    <bean id="unionACExecutor" class="com.xpay.channel.front.channel.agentcollect.unionpay.Unionpay_FrontExecutor">
+
         <!--注入通信-->
-        <property name="channelTongXinHandler" ref="unionpayTonxinHandler"/>
+        <property name="channelTongXinHandlerMap">
+            <map>
+                <entry key-ref="SMS" value-ref="unionpayTonxinHandler"/>
+            </map>
+        </property>
+
 
         <!--注入配置-->
         <property name="channelConfig" ref="unionConfig"/>
 
         <!--报文处理器-->
-        <property name="channelMsgHandler">
+        <property name="channelMsgHandlerMap">
             <map>
                 <entry key-ref="AUTH">
                     <bean class="com.xpay.channel.front.channel.agentcollect.unionpay.msg.Unionpay_AuthMsgHandler"/>
@@ -84,7 +90,7 @@
         </property>
 
         <!--校验器-->
-        <property name="channelValidateHandler">
+        <property name="channelValidateHandlerMap">
             <map>
                 <entry key-ref="AUTH">
                     <bean class="com.xpay.channel.front.channel.agentcollect.unionpay.vld.Unionpay_AuthVld"/>

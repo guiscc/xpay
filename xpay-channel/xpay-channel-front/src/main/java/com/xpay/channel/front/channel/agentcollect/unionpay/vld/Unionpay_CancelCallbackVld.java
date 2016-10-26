@@ -1,7 +1,7 @@
 package com.xpay.channel.front.channel.agentcollect.unionpay.vld;
 
 import com.xpay.channel.common.exception.VldException;
-import com.xpay.channel.front.dto.agentcollect.CancelCallbackReqDTO;
+import com.xpay.channel.front.dto.agentcollect.CancelCallbackReqFrontFrontDTO;
 import com.xpay.channel.front.vld.AbsChannelValidateHandlerImpl;
 
 /**
@@ -9,10 +9,10 @@ import com.xpay.channel.front.vld.AbsChannelValidateHandlerImpl;
  * @Author pangyiyang
  * @Date 16/5/21 下午2:05
  */
-public class Unionpay_CancelCallbackVld extends AbsChannelValidateHandlerImpl<CancelCallbackReqDTO> {
+public class Unionpay_CancelCallbackVld extends AbsChannelValidateHandlerImpl<CancelCallbackReqFrontFrontDTO> {
 
     @Override
-    public void validate(CancelCallbackReqDTO param) throws VldException {
+    public void validate(CancelCallbackReqFrontFrontDTO param) throws VldException {
         super.validate(param);
     }
 }

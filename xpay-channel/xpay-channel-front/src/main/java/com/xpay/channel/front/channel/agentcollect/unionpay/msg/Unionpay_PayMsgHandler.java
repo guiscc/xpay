@@ -1,7 +1,7 @@
 package com.xpay.channel.front.channel.agentcollect.unionpay.msg;
 
-import com.xpay.channel.front.dto.agentcollect.ACPayRepDTO;
-import com.xpay.channel.front.dto.agentcollect.ACPayReqDTO;
+import com.xpay.channel.front.dto.agentcollect.ACPayRepFrontFrontDTO;
+import com.xpay.channel.front.dto.agentcollect.ACPayReqFrontFrontDTO;
 import com.xpay.channel.common.exception.BuildMsgException;
 import com.xpay.channel.common.exception.ResolveMsgException;
 import com.xpay.channel.common.util.DateUtil;
@@ -27,7 +27,7 @@ import java.util.Map;
  * @Author pangyiyang
  * @Date 16/5/21 下午1:39
  */
-public class Unionpay_PayMsgHandler extends FreemarkChannelMsgHandlerImpl<ACPayReqDTO, ACPayRepDTO> {
+public class Unionpay_PayMsgHandler extends FreemarkChannelMsgHandlerImpl<ACPayReqFrontFrontDTO, ACPayRepFrontFrontDTO> {
     @Override
     protected String getTemplatePath() {
         return null;
@@ -36,7 +36,7 @@ public class Unionpay_PayMsgHandler extends FreemarkChannelMsgHandlerImpl<ACPayR
     private static final Logger logger = LoggerFactory.getLogger(Unionpay_PayMsgHandler.class);
 
     @Override
-    public ACPayReqDTO beforBuildMsg(ACPayReqDTO req, ChannelConfig channelConfig)
+    public ACPayReqFrontFrontDTO beforBuildMsg(ACPayReqFrontFrontDTO req, ChannelConfig channelConfig)
                                                                                   throws BuildMsgException {
         try {
             req = super.beforBuildMsg(req, channelConfig);
@@ -96,7 +96,7 @@ public class Unionpay_PayMsgHandler extends FreemarkChannelMsgHandlerImpl<ACPayR
     }
 
     @Override
-    public byte[] builderMsg(ACPayReqDTO req, ChannelConfig channelConfig) throws BuildMsgException {
+    public byte[] builderMsg(ACPayReqFrontFrontDTO req, ChannelConfig channelConfig) throws BuildMsgException {
         String charset = channelConfig.getCharset();
         Map<String, String> data = (Map<String, String>) super.get("map");
         String mapJson = JsonUtil.mapToStr(data);
@@ -112,9 +112,9 @@ public class Unionpay_PayMsgHandler extends FreemarkChannelMsgHandlerImpl<ACPayR
     }
 
     @Override
-    public ACPayRepDTO resolveMsg(ACPayReqDTO req, byte[] rtnMsg, ChannelConfig channelConfig)
+    public ACPayRepFrontFrontDTO resolveMsg(ACPayReqFrontFrontDTO req, byte[] rtnMsg, ChannelConfig channelConfig)
                                                                                               throws ResolveMsgException {
-        ACPayRepDTO repDTO = new ACPayRepDTO();
+        ACPayRepFrontFrontDTO repDTO = new ACPayRepFrontFrontDTO();
         repDTO.setBankOrderNo(req.getBankOrderNo());
         repDTO.setPayAmt(repDTO.getPayAmt());
         repDTO.setPayStatus(EnumPayStatus.UNKNOW);

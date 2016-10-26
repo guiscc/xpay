@@ -6,11 +6,11 @@ package com.xpay.channel.biz.convert;
 
 import java.util.Date;
 
+import com.xpay.channel.common.dto.customer.SignConfirmReqChannelDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.xpay.channel.common.dto.customer.SignConfirmRepDTO;
-import com.xpay.channel.common.dto.customer.SignConfirmReqDTO;
+import com.xpay.channel.common.dto.customer.SignConfirmRepChannelDTO;
 import com.xpay.channel.common.vo.customer.SignConfirmRepVO;
 import com.xpay.channel.common.vo.customer.SignConfirmReqVO;
 
@@ -28,7 +28,7 @@ public class SignConfirmConvert {
      * @return
      */
     public static SignConfirmReqVO getConfirmSignReqVO(SignConfirmReqVO signConfirmReqVO,
-                                                       SignConfirmReqDTO signConfirmReqDTO) {
+                                                       SignConfirmReqChannelDTO signConfirmReqDTO) {
         logger.info("请求模型:{}", signConfirmReqDTO.toString());
         signConfirmReqVO.setSignNo(signConfirmReqDTO.getSignNo());
         logger.info("转换请求模型:{}", signConfirmReqVO.toString());
@@ -40,8 +40,8 @@ public class SignConfirmConvert {
      * @param signConfirmRepVO
      * @return
      */
-    public static SignConfirmRepDTO getConfirmSignRepDTO(SignConfirmRepDTO signConfirmRepDTO,
-                                                         SignConfirmRepVO signConfirmRepVO) {
+    public static SignConfirmRepChannelDTO getConfirmSignRepDTO(SignConfirmRepChannelDTO signConfirmRepDTO,
+                                                                SignConfirmRepVO signConfirmRepVO) {
         logger.info("响应模型:{}", signConfirmRepVO.toString());
         signConfirmRepDTO.setSignNo(signConfirmRepVO.getSignNo());
         signConfirmRepDTO.setServerDate(new Date());

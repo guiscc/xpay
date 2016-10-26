@@ -4,14 +4,11 @@
  */
 package com.xpay.channel.front.test.sms;
 
-import com.xpay.channel.common.exception.BuildMsgException;
-import com.xpay.channel.common.exception.CommuException;
-import com.xpay.channel.common.exception.ResolveMsgException;
-import com.xpay.channel.common.exception.VldException;
-import com.xpay.channel.front.dto.sms.SmsRep;
-import com.xpay.channel.front.dto.sms.SmsReq;
-import com.xpay.channel.front.facade.SmsChannelFacade;
-import com.xpay.channel.front.factory.SmsChannelMappingFactory;
+import com.xpay.channel.common.enums.EnumExtMapKey;
+import com.xpay.channel.common.exception.*;
+import com.xpay.channel.front.dto.sms.SmsRepFrontDTO;
+import com.xpay.channel.front.dto.sms.SmsReqFrontDTO;
+import com.xpay.channel.front.facade.SmsFrontFacade;
 import com.xpay.channel.front.test.BaseTest;
 import org.junit.Test;
 
@@ -25,18 +22,20 @@ import java.util.Date;
 public class TestSmsTaobao extends BaseTest {
 
     @Resource
-    private SmsChannelMappingFactory smsChannelMappingFactory;
+    private SmsFrontFacade smsFrontFacade;
 
     @Test
-    public void sendSms() throws VldException, BuildMsgException, CommuException,
-                         ResolveMsgException {
-        SmsChannelFacade smsChannelFacade = smsChannelMappingFactory.getChannelBean("SMS_TAOBAO");
-        SmsReq smsReq = new SmsReq();
-        smsReq.setTitle("注册验证");
-        smsReq.setContent("内容");
-        smsReq.setMobileNo("18317888059");
-        smsReq.setReqDateTime(new Date());
-        SmsRep smsRep = smsChannelFacade.sendSMS(smsReq);
-        System.out.println(smsRep);
+    public void sendSms() throws FrontException {
+        SmsReqFrontDTO smsReqDTO = new SmsReqFrontDTO();
+        smsReqDTO.setUserId("123456");
+        smsReqDTO.setTitle("注册验证aa");
+        smsReqDTO.setContent("内容");
+        smsReqDTO.setMobileNo("18317888059");
+        smsReqDTO.setReqDateTime(new Date());
+        smsReqDTO.getExtMap().put(EnumExtMapKey.SMSCODE, "aaa");
+        smsReqDTO.getExtMap().put(EnumExtMapKey.SMS_PRODUCT_NAME, "bbb");
+        smsReqDTO.setChannelCode("SMS_TAOBAO");
+        SmsRepFrontDTO smsRepDTO = smsFrontFacade.sendSMS(smsReqDTO);
+        System.out.println(smsRepDTO);
     }
 }

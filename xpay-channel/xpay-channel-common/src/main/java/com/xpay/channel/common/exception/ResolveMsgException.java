@@ -5,7 +5,7 @@ import com.xpay.common.enums.EnumRtnResult;
 /**
  * Created by suxinxin on 16/2/5.
  */
-public class ResolveMsgException extends XpayChannelException {
+public class ResolveMsgException extends FrontException {
     private static final long serialVersionUID = -3140443782902357578L;
 
     public ResolveMsgException(EnumRtnResult rtnResult) {

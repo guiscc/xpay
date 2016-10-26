@@ -8,6 +8,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * Created by suxinxin on 16/2/5.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath*:spring/spring-channel.xml"})
+@ContextConfiguration(locations = {"classpath*:spring/spring-channel-front.xml"})
 public class BaseTest {
 }

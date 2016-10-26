@@ -3,13 +3,13 @@ package com.xpay.channel.front.msg.impl;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.xpay.channel.front.dto.BaseRepFrontDTO;
 import com.xpay.channel.front.msg.ChannelMsgHandler;
 import com.xpay.common.enums.EnumRtnResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.xpay.channel.front.dto.BaseRepDTO;
-import com.xpay.channel.front.dto.BaseReqDTO;
+import com.xpay.channel.front.dto.BaseReqFrontDTO;
 import com.xpay.channel.common.exception.BuildMsgException;
 import com.xpay.channel.common.exception.ResolveMsgException;
 import com.xpay.channel.front.utils.ChannelConfig;
@@ -19,7 +19,7 @@ import com.xpay.channel.front.utils.FreeMarkerUtil;
  * freemarker拼装报文，平台主要以这种方式拼装
  * Created by suxinxin on 14/12/25.
  */
-public abstract class FreemarkChannelMsgHandlerImpl<REQ extends BaseReqDTO, REP extends BaseRepDTO>
+public abstract class FreemarkChannelMsgHandlerImpl<REQ extends BaseReqFrontDTO, REP extends BaseRepFrontDTO>
         implements ChannelMsgHandler<REQ, REP> {
     private static final Logger logger = LoggerFactory.getLogger(FreemarkChannelMsgHandlerImpl.class);
 

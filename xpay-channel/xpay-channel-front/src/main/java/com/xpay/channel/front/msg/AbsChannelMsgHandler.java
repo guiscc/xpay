@@ -1,7 +1,7 @@
 package com.xpay.channel.front.msg;
 
-import com.xpay.channel.front.dto.BaseRepDTO;
-import com.xpay.channel.front.dto.BaseReqDTO;
+import com.xpay.channel.front.dto.BaseRepFrontDTO;
+import com.xpay.channel.front.dto.BaseReqFrontDTO;
 import com.xpay.channel.common.exception.BuildMsgException;
 import com.xpay.channel.common.exception.ResolveMsgException;
 import com.xpay.channel.front.utils.ChannelConfig;
@@ -9,39 +9,40 @@ import com.xpay.channel.front.utils.ChannelConfig;
 /**
  * Created by suxinxin on 16/2/17.
  */
-public abstract class AbsChannelMsgHandler<REQ extends BaseReqDTO> implements ChannelMsgHandler {
+public abstract class AbsChannelMsgHandler<REQ extends BaseReqFrontDTO, REP extends BaseRepFrontDTO>
+                                                                                           implements
+                                                                                           ChannelMsgHandler<REQ, REP> {
     @Override
-    public byte[] builderMsg(BaseReqDTO t, ChannelConfig channelConfig) throws BuildMsgException {
+    public byte[] builderMsg(REQ t, ChannelConfig channelConfig) throws BuildMsgException {
         return new byte[0];
     }
 
     @Override
-    public BaseRepDTO resolveMsg(BaseReqDTO baseReqDTO, byte[] rtnMsg, ChannelConfig channelConfig)
-                                                                                                   throws ResolveMsgException {
+    public REP resolveMsg(REQ baseReqDTO, byte[] rtnMsg, ChannelConfig channelConfig)
+                                                                                     throws ResolveMsgException {
         return null;
     }
 
     @Override
-    public BaseReqDTO beforBuildMsg(BaseReqDTO baseReqDTO, ChannelConfig channelConfig)
-                                                                                       throws BuildMsgException {
+    public REQ beforBuildMsg(REQ baseReqDTO, ChannelConfig channelConfig) throws BuildMsgException {
         return baseReqDTO;
     }
 
     @Override
-    public byte[] afterBuildMsg(BaseReqDTO baseReqDTO, byte[] reqMsg, ChannelConfig channelConfig)
-                                                                                                  throws BuildMsgException {
-        return new byte[0];
+    public byte[] afterBuildMsg(REQ baseReqDTO, byte[] reqMsg, ChannelConfig channelConfig)
+                                                                                           throws BuildMsgException {
+        return reqMsg;
     }
 
     @Override
-    public byte[] beforResolveMsg(BaseReqDTO baseReqDTO, byte[] repMsg, ChannelConfig channelConfig)
-                                                                                                    throws ResolveMsgException {
-        return new byte[0];
+    public byte[] beforResolveMsg(REQ baseReqDTO, byte[] repMsg, ChannelConfig channelConfig)
+                                                                                             throws ResolveMsgException {
+        return repMsg;
     }
 
     @Override
-    public BaseRepDTO afterResolveMsg(BaseReqDTO baseReqDTO, BaseRepDTO baseRepDTO,
-                                      ChannelConfig channelConfig) throws ResolveMsgException {
+    public REP afterResolveMsg(REQ baseReqDTO, REP baseRepDTO, ChannelConfig channelConfig)
+                                                                                           throws ResolveMsgException {
         return baseRepDTO;
     }
 }

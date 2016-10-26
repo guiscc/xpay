@@ -4,11 +4,11 @@
        xsi:schemaLocation="
 	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"
        default-autowire="byName">
-
+    <!--通信-->
     <bean id="taobaoTongxinHandler" class="com.xpay.channel.front.channel.sms.taobao.TaoBao_TongxinHandler"/>
 
-    <bean id="taobaoSmsChannelFacade" class="com.xpay.channel.front.channel.sms.taobao.TaoBao_SmsChannelFacadeImpl">
-        <property name="channelTongXinHandler" ref="taobaoTongxinHandler"/>
+    <!--sms执行器-->
+    <bean id="taobaoSmsChanneExecuter" class="com.xpay.channel.front.channel.sms.taobao.TaoBao_FrontExecutor">
         <property name="channelConfig">
             <bean class="com.xpay.channel.front.channel.sms.taobao.TaoBao_Config" parent="channelConfig">
                 <property name="appKey" value="${sms_taobao_appKey}"/>
@@ -19,7 +19,13 @@
             </bean>
         </property>
 
-        <property name="channelMsgHandler">
+        <property name="channelTongXinHandlerMap">
+            <map>
+                <entry key-ref="SMS" value-ref="taobaoTongxinHandler"/>
+            </map>
+        </property>
+
+        <property name="channelMsgHandlerMap">
             <map>
                 <entry key-ref="SMS">
                     <bean class="com.xpay.channel.front.channel.sms.taobao.msg.TaoBao_SmsMsgHandler"/>
@@ -27,7 +33,7 @@
             </map>
         </property>
 
-        <property name="channelValidateHandler">
+        <property name="channelValidateHandlerMap">
             <map>
                 <entry key-ref="SMS">
                     <bean class="com.xpay.channel.front.channel.sms.taobao.vld.TaoBao_SmsVld"/>

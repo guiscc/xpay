@@ -7,8 +7,8 @@ package com.xpay.channel.biz.convert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.xpay.channel.common.dto.customer.SignBreakRepDTO;
-import com.xpay.channel.common.dto.customer.SignBreakReqDTO;
+import com.xpay.channel.common.dto.customer.SignBreakRepChannelDTO;
+import com.xpay.channel.common.dto.customer.SignBreakReqChannelDTO;
 import com.xpay.channel.common.vo.customer.SignBreakRepVO;
 import com.xpay.channel.common.vo.customer.SignBreakReqVO;
 
@@ -21,15 +21,15 @@ public class SignBreakConvert {
     private static final Logger logger = LoggerFactory.getLogger(SignBreakConvert.class);
 
     public static SignBreakReqVO getSignBreakReqVO(SignBreakReqVO signBreakReqVO,
-                                                   SignBreakReqDTO signBreakReqDTO) {
+                                                   SignBreakReqChannelDTO signBreakReqDTO) {
         logger.info("请求模型:{}", signBreakReqDTO);
         signBreakReqVO.setSignNo(signBreakReqDTO.getSignNo());
         logger.info("转换请求模型:{}", signBreakReqVO);
         return signBreakReqVO;
     }
 
-    public static SignBreakRepDTO getSignBreakRepDTO(SignBreakRepDTO signBreakRepDTO,
-                                                     SignBreakRepVO signBreakRepVO) {
+    public static SignBreakRepChannelDTO getSignBreakRepDTO(SignBreakRepChannelDTO signBreakRepDTO,
+                                                            SignBreakRepVO signBreakRepVO) {
         logger.info("响应模型:{}", signBreakRepVO.toString());
         signBreakRepDTO.setSignNo(signBreakRepVO.getSignNo());
         signBreakRepDTO.setSignStatus(signBreakRepVO.getSignStatus());

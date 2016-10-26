@@ -1,6 +1,6 @@
 package com.xpay.channel.front.tongxin;
 
-import com.xpay.channel.front.dto.BaseReqDTO;
+import com.xpay.channel.front.dto.BaseReqFrontDTO;
 import com.xpay.channel.common.exception.CommuException;
 import com.xpay.channel.front.utils.ChannelConfig;
 
@@ -8,7 +8,7 @@ import com.xpay.channel.front.utils.ChannelConfig;
  * 平台通信组件抽象接口
  * Created by suxinxin on 14/12/25.
  */
-public interface ChannelTongXinHandler<REQ extends BaseReqDTO> {
+public interface ChannelTongXinHandler<REQ extends BaseReqFrontDTO> {
 
     /**
      * 报文发送配置
