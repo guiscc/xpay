@@ -5,6 +5,10 @@
 package com.xpay.channel.common.dto.sms;
 
 import com.xpay.channel.common.dto.BaseReqChannelDTO;
+import com.xpay.channel.common.enums.EnumSMSMapKey;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author qinshou
@@ -22,6 +26,25 @@ public class SmsReqChannelDTO extends BaseReqChannelDTO {
 
     private String content;
 
+    private Map<EnumSMSMapKey, String> smsExtMap = new HashMap<>();
+
+    /**
+     * Getter method for property smsExtMap.
+     *
+     * @return property value of smsExtMap
+     **/
+    public Map<EnumSMSMapKey, String> getSmsExtMap() {
+        return smsExtMap;
+    }
+
+    /**
+     * Setter method for property smsExtMap.
+     *
+     * @param smsExtMap value to be assigned to property smsExtMap
+     **/
+    public void setSmsExtMap(Map<EnumSMSMapKey, String> smsExtMap) {
+        this.smsExtMap = smsExtMap;
+    }
 
     /**
      * Getter method for property mobileNo.

@@ -20,7 +20,7 @@ public class SmsConvert {
         smsReqVO.setMobileNo(smsReqDTO.getMobileNo());
         smsReqVO.setContent(smsReqDTO.getContent());
         smsReqVO.setTitle(smsReqDTO.getTitle());
-        smsReqVO.setExtMap(smsReqDTO.getExtMap());
+        smsReqVO.setSmsExtMap(smsReqDTO.getSmsExtMap());
         return smsReqVO;
     }
 

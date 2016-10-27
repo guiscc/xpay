@@ -4,7 +4,7 @@
  */
 package com.xpay.channel.front.test.sms;
 
-import com.xpay.channel.common.enums.EnumExtMapKey;
+import com.xpay.channel.common.enums.EnumSMSMapKey;
 import com.xpay.channel.common.exception.*;
 import com.xpay.channel.front.dto.sms.SmsRepFrontDTO;
 import com.xpay.channel.front.dto.sms.SmsReqFrontDTO;
@@ -32,8 +32,8 @@ public class TestSmsTaobao extends BaseTest {
         smsReqDTO.setContent("内容");
         smsReqDTO.setMobileNo("18317888059");
         smsReqDTO.setReqDateTime(new Date());
-        smsReqDTO.getExtMap().put(EnumExtMapKey.SMSCODE, "aaa");
-        smsReqDTO.getExtMap().put(EnumExtMapKey.SMS_PRODUCT_NAME, "bbb");
+        smsReqDTO.getSmsExtMap().put(EnumSMSMapKey.SMSCODE, "aaa");
+        smsReqDTO.getSmsExtMap().put(EnumSMSMapKey.SMS_PRODUCT_NAME, "bbb");
         smsReqDTO.setChannelCode("SMS_TAOBAO");
         SmsRepFrontDTO smsRepDTO = smsFrontFacade.sendSMS(smsReqDTO);
         System.out.println(smsRepDTO);

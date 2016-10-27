@@ -4,7 +4,7 @@
  */
 package com.xpay.channel.front.dto;
 
-import com.xpay.channel.common.enums.EnumExtMapKey;
+import com.xpay.channel.common.enums.EnumSMSMapKey;
 import com.xpay.common.enums.EnumChannelType;
 
 import java.util.Date;
@@ -21,11 +21,11 @@ public class BaseReqFrontDTO {
 
     private Date                reqDateTime;
 
-    private Map<EnumExtMapKey, String> extMap =new HashMap<EnumExtMapKey,String>();
+    private Map<String, String> extMap = new HashMap<String, String>();
 
-    private EnumChannelType channelType;
+    private EnumChannelType     channelType;
 
-    private String channelCode;
+    private String              channelCode;
 
     /**
      * Getter method for property channelCode.
@@ -104,7 +104,7 @@ public class BaseReqFrontDTO {
      *
      * @return property value of extMap
      **/
-    public Map<EnumExtMapKey, String> getExtMap() {
+    public Map<String, String> getExtMap() {
         return extMap;
     }
 
@@ -113,7 +113,7 @@ public class BaseReqFrontDTO {
      *
      * @param extMap value to be assigned to property extMap
      **/
-    public void setExtMap(Map<EnumExtMapKey, String> extMap) {
+    public void setExtMap(Map<String, String> extMap) {
         this.extMap = extMap;
     }
 }

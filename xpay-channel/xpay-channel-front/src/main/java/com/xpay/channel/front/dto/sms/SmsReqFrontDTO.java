@@ -4,9 +4,13 @@
  */
 package com.xpay.channel.front.dto.sms;
 
+import com.xpay.channel.common.enums.EnumSMSMapKey;
 import com.xpay.channel.front.dto.BaseReqFrontDTO;
 import com.xpay.common.enums.EnumChannelType;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author qinshou
@@ -34,8 +38,28 @@ public class SmsReqFrontDTO extends BaseReqFrontDTO {
      */
     private String userId;
 
+    private Map<EnumSMSMapKey, String> smsExtMap =new HashMap<EnumSMSMapKey,String>();
+
     {
         super.setChannelType(EnumChannelType.SMS);
+    }
+
+    /**
+     * Getter method for property smsExtMap.
+     *
+     * @return property value of smsExtMap
+     **/
+    public Map<EnumSMSMapKey, String> getSmsExtMap() {
+        return smsExtMap;
+    }
+
+    /**
+     * Setter method for property smsExtMap.
+     *
+     * @param smsExtMap value to be assigned to property smsExtMap
+     **/
+    public void setSmsExtMap(Map<EnumSMSMapKey, String> smsExtMap) {
+        this.smsExtMap = smsExtMap;
     }
 
     /**

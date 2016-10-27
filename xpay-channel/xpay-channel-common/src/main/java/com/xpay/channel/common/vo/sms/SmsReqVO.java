@@ -4,7 +4,7 @@
  */
 package com.xpay.channel.common.vo.sms;
 
-import com.xpay.channel.common.enums.EnumExtMapKey;
+import com.xpay.channel.common.enums.EnumSMSMapKey;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -25,24 +25,24 @@ public class SmsReqVO {
 
     private String content;
 
-    private Map<EnumExtMapKey,String> extMap = new HashMap<>();
+    private Map<EnumSMSMapKey,String> smsExtMap = new HashMap<>();
 
     /**
-     * Getter method for property extMap.
+     * Getter method for property smsExtMap.
      *
-     * @return property value of extMap
+     * @return property value of smsExtMap
      **/
-    public Map<EnumExtMapKey, String> getExtMap() {
-        return extMap;
+    public Map<EnumSMSMapKey, String> getSmsExtMap() {
+        return smsExtMap;
     }
 
     /**
-     * Setter method for property extMap.
+     * Setter method for property smsExtMap.
      *
-     * @param extMap value to be assigned to property extMap
+     * @param smsExtMap value to be assigned to property smsExtMap
      **/
-    public void setExtMap(Map<EnumExtMapKey, String> extMap) {
-        this.extMap = extMap;
+    public void setSmsExtMap(Map<EnumSMSMapKey, String> smsExtMap) {
+        this.smsExtMap = smsExtMap;
     }
 
     /**

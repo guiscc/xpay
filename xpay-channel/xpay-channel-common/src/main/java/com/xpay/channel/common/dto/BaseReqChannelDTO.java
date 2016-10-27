@@ -1,6 +1,5 @@
 package com.xpay.channel.common.dto;
 
-import com.xpay.channel.common.enums.EnumExtMapKey;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.util.Date;
@@ -12,7 +11,7 @@ import java.util.Map;
  */
 public class BaseReqChannelDTO {
 
-    private Map<EnumExtMapKey, String> extMap = new HashMap<>();
+    private Map<String, String> extMap = new HashMap<>();
 
     private Date                       reqDateTime;
 
@@ -21,7 +20,7 @@ public class BaseReqChannelDTO {
      *
      * @return property value of extMap
      **/
-    public Map<EnumExtMapKey, String> getExtMap() {
+    public Map<String, String> getExtMap() {
         return extMap;
     }
 
@@ -30,7 +29,7 @@ public class BaseReqChannelDTO {
      *
      * @param extMap value to be assigned to property extMap
      **/
-    public void setExtMap(Map<EnumExtMapKey, String> extMap) {
+    public void setExtMap(Map<String, String> extMap) {
         this.extMap = extMap;
     }
 

@@ -5,7 +5,7 @@
 package com.xpay.channel.front.channel.sms.taobao.msg;
 
 import com.taobao.api.response.AlibabaAliqinFcSmsNumSendResponse;
-import com.xpay.channel.common.enums.EnumExtMapKey;
+import com.xpay.channel.common.enums.EnumSMSMapKey;
 import com.xpay.channel.common.exception.BuildMsgException;
 import com.xpay.channel.common.exception.ResolveMsgException;
 import com.xpay.channel.front.dto.sms.SmsRepFrontDTO;
@@ -28,9 +28,9 @@ import java.util.Map;
 public class TaoBao_SmsMsgHandler extends AbsChannelMsgHandler<SmsReqFrontDTO, SmsRepFrontDTO> {
     @Override
     public byte[] builderMsg(SmsReqFrontDTO smsReqDTO, ChannelConfig channelConfig) throws BuildMsgException {
-        Map<EnumExtMapKey, String> extMap = smsReqDTO.getExtMap();
-        String context = "{\"code\":\"" + extMap.get(EnumExtMapKey.SMSCODE) + "\",\"product\":\""
-                         + extMap.get(EnumExtMapKey.SMS_PRODUCT_NAME) + "\"}";
+        Map<EnumSMSMapKey, String> extMap = smsReqDTO.getSmsExtMap();
+        String context = "{\"code\":\"" + extMap.get(EnumSMSMapKey.SMSCODE) + "\",\"time\":\""
+                         + extMap.get(EnumSMSMapKey.TIME) + "\"}";
         try {
             byte[] bytes = context.getBytes(channelConfig.getCharset());
             return bytes;

@@ -5,8 +5,8 @@
        xsi:schemaLocation="
 	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd"
-       default-autowire="byName">
-    <context:property-placeholder location="classpath:config/**/*.properties" ignore-unresolvable="true"/>
+       default-autowire="byType">
+    <context:property-placeholder location="classpath*:config/**/*.properties" ignore-unresolvable="true"/>
     <context:annotation-config/>
 
     <!--通信Handler-->
@@ -61,7 +61,7 @@
         </property>
     </bean>
 
-    <bean id="smsSendChannelFacade" class="com.xpay.channel.front.facade.impl.SmsFrontFacadeImpl"/>
+    <bean id="smsSendFrontFacade" class="com.xpay.channel.front.facade.impl.SmsFrontFacadeImpl"/>
     <bean id="agentCollectFrontFacade" class="com.xpay.channel.front.facade.impl.AgentCollectFrontFacadeImpl"/>
 
     <import resource="agentcollect/spring-agentcollect-unionpay.xml"/>
