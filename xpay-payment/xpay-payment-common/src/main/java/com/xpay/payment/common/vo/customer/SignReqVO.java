@@ -104,6 +104,29 @@ public class SignReqVO {
     private Date breakSignDT;
 
     /**
+     * 验证码
+     */
+    private String verifyCode;
+
+    /**
+     * Getter method for property verifyCode.
+     *
+     * @return property value of verifyCode
+     **/
+    public String getVerifyCode() {
+        return verifyCode;
+    }
+
+    /**
+     * Setter method for property verifyCode.
+     *
+     * @param verifyCode value to be assigned to property verifyCode
+     **/
+    public void setVerifyCode(String verifyCode) {
+        this.verifyCode = verifyCode;
+    }
+
+    /**
      * Getter method for property signNo.
      *
      * @return property value of signNo

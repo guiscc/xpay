@@ -4,6 +4,7 @@
  */
 package com.xpay.payment.biz.impl;
 
+import com.xpay.channel.common.exception.XpayChannelException;
 import com.xpay.common.enums.EnumRtnResult;
 import com.xpay.common.enums.EnumSignStatus;
 import com.xpay.common.utils.sequence.RandomSequenceImpl;
@@ -14,6 +15,8 @@ import com.xpay.payment.common.vo.customer.AuthRealNameRepVO;
 import com.xpay.payment.common.vo.customer.AuthRealNameReqVO;
 import com.xpay.payment.common.vo.customer.*;
 import com.xpay.payment.service.SignService;
+import com.xpay.payment.service.SmsService;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,6 +32,9 @@ public class CustomerBizImpl implements CustomerBiz {
 
     @Resource
     private SignService signService;
+
+    @Resource
+    private SmsService smsService;
 
     private static Sequence sequence = new RandomSequenceImpl();
 
@@ -49,23 +55,24 @@ public class CustomerBizImpl implements CustomerBiz {
             if (EnumSignStatus.SIGN_SUCCESS.equals(oldSignRepVO.getSignStatus())) {
                 throw new XpayPaymentException(EnumRtnResult.E000006);
             } else { //如果存在修改签约信息
-                boolean flag = signService.updateStatus(signReqVO);
-                if (!flag) {
+                signReqVO.setSignStatus(EnumSignStatus.SIGN_WAITING);
+                SignRepVO signRepVO = signService.update(signReqVO);
+                if (signRepVO == null) {
                     throw new XpayPaymentException(EnumRtnResult.E000005);
                 }
             }
-            return oldSignRepVO;
         } else {
             String seqNo = sequence.getSeq(null);
             signReqVO.setSignNo(seqNo); //设置签约号
             signReqVO.setSignStatus(EnumSignStatus.SIGN_WAITING); //设置签约状态
-            SignRepVO signRepVO = signService.add(signReqVO);
+            oldSignRepVO = signService.add(signReqVO);
             //如果信息为空则新增签约信息失败
-            if (signRepVO == null) {
+            if (oldSignRepVO == null) {
                 throw new XpayPaymentException(EnumRtnResult.E000005);
             }
-            return signRepVO;
         }
+        //发送短信
+        return smsService.sendSignSms(signReqVO, oldSignRepVO);
     }
 
     @Override
@@ -85,6 +92,8 @@ public class CustomerBizImpl implements CustomerBiz {
         if (EnumSignStatus.SIGN_SUCCESS.equals(signRepVO.getSignStatus())) {
             throw new XpayPaymentException(EnumRtnResult.E000006);
         }
+
+        smsService.confirmSignSms(signConfirmReqVO, null);
 
         //签约确认
         SignConfirmRepVO signConfirmRepVO = signService.signConfirm(signConfirmReqVO);

@@ -45,7 +45,7 @@ public class TestSign extends BaseTest {
         signReqDTO.setCvv2("003");
         signReqDTO.setExpireDate("0312");
         signReqDTO.setHolderName("sxfans");
-        signReqDTO.setMobileNo("18317888050");
+        signReqDTO.setMobileNo("18317888059");
         signReqDTO.setSignOrderNo("201609179999");
         signReqDTO.setRemark("test");
         signReqDTO.setReqClientDT(new Date());

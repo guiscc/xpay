@@ -10,7 +10,7 @@
 
     <context:component-scan base-package="com.xpay.payment"/>
 
-    <context:property-placeholder location="classpath:config/*.properties" ignore-unresolvable="true"/>
+    <context:property-placeholder location="classpath*:config/**/*.properties" ignore-unresolvable="true"/>
 
     <!--数据源-->
     <bean id="absDataSource" class="com.alibaba.druid.pool.DruidDataSource" abstract="true" destroy-method="close">

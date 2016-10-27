@@ -33,6 +33,7 @@ public class TestSignConfirm extends BaseTest {
     public void signConfirm() {
         SignConfirmReqDTO signConfirmReqDTO = new SignConfirmReqDTO();
         signConfirmReqDTO.setSignNo("2016100417274586800006525");
+        signConfirmReqDTO.setVerifyCode("208956");
         SignConfirmRepDTO signConfirmRepDTO = customerFacade.signConfirm(signConfirmReqDTO);
         System.out.println(signConfirmRepDTO);
     }

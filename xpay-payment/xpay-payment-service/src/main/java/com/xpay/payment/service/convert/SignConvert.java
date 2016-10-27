@@ -35,9 +35,6 @@ public class SignConvert {
         if (signReqVO.getSignStatus() != null) {
             signEntity.setSignStatus(signReqVO.getSignStatus().getKey());
         }
-        if (signReqVO.getSignStatus() != null) {
-            signEntity.setSignStatus(signReqVO.getSignStatus().getKey());
-        }
         signEntity.setUserId(signReqVO.getUserId());
         signEntity.setBreakSignDT(signReqVO.getBreakSignDT());
         signEntity.setSignCreateDT(signReqVO.getSignCreateDT());

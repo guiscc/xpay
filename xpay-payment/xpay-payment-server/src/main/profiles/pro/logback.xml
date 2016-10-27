@@ -1,21 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <configuration scan="true">
-    <property name="APP" value="pay-payment"/>
-    <!--<property name="TOMCAT" value="${APP}-${tomcat_suffix}"/>-->
-    <property name="LOG_HOME" value="${tomcatlogdir}"/>
+    <property name="APP" value="xpay-payment"/>
+    <property name="TOMCAT" value="${APP}"/>
+    <property name="LOG_HOME" value="/export/logs/${TOMCAT}"/>
+
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>[%d{yy-MM-dd.HH:mm:ss.SSS}] [%thread] [%-5p %-22c{0} -] %m%n</pattern>
+            <pattern>[%d{yy-MM-dd.HH:mm:ss.SSS}] [%thread] [%-5p] [%-22c{0} -] %m%n</pattern>
         </encoder>
     </appender>
+
     <appender name="DETAIL" class="ch.qos.logback.core.rolling.RollingFileAppender" additivity="false">
-        <!--日志过滤器 只打印info级别日志-->
-        <filter class="ch.qos.logback.classic.filter.LevelFilter">
-            <level>INFO</level>
-            <onMatch>ACCEPT</onMatch>
-            <onMismatch>DENY</onMismatch>
-        </filter>
         <File>${LOG_HOME}/${APP}_detail.log</File>
         <encoder>
             <pattern>[%d{yy-MM-dd.HH:mm:ss.SSS}] [%thread] [%-5p %-22c{0} -] %m%n</pattern>
@@ -31,7 +27,7 @@
         </filter>
         <File>${LOG_HOME}/${APP}_error.log</File>
         <encoder>
-            <pattern>[%d{yy-MM-dd.HH:mm:ss.SSS}] [%thread] [%-5p %-22c{0} -] %m%n</pattern>
+            <pattern>%d{yy-MM-dd.HH:mm:ss.SSS} [%thread] [%-16t] %-5p %-22c{0} - %m%n</pattern>
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>${LOG_HOME}/${APP}_error.log.%d{yyyyMMdd}</fileNamePattern>
@@ -41,38 +37,32 @@
     <appender name="ACCESS" class="ch.qos.logback.core.rolling.RollingFileAppender" additivity="false">
         <File>${LOG_HOME}/${APP}_access.log</File>
         <encoder>
-            <pattern>[%d{yy-MM-dd.HH:mm:ss.SSS}],%m%n</pattern>
+            <pattern>%d{yy-MM-dd.HH:mm:ss.SSS},%m%n</pattern>
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>${LOG_HOME}/${APP}_access.log.%d{yyyyMMdd}</fileNamePattern>
         </rollingPolicy>
     </appender>
-    <logger name="ACCESS">
-        <appender-ref ref="ACCESS"/>
-    </logger>
+
+    <!--<logger name="ACCESS">-->
+    <!--<appender-ref ref="ACCESS"/>-->
+    <!--</logger>-->
+
     <logger name="org.springframework" level="WARN"/>
     <logger name="org.apache.httpclient.wire" level="INFO"/>
     <logger name="org.apache.commons.httpclient" level="INFO"/>
     <logger name="org.apache.zookeeper" level="INFO"/>
-    <logger name="freemarker.*" level="INFO"/>
 
-    <appender name="queuedetail" class="ch.qos.logback.classic.AsyncAppender">
-        <discardingThreshold>0</discardingThreshold>
-        <queueSize>10240</queueSize>
-        <appender-ref ref="DETAIL" />
-    </appender>
-
-    <appender name="queuerror" class="ch.qos.logback.classic.AsyncAppender">
-        <discardingThreshold>0</discardingThreshold>
-        <queueSize>10240</queueSize>
-        <appender-ref ref="ERROR" />
-    </appender>
-
+    <logger name="com.ibatis" level="DEBUG"/>
+    <logger name="com.ibatis.common.jdbc.SimpleDataSource" level="DEBUG"/>
+    <logger name="com.ibatis.common.jdbc.ScriptRunner" level="DEBUG"/>
+    <logger name="com.ibatis.sqlmap.engine.impl.SqlMapClientDelegate" level="DEBUG"/>
+    <logger name="java.sql.Connection" level="DEBUG"/>
+    <logger name="java.sql.Statement" level="DEBUG"/>
+    <logger name="java.sql.PreparedStatement" level="DEBUG"/>
+    <logger name="java.sql.ResultSet" level="DEBUG"/>
 
     <root level="INFO">
-        <appender-ref ref="queuedetail"/>
-        <appender-ref ref="queuerror"/>
-        <!--         <appender-ref ref="ACCESS"/> -->
-        <!--appender-ref ref="CONSOLE"/-->
+        <appender-ref ref="CONSOLE"/>
     </root>
 </configuration>

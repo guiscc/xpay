@@ -30,6 +30,7 @@ public class SignConfirmConvert {
                                                        SignConfirmReqDTO signConfirmReqDTO) {
         logger.info("请求模型:{}", signConfirmReqDTO.toString());
         signConfirmReqVO.setSignNo(signConfirmReqDTO.getSignNo());
+        signConfirmReqVO.setVerifyCode(signConfirmReqDTO.getVerifyCode());
         logger.info("转换请求模型:{}", signConfirmReqVO.toString());
         return signConfirmReqVO;
     }

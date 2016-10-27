@@ -59,25 +59,28 @@
         update cif_sign
         <set>
             <if test="cardNo != null and cardNo != ''">
-                cardNo = #{cardNo}
+                cardNo = #{cardNo},
             </if>
             <if test="cardType != null and cardNo != ''">
-                cardType = #{cardType}
+                cardType = #{cardType},
             </if>
             <if test="holderName != null and holderName != ''">
-                holderName = #{holderName}
+                holderName = #{holderName},
             </if>
             <if test="cerType != null and cerType != ''">
-                holderName = #{cerType}
+                cerType = #{cerType},
             </if>
             <if test="cerNo != null and cerNo != ''">
-                holderName = #{cerNo}
+                cerNo = #{cerNo},
             </if>
             <if test="expireDate != null and expireDate != ''">
-                holderName = #{expireDate}
+                expireDate = #{expireDate},
             </if>
             <if test="mobileNo != null and mobileNo != ''">
-                mobileNo = #{mobileNo}
+                mobileNo = #{mobileNo},
+            </if>
+            <if test="signStatus != null and signStatus != ''">
+                signStatus=#{signStatus}
             </if>
         </set>
         <where>

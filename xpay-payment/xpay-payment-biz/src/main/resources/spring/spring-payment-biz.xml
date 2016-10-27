@@ -10,7 +10,7 @@
 
     <context:component-scan base-package="com.xpay.trade"/>
 
-    <context:property-placeholder location="classpath:config/*.properties" ignore-unresolvable="true"/>
+    <context:property-placeholder location="classpath*:config/**/*.properties" ignore-unresolvable="true"/>
 
     <bean id="agentCollectBiz" class="com.xpay.payment.biz.impl.AgentCollectBizImpl"/>
 
