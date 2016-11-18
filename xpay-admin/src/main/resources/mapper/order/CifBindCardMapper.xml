@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ninefbank.smallpay.admin.order.dao.CifBindCardMapper" >
+  <resultMap id="BaseResultMap" type="com.ninefbank.smallpay.admin.order.entity.CifBindCard" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="signNo" property="signno" jdbcType="VARCHAR" />
+    <result column="breakSignNo" property="breaksignno" jdbcType="VARCHAR" />
+    <result column="cardNo" property="cardno" jdbcType="VARCHAR" />
+    <result column="cardType" property="cardtype" jdbcType="TINYINT" />
+    <result column="holderName" property="holdername" jdbcType="VARCHAR" />
+    <result column="cerType" property="certype" jdbcType="TINYINT" />
+    <result column="cerNo" property="cerno" jdbcType="VARCHAR" />
+    <result column="expireDate" property="expiredate" jdbcType="TIMESTAMP" />
+    <result column="mobileNo" property="mobileno" jdbcType="VARCHAR" />
+    <result column="signCreateDT" property="signcreatedt" jdbcType="TIMESTAMP" />
+    <result column="signFinishDT" property="signfinishdt" jdbcType="TIMESTAMP" />
+    <result column="breakSignDT" property="breaksigndt" jdbcType="TIMESTAMP" />
+    <result column="signStatus" property="signstatus" jdbcType="TINYINT" />
+    <result column="userId" property="userid" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, signNo, breakSignNo, cardNo, cardType, holderName, cerType, cerNo, expireDate, 
+    mobileNo, signCreateDT, signFinishDT, breakSignDT, signStatus, userId, remark
+  </sql>
+
+    <select id="selectByParams" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from cif_sign
+        where 1=1
+        <!-- 表字段条件 -->
+        <if test="signno != null">
+            AND signNo = #{signno,jdbcType=VARCHAR}
+        </if>
+        <if test="breaksignno != null">
+            AND breakSignNo = #{breaksignno,jdbcType=VARCHAR}
+        </if>
+        <if test="cardno != null">
+            AND cardNo = #{cardno,jdbcType=VARCHAR}
+        </if>
+        <if test="cardtype != null">
+            AND cardType = #{cardtype,jdbcType=VARCHAR}
+        </if>
+        <if test="signstatus != null">
+            AND signStatus = #{signstatus,jdbcType=VARCHAR}
+        </if>
+    </select>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cif_sign
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cif_sign
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ninefbank.smallpay.admin.order.entity.CifBindCard" >
+    insert into cif_sign (id, signNo, breakSignNo, 
+      cardNo, cardType, holderName, 
+      cerType, cerNo, expireDate, 
+      mobileNo, signCreateDT, signFinishDT, 
+      breakSignDT, signStatus, userId, 
+      remark)
+    values (#{id,jdbcType=INTEGER}, #{signno,jdbcType=VARCHAR}, #{breaksignno,jdbcType=VARCHAR}, 
+      #{cardno,jdbcType=VARCHAR}, #{cardtype,jdbcType=TINYINT}, #{holdername,jdbcType=VARCHAR}, 
+      #{certype,jdbcType=TINYINT}, #{cerno,jdbcType=VARCHAR}, #{expiredate,jdbcType=TIMESTAMP}, 
+      #{mobileno,jdbcType=VARCHAR}, #{signcreatedt,jdbcType=TIMESTAMP}, #{signfinishdt,jdbcType=TIMESTAMP}, 
+      #{breaksigndt,jdbcType=TIMESTAMP}, #{signstatus,jdbcType=TINYINT}, #{userid,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ninefbank.smallpay.admin.order.entity.CifBindCard" >
+    insert into cif_sign
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="signno != null" >
+        signNo,
+      </if>
+      <if test="breaksignno != null" >
+        breakSignNo,
+      </if>
+      <if test="cardno != null" >
+        cardNo,
+      </if>
+      <if test="cardtype != null" >
+        cardType,
+      </if>
+      <if test="holdername != null" >
+        holderName,
+      </if>
+      <if test="certype != null" >
+        cerType,
+      </if>
+      <if test="cerno != null" >
+        cerNo,
+      </if>
+      <if test="expiredate != null" >
+        expireDate,
+      </if>
+      <if test="mobileno != null" >
+        mobileNo,
+      </if>
+      <if test="signcreatedt != null" >
+        signCreateDT,
+      </if>
+      <if test="signfinishdt != null" >
+        signFinishDT,
+      </if>
+      <if test="breaksigndt != null" >
+        breakSignDT,
+      </if>
+      <if test="signstatus != null" >
+        signStatus,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="signno != null" >
+        #{signno,jdbcType=VARCHAR},
+      </if>
+      <if test="breaksignno != null" >
+        #{breaksignno,jdbcType=VARCHAR},
+      </if>
+      <if test="cardno != null" >
+        #{cardno,jdbcType=VARCHAR},
+      </if>
+      <if test="cardtype != null" >
+        #{cardtype,jdbcType=TINYINT},
+      </if>
+      <if test="holdername != null" >
+        #{holdername,jdbcType=VARCHAR},
+      </if>
+      <if test="certype != null" >
+        #{certype,jdbcType=TINYINT},
+      </if>
+      <if test="cerno != null" >
+        #{cerno,jdbcType=VARCHAR},
+      </if>
+      <if test="expiredate != null" >
+        #{expiredate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mobileno != null" >
+        #{mobileno,jdbcType=VARCHAR},
+      </if>
+      <if test="signcreatedt != null" >
+        #{signcreatedt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="signfinishdt != null" >
+        #{signfinishdt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="breaksigndt != null" >
+        #{breaksigndt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="signstatus != null" >
+        #{signstatus,jdbcType=TINYINT},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ninefbank.smallpay.admin.order.entity.CifBindCard" >
+    update cif_sign
+    <set >
+      <if test="signno != null" >
+        signNo = #{signno,jdbcType=VARCHAR},
+      </if>
+      <if test="breaksignno != null" >
+        breakSignNo = #{breaksignno,jdbcType=VARCHAR},
+      </if>
+      <if test="cardno != null" >
+        cardNo = #{cardno,jdbcType=VARCHAR},
+      </if>
+      <if test="cardtype != null" >
+        cardType = #{cardtype,jdbcType=TINYINT},
+      </if>
+      <if test="holdername != null" >
+        holderName = #{holdername,jdbcType=VARCHAR},
+      </if>
+      <if test="certype != null" >
+        cerType = #{certype,jdbcType=TINYINT},
+      </if>
+      <if test="cerno != null" >
+        cerNo = #{cerno,jdbcType=VARCHAR},
+      </if>
+      <if test="expiredate != null" >
+        expireDate = #{expiredate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mobileno != null" >
+        mobileNo = #{mobileno,jdbcType=VARCHAR},
+      </if>
+      <if test="signcreatedt != null" >
+        signCreateDT = #{signcreatedt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="signfinishdt != null" >
+        signFinishDT = #{signfinishdt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="breaksigndt != null" >
+        breakSignDT = #{breaksigndt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="signstatus != null" >
+        signStatus = #{signstatus,jdbcType=TINYINT},
+      </if>
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ninefbank.smallpay.admin.order.entity.CifBindCard" >
+    update cif_sign
+    set signNo = #{signno,jdbcType=VARCHAR},
+      breakSignNo = #{breaksignno,jdbcType=VARCHAR},
+      cardNo = #{cardno,jdbcType=VARCHAR},
+      cardType = #{cardtype,jdbcType=TINYINT},
+      holderName = #{holdername,jdbcType=VARCHAR},
+      cerType = #{certype,jdbcType=TINYINT},
+      cerNo = #{cerno,jdbcType=VARCHAR},
+      expireDate = #{expiredate,jdbcType=TIMESTAMP},
+      mobileNo = #{mobileno,jdbcType=VARCHAR},
+      signCreateDT = #{signcreatedt,jdbcType=TIMESTAMP},
+      signFinishDT = #{signfinishdt,jdbcType=TIMESTAMP},
+      breakSignDT = #{breaksigndt,jdbcType=TIMESTAMP},
+      signStatus = #{signstatus,jdbcType=TINYINT},
+      userId = #{userid,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

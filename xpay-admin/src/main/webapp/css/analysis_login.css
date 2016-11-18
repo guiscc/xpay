@@ -1,0 +1,114 @@
+*{
+	margin:0 auto;
+	font-family: "黑体";
+}
+body{
+	text-align:center;	
+}
+.login_top{
+	width:100%;
+	height:160px;
+}
+.login_toplogo{
+	width:102px;
+	height:36px;
+	margin-top:62px;
+	margin-left:28px;
+	background:url(../images/login_logo.png);
+	float:left;
+}
+.login_line{
+	height:60px;
+	width:1px;
+	margin-top:50px;
+	background:#eeeeee;
+	float:left;
+	margin-left:12px;
+}
+.login_text{
+	margin-top:66px;
+	margin-left:16px;
+	margin-bottom:66px;
+	font-size:30px;
+	float:left;
+}
+.login_bg{
+	width:100%;
+	height:580px;
+	background:url(../images/login_pic.jpg) no-repeat;
+	background-size:100% 100%;
+	margin-bottom:160px;
+}
+.login_all{
+	width:330px;
+	height:340px;
+	float:right;
+	margin-top:108px;
+	background:#FFF;
+	border-radius:6px;
+}
+.login_main{
+	width:958px;
+	height:580px;
+	background:url(../images/start_pic_03.jpg) no-repeat;
+}
+.login_explain{
+	width:100%;
+	padding-top:40px;
+	font-size:20px;
+}
+.login_input{
+	width:100%;
+	margin-top:50px;
+}
+.input_common{
+	height:36px;
+	width:274px;
+	line-height:36px;
+	display:block;
+	border:1px solid #cccccc;
+	border-radius:6px;
+	-webkit-border-radius:6px;
+	-ms-border-radius:6px;
+	-o-border-radius:6px;
+	-moz-border-radius:6px;
+	font-size:14px;
+	margin:0 28px;
+	text-indent:45px;
+	outline:none;
+	color:#333;
+}
+.input_common:focus{
+	box-shadow: 0 0 0 1px #379cea;
+	-ms-box-shadow: 0 0 0 1px #379cea;
+	-moz-box-shadow: 0 0 0 1px #379cea;
+	-o-box-shadow: 0 0 0 1px #379cea;
+	-webkit-box-shadow: 0 0 0 1px #379cea;
+}
+.input_admin{
+	margin-top:0;
+	background:url(../images/login_icon_people_03.png);
+	background-repeat:no-repeat;
+	background-size:20px 20px;
+	background-position:10px 8px;
+}
+.input_psw{
+	margin-top:16px;
+	background:url(../images/login_lock_06.png);
+}
+.login_last{
+	margin-top:40px;
+	margin-bottom:62px;
+}
+.login_btn{
+	display:block;
+	width:274px;
+	height:36px;
+	line-height:36px;
+	color:#FFF;
+	border:none;
+	border-radius:3px;
+	background:#379cea;
+	font-size:18px;
+	letter-spacing:8px;
+}

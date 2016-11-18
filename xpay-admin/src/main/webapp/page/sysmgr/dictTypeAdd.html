@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>SSM应用框架-新增字典类型</title>
+<link href="../../css/default.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="../../js/themes/gray/easyui.css">
+<link rel="stylesheet" type="text/css" href="../../js/themes/icon.css">
+<script type="text/javascript" src="../../js/jquery.min.js"></script>
+<script type="text/javascript" src="../../js/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../js/jquery.serializeJSON.js"></script>
+</head>
+<body class="easyui-layout">
+	<div style="padding:10px 60px 20px 60px">
+		<form id="addDictTypeForm" class="easyui-form" method="post" data-options="novalidate:true">
+	    	<table cellpadding="5">
+	    		<tr>
+	    			<td>类型代码:</td>
+	    			<td><input class="easyui-textbox" type="text" name="typeCode" data-options="required:true"></input></td>
+	    		</tr>
+	    		<tr>
+	    			<td>类型名称:</td>
+	    			<td><input class="easyui-textbox" type="text" name="typeName" data-options="required:true"></input></td>
+	    		</tr>
+	    		<tr>
+	    			<td>类别:</td>
+	    			<td>
+	    				<input id="typeKind" name="typeKind" data-options="required:true"></input>
+	    			</td>
+	    		</tr>
+	    		<tr>
+	    			<td>备注:</td>
+	    			<td><input class="easyui-textbox" type="text" name="remark"></input></td>
+	    		</tr>
+	    	</table>
+	    </form>
+	</div>
+	<script type="text/javascript">
+		function doAddDictType(){
+			var flag = $("#addDictTypeForm").form('enableValidation').form('validate');
+			if(!flag){
+				return;
+			}
+			var postData = JSON.stringify($("#addDictTypeForm").serializeJSON());
+			$.ajax({
+				url : "../../dict/addDictType",
+				method : "POST",
+				contentType : "application/json",
+				dataType : "json",
+				async : false,
+				data : postData,
+				success : function(data) {
+					var ret = eval(data);
+					if(ret.success){
+						$("#addDictType").dialog("close");
+						$('#dictTypeTree').tree('reload');
+					}else{
+						$.messager.alert('错误','操作失败');
+					}
+				},
+				error : function(XMLHttpRequest, textStatus, errorThrown) {
+					$.messager.alert('错误','操作失败');
+				}
+			});
+		}
+		
+		(function($){
+			//加载字典类别
+			$('#typeKind').combobox({    
+			    url:'../../dict/getDictItems',
+			    onBeforeLoad: function(param){
+					param.typeCode = "dict_kind";
+				},
+			    method:'post',
+			    valueField:'itemCode',    
+			    textField:'itemName',
+			    loadFilter:function(ret){
+			    	return ret.data;
+			    }
+			});  
+			var dictTypeNode = $('#dictTypeTree').tree('getSelected');
+			$('#typeKind').combobox('setValue', dictTypeNode.extValue2);
+			
+		})(jQuery);
+	</script>
+</body>
+</html>

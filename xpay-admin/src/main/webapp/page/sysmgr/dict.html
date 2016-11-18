@@ -1,0 +1,338 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>SSM应用框架-数据字典</title>
+<link href="../../css/default.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="../../js/themes/gray/easyui.css">
+<link rel="stylesheet" type="text/css" href="../../js/themes/icon.css">
+<script type="text/javascript" src="../../js/jquery.min.js"></script>
+<script type="text/javascript" src="../../js/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../js/jquery.serializeJSON.js"></script>
+<script type="text/javascript" src="../../js/locale/easyui-lang-zh_CN.js"></script>
+</head>
+<body class="easyui-layout">
+		<div id="dictType" title="字典类型" data-options="region:'west',split:false,tools:'#dictTypeOpt'" style="width:30%;padding:10px;">
+			<ul class="easyui-tree" id="dictTypeTree"></ul>
+		</div>
+		<div id="dictTypeOpt">
+			<a href="javascript:void(0)" class="icon-add" onclick="javascript:addDictType()"></a>
+			<a href="javascript:void(0)" class="icon-edit" onclick="javascript:updateDictType()"></a>
+			<a href="javascript:void(0)" class="icon-remove" onclick="javascript:delDictType()"></a>
+			<a href="javascript:void(0)" class="icon-reload" onclick="javascript:reloadDictTypeTree()"></a>
+		</div>
+	
+		<div data-options="region:'center'" title="字典项"  style="padding:5px;">
+			<table id="dictItemGrid" style="width:100%;height:auto;">
+			</table>
+		</div>
+		
+		<div id="addDictItem" title="新增字典项" style="width:400px;height:200px;"></div>
+		<div id="updateDictItem" title="修改字典项" style="width:400px;height:200px;"></div>
+		<div id="addDictType" title="新增字典类型" style="width:400px;height:200px;"></div>  
+		<div id="updateDictType" title="修改字典类型" style="width:400px;height:200px;"></div>  
+		
+	<script>
+		(function($){
+			
+			$('#dictTypeTree').tree({    
+			    url: "../../dict/getDictTree",
+			    method:"post",
+			    animate:true,
+			    loadFilter: function(ret){    
+			        if (ret.success){    
+			            return ret.data;    
+			        } else {    
+			            alert("字典类型加载失败");
+			        }    
+			    },
+			    onClick: function(node){
+			    	if(null == node.extValue1 || undefined == node.extValue1){
+			    		return false;
+			    	}
+			    	loadDictItem(node.extValue1);
+				}
+			}); 
+			loadDictItem(null);
+			function loadDictItem(typeCode){
+				$('#dictItemGrid').datagrid({    
+				    url:'../../dict/queryDictItem',
+				    pagination:true,
+				    rownumbers:true,
+				    singleSelect:true,
+				    height:'100%',
+				    onBeforeLoad:function(){
+				    	if(null == typeCode || undefined == typeCode){
+				    		return false;
+				    	}
+				    },
+				    queryParams:{
+				    	pageSize:10,
+				    	currentPageNum:1,
+				    	condition:typeCode
+				    },
+				    loadFilter: function(ret){    
+				        if (ret.success){    
+				            return ret;    
+				        } else {    
+				            alert("字典类型加载失败");
+				        }    
+				    },   
+				    columns:[[    
+				        {field:'itemCode',title:'代码',width:100},    
+				        {field:'itemName',title:'值',width:200},    
+				        {field:'typeCode',title:'类型编码',width:100},
+				        {field:'className',title:'样式名称',width:100},
+				        {field:'sortIndex',title:'排序',width:100},
+				        {field:'remark',title:'备注',width:100}
+				    ]],
+				    toolbar: [{
+				    	text:"新增",
+						iconCls: 'icon-add',
+						handler: addDictItem
+					},'-',{
+						text:"修改",
+						iconCls: 'icon-edit',
+						handler: updateDictItem
+					},'-',{
+						text:"删除",
+						iconCls: 'icon-remove',
+						handler: delDictItem
+					}],
+					onSelectPage:function(pageNumber, pageSize){
+						$(this).pagination('loading');
+						alert('pageNumber:'+pageNumber+',pageSize:'+pageSize);
+						$(this).pagination('loaded');
+					}
+				});  
+				//设置分页控件 
+			    var p = $('#dictItemGrid').datagrid('getPager'); 
+			    $(p).pagination({ 
+			        pageSize: 10,//每页显示的记录条数，默认为10 
+			        pageList: [5,10,15],//可以设置每页记录条数的列表 
+			        beforePageText: '第',//页数文本框前显示的汉字 
+			        afterPageText: '页    共 {pages} 页', 
+			        displayMsg: '当前显示 {from} - {to} 条记录   共 {total} 条记录', 
+			    });
+			}
+		})(jQuery);
+		
+		//新增字典项
+		function addDictItem(){
+			var dictTypeNode = $('#dictTypeTree').tree('getSelected');
+			if(null == dictTypeNode || undefined == dictTypeNode){
+				$.messager.alert('提示','请选择字典类型');
+				return;
+			}
+			//不能选择字典分类
+			if(null == dictTypeNode.extValue1 || undefined == dictTypeNode.extValue1){
+				$.messager.alert('提示','请选择字典类型');
+				return;
+			}
+			$('#addDictItem').dialog({    
+			    title: '新增字典项',    
+			    width: 400,    
+			    height: 350,    
+			    closed: false,    
+			    cache: false,    
+			    href: 'dictItemAdd.html',    
+			    modal: true,
+			    buttons:[{
+			    	iconCls:"icon-ok",
+					text:'提交',
+					handler:function(){
+						doAddDictItem();
+					}
+				},{
+			    	iconCls:"icon-undo",
+					text:'重置',
+					handler:function(){
+						$("#addDictItemForm").form('clear');
+					}
+				},{
+					iconCls:"icon-cancel",
+					text:'取消',
+					handler:function(){
+						$("#addDictItem").dialog("close");
+					}
+				}]
+			});
+		}
+		
+		//删除字典类型
+		function delDictItem(){
+			var selDictItem = $('#dictItemGrid').datagrid('getSelected');
+			if(null == selDictItem || undefined == selDictItem){
+				$.messager.alert('提示','请选择要删除的字典项');
+				return;
+			}
+			$.messager.confirm('确认','您确认要删除字典项【'+selDictItem.itemName+'】吗？',function(flag){    
+			    if (flag){    
+			    	$.ajax({
+						url : "../../dict/delDictItem",
+						method : "POST",
+						dataType : "json",
+						async : false,
+						data : {"id" : selDictItem.id},
+						success : function(data) {
+							var ret = eval(data);
+							if(ret.success){
+								$('#dictItemGrid').datagrid('reload');
+							}else{
+								$.messager.alert('错误','操作失败');
+							}
+						},
+						error : function(XMLHttpRequest, textStatus, errorThrown) {
+							var result = JSON.parse(XMLHttpRequest.responseText);
+							$.messager.alert('错误',result.errorMsg);
+						}
+					});
+			    }    
+			});  
+		}
+		
+		//修改字典项
+		function updateDictItem(){
+			var selDictItem = $('#dictItemGrid').datagrid('getSelected');
+			if(null == selDictItem || undefined == selDictItem){
+				$.messager.alert('提示','请选择要修改的字典项');
+				return;
+			}
+			$('#updateDictItem').dialog({    
+			    title: '修改字典项',    
+			    width: 400,    
+			    height: 350,    
+			    closed: false,    
+			    cache: false,    
+			    href: 'dictItemUpdate.html',    
+			    modal: true,
+			    buttons:[{
+			    	iconCls:"icon-ok",
+					text:'提交',
+					handler:function(){
+						doUpdateDictItem();
+					}
+				},{
+			    	iconCls:"icon-undo",
+					text:'重置',
+					handler:function(){
+						$("#updateDictItemForm").form('clear');
+					}
+				},{
+					iconCls:"icon-cancel",
+					text:'取消',
+					handler:function(){
+						$("#updateDictItem").dialog("close");
+					}
+				}]
+			});
+		}
+		
+		//添加字典类型
+		function addDictType(){
+			$('#addDictType').dialog({    
+			    title: '新增字典类型',    
+			    width: 360,    
+			    height: 250,    
+			    closed: false,    
+			    cache: false,    
+			    href: 'dictTypeAdd.html',    
+			    modal: true,
+			    buttons:[{
+			    	iconCls:"icon-ok",
+					text:'提交',
+					handler:function(){
+						doAddDictType();
+					}
+				},{
+			    	iconCls:"icon-undo",
+					text:'重置',
+					handler:function(){
+						$("#addDictTypeForm").form('clear');
+					}
+				},{
+					iconCls:"icon-cancel",
+					text:'取消',
+					handler:function(){
+						$("#addDictType").dialog("close");
+					}
+				}]
+			});
+		}
+		
+		//删除字典类型
+		function delDictType(){
+			var dictTypeNode = $('#dictTypeTree').tree('getSelected');
+			if(null == dictTypeNode || undefined == dictTypeNode){
+				$.messager.alert('提示','请选择要删除的字典类型');
+				return;
+			}
+			$.messager.confirm('确认','您确认要删除字典类型【'+dictTypeNode.text+'】吗？',function(flag){    
+			    if (flag){    
+			    	$.ajax({
+						url : "../../dict/delDictType",
+						method : "POST",
+						dataType : "json",
+						async : false,
+						data : {"id" : dictTypeNode.id},
+						success : function(data) {
+							var ret = eval(data);
+							if(ret.success){
+								$('#dictTypeTree').tree('reload');
+							}else{
+								$.messager.alert('错误','操作失败');
+							}
+						},
+						error : function(XMLHttpRequest, textStatus, errorThrown) {
+							var result = JSON.parse(XMLHttpRequest.responseText);
+							$.messager.alert('错误',result.errorMsg);
+						}
+					});
+			    }    
+			});  
+		}
+		
+		//修改字典类型
+		function updateDictType(){
+			var dictTypeNode = $('#dictTypeTree').tree('getSelected');
+			if(null == dictTypeNode || undefined == dictTypeNode){
+				$.messager.alert('提示','请选择要修改的字典类型');
+				return;
+			}
+			$('#updateDictType').dialog({    
+			    title: '修改字典类型',    
+			    width: 400,    
+			    height: 350,    
+			    closed: false,    
+			    cache: false,    
+			    href: 'dictTypeUpdate.html',    
+			    modal: true,
+			    buttons:[{
+			    	iconCls:"icon-ok",
+					text:'提交',
+					handler:function(){
+						doUpdateDictType();
+					}
+				},{
+			    	iconCls:"icon-undo",
+					text:'重置',
+					handler:function(){
+						$("#updateDictTypeForm").form('clear');
+					}
+				},{
+					iconCls:"icon-cancel",
+					text:'取消',
+					handler:function(){
+						$("#updateDictType").dialog("close");
+					}
+				}]
+			});
+		}
+		
+		//刷新字典类型树
+		function reloadDictTypeTree(){
+			$('#dictTypeTree').tree('reload');
+		}
+	</script>
+</body>
+</html>

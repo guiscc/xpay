@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ninefbank.smallpay.admin.order.dao.ChannelOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.ninefbank.smallpay.admin.order.entity.ChannelOrder" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="payOrderNo" property="payorderno" jdbcType="VARCHAR" />
+    <result column="bankOrderNo" property="bankorderno" jdbcType="VARCHAR" />
+    <result column="amt" property="amt" jdbcType="DOUBLE" />
+    <result column="channelCode" property="channelcode" jdbcType="VARCHAR" />
+    <result column="interCode" property="intercode" jdbcType="VARCHAR" />
+    <result column="bankNo" property="bankno" jdbcType="VARCHAR" />
+    <result column="rtnCode" property="rtncode" jdbcType="VARCHAR" />
+    <result column="rtnMsg" property="rtnmsg" jdbcType="VARCHAR" />
+    <result column="tradeStatus" property="tradestatus" jdbcType="VARCHAR" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="finishTime" property="finishtime" jdbcType="TIMESTAMP" />
+    <result column="bankFinishTime" property="bankfinishtime" jdbcType="TIMESTAMP" />
+    <result column="reqTime" property="reqtime" jdbcType="TIMESTAMP" />
+    <result column="mapstr" property="mapstr" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, payOrderNo, bankOrderNo, amt, channelCode, interCode, bankNo, rtnCode, rtnMsg, 
+    tradeStatus, createTime, finishTime, bankFinishTime, reqTime, mapstr
+  </sql>
+
+    <select id="selectByParams" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from channel_order
+        where 1=1
+        <!-- 表字段条件 -->
+        <if test="payorderno != null">
+            AND payOrderNo = #{payorderno,jdbcType=VARCHAR}
+        </if>
+        <if test="bankorderno != null">
+            AND bankOrderNo = #{bankorderno,jdbcType=VARCHAR}
+        </if>
+        <if test="channelcode != null">
+            AND bankOrderNo = #{channelcode,jdbcType=VARCHAR}
+        </if>
+        <if test="intercode != null">
+            AND interCode = #{intercode,jdbcType=VARCHAR}
+        </if>
+        <if test="bankno != null">
+            AND bankNo = #{bankno,jdbcType=VARCHAR}
+        </if>
+        <if test="tradestatus != null">
+            AND tradeStatus = #{tradestatus,jdbcType=VARCHAR}
+        </if>
+    </select>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from channel_order
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from channel_order
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ninefbank.smallpay.admin.order.entity.ChannelOrder" >
+    insert into channel_order (id, payOrderNo, bankOrderNo, 
+      amt, channelCode, interCode, 
+      bankNo, rtnCode, rtnMsg, 
+      tradeStatus, createTime, finishTime, 
+      bankFinishTime, reqTime, mapstr
+      )
+    values (#{id,jdbcType=BIGINT}, #{payorderno,jdbcType=VARCHAR}, #{bankorderno,jdbcType=VARCHAR}, 
+      #{amt,jdbcType=DOUBLE}, #{channelcode,jdbcType=VARCHAR}, #{intercode,jdbcType=VARCHAR}, 
+      #{bankno,jdbcType=VARCHAR}, #{rtncode,jdbcType=VARCHAR}, #{rtnmsg,jdbcType=VARCHAR}, 
+      #{tradestatus,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{finishtime,jdbcType=TIMESTAMP}, 
+      #{bankfinishtime,jdbcType=TIMESTAMP}, #{reqtime,jdbcType=TIMESTAMP}, #{mapstr,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ninefbank.smallpay.admin.order.entity.ChannelOrder" >
+    insert into channel_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="payorderno != null" >
+        payOrderNo,
+      </if>
+      <if test="bankorderno != null" >
+        bankOrderNo,
+      </if>
+      <if test="amt != null" >
+        amt,
+      </if>
+      <if test="channelcode != null" >
+        channelCode,
+      </if>
+      <if test="intercode != null" >
+        interCode,
+      </if>
+      <if test="bankno != null" >
+        bankNo,
+      </if>
+      <if test="rtncode != null" >
+        rtnCode,
+      </if>
+      <if test="rtnmsg != null" >
+        rtnMsg,
+      </if>
+      <if test="tradestatus != null" >
+        tradeStatus,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="finishtime != null" >
+        finishTime,
+      </if>
+      <if test="bankfinishtime != null" >
+        bankFinishTime,
+      </if>
+      <if test="reqtime != null" >
+        reqTime,
+      </if>
+      <if test="mapstr != null" >
+        mapstr,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="payorderno != null" >
+        #{payorderno,jdbcType=VARCHAR},
+      </if>
+      <if test="bankorderno != null" >
+        #{bankorderno,jdbcType=VARCHAR},
+      </if>
+      <if test="amt != null" >
+        #{amt,jdbcType=DOUBLE},
+      </if>
+      <if test="channelcode != null" >
+        #{channelcode,jdbcType=VARCHAR},
+      </if>
+      <if test="intercode != null" >
+        #{intercode,jdbcType=VARCHAR},
+      </if>
+      <if test="bankno != null" >
+        #{bankno,jdbcType=VARCHAR},
+      </if>
+      <if test="rtncode != null" >
+        #{rtncode,jdbcType=VARCHAR},
+      </if>
+      <if test="rtnmsg != null" >
+        #{rtnmsg,jdbcType=VARCHAR},
+      </if>
+      <if test="tradestatus != null" >
+        #{tradestatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="finishtime != null" >
+        #{finishtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bankfinishtime != null" >
+        #{bankfinishtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reqtime != null" >
+        #{reqtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mapstr != null" >
+        #{mapstr,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ninefbank.smallpay.admin.order.entity.ChannelOrder" >
+    update channel_order
+    <set >
+      <if test="payorderno != null" >
+        payOrderNo = #{payorderno,jdbcType=VARCHAR},
+      </if>
+      <if test="bankorderno != null" >
+        bankOrderNo = #{bankorderno,jdbcType=VARCHAR},
+      </if>
+      <if test="amt != null" >
+        amt = #{amt,jdbcType=DOUBLE},
+      </if>
+      <if test="channelcode != null" >
+        channelCode = #{channelcode,jdbcType=VARCHAR},
+      </if>
+      <if test="intercode != null" >
+        interCode = #{intercode,jdbcType=VARCHAR},
+      </if>
+      <if test="bankno != null" >
+        bankNo = #{bankno,jdbcType=VARCHAR},
+      </if>
+      <if test="rtncode != null" >
+        rtnCode = #{rtncode,jdbcType=VARCHAR},
+      </if>
+      <if test="rtnmsg != null" >
+        rtnMsg = #{rtnmsg,jdbcType=VARCHAR},
+      </if>
+      <if test="tradestatus != null" >
+        tradeStatus = #{tradestatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="finishtime != null" >
+        finishTime = #{finishtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bankfinishtime != null" >
+        bankFinishTime = #{bankfinishtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reqtime != null" >
+        reqTime = #{reqtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mapstr != null" >
+        mapstr = #{mapstr,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ninefbank.smallpay.admin.order.entity.ChannelOrder" >
+    update channel_order
+    set payOrderNo = #{payorderno,jdbcType=VARCHAR},
+      bankOrderNo = #{bankorderno,jdbcType=VARCHAR},
+      amt = #{amt,jdbcType=DOUBLE},
+      channelCode = #{channelcode,jdbcType=VARCHAR},
+      interCode = #{intercode,jdbcType=VARCHAR},
+      bankNo = #{bankno,jdbcType=VARCHAR},
+      rtnCode = #{rtncode,jdbcType=VARCHAR},
+      rtnMsg = #{rtnmsg,jdbcType=VARCHAR},
+      tradeStatus = #{tradestatus,jdbcType=VARCHAR},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      finishTime = #{finishtime,jdbcType=TIMESTAMP},
+      bankFinishTime = #{bankfinishtime,jdbcType=TIMESTAMP},
+      reqTime = #{reqtime,jdbcType=TIMESTAMP},
+      mapstr = #{mapstr,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
