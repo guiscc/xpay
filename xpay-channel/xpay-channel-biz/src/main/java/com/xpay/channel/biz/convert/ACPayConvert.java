@@ -5,6 +5,8 @@
 package com.xpay.channel.biz.convert;
 
 import com.xpay.channel.common.dto.agentcollect.ACPayReqChannelDTO;
+import com.xpay.channel.front.dto.agentcollect.ACPayRepFrontDTO;
+import com.xpay.channel.front.dto.agentcollect.ACPayReqFrontDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,6 +23,30 @@ import com.xpay.channel.common.vo.agentcollect.ACPayReqVO;
 public class ACPayConvert {
 
     private static final Logger logger = LoggerFactory.getLogger(ACPayConvert.class);
+
+    /**
+     *
+     * @param acPayReqFrontDTO
+     * @param acPayReqVO
+     * @return
+     */
+    public static ACPayReqFrontDTO getACPayReqFrontDTO(ACPayReqFrontDTO acPayReqFrontDTO,
+                                                       ACPayReqVO acPayReqVO) {
+
+        return acPayReqFrontDTO;
+    }
+
+    /**
+     *
+     * @param acPayRepVO
+     * @param acPayRepFrontDTO
+     * @return
+     */
+    public static ACPayRepVO getACPayRepFrontDTO(ACPayRepVO acPayRepVO,
+                                                         ACPayRepFrontDTO acPayRepFrontDTO) {
+
+        return acPayRepVO;
+    }
 
     /**
      * 获取变量
@@ -50,7 +76,8 @@ public class ACPayConvert {
      * @param acPayRepVO
      * @return
      */
-    public static ACPayRepChannelDTO getACPayRepDTO(ACPayRepChannelDTO acPayRepDTO, ACPayRepVO acPayRepVO) {
+    public static ACPayRepChannelDTO getACPayRepDTO(ACPayRepChannelDTO acPayRepDTO,
+                                                    ACPayRepVO acPayRepVO) {
         logger.info("响应模型:{}", acPayRepVO);
         PayOrderDTO payOrderDTO = acPayRepDTO.getPayOrderDTO();
         PayOrderModel payOrderModel = acPayRepVO.getPayOrderModel();

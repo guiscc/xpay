@@ -8,7 +8,7 @@ import com.xpay.channel.front.dto.BaseRepFrontDTO;
 
 /**
  * @author qinshou
- * @version $Id: RefundReqFrontFrontDTO.java, v 0.1 16/10/17 上午11:38 sxfans Exp $
+ * @version $Id: RefundReqFrontDTO.java, v 0.1 16/10/17 上午11:38 sxfans Exp $
  */
 public class RefundReqFrontDTO extends BaseRepFrontDTO {
 }

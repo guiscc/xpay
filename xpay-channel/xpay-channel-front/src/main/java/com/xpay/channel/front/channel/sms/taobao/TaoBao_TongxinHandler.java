@@ -8,6 +8,7 @@ import com.taobao.api.TaobaoClient;
 import com.taobao.api.request.AlibabaAliqinFcSmsNumSendRequest;
 import com.taobao.api.response.AlibabaAliqinFcSmsNumSendResponse;
 import com.xpay.channel.front.dto.sms.SmsReqFrontDTO;
+import com.xpay.channel.front.msg.model.MsgReqModel;
 import com.xpay.channel.front.tongxin.AbsChannelTongXinHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,7 +24,7 @@ public class TaoBao_TongxinHandler extends AbsChannelTongXinHandler<SmsReqFrontD
     private static final Logger logger = LoggerFactory.getLogger(TaoBao_TongxinHandler.class);
 
     @Override
-    public byte[] send(SmsReqFrontDTO smsReqDTO, byte[] reqMsg, ChannelConfig channelConfig)
+    public byte[] send(SmsReqFrontDTO smsReqDTO, MsgReqModel msgReqModel, ChannelConfig channelConfig)
                                                                                  throws CommuException {
         try {
             TaoBao_Config taoBaoConfig = (TaoBao_Config) channelConfig;
@@ -33,7 +34,7 @@ public class TaoBao_TongxinHandler extends AbsChannelTongXinHandler<SmsReqFrontD
             req.setExtend(smsReqDTO.getUserId());
             req.setSmsType(taoBaoConfig.getNormal());
             req.setSmsFreeSignName(smsReqDTO.getTitle());
-            req.setSmsParamString(new String(reqMsg, channelConfig.getCharset()));
+            req.setSmsParamString(new String(msgReqModel.getMsgBytes(), channelConfig.getCharset()));
             req.setRecNum(smsReqDTO.getMobileNo());
             req.setSmsTemplateCode(taoBaoConfig.getTemplate());
             AlibabaAliqinFcSmsNumSendResponse rsp = client.execute(req);

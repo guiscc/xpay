@@ -1,8 +1,12 @@
 package com.xpay.channel.front.facade.impl;
 
-
+import com.xpay.channel.common.exception.*;
 import com.xpay.channel.front.dto.agentcollect.*;
+import com.xpay.channel.front.executor.AbsFrontExecutor;
 import com.xpay.channel.front.facade.AgentCollectFrontFacade;
+import com.xpay.channel.front.factory.MappingFactory;
+
+import javax.annotation.Resource;
 
 /**
  * 此类通过模版模式，抽象实现quickPayChannel接口，
@@ -10,38 +14,66 @@ import com.xpay.channel.front.facade.AgentCollectFrontFacade;
  */
 public class AgentCollectFrontFacadeImpl implements AgentCollectFrontFacade {
 
+    @Resource
+    private MappingFactory mappingFactory;
+
     @Override
-    public ACPayRepFrontFrontDTO pay(ACPayReqFrontFrontDTO reqDto) {
+    public ACPayRepFrontDTO pay(ACPayReqFrontDTO reqDto) throws FrontException {
+
+        try {
+            AbsFrontExecutor<ACPayReqFrontDTO, ACPayRepFrontDTO> absFrontExecutor = mappingFactory
+                .getChannelBean(reqDto.getChannelCode());
+            return absFrontExecutor.doProcess(reqDto);
+        } catch (VldException e) {
+            throw new FrontException(e.getRtnResult());
+        } catch (ResolveMsgException e) {
+            throw new FrontException(e.getRtnResult());
+        } catch (BuildMsgException e) {
+            throw new FrontException(e.getRtnResult());
+        } catch (CommuException e) {
+            throw new FrontException(e.getRtnResult());
+        }
+    }
+
+    @Override
+    public ACQueryPayRepFrontDTO payQuery(ACQueryPayReqFrontDTO reqDto) throws FrontException {
+        try {
+            AbsFrontExecutor<ACQueryPayReqFrontDTO, ACQueryPayRepFrontDTO> absFrontExecutor = mappingFactory
+                .getChannelBean(reqDto.getChannelCode());
+            return absFrontExecutor.doProcess(reqDto);
+        } catch (VldException e) {
+            throw new FrontException(e.getRtnResult());
+        } catch (ResolveMsgException e) {
+            throw new FrontException(e.getRtnResult());
+        } catch (BuildMsgException e) {
+            throw new FrontException(e.getRtnResult());
+        } catch (CommuException e) {
+            throw new FrontException(e.getRtnResult());
+        }
+    }
+
+    @Override
+    public RefundRepFrontDTO refund(RefundReqFrontDTO reqDto) {
         return null;
     }
 
     @Override
-    public ACQueryPayRepFrontFrontDTO payQuery(ACQueryPayReqFrontFrontDTO reqDto) {
+    public CancelRepFrontDTO cancel(CancelReqFrontDTO reqDto) {
         return null;
     }
 
     @Override
-    public RefundRepFrontFrontDTO refund(RefundReqFrontFrontDTO reqDto) {
+    public PayCallbackRepFrontDTO payCallback(PayCallbackReqFrontDTO reqDto) {
         return null;
     }
 
     @Override
-    public CancelRepFrontFrontDTO cancel(CancelReqFrontFrontDTO reqDto) {
+    public RefundCallbackRepFrontDTO refundCallback(RefundCallbackReqFrontDTO reqDto) {
         return null;
     }
 
     @Override
-    public PayCallbackRepFrontFrontDTO payCallback(PayCallbackReqFrontFrontDTO reqDto) {
-        return null;
-    }
-
-    @Override
-    public RefundCallbackRepFrontFrontDTO refundCallback(RefundCallbackReqFrontFrontDTO reqDto) {
-        return null;
-    }
-
-    @Override
-    public CancelCallbackRepFrontFrontDTO cancelCallback(CancelCallbackReqFrontFrontDTO reqDto) {
+    public CancelCallbackRepFrontDTO cancelCallback(CancelCallbackReqFrontDTO reqDto) {
         return null;
     }
 }

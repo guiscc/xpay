@@ -2,6 +2,7 @@ package com.xpay.channel.front.channel.agentcollect.unionpay;
 
 import com.xpay.channel.front.dto.BaseReqFrontDTO;
 import com.xpay.channel.common.exception.CommuException;
+import com.xpay.channel.front.msg.model.MsgReqModel;
 import com.xpay.channel.front.tongxin.impl.Https2ChannelHandler;
 import com.xpay.channel.front.utils.ChannelConfig;
 import org.slf4j.Logger;
@@ -19,15 +20,15 @@ public class Unionpay_TongxinHandler<REQ extends BaseReqFrontDTO> extends Https2
     private static final Logger logger = LoggerFactory.getLogger(Unionpay_TongxinHandler.class);
 
     @Override
-    public byte[] send(BaseReqFrontDTO baseReqFrontDTO, byte[] reqMsg, ChannelConfig channelConfig)
+    public byte[] send(BaseReqFrontDTO baseReqFrontDTO, MsgReqModel msgReqModel, ChannelConfig channelConfig)
                                                                                          throws CommuException {
 
-        super.send(baseReqFrontDTO, reqMsg, channelConfig);
+        super.send(baseReqFrontDTO, msgReqModel, channelConfig);
         byte results[] = null;
-        Map<String, String> data = new HashMap<String, String>();
+        Map<String, String> data = new HashMap();
         String str = null;
         try {
-            str = new String(reqMsg, channelConfig.getCharset());
+            str = new String(msgReqModel.getMsgBytes(), channelConfig.getCharset());
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }

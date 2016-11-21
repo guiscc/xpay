@@ -2,6 +2,7 @@ package com.xpay.channel.front.tongxin;
 
 import com.xpay.channel.front.dto.BaseReqFrontDTO;
 import com.xpay.channel.common.exception.CommuException;
+import com.xpay.channel.front.msg.model.MsgReqModel;
 import com.xpay.channel.front.utils.ChannelConfig;
 
 /**
@@ -11,24 +12,26 @@ import com.xpay.channel.front.utils.ChannelConfig;
 public interface ChannelTongXinHandler<REQ extends BaseReqFrontDTO> {
 
     /**
-     * 报文发送配置
-     * @param req
-     * @param reqMsg
-     * @param channelConfig
-     * @return
-     * @throws CommuException
-     */
-    public byte[] send(REQ req, byte[] reqMsg, ChannelConfig channelConfig) throws CommuException;
-
-    /**
      * 发送之前
      * @param req
-     * @param reqMsg
+     * @param msgReqModel
      * @param channelConfig
      * @return
      * @throws CommuException
      */
-    public byte[] sendBefor(REQ req, byte[] reqMsg, ChannelConfig channelConfig) throws CommuException;
+    public MsgReqModel sendBefor(REQ req, MsgReqModel msgReqModel, ChannelConfig channelConfig)
+                                                                                               throws CommuException;
+
+    /**
+     * 报文发送配置
+     * @param req
+     * @param msgReqModel
+     * @param channelConfig
+     * @return
+     * @throws CommuException
+     */
+    public byte[] send(REQ req, MsgReqModel msgReqModel, ChannelConfig channelConfig)
+                                                                                     throws CommuException;
 
     /**
      * 发送之后
@@ -38,5 +41,6 @@ public interface ChannelTongXinHandler<REQ extends BaseReqFrontDTO> {
      * @return
      * @throws CommuException
      */
-    public byte[] sendAfter(REQ req, byte[] reqMsg, ChannelConfig channelConfig) throws CommuException;
+    public byte[] sendAfter(REQ req, byte[] reqMsg, ChannelConfig channelConfig)
+                                                                                throws CommuException;
 }

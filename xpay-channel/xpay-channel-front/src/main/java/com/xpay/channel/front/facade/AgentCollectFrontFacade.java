@@ -1,9 +1,6 @@
 package com.xpay.channel.front.facade;
 
-import com.xpay.channel.common.exception.BuildMsgException;
-import com.xpay.channel.common.exception.CommuException;
-import com.xpay.channel.common.exception.ResolveMsgException;
-import com.xpay.channel.common.exception.VldException;
+import com.xpay.channel.common.exception.*;
 import com.xpay.channel.front.dto.agentcollect.*;
 
 /**
@@ -20,7 +17,7 @@ public interface AgentCollectFrontFacade {
      * @throws CommuException
      * @throws ResolveMsgException
      */
-    public ACPayRepFrontFrontDTO pay(ACPayReqFrontFrontDTO reqDto);
+    public ACPayRepFrontDTO pay(ACPayReqFrontDTO reqDto) throws FrontException;
 
     /**
      * 代扣结果查询
@@ -30,7 +27,7 @@ public interface AgentCollectFrontFacade {
      * @throws CommuException
      * @throws ResolveMsgException
      */
-    public ACQueryPayRepFrontFrontDTO payQuery(ACQueryPayReqFrontFrontDTO reqDto);
+    public ACQueryPayRepFrontDTO payQuery(ACQueryPayReqFrontDTO reqDto) throws FrontException;
 
     /**
      * 退货
@@ -41,7 +38,7 @@ public interface AgentCollectFrontFacade {
      * @throws CommuException
      * @throws ResolveMsgException
      */
-    public RefundRepFrontFrontDTO refund(RefundReqFrontFrontDTO reqDto);
+    public RefundRepFrontDTO refund(RefundReqFrontDTO reqDto);
 
     /**
      * 消费取消
@@ -52,7 +49,7 @@ public interface AgentCollectFrontFacade {
      * @throws CommuException
      * @throws ResolveMsgException
      */
-    public CancelRepFrontFrontDTO cancel(CancelReqFrontFrontDTO reqDto);
+    public CancelRepFrontDTO cancel(CancelReqFrontDTO reqDto);
 
     /**
      * 代扣回调
@@ -63,7 +60,7 @@ public interface AgentCollectFrontFacade {
      * @throws CommuException
      * @throws ResolveMsgException
      */
-    public PayCallbackRepFrontFrontDTO payCallback(PayCallbackReqFrontFrontDTO reqDto);
+    public PayCallbackRepFrontDTO payCallback(PayCallbackReqFrontDTO reqDto);
 
     /**
      * 代扣退款回调
@@ -74,7 +71,7 @@ public interface AgentCollectFrontFacade {
      * @throws CommuException
      * @throws ResolveMsgException
      */
-    public RefundCallbackRepFrontFrontDTO refundCallback(RefundCallbackReqFrontFrontDTO reqDto);
+    public RefundCallbackRepFrontDTO refundCallback(RefundCallbackReqFrontDTO reqDto);
 
     /**
      * 代扣交易取消回调
@@ -85,6 +82,6 @@ public interface AgentCollectFrontFacade {
      * @throws CommuException
      * @throws ResolveMsgException
      */
-    public CancelCallbackRepFrontFrontDTO cancelCallback(CancelCallbackReqFrontFrontDTO reqDto);
+    public CancelCallbackRepFrontDTO cancelCallback(CancelCallbackReqFrontDTO reqDto);
 
 }

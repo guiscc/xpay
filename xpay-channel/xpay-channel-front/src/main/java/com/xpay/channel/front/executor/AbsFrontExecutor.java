@@ -7,10 +7,12 @@ import com.xpay.channel.common.exception.VldException;
 import com.xpay.channel.front.dto.BaseRepFrontDTO;
 import com.xpay.channel.front.dto.BaseReqFrontDTO;
 import com.xpay.channel.front.msg.ChannelMsgHandler;
+import com.xpay.channel.front.msg.model.MsgReqModel;
 import com.xpay.channel.front.tongxin.ChannelTongXinHandler;
 import com.xpay.channel.front.utils.ChannelConfig;
 import com.xpay.channel.front.vld.ChannelValidateHandler;
 import com.xpay.common.enums.EnumChannelType;
+import com.xpay.common.enums.EnumRtnResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -69,24 +71,29 @@ public abstract class AbsFrontExecutor<REQ extends BaseReqFrontDTO, REP extends 
             logger.info("[渠道系统][前置模块]参数验证完成");
         }
 
-        byte[] reqAfter = null; //请求报文
+        MsgReqModel msgReqModel = null; //请求报文
         REQ reqBefor = null;    //请求实体
         if (channelMsgHandler != null) {   //如果报文组件为空就不组建报文
             reqBefor = channelMsgHandler.beforBuildMsg(req, channelConfig);  //拼装报文之前
-            byte[] reqMsg = channelMsgHandler.builderMsg(reqBefor, channelConfig); //组建报文
-            reqAfter = channelMsgHandler.afterBuildMsg(reqBefor, reqMsg, channelConfig); //拼装报文之后
-            try {
-                logger.info("[渠道系统][前置模块]前置创建报文完成:" + new String(reqAfter, channelConfig.getCharset()));
-            } catch (UnsupportedEncodingException e) {
-                logger.error("[渠道系统][前置模块]不支持报文编码格式:" + channelConfig.getCharset(), e);
+            msgReqModel = channelMsgHandler.builderMsg(reqBefor, channelConfig); //组建报文
+            if(msgReqModel == null){
+                throw new VldException(EnumRtnResult.E000000);
             }
+            msgReqModel = channelMsgHandler.afterBuildMsg(reqBefor, msgReqModel, channelConfig); //拼装报文之后
+            logger.info("[渠道系统][前置模块]创建报文完成:" + msgReqModel.toString());
         }
 
-        byte[] rtnMsg = reqAfter;
-        if (channelTongXinHandler != null || reqAfter == null) { //如果通信组件为空，或者内容为null，就不发送报文。
-            rtnMsg = channelTongXinHandler.sendBefor(reqBefor, rtnMsg, channelConfig); //发送报文之前
-            rtnMsg = channelTongXinHandler.send(reqBefor, rtnMsg, channelConfig);    //发送报文
+        byte[] rtnMsg = null;
+        if (channelTongXinHandler != null && msgReqModel != null) { //如果通信组件为空，或者内容为null，就不发送报文。
+            msgReqModel = channelTongXinHandler.sendBefor(reqBefor, msgReqModel, channelConfig); //发送报文之前
+
+            rtnMsg = channelTongXinHandler.send(reqBefor, msgReqModel, channelConfig);    //发送报文
+            if(rtnMsg == null){
+                throw new VldException(EnumRtnResult.E000000);
+            }
+
             rtnMsg = channelTongXinHandler.sendAfter(reqBefor, rtnMsg, channelConfig);  //发送报文之后
+
             try {
                 logger.info("[渠道系统][前置模块]返回报文为:" + new String(rtnMsg, channelConfig.getCharset()));
             } catch (UnsupportedEncodingException e) {
@@ -95,9 +102,9 @@ public abstract class AbsFrontExecutor<REQ extends BaseReqFrontDTO, REP extends 
         }
 
         REP resolveMsgAfter = null;
-        if (channelMsgHandler != null || rtnMsg == null) { //如果通信组建或者，返回消息为null，就不解析报文。
-            byte[] resolveMsgBefor = channelMsgHandler.beforResolveMsg(reqBefor, rtnMsg, channelConfig);
-            REP resolveMsg = channelMsgHandler.resolveMsg(reqBefor, resolveMsgBefor, channelConfig);
+        if (channelMsgHandler != null && rtnMsg != null) { //如果通信组建或者，返回消息为null，就不解析报文。
+            REQ resolveMsgBefor = channelMsgHandler.beforResolveMsg(reqBefor, channelConfig);
+            REP resolveMsg = channelMsgHandler.resolveMsg(reqBefor, rtnMsg, channelConfig);
             resolveMsgAfter = channelMsgHandler.afterResolveMsg(reqBefor, resolveMsg, channelConfig);
             logger.info("[渠道系统][前置模块]解析后的数据为:" + resolveMsgAfter);
         }

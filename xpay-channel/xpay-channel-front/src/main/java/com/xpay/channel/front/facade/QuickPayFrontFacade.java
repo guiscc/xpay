@@ -33,7 +33,7 @@ public interface QuickPayFrontFacade {
      * @throws CommuException
      * @throws ResolveMsgException
      */
-    public PayConfirmRepFrontFrontDTO pay(PayConfirmReqFrontFrontDTO payReqDTO);
+    public PayConfirmRepFrontDTO pay(PayConfirmReqFrontDTO payReqDTO);
 
     /**
      * 补单
@@ -44,7 +44,7 @@ public interface QuickPayFrontFacade {
      * @throws CommuException
      * @throws ResolveMsgException
      */
-    public PayQueryRepFrontFrontDTO queryPay(PayQueryReqFrontFrontDTO queryPayReqDTO) ;
+    public PayQueryRepFrontDTO queryPay(PayQueryReqFrontDTO queryPayReqDTO) ;
 
     /**
      * 退款
@@ -66,7 +66,7 @@ public interface QuickPayFrontFacade {
      * @throws CommuException
      * @throws ResolveMsgException
      */
-    public CheckFileRepFrontFrontDTO checkFile(CheckFileReqFrontFrontDTO checkFileReqFrontDTO);
+    public CheckFileRepFrontDTO checkFile(CheckFileReqFrontDTO checkFileReqFrontDTO);
 
     /**
      * 第三方支付系统通过回调地址通知结果
@@ -77,7 +77,7 @@ public interface QuickPayFrontFacade {
      * @throws ResolveMsgException
      * @throws CommuException
      */
-    public PayCallBackRepFrontFrontDTO callback(PayCallBackReqFrontFrontDTO recieveRequestDto);
+    public PayCallBackRepFrontDTO callback(PayCallBackReqFrontDTO recieveRequestDto);
 
     /**
      * 第三方支付系统通过回调地址通知结果
@@ -88,7 +88,7 @@ public interface QuickPayFrontFacade {
      * @throws CommuException
      * @throws ResolveMsgException
      */
-    public RefundCallBackRepFrontFrontDTO refundCallback(RefundCallBackReqFrontFrontDTO recieveRequestDto);
+    public RefundCallBackRepFrontDTO refundCallback(RefundCallBackReqFrontDTO recieveRequestDto);
 
     /**
      * 查询卡信息
@@ -99,6 +99,6 @@ public interface QuickPayFrontFacade {
      * @throws CommuException
      * @throws ResolveMsgException
      */
-    public QueryCardInfoRepFrontFrontDTO queryCardInfo(QueryCardInfoReqFrontFrontDTO payReqDTO);
+    public QueryCardInfoRepFrontDTO queryCardInfo(QueryCardInfoReqFrontDTO payReqDTO);
 
 }

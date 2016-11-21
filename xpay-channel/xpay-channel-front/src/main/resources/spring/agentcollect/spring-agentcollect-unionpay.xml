@@ -6,58 +6,33 @@
        default-autowire="byType">
 
     <!--银联自定义通信-->
-    <bean id="unionpayTonxinHandler"
-          class="com.xpay.channel.front.channel.agentcollect.unionpay.Unionpay_TongxinHandler"/>
+    <!--<bean id="unionpayTonxinHandler"-->
+          <!--class="com.xpay.channel.front.channel.agentcollect.unionpay.Unionpay_TongxinHandler"/>-->
 
+    <!--配置-->
     <bean id="unionConfig" class="com.xpay.channel.front.channel.agentcollect.unionpay.Unionpay_Config"
           parent="channelConfig">
-        <!--实名-->
-        <property name="authUrl" value="${unionpay.auth.authUrl}"/>
-        <property name="version" value="${unionpay.auth.version}"/>
-        <property name="certId" value="${unionpay.auth.certId}"/>
-        <property name="encryptCertId" value="${unionpay.auth.encryptCertId}"/>
-        <property name="signMethod" value="${unionpay.auth.signMethod}"/>
-        <property name="txnType" value="${unionpay.auth.txnType}"/>
-        <property name="txnSubType" value="${unionpay.auth.txnSubType}"/>
-        <property name="bizType" value="${unionpay.auth.bizType}"/>
-        <property name="channelType" value="${unionpay.auth.channelType}"/>
-        <property name="accessType" value="${unionpay.auth.accessType}"/>
-        <property name="accType" value="${unionpay.auth.accType}"/>
         <!--代扣-->
-        <property name="daikouTxnType" value="${unionpay.daikou.txnType}"/>
-        <property name="daikouTxnSubType" value="${unionpay.daikou.txnSubType}"/>
-        <property name="daikouBizType" value="${unionpay.daikou.bizType}"/>
-        <property name="daikouCurrencyCode" value="${unionpay.daikou.currencyCode}"/>
-        <property name="certifTp" value="${unionpay.daikou.certifTp}"/>
-        <property name="notifyUrl" value="${unionpay.daikou.notifyUrl}"/>
-        <property name="daikouUrl" value="${unionpay.daikou.daikouUrl}"/>
-        <property name="encCerPath" value="${unionpay.daikou.encCerPath}"/>
-        <property name="queryUrl" value="${unionpay.daikou.queryUrl}"/>
-
-        <!--查询-->
-        <property name="queryTxnType" value="${unionpay.daikou.queryTxnType}"/>
-        <!--退货-->
-        <property name="refundTxnType" value="${unionpay.daikou.refundTxnType}"/>
-        <!--实名认证-->
-        <property name="authSubTxnType" value="${unionpay.daikou.authSubTxnType}"/>
-        <!--消费取消-->
-        <property name="cancelTxnType" value="${unionpay.daikou.cancelTxnType}"/>
+        <property name="pfxPath" value="${agentcollect_unionpay_pfxPath}"/>
+        <property name="cerPath" value="${agentcollect_unionpay_cerPath}"/>
+        <property name="pfxPwd" value="${agentcollect_unionpay_pfxPwd}"/>
+        <property name="authUrl" value="${agentcollect_unionpay_authUrl}"/>
+        <property name="payUrl" value="${agentcollect_unionpay_payUrl}"/>
+        <property name="notifyUrl" value="${agentcollect_unionpay_notifyUrl}"/>
+        <property name="payQueryUrl" value="${agentcollect_unionpay_payQueryUrl}"/>
     </bean>
 
     <!--银联处理器-->
     <bean id="unionACExecutor" class="com.xpay.channel.front.channel.agentcollect.unionpay.Unionpay_FrontExecutor">
-
         <!--注入通信-->
         <property name="channelTongXinHandlerMap">
             <map>
-                <entry key-ref="SMS" value-ref="unionpayTonxinHandler"/>
+                <entry key-ref="PAY" value-ref="httpChannelHandler"/>
+                <entry key-ref="PAYQUERY" value-ref="httpChannelHandler"/>
             </map>
         </property>
-
-
         <!--注入配置-->
         <property name="channelConfig" ref="unionConfig"/>
-
         <!--报文处理器-->
         <property name="channelMsgHandlerMap">
             <map>
@@ -70,16 +45,16 @@
                 <entry key-ref="PAYQUERY">
                     <bean class="com.xpay.channel.front.channel.agentcollect.unionpay.msg.Unionpay_PayQueryMsgHandler"/>
                 </entry>
-                <entry key-ref="PAYCALLBACK">
-                    <bean class="com.xpay.channel.front.channel.agentcollect.unionpay.msg.Unionpay_PayCallbackMsgHandler"/>
-                </entry>
+                <!--<entry key-ref="PAYCALLBACK">-->
+                    <!--<bean class="com.xpay.channel.front.channel.agentcollect.unionpay.msg.Unionpay_PayCallbackMsgHandler"/>-->
+                <!--</entry>-->
 
-                <entry key-ref="REFUND">
-                    <bean class="com.xpay.channel.front.channel.agentcollect.unionpay.msg.Unionpay_RefundMsgHandler"/>
-                </entry>
-                <entry key-ref="REFUNDCALLBACK">
-                    <bean class="com.xpay.channel.front.channel.agentcollect.unionpay.msg.Unionpay_RefundCallbackMsgHandler"/>
-                </entry>
+                <!--<entry key-ref="REFUND">-->
+                    <!--<bean class="com.xpay.channel.front.channel.agentcollect.unionpay.msg.Unionpay_RefundMsgHandler"/>-->
+                <!--</entry>-->
+                <!--<entry key-ref="REFUNDCALLBACK">-->
+                    <!--<bean class="com.xpay.channel.front.channel.agentcollect.unionpay.msg.Unionpay_RefundCallbackMsgHandler"/>-->
+                <!--</entry>-->
                 <!--<entry key-ref="CANCEL">-->
                 <!--<bean class="com.xpay.channel.front.channel.agentcollect.unionpay.msg.Unionpay_CancelMsgHandler"/>-->
                 <!--</entry>-->
@@ -88,7 +63,6 @@
                 <!--</entry>-->
             </map>
         </property>
-
         <!--校验器-->
         <property name="channelValidateHandlerMap">
             <map>
@@ -119,5 +93,4 @@
             </map>
         </property>
     </bean>
-
 </beans>

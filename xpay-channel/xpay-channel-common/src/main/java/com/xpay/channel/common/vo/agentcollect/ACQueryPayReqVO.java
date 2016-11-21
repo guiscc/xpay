@@ -23,6 +23,11 @@ public class ACQueryPayReqVO {
     private String payOrderNo;
 
     /**
+     * 补单标志
+     */
+    private String repair;
+
+    /**
      * Getter method for property tradeOrderNo.
      *
      * @return property value of tradeOrderNo
@@ -57,6 +62,25 @@ public class ACQueryPayReqVO {
     public void setPayOrderNo(String payOrderNo) {
         this.payOrderNo = payOrderNo;
     }
+
+    /**
+     * Getter method for property repair.
+     *
+     * @return property value of repair
+     **/
+    public String getRepair() {
+        return repair;
+    }
+
+    /**
+     * Setter method for property repair.
+     *
+     * @param repair value to be assigned to property repair
+     **/
+    public void setRepair(String repair) {
+        this.repair = repair;
+    }
+
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this);

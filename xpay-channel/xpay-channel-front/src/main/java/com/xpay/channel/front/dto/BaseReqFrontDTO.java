@@ -4,7 +4,6 @@
  */
 package com.xpay.channel.front.dto;
 
-import com.xpay.channel.common.enums.EnumSMSMapKey;
 import com.xpay.common.enums.EnumChannelType;
 
 import java.util.Date;
@@ -17,14 +16,29 @@ import java.util.Map;
  */
 public class BaseReqFrontDTO {
 
-    private Map<String, String> headMap;
+    /**
+     * http通信使用的报文头
+     */
+    private Map<String, String> httpHeadMap;
 
+    /**
+     * form表单提交使用的全量参数
+     */
+    private Map<String,Object> formMap;
+
+    /**
+     * 请求时间
+     */
     private Date                reqDateTime;
 
-    private Map<String, String> extMap = new HashMap<String, String>();
-
+    /**
+     * 渠道类型
+     */
     private EnumChannelType     channelType;
 
+    /**
+     * 渠道编码
+     */
     private String              channelCode;
 
     /**
@@ -64,21 +78,21 @@ public class BaseReqFrontDTO {
     }
 
     /**
-     * Getter method for property headMap.
+     * Getter method for property httpHeadMap.
      *
-     * @return property value of headMap
+     * @return property value of httpHeadMap
      **/
-    public Map<String, String> getHeadMap() {
-        return headMap;
+    public Map<String, String> getHttpHeadMap() {
+        return httpHeadMap;
     }
 
     /**
-     * Setter method for property headMap.
+     * Setter method for property httpHeadMap.
      *
-     * @param headMap value to be assigned to property headMap
+     * @param httpHeadMap value to be assigned to property httpHeadMap
      **/
-    public void setHeadMap(Map<String, String> headMap) {
-        this.headMap = headMap;
+    public void setHttpHeadMap(Map<String, String> httpHeadMap) {
+        this.httpHeadMap = httpHeadMap;
     }
 
     /**
@@ -100,20 +114,20 @@ public class BaseReqFrontDTO {
     }
 
     /**
-     * Getter method for property extMap.
+     * Getter method for property formMap.
      *
-     * @return property value of extMap
+     * @return property value of formMap
      **/
-    public Map<String, String> getExtMap() {
-        return extMap;
+    public Map<String, Object> getFormMap() {
+        return formMap;
     }
 
     /**
-     * Setter method for property extMap.
+     * Setter method for property formMap.
      *
-     * @param extMap value to be assigned to property extMap
+     * @param formMap value to be assigned to property formMap
      **/
-    public void setExtMap(Map<String, String> extMap) {
-        this.extMap = extMap;
+    public void setFormMap(Map<String, Object> formMap) {
+        this.formMap = formMap;
     }
 }

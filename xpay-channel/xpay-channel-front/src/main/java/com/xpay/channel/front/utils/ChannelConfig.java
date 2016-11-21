@@ -20,7 +20,7 @@ public class ChannelConfig {
     /**
      * 密钥库密码
      */
-    private String pfxPathPwd;
+    private String pfxPwd;
 
     /**
      * 公钥路径
@@ -88,21 +88,21 @@ public class ChannelConfig {
     }
 
     /**
-     * Getter method for property pfxPathPwd.
+     * Getter method for property pfxPwd.
      *
-     * @return property value of pfxPathPwd
+     * @return property value of pfxPwd
      **/
-    public String getPfxPathPwd() {
-        return pfxPathPwd;
+    public String getPfxPwd() {
+        return pfxPwd;
     }
 
     /**
-     * Setter method for property pfxPathPwd.
+     * Setter method for property pfxPwd.
      *
-     * @param pfxPathPwd value to be assigned to property pfxPathPwd
+     * @param pfxPwd value to be assigned to property pfxPwd
      **/
-    public void setPfxPathPwd(String pfxPathPwd) {
-        this.pfxPathPwd = pfxPathPwd;
+    public void setPfxPwd(String pfxPwd) {
+        this.pfxPwd = pfxPwd;
     }
 
     /**

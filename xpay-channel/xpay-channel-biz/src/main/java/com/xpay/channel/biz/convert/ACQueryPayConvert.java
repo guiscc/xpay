@@ -4,6 +4,8 @@
  */
 package com.xpay.channel.biz.convert;
 
+import com.xpay.channel.front.dto.agentcollect.ACQueryPayRepFrontDTO;
+import com.xpay.channel.front.dto.agentcollect.ACQueryPayReqFrontDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,6 +23,28 @@ import com.xpay.channel.common.vo.agentcollect.ACQueryPayReqVO;
 public class ACQueryPayConvert {
 
     private static Logger logger = LoggerFactory.getLogger(ACQueryPayConvert.class);
+
+    /**
+     *
+     * @param acQueryPayReqFrontDTO
+     * @param acQueryPayReqVO
+     * @return
+     */
+    public static ACQueryPayReqFrontDTO getACQueryPayReqFrontDTO(ACQueryPayReqFrontDTO acQueryPayReqFrontDTO,
+                                                                 ACQueryPayReqVO acQueryPayReqVO) {
+        return acQueryPayReqFrontDTO;
+    }
+
+    /**
+     *
+     * @param acQueryPayRepFrontDTO
+     * @param acQueryPayRepVO
+     * @return
+     */
+    public static ACQueryPayRepVO getACQueryPayRepVO(ACQueryPayRepVO acQueryPayRepVO,
+                                                     ACQueryPayRepFrontDTO acQueryPayRepFrontDTO) {
+        return acQueryPayRepVO;
+    }
 
     /**
      * @param acQueryPayReqVO

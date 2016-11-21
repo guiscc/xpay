@@ -2,6 +2,7 @@ package com.xpay.channel.front.tongxin.impl;
 
 import com.xpay.channel.front.dto.BaseReqFrontDTO;
 import com.xpay.channel.common.exception.CommuException;
+import com.xpay.channel.front.msg.model.MsgReqModel;
 import com.xpay.common.enums.EnumRtnResult;
 import com.xpay.common.utils.HttpCfg;
 import com.xpay.common.utils.HttpRep;
@@ -25,18 +26,18 @@ public class Https2ChannelHandler<REQ extends BaseReqFrontDTO> extends AbsChanne
     private static final Logger logger = LoggerFactory.getLogger(Https2ChannelHandler.class);
 
     @Override
-    public byte[] send(BaseReqFrontDTO baseReqFrontDTO, byte[] reqMsg, ChannelConfig channelConfig)
+    public byte[] send(BaseReqFrontDTO baseReqFrontDTO, MsgReqModel msgReqModel, ChannelConfig channelConfig)
                                                                                          throws CommuException {
         try {
             HttpReq httpReq = new HttpReq(); //创建http请求数据
-            httpReq.setRequestBody(new String(reqMsg, channelConfig.getCharset()));
-            httpReq.setHeadMap(baseReqFrontDTO.getHeadMap());
+            httpReq.setRequestBody(new String(msgReqModel.getMsgBytes(), channelConfig.getCharset()));
+            httpReq.setHeadMap(baseReqFrontDTO.getHttpHeadMap());
 
             HttpCfg httpCfg = new HttpCfg();
             httpCfg.setCharset(channelConfig.getCharset());
             httpCfg.setHttps2way(true);
             httpCfg.setPfxPath(channelConfig.getPfxPath());
-            httpCfg.setPfxPass(channelConfig.getPfxPathPwd());
+            httpCfg.setPfxPass(channelConfig.getPfxPwd());
             httpCfg.setUrl(channelConfig.getBankURL());
 
             HttpRequester httpRequester = new HttpRequester(httpCfg);//
@@ -59,5 +60,4 @@ public class Https2ChannelHandler<REQ extends BaseReqFrontDTO> extends AbsChanne
             throw new CommuException(EnumRtnResult.E030104);
         }
     }
-
 }

@@ -21,9 +21,9 @@ public class JsonUtil {
 		return JSON.toJSONString(map) ;
 	}
 
-	public static Map<String , String> jsonTomMap(String json){
+	public static Map<String , Object> jsonTomMap(String json){
 		if(json == null || "".equals(json)){
-			return new HashMap<String , String>() ;
+			return new HashMap<String , Object>() ;
 		}
 		return JSON.parseObject(json , Map.class) ;
 	}

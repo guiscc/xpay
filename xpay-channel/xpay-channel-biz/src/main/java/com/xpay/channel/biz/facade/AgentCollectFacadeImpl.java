@@ -17,6 +17,8 @@ import com.xpay.channel.biz.convert.ACPayConvert;
 import com.xpay.channel.biz.convert.ACQueryPayConvert;
 import com.xpay.channel.biz.convert.ACRepairConvert;
 
+import javax.annotation.Resource;
+
 /**
  * @author qinshou
  * @version $Id: AgentCollectFacadeImpl.java, v 0.1 16/8/6 下午9:27 sxfans Exp $
@@ -25,6 +27,7 @@ public class AgentCollectFacadeImpl implements AgentCollectFacade {
 
     private Logger          logger = LoggerFactory.getLogger(AgentCollectFacadeImpl.class);
 
+    @Resource
     private AgentCollectBiz agentCollectBiz;
 
     @Override

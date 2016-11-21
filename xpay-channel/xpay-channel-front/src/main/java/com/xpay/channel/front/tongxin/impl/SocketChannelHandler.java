@@ -2,6 +2,7 @@ package com.xpay.channel.front.tongxin.impl;
 
 import com.xpay.channel.common.exception.CommuException;
 import com.xpay.channel.front.dto.BaseReqFrontDTO;
+import com.xpay.channel.front.msg.model.MsgReqModel;
 import com.xpay.channel.front.tongxin.AbsChannelTongXinHandler;
 import com.xpay.channel.front.utils.ChannelConfig;
 
@@ -11,8 +12,7 @@ import com.xpay.channel.front.utils.ChannelConfig;
  */
 public class SocketChannelHandler<REQ extends BaseReqFrontDTO> extends AbsChannelTongXinHandler<BaseReqFrontDTO> {
     @Override
-    public byte[] send(BaseReqFrontDTO req, byte[] reqMsg, ChannelConfig channelConfig)
-                                                                                  throws CommuException {
+    public byte[] send(BaseReqFrontDTO baseReqFrontDTO, MsgReqModel msgReqModel, ChannelConfig channelConfig) throws CommuException {
         return new byte[0];
     }
 }

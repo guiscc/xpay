@@ -18,25 +18,19 @@ import java.util.TreeMap;
  */
 public class UnionpayUtil {
 
-//    public static final String cerPath ="/Users/pang/Desktop/works/cert/verify_sign_acp.cer";
-//    public static  final String pfxPath = "/Users/pang/Desktop/works/cert/700000000000001_acp.pfx";
-//
-//    public static  final String merchantNo = "777290058126761";
-//    public static  final String pwd ="000000";
-
     /**
      * 将map排序拼接成字符串
      *
      * @param dataMap
      * @return
      */
-    public static String coverMap2String(Map<String, String> dataMap) {
+    public static String coverMap2String(Map<String, Object> dataMap) {
         TreeMap<String, String> treeMap = new TreeMap();
-        for (Map.Entry<String, String> entry : dataMap.entrySet()) {
+        for (Map.Entry<String, Object> entry : dataMap.entrySet()) {
             if ("signature".equals(entry.getKey().trim())) {
                 continue;
             }
-            treeMap.put(entry.getKey(), entry.getValue());
+            treeMap.put(entry.getKey(), entry.getValue()+"");
         }
 
         StringBuffer sf = new StringBuffer();
@@ -58,7 +52,7 @@ public class UnionpayUtil {
      * @return
      * @throws Exception
      */
-    public static String sign(Map<String, String> data, String encoding , String pfxPath , String pwd) throws Exception {
+    public static String sign(Map<String, Object> data, String encoding , String pfxPath , String pwd) throws Exception {
         KeyStoreUtil keyStoreUtil = new KeyStoreUtil();
         keyStoreUtil.loadStore(pfxPath, "PKCS12", pwd);
 
@@ -83,8 +77,8 @@ public class UnionpayUtil {
      * @param dataMap
      * @return
      */
-    public static boolean verSign(Map<String, String> dataMap , String cerPath) throws Exception {
-        byte[] oriSign = Base64.decodeBase64(dataMap.get("signature"));
+    public static boolean verSign(Map<String, Object> dataMap , String cerPath) throws Exception {
+        byte[] oriSign = Base64.decodeBase64(dataMap.get("signature")+"");
 
         String repStr = UnionpayUtil.coverMap2String(dataMap);
         System.out.println("验证签名之前的数据:" + repStr);
@@ -111,8 +105,8 @@ public class UnionpayUtil {
         httpCfg.setUrl(url);
 
 
-        String signBytes = UnionpayUtil.sign(data, "UTF-8","pfxPath" , "pwd"); //签名
-        data.put("signature", signBytes); //签名
+//        String signBytes = UnionpayUtil.sign(data, "UTF-8","pfxPath" , "pwd"); //签名
+//        data.put("signature", signBytes); //签名
         System.out.println("发送信息:" + data);
 
         HttpRequester httpRequester = new HttpRequester(httpCfg);
@@ -122,8 +116,8 @@ public class UnionpayUtil {
         Map<String, String> map = UnionpayUtil.parseQString(httpRep.getContent());
         System.out.println("返回信息:" + map);
 
-        boolean signFlag = UnionpayUtil.verSign(map,"cerPath");
-        System.out.println("返回签名信息:" + signFlag);
+//        boolean signFlag = UnionpayUtil.verSign(map,"cerPath");
+//        System.out.println("返回签名信息:" + signFlag);
     }
 
 

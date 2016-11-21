@@ -8,8 +8,8 @@ import com.xpay.channel.common.exception.BuildMsgException;
 import com.xpay.channel.common.exception.CommuException;
 import com.xpay.channel.common.exception.ResolveMsgException;
 import com.xpay.channel.common.exception.VldException;
-import com.xpay.channel.front.dto.agentcollect.RealNameAuthRepFrontFrontDTO;
-import com.xpay.channel.front.dto.agentcollect.RealNameAuthReqFrontFrontDTO;
+import com.xpay.channel.front.dto.agentcollect.RealNameAuthRepFrontDTO;
+import com.xpay.channel.front.dto.agentcollect.RealNameAuthReqFrontDTO;
 
 /**
  * @author qinshou
@@ -26,5 +26,5 @@ public interface CustomerFrontFacade {
      * @throws CommuException
      * @throws ResolveMsgException
      */
-    public RealNameAuthRepFrontFrontDTO auth(RealNameAuthReqFrontFrontDTO reqDto);
+    public RealNameAuthRepFrontDTO auth(RealNameAuthReqFrontDTO reqDto);
 }

@@ -11,6 +11,7 @@ import com.xpay.channel.common.exception.ResolveMsgException;
 import com.xpay.channel.front.dto.sms.SmsRepFrontDTO;
 import com.xpay.channel.front.dto.sms.SmsReqFrontDTO;
 import com.xpay.channel.front.msg.AbsChannelMsgHandler;
+import com.xpay.channel.front.msg.model.MsgReqModel;
 import com.xpay.channel.front.utils.ChannelConfig;
 import com.xpay.common.enums.EnumRtnResult;
 import com.xpay.common.enums.EnumRtnStatus;
@@ -26,14 +27,17 @@ import java.util.Map;
  * @version $Id: TaoBao_SmsMsgHandler.java, v 0.1 16/10/24 下午8:12 sxfans Exp $
  */
 public class TaoBao_SmsMsgHandler extends AbsChannelMsgHandler<SmsReqFrontDTO, SmsRepFrontDTO> {
+
     @Override
-    public byte[] builderMsg(SmsReqFrontDTO smsReqDTO, ChannelConfig channelConfig) throws BuildMsgException {
+    public MsgReqModel builderMsg(SmsReqFrontDTO smsReqDTO, ChannelConfig channelConfig) throws BuildMsgException {
         Map<EnumSMSMapKey, String> extMap = smsReqDTO.getSmsExtMap();
         String context = "{\"code\":\"" + extMap.get(EnumSMSMapKey.SMSCODE) + "\",\"time\":\""
                          + extMap.get(EnumSMSMapKey.TIME) + "\"}";
         try {
             byte[] bytes = context.getBytes(channelConfig.getCharset());
-            return bytes;
+            MsgReqModel msgReqModel = new MsgReqModel();
+            msgReqModel.setMsgBytes(bytes);
+            return msgReqModel;
         } catch (UnsupportedEncodingException e) {
             throw new BuildMsgException(EnumRtnResult.E030201);
         }

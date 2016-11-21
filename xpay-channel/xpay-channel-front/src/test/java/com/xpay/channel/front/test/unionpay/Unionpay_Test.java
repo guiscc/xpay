@@ -2,7 +2,7 @@
 //
 //import com.xpay.channel.common.dto.agentcollect.*;
 //import com.xpay.channel.common.util.DateUtil;
-//import com.xpay.channel.front.dto.agentcollect.RealNameAuthReqFrontFrontDTO;
+//import com.xpay.channel.front.dto.agentcollect.RealNameAuthReqFrontDTO;
 //import com.xpay.channel.front.facade.AgentCollectFrontFacade;
 //import com.xpay.channel.front.factory.ACChannelMappingFactory;
 //import com.xpay.channel.front.test.BaseTest;
@@ -29,7 +29,7 @@
 //
 //    @Test
 //    public void auth() throws Exception {
-//        RealNameAuthReqFrontFrontDTO reqDto = new RealNameAuthReqFrontFrontDTO() ;
+//        RealNameAuthReqFrontDTO reqDto = new RealNameAuthReqFrontDTO() ;
 //        ChannelRemark channelRemark = new ChannelRemark() ;
 //        channelRemark.setMerchantNo("777290058123381");
 ////        channelRemark.setCerPath("/Users/pang/Desktop/works/cert/verify_sign_acp.cer") ;
@@ -52,7 +52,7 @@
 //
 //    @Test
 //    public void pay() throws Exception{
-//        ACPayReqFrontFrontDTO reqDto = new ACPayReqFrontFrontDTO() ;
+//        ACPayReqFrontDTO reqDto = new ACPayReqFrontDTO() ;
 //        reqDto.setCreateDate(new Date());
 //        ChannelRemark channelRemark = new ChannelRemark() ;
 //        channelRemark.setMerchantNo("777290058123381");
@@ -77,7 +77,7 @@
 //
 //    @Test
 //    public void payQuery() throws Exception{
-//        ACQueryPayReqFrontFrontDTO reqDto = new ACQueryPayReqFrontFrontDTO() ;
+//        ACQueryPayReqFrontDTO reqDto = new ACQueryPayReqFrontDTO() ;
 //        ChannelRemark channelRemark = new ChannelRemark() ;
 //        channelRemark.setMerchantNo("777290058123381");
 //        channelRemark.setCerPath("/Users/pang/Desktop/works/cert/verify_sign_acp.cer");

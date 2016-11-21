@@ -10,7 +10,7 @@
     <context:annotation-config/>
 
     <!--通信Handler-->
-    <bean id="httpChannelHandler" class="com.xpay.channel.front.tongxin.impl.HttpChannelHandler"/>
+    <bean id="httpChannelHandler" class="com.xpay.channel.front.tongxin.impl.HttpFormChannelHandler"/>
     <bean id="socketChannelHandler" class="com.xpay.channel.front.tongxin.impl.SocketChannelHandler"/>
     <bean id="https1ChannelHandler" class="com.xpay.channel.front.tongxin.impl.Https1ChannelHandler"/>
     <bean id="https2ChannelHandler" class="com.xpay.channel.front.tongxin.impl.Https2ChannelHandler"/>
@@ -57,6 +57,7 @@
             <map key-type="java.lang.String"
                  value-type="com.xpay.channel.front.executor.AbsFrontExecutor">
                 <entry key="SMS_TAOBAO" value-ref="taobaoSmsChanneExecuter"/>
+                <entry key="AC_UNIONPAY" value-ref="unionACExecutor"/>
             </map>
         </property>
     </bean>
