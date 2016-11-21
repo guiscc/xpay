@@ -1,0 +1,236 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>SSM应用框架-菜单管理</title>
+<link href="../../css/default.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="../../js/themes/gray/easyui.css">
+<link rel="stylesheet" type="text/css" href="../../js/themes/icon.css">
+<script type="text/javascript" src="../../js/jquery.min.js"></script>
+<script type="text/javascript" src="../../js/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../js/jquery.serializeJSON.js"></script>
+<script type="text/javascript" src="../../js/locale/easyui-lang-zh_CN.js"></script>
+</head>
+<body class="easyui-layout">
+		<div id="sysMenu" title="菜单" data-options="region:'west',split:false,tools:'#sysMenuTreeOpt'" style="width:30%;padding:10px;">
+			<ul class="easyui-tree" id="sysMenuTree"></ul>
+		</div>
+		<div id="sysMenuTreeOpt">
+			<a href="javascript:void(0)" class="icon-reload" onclick="javascript:reloadSysMenuTree()"></a>
+		</div>
+	
+		<div data-options="region:'center'" title="子菜单"  style="padding:5px;">
+			<table id="sysMenuGrid" style="width:100%;height:auto;">
+			</table>
+		</div>
+		
+		<div id="addSysMenu" title="新增菜单" style="width:400px;height:200px;"></div>
+		<div id="updateSysMenu" title="修改菜单" style="width:400px;height:200px;"></div>
+		
+	<script>
+		(function($){
+			$('#sysMenuTree').tree({    
+			    url: "../../sysMenu/getSysMenuTree",
+			    method:"post",
+			    animate:true,
+			    loadFilter: function(ret){    
+			        if (ret.success){    
+			            return ret.data;    
+			        } else {    
+			            alert("菜单加载失败");
+			        }    
+			    },
+			    onClick: function(node){
+			    	if(null == node.id || undefined == node.id){
+			    		return false;
+			    	}
+			    	loadSysMenu(node.id);
+				}
+			}); 
+			loadSysMenu(null);
+			function loadSysMenu(parentId){
+				$('#sysMenuGrid').datagrid({    
+				    url:'../../sysMenu/querySysMenu',
+				    pagination:true,
+				    rownumbers:true,
+				    singleSelect:true,
+				    height:'100%',
+				    onBeforeLoad:function(){
+				    	if(null == parentId || undefined == parentId){
+				    		return false;
+				    	}
+				    },
+				    queryParams:{
+				    	pageSize:10,
+				    	currentPageNum:1,
+				    	condition:parentId
+				    },
+				    loadFilter: function(ret){    
+				        if (ret.success){    
+				            return ret;    
+				        } else {    
+				            alert("菜单加载失败");
+				        }    
+				    },   
+				    columns:[[    
+				        {field:'menuName',title:'菜单名称',width:100},    
+				        {field:'menuUrl',title:'URL',width:150},    
+				        {field:'menuState',title:'状态',width:100,formatter:function(value,row,index){
+				        	if (value == "1"){
+								return "正常";
+							} else {
+								return "冻结";
+							}
+
+				        }},
+				        {field:'menuLeaf',title:'是否为叶子',width:100,formatter:function(value,row,index){
+				        	if (value == "1"){
+								return "是";
+							} else {
+								return "否";
+							}
+
+				        }},
+				        {field:'menuIndex',title:'排序索引',width:100},
+				        {field:'menuIcon',title:'图标',width:150}
+				    ]],
+				    toolbar: [{
+				    	text:"新增",
+						iconCls: 'icon-add',
+						handler: addSysMenu
+					},'-',{
+						text:"修改",
+						iconCls: 'icon-edit',
+						handler: updateSysMenu
+					},'-',{
+						text:"删除",
+						iconCls: 'icon-remove',
+						handler: delSysMenu
+					}]
+
+				});  
+				//设置分页控件 
+			    var p = $('#sysMenuGrid').datagrid('getPager'); 
+			    $(p).pagination({ 
+			        pageSize: 10,//每页显示的记录条数，默认为10 
+			        pageList: [5,10,15],//可以设置每页记录条数的列表 
+			        beforePageText: '第',//页数文本框前显示的汉字 
+			        afterPageText: '页    共 {pages} 页', 
+			        displayMsg: '当前显示 {from} - {to} 条记录   共 {total} 条记录', 
+			    });
+			}
+		})(jQuery);
+		
+		//新增菜单
+		function addSysMenu(){
+			var sysMenuNode = $('#sysMenuTree').tree('getSelected');
+			if(null == sysMenuNode || undefined == sysMenuNode){
+				$.messager.alert('提示','请选择菜单');
+				return;
+			}
+			$('#addSysMenu').dialog({    
+			    title: '新增菜单',    
+			    width: 400,    
+			    height: 350,    
+			    closed: false,    
+			    cache: false,    
+			    href: 'sysMenuAdd.html',    
+			    modal: true,
+			    buttons:[{
+			    	iconCls:"icon-ok",
+					text:'提交',
+					handler:function(){
+						doAddSysMenu();
+					}
+				},{
+			    	iconCls:"icon-undo",
+					text:'重置',
+					handler:function(){
+						$("#addSysMenuForm").form('clear');
+					}
+				},{
+					iconCls:"icon-cancel",
+					text:'取消',
+					handler:function(){
+						$("#addSysMenu").dialog("close");
+					}
+				}]
+			});
+		}
+		
+		//删除菜单
+		function delSysMenu(){
+			var selSysMenu = $('#sysMenuGrid').datagrid('getSelected');
+			if(null == selSysMenu || undefined == selSysMenu){
+				$.messager.alert('提示','请选择要删除的菜单');
+				return;
+			}
+			$.messager.confirm('确认','您确认要删除菜单【'+selSysMenu.menuName+'】吗？',function(flag){    
+			    if (flag){    
+			    	$.ajax({
+						url : "../../sysMenu/delSysMenu",
+						method : "POST",
+						dataType : "json",
+						async : false,
+						data : {"id" : selSysMenu.id},
+						success : function(data) {
+							var ret = eval(data);
+							if(ret.success){
+								$('#sysMenuGrid').datagrid('reload');
+							}else{
+								$.messager.alert('错误','操作失败');
+							}
+						},
+						error : function(XMLHttpRequest, textStatus, errorThrown) {
+							var result = JSON.parse(XMLHttpRequest.responseText);
+							$.messager.alert('错误',result.errorMsg);
+						}
+					});
+			    }    
+			});  
+		}
+		
+		//修改菜单
+		function updateSysMenu(){
+			var selSysMenu = $('#sysMenuGrid').datagrid('getSelected');
+			if(null == selSysMenu || undefined == selSysMenu){
+				$.messager.alert('提示','请选择要修改的菜单');
+				return;
+			}
+			$('#updateSysMenu').dialog({    
+			    title: '修改菜单',    
+			    width: 400,    
+			    height: 350,    
+			    closed: false,    
+			    cache: false,    
+			    href: 'sysMenuUpdate.html',    
+			    modal: true,
+			    buttons:[{
+			    	iconCls:"icon-ok",
+					text:'提交',
+					handler:function(){
+						doUpdateSysMenu();
+					}
+				},{
+			    	iconCls:"icon-undo",
+					text:'重置',
+					handler:function(){
+						$("#updateSysMenuForm").form('clear');
+					}
+				},{
+					iconCls:"icon-cancel",
+					text:'取消',
+					handler:function(){
+						$("#updateSysMenu").dialog("close");
+					}
+				}]
+			});
+		}
+		
+		//刷新菜单树
+		function reloadSysMenuTree(){
+			$('#sysMenuTree').tree('reload');
+		}
+	</script>
+</body>
+</html>

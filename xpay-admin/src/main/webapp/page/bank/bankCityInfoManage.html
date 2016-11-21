@@ -1,0 +1,187 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>系统查询</title>
+<link href="../../css/default.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="../../js/themes/gray/easyui.css"/>
+<link rel="stylesheet" type="text/css" href="../../js/themes/icon.css"/>
+<script type="text/javascript" src="../../js/jquery.min.js"></script>
+<script type="text/javascript" src="../../js/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../js/jquery.serializeJSON.js"></script>
+<script type="text/javascript" src="../../js/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="../../js/app.js"></script>
+</head>
+<body class="easyui-layout">
+	<div id="merInfGridTB" data-options="region:'north'"
+		style="height: 40px; padding: 3px">
+		<table>
+			<tr>
+				<td><a href="javascript:void(0)" id="addBtn" onclick="toAdd();"
+					class="easyui-linkbutton"
+					data-options="iconCls:'icon-add',plain:true">新增</a></td>
+				<td>银行简称：</td>
+				<td><input class="easyui-textbox" id="mainCardNo" style="width: 150px" /></td>
+				<td><a href="javascript:void(0)" id="searchBtn" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true">查询</a></td>
+				<td><a href="javascript:void(0)"
+					onclick="javascript:location.reload();" class="easyui-linkbutton"
+					data-options="iconCls:'icon-reload',plain:true">重置</a></td>
+			</tr>
+		</table>
+	</div>
+
+	<div data-options="region:'center'" style="padding: 5px;">
+		<table id="merInfGrid" style="width: 100%; height: auto;" data-options="" fitcolumns="true">
+		</table>
+	</div>
+
+	<input id="hideId" type="hidden" />
+	<script>
+		(function($){
+			searchBusinessFlow();
+		    $("#searchBtn").on("click", searchBusinessFlow);
+		})(jQuery);
+		
+		function toAdd(){
+			$('<div></div>').dialog({
+				id:'info',
+			    title: '新增',    
+			    width: 400,    
+			    height: 300,    
+			    closed: false,    
+			    cache: false,    
+			    href: 'bankBinAdd.html', 
+			    modal: true,
+			    onClose:function(){
+			    	$(this).dialog("destroy");
+			    },
+			    buttons:[{
+					iconCls:"icon-save",
+					text:'提交',
+					handler:function(){
+						doAddSys();
+					}
+				},{
+					iconCls:"icon-cancel",
+					text:'关闭',
+					handler:function(){
+						$("#info").dialog("destroy");
+					}
+				}]
+			});
+		}
+		
+		function toUpdate(id){
+			$("#hideId").val(id);
+			$('<div></div>').dialog({ 
+				id:'upinfo',
+			    title: '修改',    
+			    width: 400,    
+			    height: 300,    
+			    closed: false,    
+			    cache: false,    
+			    href: 'bankBinAdd.html', 
+			    modal: true,
+			    onClose:function(){
+			    	$(this).dialog("destroy");
+			    },
+			    buttons:[{
+					iconCls:"icon-save",
+					text:'提交',
+					handler:function(){
+						doUpSys();
+					}
+				},{
+					iconCls:"icon-cancel",
+					text:'关闭',
+					handler:function(){
+						$("#upinfo").dialog("destroy");
+					}
+				}]
+			});
+		}
+		
+		function searchBusinessFlow(){
+			$('#merInfGrid').datagrid({ 
+				pageSize: 25,//每页显示的记录条数，默认为10 
+			    pageList: [25,50,100],//可以设置每页记录条数的列表 
+			    url:'../../bankCardCity/getBankInfo',
+			    pagination:true,
+			    fitColumns:false,
+			    rownumbers:true,
+			    singleSelect:true,
+			    height:'100%',
+			    queryParams:{
+			    	mainCardNo:$("#mainCardNo").val()
+			    },
+			    loadFilter: function(ret){    
+			        if (ret.success){    
+			            return ret;    
+			        } else {    
+			        	$.messager.alert("提示","充值交易查询加载失败");
+			        }    
+			    },   
+			    columns:[[
+		            {field:'id',hidden:true,title:'主键',width:100},
+		            {field:'bankCode',title:'机构编码',width:150},
+		            {field:'orgName',title:'交换业务',width:150},
+		            {field:'orgCode',title:'卡类型',width:150},
+		            {field:'cardName',title:'结算内容',width:100},
+		            {field:'noLength',title:'结算周期',width:100},
+		            {field:'mainCardNo',title:'周期编码',width:100},
+		            {field:'binLength',title:'开始日期',width:100},
+		            {field:'binValue',title:'结束日期',width:100},
+		            {field:'cardType',title:'结束日期',width:100},
+		            {field:'createdDate',title:'结束日期',width:100},
+		            {field:'modifiedDate',title:'结束日期',width:100},
+		            {field:'deleteFlag',title:'结束日期',width:100},
+		            {field:'cz',title:'操作',width:100,formatter:function(value,row,index){ 
+                        return '<span><a href="#" onclick="toUpdate('+ row.id +')" style="color:blue">修改</a> </span>'+
+                        '&nbsp;<span><a href="#" onclick="doDelete('+ row.id +')" style="color:blue">删除</a> </span>';
+                    } }
+			    ]]
+			});  
+			//设置分页控件 
+		    var p = $('#merInfGrid').datagrid('getPager'); 
+		    $(p).pagination({ 
+		        beforePageText: '第',//页数文本框前显示的汉字 
+		        afterPageText: '页    共 {pages} 页', 
+		        displayMsg: '当前显示 {from} - {to} 条记录   共 {total} 条记录', 
+		    }); 
+		}
+		
+		function doDelete(id) {
+			$.messager.confirm("提示框", "确定要删除吗?", function(b) {
+				if (b) {
+					if (id == null || id == "") {
+						$.messager.alert("错误", "id为空");
+						return;
+					}
+					$.ajax({
+						url : "../../sysinfo/delsys?id=" + id,
+						method : "POST",
+						contentType : "application/json",
+						dataType : "json",
+						async : false,
+						//data : {'id':id+""},
+						success : function(data) {
+							var ret = eval(data);
+							if (ret.success) {
+								$('#merInfGrid').datagrid('reload');
+							} else {
+								$.messager.alert('错误', '操作失败');
+							}
+						},
+						error : function(XMLHttpRequest, textStatus,
+								errorThrown) {
+							var result = JSON
+									.parse(XMLHttpRequest.responseText);
+							$.messager.alert('错误', result.errorMsg);
+						}
+					});
+				}
+			});
+		}
+	</script>
+</body>
+</html>

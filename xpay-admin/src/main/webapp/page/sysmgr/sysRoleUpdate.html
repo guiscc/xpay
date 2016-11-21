@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>SSM应用框架-修改角色/岗位</title>
+<link href="../../css/default.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="../../js/themes/gray/easyui.css">
+<link rel="stylesheet" type="text/css" href="../../js/themes/icon.css">
+<script type="text/javascript" src="../../js/jquery.min.js"></script>
+<script type="text/javascript" src="../../js/jquery.easyui.min.js"></script>
+</head>
+<body class="easyui-layout">
+	<div id="sysRoleUpdateTab" data-options="border:false" class="easyui-tabs">   
+		<div title="基本信息" style="height:100%;">   
+			<form id="updateSysRoleForm" class="easyui-form" method="post" data-options="novalidate:true">
+				<input type="hidden" id="sysRoleId_hidden" name="id"></input>
+				<input type="hidden" id="roleMenuIds_update" name="roleMenuIds"/>
+		    	<table cellpadding="5" align="center">
+		    		<tr>
+		    			<td>名称:</td>
+		    			<td><input class="easyui-textbox" type="text" id="roleName_update" name="roleName" data-options="required:true"></input></td>
+		    		</tr>
+		    		<tr>
+		    			<td>备注:</td>
+		    			<td><input class="easyui-textbox" type="text" id="memo_update" name="memo" data-options="required:true"></input></td>
+		    		</tr>
+		    	</table>
+		    </form>
+		</div>
+		<div title="授权功能" style="height:100%;padding:5px;">   
+			<ul class="easyui-tree" id="roleMenuRelTree_update"></ul>
+		</div>
+	</div>
+	<script type="text/javascript">
+	
+		(function($){
+			
+			$('#sysRoleUpdateTab').tabs({    
+			    border:false  
+			});
+			
+			$('#roleMenuRelTree_update').tree({    
+			    url: "../../sysMenu/getSysMenuTreeLeaf1",
+			    method:"post",
+			    animate:true,
+			    checkbox:true,
+			    loadFilter: function(ret){    
+			        if (ret.success){    
+			            return ret.data;    
+			        } else {    
+			            $.messager.alert('错误','功能菜单加载失败');
+			        }    
+			    },
+			    onLoadSuccess:function(node,data){
+			    	//设置选中角色授权菜单
+					var selSysRole = $('#sysRoleGrid').datagrid('getSelected');
+					$.ajax({
+						url : "../../sysRole/queryRoleMenus",
+						method : "POST",
+						dataType : "json",
+						async : false,
+						data : {"roleId":selSysRole.id},
+						success : function(data) {
+							var ret = eval(data);
+							if(!ret.success){
+								$.messager.alert('错误','角色授权功能菜单加载失败');
+								return;
+							}
+							for(var i=0; i<ret.data.length; i++){
+								var node = $('#roleMenuRelTree_update').tree('find',ret.data[i]);
+								if(null != node){
+									$('#roleMenuRelTree_update').tree('check', node.target);
+								}
+							}
+						},
+						error : function(XMLHttpRequest, textStatus, errorThrown) {
+							$.messager.alert('错误','角色授权功能菜单加载失败');
+						}
+					});
+			    }
+			}); 
+			
+			var selSysRole = $('#sysRoleGrid').datagrid('getSelected');
+			$("#sysRoleId_hidden").val(selSysRole.id);
+			$("#roleName_update").val(selSysRole.roleName);
+			$("#memo_update").val(selSysRole.memo);
+			
+		})(jQuery);
+	
+		function doUpdateSysRole(){
+			var flag = $("#updateSysRoleForm").form('enableValidation').form('validate');
+			if(!flag){
+				return;
+			}
+			
+			//判断是否给角色授权了功能菜单
+			var checkRoleMenus = $('#roleMenuRelTree_update').tree('getChecked');
+			if(null == checkRoleMenus || checkRoleMenus.length == 0){
+				$.messager.alert('提示','角色没有授权功能菜单，请授权');
+				$('#sysRoleUpdateTab').tabs("select","授权功能");
+				return;
+			}
+			var mIds = "";
+			for(var i=0; i<checkRoleMenus.length; i++){
+				if(i+1 == checkRoleMenus.length){
+					mIds = mIds+checkRoleMenus[i].id;
+				}else{
+					mIds = mIds+checkRoleMenus[i].id+",";
+				}
+			}
+			$("#roleMenuIds_update").val(mIds);
+			
+			var postData = JSON.stringify($("#updateSysRoleForm").serializeJSON());
+			$.ajax({
+				url : "../../sysRole/updateSysRole",
+				method : "POST",
+				contentType : "application/json",
+				dataType : "json",
+				async : false,
+				data : postData,
+				success : function(data) {
+					var ret = eval(data);
+					if(ret.success){
+						$("#updateSysRole").dialog("close");
+						$('#sysRoleGrid').datagrid('reload');
+					}else{
+						$.messager.alert('错误','操作失败');
+					}
+				},
+				error : function(XMLHttpRequest, textStatus, errorThrown) {
+					var result = JSON.parse(XMLHttpRequest.responseText);
+					$.messager.alert('错误',result.errorMsg);
+				}
+			});
+		}
+	</script>
+</body>
+</html>

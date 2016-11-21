@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>SSM应用框架-修改字典类型</title>
+<link href="../../css/default.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="../../js/themes/gray/easyui.css">
+<link rel="stylesheet" type="text/css" href="../../js/themes/icon.css">
+<script type="text/javascript" src="../../js/jquery.min.js"></script>
+<script type="text/javascript" src="../../js/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../js/jquery.serializeJSON.js"></script>
+</head>
+<body class="easyui-layout">
+	<div style="padding:10px 60px 20px 60px">
+		<form id="updateDictTypeForm" class="easyui-form" method="post" data-options="novalidate:true">
+			<input type="hidden" id="dictTypeId" name="id"></input>
+	    	<table cellpadding="5">
+	    		<tr>
+	    			<td>类型代码:</td>
+	    			<td><input class="easyui-textbox" type="text" id="typeCode_update" name="typeCode" data-options="required:true"></input></td>
+	    		</tr>
+	    		<tr>
+	    			<td>类型名称:</td>
+	    			<td><input class="easyui-textbox" type="text" id="typeName_update" name="typeName" data-options="required:true"></input></td>
+	    		</tr>
+	    		<tr>
+	    			<td>类别:</td>
+	    			<td>
+	    				<input id="typeKind_update" name="typeKind" data-options="required:true"></input>
+	    			</td>
+	    		</tr>
+	    		<tr>
+	    			<td>备注:</td>
+	    			<td><input class="easyui-textbox" type="text" id="remark_update" name="remark"></input></td>
+	    		</tr>
+	    	</table>
+	    </form>
+	</div>
+	<script type="text/javascript">
+		function doUpdateDictType(){
+			var flag = $("#updateDictTypeForm").form('enableValidation').form('validate');
+			if(!flag){
+				return;
+			}
+			var postData = JSON.stringify($("#updateDictTypeForm").serializeJSON());
+			$.ajax({
+				url : "../../dict/updateDictType",
+				method : "POST",
+				contentType : "application/json",
+				dataType : "json",
+				async : false,
+				data : postData,
+				success : function(data) {
+					var ret = eval(data);
+					if(ret.success){
+						$('#dictTypeTree').tree('reload');
+						$("#updateDictType").dialog("close");
+					}else{
+						$.messager.alert('错误','操作失败');
+					}
+				},
+				error : function(XMLHttpRequest, textStatus, errorThrown) {
+					var result = JSON.parse(XMLHttpRequest.responseText);
+					$.messager.alert('错误',result.errorMsg);
+				}
+			});
+		}
+		
+		(function($){
+			//加载字典类别
+			$('#typeKind_update').combobox({    
+			    url:'../../dict/getDictItems',
+			    onBeforeLoad: function(param){
+					param.typeCode = "dict_kind";
+				},
+			    method:'post',
+			    valueField:'itemCode',    
+			    textField:'itemName',
+			    loadFilter:function(ret){
+			    	return ret.data;
+			    }
+			});  
+				
+			var dictTypeNode = $('#dictTypeTree').tree('getSelected');
+			
+			$("#dictTypeId").val(dictTypeNode.id);
+			$("#typeName_update").val(dictTypeNode.text);
+			$("#typeCode_update").val(dictTypeNode.extValue1);
+			$("#remark_update").val(dictTypeNode.extValue3);
+			$('#typeKind_update').combobox('setValue', dictTypeNode.extValue2);
+			
+		})(jQuery);
+	</script>
+</body>
+</html>

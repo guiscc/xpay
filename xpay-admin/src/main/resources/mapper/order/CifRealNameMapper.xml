@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ninefbank.smallpay.admin.order.dao.CifRealNameMapper" >
+  <resultMap id="BaseResultMap" type="com.ninefbank.smallpay.admin.order.entity.CifRealName" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="cerType" property="certype" jdbcType="TINYINT" />
+    <result column="cerNo" property="cerno" jdbcType="VARCHAR" />
+    <result column="realStatus" property="realstatus" jdbcType="TINYINT" />
+    <result column="createDT" property="createdt" jdbcType="TIMESTAMP" />
+    <result column="expire" property="expire" jdbcType="TIMESTAMP" />
+    <result column="userId" property="userid" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, username, cerType, cerNo, realStatus, createDT, expire, userId
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cif_realname
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cif_realname
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ninefbank.smallpay.admin.order.entity.CifRealName" >
+    insert into cif_realname (id, username, cerType, 
+      cerNo, realStatus, createDT, 
+      expire, userId)
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{certype,jdbcType=TINYINT}, 
+      #{cerno,jdbcType=VARCHAR}, #{realstatus,jdbcType=TINYINT}, #{createdt,jdbcType=TIMESTAMP}, 
+      #{expire,jdbcType=TIMESTAMP}, #{userid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ninefbank.smallpay.admin.order.entity.CifRealName" >
+    insert into cif_realname
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="certype != null" >
+        cerType,
+      </if>
+      <if test="cerno != null" >
+        cerNo,
+      </if>
+      <if test="realstatus != null" >
+        realStatus,
+      </if>
+      <if test="createdt != null" >
+        createDT,
+      </if>
+      <if test="expire != null" >
+        expire,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="certype != null" >
+        #{certype,jdbcType=TINYINT},
+      </if>
+      <if test="cerno != null" >
+        #{cerno,jdbcType=VARCHAR},
+      </if>
+      <if test="realstatus != null" >
+        #{realstatus,jdbcType=TINYINT},
+      </if>
+      <if test="createdt != null" >
+        #{createdt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expire != null" >
+        #{expire,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ninefbank.smallpay.admin.order.entity.CifRealName" >
+    update cif_realname
+    <set >
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="certype != null" >
+        cerType = #{certype,jdbcType=TINYINT},
+      </if>
+      <if test="cerno != null" >
+        cerNo = #{cerno,jdbcType=VARCHAR},
+      </if>
+      <if test="realstatus != null" >
+        realStatus = #{realstatus,jdbcType=TINYINT},
+      </if>
+      <if test="createdt != null" >
+        createDT = #{createdt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expire != null" >
+        expire = #{expire,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ninefbank.smallpay.admin.order.entity.CifRealName" >
+    update cif_realname
+    set username = #{username,jdbcType=VARCHAR},
+      cerType = #{certype,jdbcType=TINYINT},
+      cerNo = #{cerno,jdbcType=VARCHAR},
+      realStatus = #{realstatus,jdbcType=TINYINT},
+      createDT = #{createdt,jdbcType=TIMESTAMP},
+      expire = #{expire,jdbcType=TIMESTAMP},
+      userId = #{userid,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

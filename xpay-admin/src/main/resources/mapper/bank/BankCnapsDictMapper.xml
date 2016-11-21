@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ninefbank.smallpay.admin.bank.dao.BankCnapsDictMapper">
+	<resultMap id="BaseResultMap"
+		type="com.ninefbank.smallpay.admin.bank.entity.BankCnapsDict">
+		<id column="bank_cnaps" property="bankCnaps" jdbcType="VARCHAR" />
+		<result column="bank_name" property="bankName" jdbcType="VARCHAR" />
+		<result column="bank_code" property="bankCode" jdbcType="VARCHAR" />
+		<result column="province_id" property="provinceId" jdbcType="VARCHAR" />
+		<result column="city_id" property="cityId" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="VARCHAR" />
+		<result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+		<result column="modified_date" property="modifiedDate" jdbcType="TIMESTAMP" />
+		<result column="delete_flag" property="deleteFlag" jdbcType="CHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		bank_cnaps, bank_name, bank_code, province_id, city_id, status, created_date,
+		modified_date,
+		delete_flag
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from base_bank_cnaps_dict
+		where 1=1
+		<if test="bankName != null">
+			AND bank_name = #{bankName,jdbcType=VARCHAR}
+		</if>
+		<if test="bankCode != null">
+			AND bank_code = #{bankCode,jdbcType=VARCHAR}
+		</if>
+		<if test="provinceId != null">
+			AND province_id = #{provinceId,jdbcType=VARCHAR}
+		</if>
+		<if test="cityId != null">
+			AND city_id = #{cityId,jdbcType=VARCHAR}
+		</if>
+		<if test="status != null">
+			AND status = #{status,jdbcType=VARCHAR}
+		</if>
+		<if test="createdDate != null">
+			AND created_date = #{createdDate,jdbcType=TIMESTAMP}
+		</if>
+		<if test="modifiedDate != null">
+			AND modified_date = #{modifiedDate,jdbcType=TIMESTAMP}
+		</if>
+		<if test="deleteFlag != null">
+			AND delete_flag = #{deleteFlag,jdbcType=CHAR}
+		</if>
+	</select>
+	
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from base_bank_cnaps_dict
+    where bank_cnaps = #{bankCnaps,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ninefbank.smallpay.admin.bank.entity.BankCnapsDict" >
+    insert into base_bank_cnaps_dict (bank_cnaps, bank_name, bank_code, 
+      province_id, city_id, status, 
+      created_date, modified_date, delete_flag
+      )
+    values (#{bankCnaps,jdbcType=VARCHAR}, #{bankName,jdbcType=VARCHAR}, #{bankCode,jdbcType=VARCHAR}, 
+      #{provinceId,jdbcType=VARCHAR}, #{cityId,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{createdDate,jdbcType=TIMESTAMP}, #{modifiedDate,jdbcType=TIMESTAMP}, #{deleteFlag,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ninefbank.smallpay.admin.bank.entity.BankCnapsDict" >
+    insert into base_bank_cnaps_dict
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="bankCnaps != null" >
+        bank_cnaps,
+      </if>
+      <if test="bankName != null" >
+        bank_name,
+      </if>
+      <if test="bankCode != null" >
+        bank_code,
+      </if>
+      <if test="provinceId != null" >
+        province_id,
+      </if>
+      <if test="cityId != null" >
+        city_id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createdDate != null" >
+        created_date,
+      </if>
+      <if test="modifiedDate != null" >
+        modified_date,
+      </if>
+      <if test="deleteFlag != null" >
+        delete_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="bankCnaps != null" >
+        #{bankCnaps,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null" >
+        #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCode != null" >
+        #{bankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceId != null" >
+        #{provinceId,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null" >
+        #{cityId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedDate != null" >
+        #{modifiedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteFlag != null" >
+        #{deleteFlag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ninefbank.smallpay.admin.bank.entity.BankCnapsDict" >
+    update base_bank_cnaps_dict
+    <set >
+      <if test="bankName != null" >
+        bank_name = #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCode != null" >
+        bank_code = #{bankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceId != null" >
+        province_id = #{provinceId,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null" >
+        city_id = #{cityId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createdDate != null" >
+        created_date = #{createdDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedDate != null" >
+        modified_date = #{modifiedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteFlag != null" >
+        delete_flag = #{deleteFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    where bank_cnaps = #{bankCnaps,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ninefbank.smallpay.admin.bank.entity.BankCnapsDict" >
+    update base_bank_cnaps_dict
+    set bank_name = #{bankName,jdbcType=VARCHAR},
+      bank_code = #{bankCode,jdbcType=VARCHAR},
+      province_id = #{provinceId,jdbcType=VARCHAR},
+      city_id = #{cityId,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      created_date = #{createdDate,jdbcType=TIMESTAMP},
+      modified_date = #{modifiedDate,jdbcType=TIMESTAMP},
+      delete_flag = #{deleteFlag,jdbcType=CHAR}
+    where bank_cnaps = #{bankCnaps,jdbcType=VARCHAR}
+  </update>
+</mapper>
