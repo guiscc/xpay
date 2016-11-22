@@ -9,6 +9,7 @@ import com.xpay.channel.common.exception.ResolveMsgException;
 import com.xpay.channel.front.dto.BaseRepFrontDTO;
 import com.xpay.channel.front.dto.BaseReqFrontDTO;
 import com.xpay.channel.front.msg.AbsChannelMsgHandler;
+import com.xpay.channel.front.msg.model.MsgRepModel;
 import com.xpay.channel.front.msg.model.MsgReqModel;
 import com.xpay.channel.front.utils.ChannelConfig;
 
@@ -25,7 +26,7 @@ public class JsonChannelMsgHandlerImpl<REQ extends BaseReqFrontDTO, REP extends 
     }
 
     @Override
-    public REP resolveMsg(REQ req, byte[] rtnMsg, ChannelConfig channelConfig) throws ResolveMsgException {
+    public REP resolveMsg(REQ req, MsgRepModel rtnMsg, ChannelConfig channelConfig) throws ResolveMsgException {
         return null;
     }
 }

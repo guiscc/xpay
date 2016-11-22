@@ -1,8 +1,8 @@
 package com.xpay.channel.front.channel.agentcollect.unionpay.util;
-import com.xpay.common.utils.HttpCfg;
-import com.xpay.common.utils.HttpRep;
-import com.xpay.common.utils.HttpReq;
-import com.xpay.common.utils.HttpRequester;
+
+import com.xpay.channel.front.utils.ChannelConfig;
+import com.xpay.common.utils.jce.DigestUtil;
+import com.xpay.common.utils.jce.KeyStoreUtil;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.binary.Hex;
 
@@ -24,13 +24,13 @@ public class UnionpayUtil {
      * @param dataMap
      * @return
      */
-    public static String coverMap2String(Map<String, Object> dataMap) {
+    public static String coverMap2String(Map<String, String> dataMap) {
         TreeMap<String, String> treeMap = new TreeMap();
-        for (Map.Entry<String, Object> entry : dataMap.entrySet()) {
+        for (Map.Entry<String, String> entry : dataMap.entrySet()) {
             if ("signature".equals(entry.getKey().trim())) {
                 continue;
             }
-            treeMap.put(entry.getKey(), entry.getValue()+"");
+            treeMap.put(entry.getKey(), entry.getValue() + "");
         }
 
         StringBuffer sf = new StringBuffer();
@@ -48,18 +48,17 @@ public class UnionpayUtil {
      * 签名
      *
      * @param data
-     * @param encoding
      * @return
      * @throws Exception
      */
-    public static String sign(Map<String, Object> data, String encoding , String pfxPath , String pwd) throws Exception {
+    public static String sign(Map<String, String> data, ChannelConfig channelConfig)
+                                                                                    throws Exception {
         KeyStoreUtil keyStoreUtil = new KeyStoreUtil();
-        keyStoreUtil.loadStore(pfxPath, "PKCS12", pwd);
-
+        keyStoreUtil.loadStore(channelConfig.getPfxPath(), "PKCS12", channelConfig.getPfxPwd());
         data.put("certId", keyStoreUtil.getCerId()); //证书id
         String stringData = UnionpayUtil.coverMap2String(data); //转换map为字符串
 
-        byte[] sigestByte = DigestUtil.sha1(stringData.getBytes(encoding)); //摘要
+        byte[] sigestByte = DigestUtil.sha1(stringData.getBytes(channelConfig.getCharset())); //摘要
         String str = Hex.encodeHexString(sigestByte); //16进制
 
         PrivateKey privateKey = keyStoreUtil.getPrivateKey(); //获取私钥
@@ -77,11 +76,10 @@ public class UnionpayUtil {
      * @param dataMap
      * @return
      */
-    public static boolean verSign(Map<String, Object> dataMap , String cerPath) throws Exception {
-        byte[] oriSign = Base64.decodeBase64(dataMap.get("signature")+"");
+    public static boolean verSign(Map<String, String> dataMap, String cerPath) throws Exception {
+        byte[] oriSign = Base64.decodeBase64(dataMap.get("signature") + "");
 
         String repStr = UnionpayUtil.coverMap2String(dataMap);
-        System.out.println("验证签名之前的数据:" + repStr);
 
         byte[] repByte = DigestUtil.sha1(repStr.getBytes("UTF-8"));
 
@@ -90,36 +88,6 @@ public class UnionpayUtil {
 
         return keyStoreUtil.verify(Hex.encodeHexString(repByte).getBytes(), oriSign);
     }
-
-    /**
-     *
-     * @param
-     */
-    public static void process(Map<String,String> data,String url) throws Exception {
-        HttpCfg httpCfg = new HttpCfg();
-        httpCfg.setConnTimeOut(10000);
-        httpCfg.setReadTimeOut(2000);
-        httpCfg.setPort(443);
-        httpCfg.setProtocol(HttpCfg.HTTPS);
-        httpCfg.setHttps2way(false);
-        httpCfg.setUrl(url);
-
-
-//        String signBytes = UnionpayUtil.sign(data, "UTF-8","pfxPath" , "pwd"); //签名
-//        data.put("signature", signBytes); //签名
-        System.out.println("发送信息:" + data);
-
-        HttpRequester httpRequester = new HttpRequester(httpCfg);
-        HttpReq httpReq = new HttpReq();
-        httpReq.setParamMap(data);
-        HttpRep httpRep = httpRequester.sendPostForm(httpReq);
-        Map<String, String> map = UnionpayUtil.parseQString(httpRep.getContent());
-        System.out.println("返回信息:" + map);
-
-//        boolean signFlag = UnionpayUtil.verSign(map,"cerPath");
-//        System.out.println("返回签名信息:" + signFlag);
-    }
-
 
     /**
      * 解析应答字符串，生成应答要素
@@ -187,9 +155,9 @@ public class UnionpayUtil {
      * @param map
      * @throws UnsupportedEncodingException
      */
-    private static void putKeyValueToMap(StringBuilder temp, boolean isKey,
-                                  String key, Map<String, String> map)
-            throws UnsupportedEncodingException {
+    private static void putKeyValueToMap(StringBuilder temp, boolean isKey, String key,
+                                         Map<String, String> map)
+                                                                 throws UnsupportedEncodingException {
         if (isKey) {
             key = temp.toString();
             if (key.length() == 0) {

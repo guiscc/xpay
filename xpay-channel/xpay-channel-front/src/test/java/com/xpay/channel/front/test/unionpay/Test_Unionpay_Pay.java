@@ -32,7 +32,7 @@ public class Test_Unionpay_Pay extends BaseTest {
         /***商户接入参数***/
         data.put("merId", UnionpayUtil.merchantNo);    //商户号码，请改成自己申请的商户号或者open上注册得来的777商户号测试
         data.put("accessType", "0");                  //接入类型，商户接入填0 ，不需修改（0：直连商户， 1： 收单机构 2：平台商户）
-        data.put("orderId", "201603300001");          //商户订单号，8-40位数字字母，不能含“-”或“_”，可以自行定制规则
+        data.put("orderId", "201603300002");          //商户订单号，8-40位数字字母，不能含“-”或“_”，可以自行定制规则
         data.put("txnTime", dateStr);                    //订单发送时间，取系统时间，格式为YYYYMMDDhhmmss，必须取当前时间，否则会报txnTime无效
         data.put("accType", "01");                        //账号类型 01：银行卡02：存折03：IC卡帐号类型(卡介质)
         data.put("txnAmt", 10+"");                        //交易金额 单位为分，不能带小数点

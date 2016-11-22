@@ -11,6 +11,7 @@ import com.xpay.channel.common.exception.ResolveMsgException;
 import com.xpay.channel.front.dto.sms.SmsRepFrontDTO;
 import com.xpay.channel.front.dto.sms.SmsReqFrontDTO;
 import com.xpay.channel.front.msg.AbsChannelMsgHandler;
+import com.xpay.channel.front.msg.model.MsgRepModel;
 import com.xpay.channel.front.msg.model.MsgReqModel;
 import com.xpay.channel.front.utils.ChannelConfig;
 import com.xpay.common.enums.EnumRtnResult;
@@ -44,10 +45,10 @@ public class TaoBao_SmsMsgHandler extends AbsChannelMsgHandler<SmsReqFrontDTO, S
     }
 
     @Override
-    public SmsRepFrontDTO resolveMsg(SmsReqFrontDTO baseReqDTO, byte[] rtnMsg, ChannelConfig channelConfig)
+    public SmsRepFrontDTO resolveMsg(SmsReqFrontDTO baseReqDTO, MsgRepModel rtnMsg, ChannelConfig channelConfig)
                                                                                            throws ResolveMsgException {
         try {
-            ByteArrayInputStream bi = new ByteArrayInputStream(rtnMsg);
+            ByteArrayInputStream bi = new ByteArrayInputStream(rtnMsg.getMsgBytes());
             ObjectInputStream oi = new ObjectInputStream(bi);
             AlibabaAliqinFcSmsNumSendResponse rsp = (AlibabaAliqinFcSmsNumSendResponse) oi
                 .readObject();

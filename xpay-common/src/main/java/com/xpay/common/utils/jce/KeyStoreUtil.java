@@ -1,4 +1,4 @@
-package com.xpay.channel.front.channel.agentcollect.unionpay.util;
+package com.xpay.common.utils.jce;
 
 import java.io.FileInputStream;
 import java.security.*;
@@ -37,6 +37,52 @@ public class KeyStoreUtil {
     private KeyStore keyStore = null;
 
     /**
+     * 加载秘钥库
+     *
+     * @param keyStorePath
+     * @param keyStoreType
+     * @param password
+     * @throws Exception
+     */
+    public KeyStore loadStore(String keyStorePath, String keyStoreType, String password) throws Exception {
+        keyStore = KeyStore.getInstance(keyStoreType);
+        FileInputStream fileInputStream = new FileInputStream(keyStorePath);
+        keyStore.load(fileInputStream, password.toCharArray());
+        Enumeration<String> aliases = keyStore.aliases();
+        String align = "";
+        while (aliases.hasMoreElements()) {
+            align = aliases.nextElement();
+            break;
+        }
+        PrivateKey privateKey = (PrivateKey) keyStore.getKey(align, password.toCharArray());
+        this.privateKey = privateKey;
+        this.certificate = keyStore.getCertificate(align);
+        return keyStore;
+    }
+
+    /**
+     * 加载秘钥库
+     *
+     * @param keyStorePath
+     * @param keyStoreType
+     * @param password
+     * @throws Exception
+     */
+    public KeyStore loadStore(String keyStorePath, String keyStoreType, String alias, String password) throws Exception {
+        keyStore = KeyStore.getInstance(keyStoreType);
+        FileInputStream fileInputStream = new FileInputStream(keyStorePath);
+        keyStore.load(fileInputStream, password.toCharArray());
+        Certificate certificate = keyStore.getCertificate(alias);
+        this.certificate = certificate;
+        this.privateKey = (PrivateKey) keyStore.getKey(alias, password.toCharArray());
+        if (certificate != null) {
+            this.publicKey = certificate.getPublicKey();
+        }
+        System.out.println(keyStore.getKey(alias, password.toCharArray()));
+        return keyStore;
+    }
+
+    /**
      * 获取证书alias
      *
      * @return
@@ -60,52 +106,7 @@ public class KeyStoreUtil {
         return x509Certificate.getSerialNumber().toString();
     }
 
-    /**
-     * 加载秘钥库
-     *
-     * @param keyStorePath
-     * @param keyStoreType
-     * @param password
-     * @throws Exception
-     */
-    public KeyStore loadStore(String keyStorePath, String keyStoreType, String password) throws Exception {
-        keyStore = KeyStore.getInstance(keyStoreType);
-        FileInputStream fileInputStream = new FileInputStream(keyStorePath);
-        keyStore.load(fileInputStream, password.toCharArray());
-        Enumeration<String> aliases = keyStore.aliases();
-        String align = "";
-        while (aliases.hasMoreElements()) {
-            align = aliases.nextElement();
-            break;
-        }
-        PrivateKey privateKey = (PrivateKey) keyStore.getKey(align,password.toCharArray());
-        this.privateKey = privateKey;
-        this.certificate = keyStore.getCertificate(align);
-        return keyStore;
-    }
 
-
-    /**
-     * 加载秘钥库
-     *
-     * @param keyStorePath
-     * @param keyStoreType
-     * @param password
-     * @throws Exception
-     */
-    public KeyStore loadStore(String keyStorePath, String keyStoreType, String alias, String password) throws Exception {
-        keyStore = KeyStore.getInstance(keyStoreType);
-        FileInputStream fileInputStream = new FileInputStream(keyStorePath);
-        keyStore.load(fileInputStream, password.toCharArray());
-        Certificate certificate = keyStore.getCertificate(alias);
-        this.certificate = certificate;
-        this.privateKey = (PrivateKey) keyStore.getKey(alias, password.toCharArray());
-        if (certificate != null) {
-            this.publicKey = certificate.getPublicKey();
-        }
-        System.out.println(keyStore.getKey(alias, password.toCharArray()));
-        return keyStore;
-    }
 
     /**
      * 获取证书

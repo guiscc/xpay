@@ -1,9 +1,6 @@
 package com.xpay.channel.front.msg.impl;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import com.xpay.channel.common.enums.EnumMsgType;
+import com.xpay.channel.common.enums.EnumMsgReqType;
 import com.xpay.channel.front.dto.BaseRepFrontDTO;
 import com.xpay.channel.front.msg.AbsChannelMsgHandler;
 import com.xpay.channel.front.msg.model.MsgReqModel;
@@ -33,17 +30,17 @@ public abstract class FmkChannelMsgHandlerImpl<REQ extends BaseReqFrontDTO, REP 
     @Override
     public MsgReqModel builderMsg(REQ req, ChannelConfig channelConfig) throws BuildMsgException {
         String templateStr = null;
-        req.getFormMap().put("req", req);
-        req.getFormMap().put("cfg", channelConfig);
+        req.getFmkMap().put("req", req);
+        req.getFmkMap().put("cfg", channelConfig);
         try {
-            templateStr = FreeMarkerUtil.getInstance().getStrByTemplate(req.getFormMap(),
+            templateStr = FreeMarkerUtil.getInstance().getStrByTemplate(req.getFmkMap(),
                 getTemplatePath());
         } catch (Exception e) {
             logger.error("fmk拼装报文异常", e);
             throw new BuildMsgException(EnumRtnResult.E030201);
         }
         MsgReqModel msgReqModel = new MsgReqModel();
-        msgReqModel.setMsgType(EnumMsgType.STR);
+        msgReqModel.setMsgType(EnumMsgReqType.STR);
         msgReqModel.setMsgStr(templateStr);
         return msgReqModel;
     }

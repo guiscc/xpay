@@ -20,6 +20,7 @@
         <property name="payUrl" value="${agentcollect_unionpay_payUrl}"/>
         <property name="notifyUrl" value="${agentcollect_unionpay_notifyUrl}"/>
         <property name="payQueryUrl" value="${agentcollect_unionpay_payQueryUrl}"/>
+        <property name="merchantNo" value="${agentcollect_unionpay_merchantNo}"/>
     </bean>
 
     <!--银联处理器-->

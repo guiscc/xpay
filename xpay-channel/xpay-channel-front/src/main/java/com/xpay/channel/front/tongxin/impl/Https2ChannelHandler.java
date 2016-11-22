@@ -2,6 +2,7 @@ package com.xpay.channel.front.tongxin.impl;
 
 import com.xpay.channel.front.dto.BaseReqFrontDTO;
 import com.xpay.channel.common.exception.CommuException;
+import com.xpay.channel.front.msg.model.MsgRepModel;
 import com.xpay.channel.front.msg.model.MsgReqModel;
 import com.xpay.common.enums.EnumRtnResult;
 import com.xpay.common.utils.HttpCfg;
@@ -26,7 +27,7 @@ public class Https2ChannelHandler<REQ extends BaseReqFrontDTO> extends AbsChanne
     private static final Logger logger = LoggerFactory.getLogger(Https2ChannelHandler.class);
 
     @Override
-    public byte[] send(BaseReqFrontDTO baseReqFrontDTO, MsgReqModel msgReqModel, ChannelConfig channelConfig)
+    public MsgRepModel send(BaseReqFrontDTO baseReqFrontDTO, MsgReqModel msgReqModel, ChannelConfig channelConfig)
                                                                                          throws CommuException {
         try {
             HttpReq httpReq = new HttpReq(); //创建http请求数据
@@ -42,7 +43,10 @@ public class Https2ChannelHandler<REQ extends BaseReqFrontDTO> extends AbsChanne
 
             HttpRequester httpRequester = new HttpRequester(httpCfg);//
             HttpRep httpRep = httpRequester.sendPostString(httpReq);
-            return httpRep.getContent().getBytes(channelConfig.getCharset());
+
+            MsgRepModel msgRepModel = new MsgRepModel();
+            msgRepModel.setMsg(httpRep.getContent());
+            return msgRepModel;
         } catch (UnknownHostException e) {
             logger.error("[渠道系统][前置模块]未知主机名", e);
             throw new CommuException(EnumRtnResult.E030101);

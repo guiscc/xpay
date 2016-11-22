@@ -1,4 +1,4 @@
-package com.xpay.channel.front.channel.agentcollect.unionpay.util;
+package com.xpay.common.utils.jce;
 
 import org.apache.commons.codec.binary.Hex;
 

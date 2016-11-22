@@ -6,9 +6,8 @@ import com.xpay.channel.common.exception.BuildMsgException;
 import com.xpay.channel.common.exception.ResolveMsgException;
 import com.xpay.channel.common.util.JsonUtil;
 import com.xpay.channel.front.channel.agentcollect.unionpay.Unionpay_Config;
-import com.xpay.channel.front.channel.agentcollect.unionpay.util.UnionpayUtil;
-import com.xpay.channel.front.msg.impl.FmkChannelMsgHandlerImpl;
 import com.xpay.channel.front.msg.impl.StringChannelMsgHandlerImpl;
+import com.xpay.channel.front.msg.model.MsgRepModel;
 import com.xpay.channel.front.msg.model.MsgReqModel;
 import com.xpay.channel.front.utils.ChannelConfig;
 import com.xpay.common.enums.EnumPayStatus;
@@ -98,23 +97,24 @@ public class Unionpay_PayMsgHandler extends StringChannelMsgHandlerImpl<ACPayReq
     }
 
     @Override
-    public ACPayRepFrontDTO resolveMsg(ACPayReqFrontDTO req, byte[] rtnMsg, ChannelConfig channelConfig)
+    public ACPayRepFrontDTO resolveMsg(ACPayReqFrontDTO req, MsgRepModel rtnMsg, ChannelConfig channelConfig)
                                                                                               throws ResolveMsgException {
         ACPayRepFrontDTO repDTO = new ACPayRepFrontDTO();
         repDTO.setBankOrderNo(req.getBankOrderNo());
         repDTO.setPayAmt(repDTO.getPayAmt());
         repDTO.setPayStatus(EnumPayStatus.UNKNOW);
-        if (rtnMsg == null || rtnMsg.length == 0) {
+        if (rtnMsg == null || rtnMsg.getMsgBytes().length == 0) {
             throw new ResolveMsgException(EnumRtnResult.E030202);
         }
 
         try {
             String charset = StringUtils.trim(channelConfig.getCharset());
-            String jsonMap = new String(rtnMsg, charset);
+//            String jsonMap = new String(rtnMsg, charset);
+            String jsonMap = "";
             logger.info("#####[银联代扣] 通信返回参数为:" + jsonMap);
             Map<String, Object> respMap = JsonUtil.jsonTomMap(jsonMap);
-            boolean signFlag = UnionpayUtil.verSign(respMap, channelConfig.getCerPath());
-            logger.info("#####[银联代扣] 验证签名信息结果:" + signFlag);
+//            boolean signFlag = UnionpayUtil.verSign(respMap, channelConfig.getCerPath());
+            logger.info("#####[银联代扣] 验证签名信息结果:" + false);
             String respCode = respMap.get("respCode")+"";
             String respMsg = respMap.get("respMsg")+"";
             String bankNo = respMap.get("queryId")+"";
@@ -128,9 +128,9 @@ public class Unionpay_PayMsgHandler extends StringChannelMsgHandlerImpl<ACPayReq
             } else {
                 repDTO.setPayStatus(EnumPayStatus.UNKNOW);
             }
-        } catch (UnsupportedEncodingException e) {
-            logger.error("#####[银联代扣] 解参时 参数转换错误.", e);
-            throw new ResolveMsgException(EnumRtnResult.E030202);
+//        } catch (UnsupportedEncodingException e) {
+//            logger.error("#####[银联代扣] 解参时 参数转换错误.", e);
+//            throw new ResolveMsgException(EnumRtnResult.E030202);
         } catch (Exception e) {
             logger.error("#####[银联代扣] 解参时 出现异常.", e);
             throw new ResolveMsgException(EnumRtnResult.E030202);

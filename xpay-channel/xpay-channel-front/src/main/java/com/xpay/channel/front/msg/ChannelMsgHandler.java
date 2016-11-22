@@ -4,6 +4,7 @@ import com.xpay.channel.front.dto.BaseRepFrontDTO;
 import com.xpay.channel.front.dto.BaseReqFrontDTO;
 import com.xpay.channel.common.exception.BuildMsgException;
 import com.xpay.channel.common.exception.ResolveMsgException;
+import com.xpay.channel.front.msg.model.MsgRepModel;
 import com.xpay.channel.front.msg.model.MsgReqModel;
 import com.xpay.channel.front.utils.ChannelConfig;
 
@@ -58,7 +59,7 @@ public interface ChannelMsgHandler<REQ extends BaseReqFrontDTO, REP extends Base
      * @param channelConfig
      * @return
      */
-    public REP resolveMsg(REQ req, byte[] rtnMsg, ChannelConfig channelConfig)
+    public REP resolveMsg(REQ req, MsgRepModel rtnMsg, ChannelConfig channelConfig)
                                                                               throws ResolveMsgException;
 
     /**

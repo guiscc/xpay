@@ -7,7 +7,9 @@ import com.xpay.channel.common.exception.VldException;
 import com.xpay.channel.front.dto.BaseRepFrontDTO;
 import com.xpay.channel.front.dto.BaseReqFrontDTO;
 import com.xpay.channel.front.msg.ChannelMsgHandler;
+import com.xpay.channel.front.msg.model.MsgRepModel;
 import com.xpay.channel.front.msg.model.MsgReqModel;
+import com.xpay.channel.front.sec.ChannelSecMsgHandler;
 import com.xpay.channel.front.tongxin.ChannelTongXinHandler;
 import com.xpay.channel.front.utils.ChannelConfig;
 import com.xpay.channel.front.vld.ChannelValidateHandler;
@@ -24,12 +26,13 @@ import java.util.Map;
  * Created by suxinxin on 14/12/25.
  */
 public abstract class AbsFrontExecutor<REQ extends BaseReqFrontDTO, REP extends BaseRepFrontDTO> {
-    private static final Logger logger = LoggerFactory.getLogger(AbsFrontExecutor.class);
+    private static final Logger                               logger        = LoggerFactory
+                                                                                .getLogger(AbsFrontExecutor.class);
 
     /**
      * 配置
      */
-    protected ChannelConfig                 channelConfig = new ChannelConfig();
+    protected ChannelConfig                                   channelConfig = new ChannelConfig();
 
     /**
      * 参数验证组件
@@ -39,12 +42,12 @@ public abstract class AbsFrontExecutor<REQ extends BaseReqFrontDTO, REP extends 
     /**
      * 通信组件
      */
-    private Map<EnumChannelType, ChannelTongXinHandler>  channelTongXinHandlerMap;
+    private Map<EnumChannelType, ChannelTongXinHandler>       channelTongXinHandlerMap;
 
     /**
      * 报文组件
      */
-    private Map<EnumChannelType, ChannelMsgHandler<REQ,REP>>      channelMsgHandlerMap;
+    private Map<EnumChannelType, ChannelMsgHandler<REQ, REP>> channelMsgHandlerMap;
 
     /**
      * 核心方法
@@ -55,64 +58,53 @@ public abstract class AbsFrontExecutor<REQ extends BaseReqFrontDTO, REP extends 
      * @throws ResolveMsgException
      * @throws CommuException
      */
-    public REP doProcess(REQ req) throws VldException, BuildMsgException, ResolveMsgException, CommuException {
+    public REP doProcess(REQ req) throws VldException, BuildMsgException, ResolveMsgException,
+                                 CommuException {
 
-        ChannelValidateHandler<REQ> channelValidate = channelValidateHandlerMap.get(req.getChannelType());
-        ChannelMsgHandler<REQ,REP> channelMsgHandler = channelMsgHandlerMap.get(req.getChannelType());
-        ChannelTongXinHandler<REQ> channelTongXinHandler = channelTongXinHandlerMap.get(req.getChannelType());
+        ChannelValidateHandler<REQ> channelValidate = channelValidateHandlerMap.get(req
+            .getChannelType());
+        ChannelMsgHandler<REQ, REP> channelMsgHandler = channelMsgHandlerMap.get(req
+            .getChannelType());
+        ChannelTongXinHandler<REQ> channelTongXinHandler = channelTongXinHandlerMap.get(req
+            .getChannelType());
 
         logger.info("[渠道系统][前置模块]请求前置参数为:" + req);
         logger.info("[渠道系统][前置模块]渠道配置参数为:" + channelConfig);
 
         beforProcess(req, channelConfig); //前置处理
 
-        if (channelValidate != null) {   //如果参数校验组建为空则不验证参数
+        if (channelValidate != null) { //如果参数校验组建为空则不验证参数
             channelValidate.validate(req);
             logger.info("[渠道系统][前置模块]参数验证完成");
         }
 
         MsgReqModel msgReqModel = null; //请求报文
-        REQ reqBefor = null;    //请求实体
-        if (channelMsgHandler != null) {   //如果报文组件为空就不组建报文
-            reqBefor = channelMsgHandler.beforBuildMsg(req, channelConfig);  //拼装报文之前
-            msgReqModel = channelMsgHandler.builderMsg(reqBefor, channelConfig); //组建报文
-            if(msgReqModel == null){
-                throw new VldException(EnumRtnResult.E000000);
-            }
-            msgReqModel = channelMsgHandler.afterBuildMsg(reqBefor, msgReqModel, channelConfig); //拼装报文之后
+        if (channelMsgHandler != null) { //如果报文组件为空就不组建报文
+            req = channelMsgHandler.beforBuildMsg(req, channelConfig); //拼装报文之前
+            msgReqModel = channelMsgHandler.builderMsg(req, channelConfig); //组建报文
+            msgReqModel = channelMsgHandler.afterBuildMsg(req, msgReqModel, channelConfig); //拼装报文之后
             logger.info("[渠道系统][前置模块]创建报文完成:" + msgReqModel.toString());
         }
 
-        byte[] rtnMsg = null;
+        MsgRepModel rtnMsg = null;
         if (channelTongXinHandler != null && msgReqModel != null) { //如果通信组件为空，或者内容为null，就不发送报文。
-            msgReqModel = channelTongXinHandler.sendBefor(reqBefor, msgReqModel, channelConfig); //发送报文之前
-
-            rtnMsg = channelTongXinHandler.send(reqBefor, msgReqModel, channelConfig);    //发送报文
-            if(rtnMsg == null){
-                throw new VldException(EnumRtnResult.E000000);
-            }
-
-            rtnMsg = channelTongXinHandler.sendAfter(reqBefor, rtnMsg, channelConfig);  //发送报文之后
-
-            try {
-                logger.info("[渠道系统][前置模块]返回报文为:" + new String(rtnMsg, channelConfig.getCharset()));
-            } catch (UnsupportedEncodingException e) {
-                logger.error("[渠道系统][前置模块]不支持报文编码格式:" + channelConfig.getCharset(), e);
-            }
+            msgReqModel = channelTongXinHandler.sendBefor(req, msgReqModel, channelConfig); //发送报文之前
+            rtnMsg = channelTongXinHandler.send(req, msgReqModel, channelConfig); //发送报文
+            rtnMsg = channelTongXinHandler.sendAfter(req, rtnMsg, channelConfig); //发送报文之后
+            logger.info("[渠道系统][前置模块]返回报文为:" + rtnMsg.toString());
         }
 
         REP resolveMsgAfter = null;
         if (channelMsgHandler != null && rtnMsg != null) { //如果通信组建或者，返回消息为null，就不解析报文。
-            REQ resolveMsgBefor = channelMsgHandler.beforResolveMsg(reqBefor, channelConfig);
-            REP resolveMsg = channelMsgHandler.resolveMsg(reqBefor, rtnMsg, channelConfig);
-            resolveMsgAfter = channelMsgHandler.afterResolveMsg(reqBefor, resolveMsg, channelConfig);
+            REQ resolveMsgBefor = channelMsgHandler.beforResolveMsg(req, channelConfig);
+            REP resolveMsg = channelMsgHandler.resolveMsg(resolveMsgBefor, rtnMsg, channelConfig);
+            resolveMsgAfter = channelMsgHandler.afterResolveMsg(req, resolveMsg, channelConfig);
             logger.info("[渠道系统][前置模块]解析后的数据为:" + resolveMsgAfter);
         }
-        afterProcess(reqBefor, resolveMsgAfter, channelConfig);
+        afterProcess(req, resolveMsgAfter, channelConfig);
         logger.info("[渠道系统][前置模块]响应参数为:" + resolveMsgAfter);
         return resolveMsgAfter;
     }
-
 
     /**
      * 核心方法执行前
@@ -130,7 +122,6 @@ public abstract class AbsFrontExecutor<REQ extends BaseReqFrontDTO, REP extends 
      * @param channelConfig
      */
     protected abstract void afterProcess(REQ req, REP rep, ChannelConfig channelConfig);
-
 
     /**
      * Getter method for property channelConfig.

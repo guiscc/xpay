@@ -4,12 +4,13 @@
  */
 package com.xpay.channel.front.msg.impl;
 
-import com.xpay.channel.common.enums.EnumMsgType;
+import com.xpay.channel.common.enums.EnumMsgReqType;
 import com.xpay.channel.common.exception.BuildMsgException;
 import com.xpay.channel.common.exception.ResolveMsgException;
 import com.xpay.channel.front.dto.BaseRepFrontDTO;
 import com.xpay.channel.front.dto.BaseReqFrontDTO;
 import com.xpay.channel.front.msg.AbsChannelMsgHandler;
+import com.xpay.channel.front.msg.model.MsgRepModel;
 import com.xpay.channel.front.msg.model.MsgReqModel;
 import com.xpay.channel.front.utils.ChannelConfig;
 
@@ -23,13 +24,13 @@ public class FormChannelMsgHandlerImpl<REQ extends BaseReqFrontDTO, REP extends 
     @Override
     public MsgReqModel builderMsg(REQ t, ChannelConfig channelConfig) throws BuildMsgException {
         MsgReqModel msgReqModel = new MsgReqModel();
-        msgReqModel.setMsgType(EnumMsgType.FORM);
+        msgReqModel.setMsgType(EnumMsgReqType.FORM);
         msgReqModel.setMsgMap(t.getFormMap());
         return msgReqModel;
     }
 
     @Override
-    public REP resolveMsg(REQ req, byte[] rtnMsg, ChannelConfig channelConfig) throws ResolveMsgException {
+    public REP resolveMsg(REQ req, MsgRepModel rtnMsg, ChannelConfig channelConfig) throws ResolveMsgException {
         return null;
     }
 }

@@ -24,7 +24,12 @@ public class BaseReqFrontDTO {
     /**
      * form表单提交使用的全量参数
      */
-    private Map<String,Object> formMap;
+    private Map<String, String> formMap;
+
+    /**
+     *
+     */
+    private Map<String, Object> fmkMap;
 
     /**
      * 请求时间
@@ -118,7 +123,7 @@ public class BaseReqFrontDTO {
      *
      * @return property value of formMap
      **/
-    public Map<String, Object> getFormMap() {
+    public Map<String, String> getFormMap() {
         return formMap;
     }
 
@@ -127,7 +132,25 @@ public class BaseReqFrontDTO {
      *
      * @param formMap value to be assigned to property formMap
      **/
-    public void setFormMap(Map<String, Object> formMap) {
+    public void setFormMap(Map<String, String> formMap) {
         this.formMap = formMap;
+    }
+
+    /**
+     * Getter method for property fmkMap.
+     *
+     * @return property value of fmkMap
+     **/
+    public Map<String, Object> getFmkMap() {
+        return fmkMap;
+    }
+
+    /**
+     * Setter method for property fmkMap.
+     *
+     * @param fmkMap value to be assigned to property fmkMap
+     **/
+    public void setFmkMap(Map<String, Object> fmkMap) {
+        this.fmkMap = fmkMap;
     }
 }

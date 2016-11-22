@@ -2,6 +2,7 @@ package com.xpay.channel.front.channel.agentcollect.unionpay;
 
 import com.xpay.channel.front.dto.BaseReqFrontDTO;
 import com.xpay.channel.common.exception.CommuException;
+import com.xpay.channel.front.msg.model.MsgRepModel;
 import com.xpay.channel.front.msg.model.MsgReqModel;
 import com.xpay.channel.front.tongxin.impl.Https2ChannelHandler;
 import com.xpay.channel.front.utils.ChannelConfig;
@@ -20,7 +21,7 @@ public class Unionpay_TongxinHandler<REQ extends BaseReqFrontDTO> extends Https2
     private static final Logger logger = LoggerFactory.getLogger(Unionpay_TongxinHandler.class);
 
     @Override
-    public byte[] send(BaseReqFrontDTO baseReqFrontDTO, MsgReqModel msgReqModel, ChannelConfig channelConfig)
+    public MsgRepModel send(BaseReqFrontDTO baseReqFrontDTO, MsgReqModel msgReqModel, ChannelConfig channelConfig)
                                                                                          throws CommuException {
 
         super.send(baseReqFrontDTO, msgReqModel, channelConfig);
@@ -52,6 +53,6 @@ public class Unionpay_TongxinHandler<REQ extends BaseReqFrontDTO> extends Https2
         //        }
         //boolean signFlag = UnionpayUtil.verSign(map);
         //System.out.println("返回签名信息:" + signFlag);
-        return results;
+        return null;
     }
 }

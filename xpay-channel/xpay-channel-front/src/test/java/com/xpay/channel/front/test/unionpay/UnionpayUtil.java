@@ -32,8 +32,8 @@ public class UnionpayUtil {
 //    public static  final String pwd ="000000";
 
     //代付
-    public static final String cerPath ="/Users/pang/Desktop/works/cert/verify_sign_acp.cer";
-    public static  final String pfxPath = "/Users/pang/Desktop/works/cert/700000000000001_acp.pfx";
+    public static final String cerPath ="/export/safefile/unionpay/verify_sign_acp.cer";
+    public static  final String pfxPath = "/export/safefile/unionpay/700000000000001_acp.pfx";
     public static  final String merchantNo = "777290058123381";
     public static  final String pwd ="000000";
 

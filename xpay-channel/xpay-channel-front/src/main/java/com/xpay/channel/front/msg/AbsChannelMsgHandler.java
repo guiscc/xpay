@@ -5,6 +5,7 @@ import com.xpay.channel.front.dto.BaseReqFrontDTO;
 import com.xpay.channel.common.exception.BuildMsgException;
 import com.xpay.channel.common.exception.ResolveMsgException;
 import com.xpay.channel.front.msg.model.MsgReqModel;
+import com.xpay.channel.front.sec.ChannelSecMsgHandler;
 import com.xpay.channel.front.utils.ChannelConfig;
 
 /**

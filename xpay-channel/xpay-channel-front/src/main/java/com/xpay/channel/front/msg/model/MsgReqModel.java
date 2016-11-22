@@ -4,7 +4,7 @@
  */
 package com.xpay.channel.front.msg.model;
 
-import com.xpay.channel.common.enums.EnumMsgType;
+import com.xpay.channel.common.enums.EnumMsgReqType;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,7 +18,7 @@ public class MsgReqModel {
     /**
      * 报文格式枚举
      */
-    private EnumMsgType msgType;
+    private EnumMsgReqType msgType;
 
     /**
      * 报文字符形态
@@ -33,14 +33,14 @@ public class MsgReqModel {
     /**
      * 报文表单形态
      */
-    private Map<String,Object> msgMap = new HashMap<>();
+    private Map<String,String> msgMap = new HashMap<>();
 
     /**
      * Getter method for property msgType.
      *
      * @return property value of msgType
      **/
-    public EnumMsgType getMsgType() {
+    public EnumMsgReqType getMsgType() {
         return msgType;
     }
 
@@ -49,7 +49,7 @@ public class MsgReqModel {
      *
      * @param msgType value to be assigned to property msgType
      **/
-    public void setMsgType(EnumMsgType msgType) {
+    public void setMsgType(EnumMsgReqType msgType) {
         this.msgType = msgType;
     }
 
@@ -94,7 +94,7 @@ public class MsgReqModel {
      *
      * @return property value of msgMap
      **/
-    public Map<String, Object> getMsgMap() {
+    public Map<String, String> getMsgMap() {
         return msgMap;
     }
 
@@ -103,7 +103,7 @@ public class MsgReqModel {
      *
      * @param msgMap value to be assigned to property msgMap
      **/
-    public void setMsgMap(Map<String, Object> msgMap) {
+    public void setMsgMap(Map<String, String> msgMap) {
         this.msgMap = msgMap;
     }
 
@@ -111,7 +111,7 @@ public class MsgReqModel {
     public String toString() {
         if(msgType==null){
             return "";
-        }else if(msgType == EnumMsgType.FORM){
+        }else if(msgType == EnumMsgReqType.FORM){
             return  this.getMsgMap().toString();
         }else{
             return "";

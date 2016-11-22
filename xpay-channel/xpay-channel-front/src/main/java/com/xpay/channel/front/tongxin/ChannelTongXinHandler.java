@@ -2,6 +2,7 @@ package com.xpay.channel.front.tongxin;
 
 import com.xpay.channel.front.dto.BaseReqFrontDTO;
 import com.xpay.channel.common.exception.CommuException;
+import com.xpay.channel.front.msg.model.MsgRepModel;
 import com.xpay.channel.front.msg.model.MsgReqModel;
 import com.xpay.channel.front.utils.ChannelConfig;
 
@@ -30,7 +31,7 @@ public interface ChannelTongXinHandler<REQ extends BaseReqFrontDTO> {
      * @return
      * @throws CommuException
      */
-    public byte[] send(REQ req, MsgReqModel msgReqModel, ChannelConfig channelConfig)
+    public MsgRepModel send(REQ req, MsgReqModel msgReqModel, ChannelConfig channelConfig)
                                                                                      throws CommuException;
 
     /**
@@ -41,6 +42,6 @@ public interface ChannelTongXinHandler<REQ extends BaseReqFrontDTO> {
      * @return
      * @throws CommuException
      */
-    public byte[] sendAfter(REQ req, byte[] reqMsg, ChannelConfig channelConfig)
+    public MsgRepModel sendAfter(REQ req, MsgRepModel reqMsg, ChannelConfig channelConfig)
                                                                                 throws CommuException;
 }

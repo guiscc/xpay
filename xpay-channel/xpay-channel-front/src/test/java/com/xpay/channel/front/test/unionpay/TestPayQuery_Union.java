@@ -27,6 +27,6 @@ public class TestPayQuery_Union extends BaseTest {
         acQueryPayReqFrontDTO.setChannelCode("AC_UNIONPAY");
         acQueryPayReqFrontDTO.setBankOrderNo("201603300001");
         ACQueryPayRepFrontDTO acQueryPayRepFrontDTO = agentCollectFrontFacade.payQuery(acQueryPayReqFrontDTO);
-        System.out.println(acQueryPayRepFrontDTO);
+        System.out.println("######测试参数:"+acQueryPayRepFrontDTO);
     }
 }

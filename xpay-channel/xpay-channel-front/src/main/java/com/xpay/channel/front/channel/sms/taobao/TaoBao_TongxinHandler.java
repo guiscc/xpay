@@ -8,6 +8,7 @@ import com.taobao.api.TaobaoClient;
 import com.taobao.api.request.AlibabaAliqinFcSmsNumSendRequest;
 import com.taobao.api.response.AlibabaAliqinFcSmsNumSendResponse;
 import com.xpay.channel.front.dto.sms.SmsReqFrontDTO;
+import com.xpay.channel.front.msg.model.MsgRepModel;
 import com.xpay.channel.front.msg.model.MsgReqModel;
 import com.xpay.channel.front.tongxin.AbsChannelTongXinHandler;
 import org.slf4j.Logger;
@@ -24,7 +25,7 @@ public class TaoBao_TongxinHandler extends AbsChannelTongXinHandler<SmsReqFrontD
     private static final Logger logger = LoggerFactory.getLogger(TaoBao_TongxinHandler.class);
 
     @Override
-    public byte[] send(SmsReqFrontDTO smsReqDTO, MsgReqModel msgReqModel, ChannelConfig channelConfig)
+    public MsgRepModel send(SmsReqFrontDTO smsReqDTO, MsgReqModel msgReqModel, ChannelConfig channelConfig)
                                                                                  throws CommuException {
         try {
             TaoBao_Config taoBaoConfig = (TaoBao_Config) channelConfig;
@@ -44,7 +45,9 @@ public class TaoBao_TongxinHandler extends AbsChannelTongXinHandler<SmsReqFrontD
             byte[] bytes = byteArrayOutputStream.toByteArray();
             ob.flush();
             ob.close();
-            return bytes;
+            MsgRepModel msgRepModel = new MsgRepModel();
+            msgRepModel.setMsgBytes(bytes);
+            return msgRepModel;
         } catch (ApiException e) {
             e.printStackTrace();
         } catch (UnsupportedEncodingException e) {

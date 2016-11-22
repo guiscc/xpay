@@ -12,12 +12,17 @@ public class BaseRepFrontDTO {
     /**
      * 返回码
      */
-    private String        bankRtnCode;
+    private String bankRtnCode;
 
     /**
      * 返回信息
      */
-    private String        bankRtnMsg;
+    private String bankRtnMsg;
+
+    /**
+     * 签名
+     */
+    private String sign;
 
     /**
      * Getter method for property bankRtnCode.
@@ -53,5 +58,23 @@ public class BaseRepFrontDTO {
      **/
     public void setBankRtnMsg(String bankRtnMsg) {
         this.bankRtnMsg = bankRtnMsg;
+    }
+
+    /**
+     * Getter method for property sign.
+     *
+     * @return property value of sign
+     **/
+    public String getSign() {
+        return sign;
+    }
+
+    /**
+     * Setter method for property sign.
+     *
+     * @param sign value to be assigned to property sign
+     **/
+    public void setSign(String sign) {
+        this.sign = sign;
     }
 }
