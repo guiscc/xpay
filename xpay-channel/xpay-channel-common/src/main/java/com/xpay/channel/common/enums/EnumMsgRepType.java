@@ -6,8 +6,8 @@ package com.xpay.channel.common.enums;
 
 /**
  * @author qinshou
- * @version $Id: EnumMsgType.java, v 0.1 16/11/21 下午12:05 sxfans Exp $
+ * @version $Id: EnumMsgRepType.java, v 0.1 16/11/22 下午4:25 sxfans Exp $
  */
-public enum EnumMsgType {
-    XML,JSON,BYTES,STR,FORM,IOS8583;
+public enum EnumMsgRepType {
+    STR,BYTES
 }

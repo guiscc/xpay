@@ -30,7 +30,7 @@ public class Test_Unionpay_Refund extends BaseTest {
         String dateStr = new SimpleDateFormat("yyyyMMddHHmmss").format(date);
 
         /***商户接入参数***/
-        data.put("merId", UnionpayUtil.merchantNo);                //商户号码，请改成自己申请的商户号或者open上注册得来的777商户号测试
+        data.put("merId", UnionpayUtilaa.merchantNo);                //商户号码，请改成自己申请的商户号或者open上注册得来的777商户号测试
         data.put("accessType", "0");                         //接入类型，商户接入固定填0，不需修改
         data.put("orderId", "2016032901");          //商户订单号，8-40位数字字母，不能含“-”或“_”，可以自行定制规则，重新产生，不同于原消费
         data.put("txnTime", dateStr);      //订单发送时间，格式为YYYYMMDDhhmmss，必须取当前时间，否则会报txnTime无效
@@ -42,6 +42,6 @@ public class Test_Unionpay_Refund extends BaseTest {
         /***要调通交易以下字段必须修改***/
         data.put("origQryId", "201603290001");      //****原消费交易返回的的queryId，可以从消费交易后台通知接口中或者交易状态查询接口中获取
 
-        UnionpayUtil.process(data,"https://101.231.204.80:5000/gateway/api/appTransReq.do");
+        UnionpayUtilaa.process(data,"https://101.231.204.80:5000/gateway/api/appTransReq.do");
     }
 }

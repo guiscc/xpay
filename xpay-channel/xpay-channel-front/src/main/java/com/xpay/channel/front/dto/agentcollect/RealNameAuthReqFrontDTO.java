@@ -5,6 +5,7 @@
 package com.xpay.channel.front.dto.agentcollect;
 
 import com.xpay.channel.front.dto.BaseReqFrontDTO;
+import com.xpay.common.enums.EnumChannelType;
 
 /**
  * @author qinshou
@@ -14,7 +15,7 @@ public class RealNameAuthReqFrontDTO extends BaseReqFrontDTO {
 
     private String bankAuthrNo;
 
-    private String cerNo;
+    private String certNo;
 
     private String holderName;
 
@@ -27,6 +28,10 @@ public class RealNameAuthReqFrontDTO extends BaseReqFrontDTO {
     private String cvv2;
 
     private String expireDate;
+
+    {
+        super.setChannelType(EnumChannelType.AUTH);
+    }
 
     /**
      * Getter method for property cardNo.
@@ -101,21 +106,21 @@ public class RealNameAuthReqFrontDTO extends BaseReqFrontDTO {
     }
 
     /**
-     * Getter method for property cerNo.
+     * Getter method for property certNo.
      *
-     * @return property value of cerNo
+     * @return property value of certNo
      **/
-    public String getCerNo() {
-        return cerNo;
+    public String getCertNo() {
+        return certNo;
     }
 
     /**
-     * Setter method for property cerNo.
+     * Setter method for property certNo.
      *
-     * @param cerNo value to be assigned to property cerNo
+     * @param certNo value to be assigned to property certNo
      **/
-    public void setCerNo(String cerNo) {
-        this.cerNo = cerNo;
+    public void setCertNo(String certNo) {
+        this.certNo = certNo;
     }
 
     /**

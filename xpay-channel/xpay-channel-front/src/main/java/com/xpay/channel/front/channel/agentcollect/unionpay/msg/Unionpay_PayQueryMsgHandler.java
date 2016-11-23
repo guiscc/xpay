@@ -45,7 +45,7 @@ public class Unionpay_PayQueryMsgHandler
             data.put("signMethod", "01");
             data.put("txnType", "00");
             data.put("txnSubType", "00");
-            data.put("bizType", "000201");
+            data.put("bizType", "000501");
 
             /***商户接入参数***/
             data.put("merId", channelConfig.getMerchantNo());
@@ -55,8 +55,8 @@ public class Unionpay_PayQueryMsgHandler
             data.put("txnTime", DateUtil.DateToString(req.getPayOrderDT(), "yyyyMMddHHmmss"));
 
             config.setBankURL(config.getPayQueryUrl());
-            String digest = UnionpayUtil.sign(data, channelConfig);
-            data.put("signature", new String(digest));
+            String digest = UnionpayUtil.sign(data, config);
+            data.put("signature", digest);
             req.setFormMap(data);
             return req;
         } catch (Exception e) {
@@ -78,7 +78,9 @@ public class Unionpay_PayQueryMsgHandler
         try {
             Map<String,String> respMap = UnionpayUtil.parseQString(rtnMsg.getMsg());
             boolean signFlag = UnionpayUtil.verSign(respMap, channelConfig.getCerPath());
-            logger.info("#####[银联代扣结果查询] 验证签名信息结果:" + "");
+            if(!signFlag){
+                throw new ResolveMsgException(EnumRtnResult.E030202);
+            }
             String respCode = respMap.get("respCode")+"";
             String respMsg = respMap.get("respMsg")+"";
             String bankNo = respMap.get("queryId")+"";

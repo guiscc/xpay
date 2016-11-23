@@ -12,6 +12,7 @@ import com.xpay.channel.front.test.BaseTest;
 import org.junit.Test;
 
 import javax.annotation.Resource;
+import java.util.Date;
 
 /**
  * @author qinshou
@@ -26,7 +27,10 @@ public class TestPayQuery_Union extends BaseTest {
         ACQueryPayReqFrontDTO acQueryPayReqFrontDTO = new ACQueryPayReqFrontDTO();
         acQueryPayReqFrontDTO.setChannelCode("AC_UNIONPAY");
         acQueryPayReqFrontDTO.setBankOrderNo("201603300001");
+        acQueryPayReqFrontDTO.setPayOrderDT(new Date());
         ACQueryPayRepFrontDTO acQueryPayRepFrontDTO = agentCollectFrontFacade.payQuery(acQueryPayReqFrontDTO);
         System.out.println("######测试参数:"+acQueryPayRepFrontDTO);
     }
+
+
 }

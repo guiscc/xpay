@@ -19,7 +19,7 @@ import java.util.TreeMap;
 /**
  * Created by suxinxin on 16/3/29.
  */
-public class UnionpayUtil {
+public class UnionpayUtilaa {
 
 //    public static final String cerPath = "/export/safefile/unionpay/acp_test_verify_sign.cer";
 //    public static final String pfxPath = "/export/safefile/unionpay/acp_test_sign.pfx";
@@ -32,8 +32,8 @@ public class UnionpayUtil {
 //    public static  final String pwd ="000000";
 
     //代付
-    public static final String cerPath ="/export/safefile/unionpay/verify_sign_acp.cer";
-    public static  final String pfxPath = "/export/safefile/unionpay/700000000000001_acp.pfx";
+    public static final String cerPath ="/export/safefile/unionpay/acp_test_verify_sign.cer";
+    public static  final String pfxPath = "/export/safefile/unionpay/acp_test_sign.pfx";
     public static  final String merchantNo = "777290058123381";
     public static  final String pwd ="000000";
 
@@ -76,7 +76,7 @@ public class UnionpayUtil {
         keyStoreUtil.loadStore(pfxPath, "PKCS12", pwd);
 
         data.put("certId", keyStoreUtil.getCerId()); //证书id
-        String stringData = UnionpayUtil.coverMap2String(data); //转换map为字符串
+        String stringData = UnionpayUtilaa.coverMap2String(data); //转换map为字符串
 
         byte[] sigestByte = DigestUtil.sha1(stringData.getBytes(encoding)); //摘要
         String str = Hex.encodeHexString(sigestByte); //16进制
@@ -99,7 +99,7 @@ public class UnionpayUtil {
     public static boolean verSign(Map<String, String> dataMap) throws Exception {
         byte[] oriSign = Base64.decodeBase64(dataMap.get("signature"));
 
-        String repStr = UnionpayUtil.coverMap2String(dataMap);
+        String repStr = UnionpayUtilaa.coverMap2String(dataMap);
         System.out.println("验证签名之前的数据:" + repStr);
 
         byte[] repByte = DigestUtil.sha1(repStr.getBytes("UTF-8"));
@@ -124,18 +124,18 @@ public class UnionpayUtil {
         httpCfg.setUrl(url);
 
 
-//        String signBytes = UnionpayUtil.sign(data, "UTF-8"); //签名
-//        data.put("signature", signBytes); //签名
+        String signBytes = UnionpayUtilaa.sign(data, "UTF-8"); //签名
+        data.put("signature", signBytes); //签名
         System.out.println("发送信息:" + data);
 
         HttpRequester httpRequester = new HttpRequester(httpCfg);
         HttpReq httpReq = new HttpReq();
         httpReq.setParamMap(data);
         HttpRep httpRep = httpRequester.sendPostForm(httpReq);
-        Map<String, String> map = UnionpayUtil.parseQString(httpRep.getContent());
+        Map<String, String> map = UnionpayUtilaa.parseQString(httpRep.getContent());
         System.out.println("返回信息:" + map);
 
-        boolean signFlag = UnionpayUtil.verSign(map);
+        boolean signFlag = UnionpayUtilaa.verSign(map);
         System.out.println("返回签名信息:" + signFlag);
     }
 

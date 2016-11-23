@@ -20,12 +20,7 @@ import java.util.Map;
  */
 public class UnionpayEncryptUtil {
 
-//    private static final String pfxPath = "/Users/pang/Desktop/works/cert/700000000000001_acp.pfx" ;
-    private static final String pfxPath = "/Users/pang/Desktop/works/cert/acp_test_sign.pfx" ;
-    private static final String pwd = "000000" ;
-//    private static final String cerPath = "/Users/pang/Desktop/works/cert/verify_sign_acp.cer" ;
-    private static final String cerPath = "/Users/pang/Desktop/works/cert/acp_test_enc.cer" ;
-    private static final String encPath = "/Users/pang/Desktop/works/cert/acp_test_enc.cer" ;
+    private static final String cerPath = "/export/safefile/unionpay/acp_test_enc.cer" ;
     private static final Logger logger = LoggerFactory.getLogger(UnionpayEncryptUtil.class) ;
 
     /**

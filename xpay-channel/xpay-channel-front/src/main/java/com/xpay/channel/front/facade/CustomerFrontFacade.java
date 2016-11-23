@@ -4,10 +4,7 @@
  */
 package com.xpay.channel.front.facade;
 
-import com.xpay.channel.common.exception.BuildMsgException;
-import com.xpay.channel.common.exception.CommuException;
-import com.xpay.channel.common.exception.ResolveMsgException;
-import com.xpay.channel.common.exception.VldException;
+import com.xpay.channel.common.exception.*;
 import com.xpay.channel.front.dto.agentcollect.RealNameAuthRepFrontDTO;
 import com.xpay.channel.front.dto.agentcollect.RealNameAuthReqFrontDTO;
 
@@ -26,5 +23,5 @@ public interface CustomerFrontFacade {
      * @throws CommuException
      * @throws ResolveMsgException
      */
-    public RealNameAuthRepFrontDTO auth(RealNameAuthReqFrontDTO reqDto);
+    public RealNameAuthRepFrontDTO auth(RealNameAuthReqFrontDTO reqDto) throws FrontException;
 }

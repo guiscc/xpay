@@ -15,6 +15,7 @@
         <!--代扣-->
         <property name="pfxPath" value="${agentcollect_unionpay_pfxPath}"/>
         <property name="cerPath" value="${agentcollect_unionpay_cerPath}"/>
+        <property name="encCerPath" value="${agentcollect_unionpay_encCerPath}"/>
         <property name="pfxPwd" value="${agentcollect_unionpay_pfxPwd}"/>
         <property name="authUrl" value="${agentcollect_unionpay_authUrl}"/>
         <property name="payUrl" value="${agentcollect_unionpay_payUrl}"/>
@@ -30,6 +31,7 @@
             <map>
                 <entry key-ref="PAY" value-ref="httpChannelHandler"/>
                 <entry key-ref="PAYQUERY" value-ref="httpChannelHandler"/>
+                <entry key-ref="AUTH" value-ref="httpChannelHandler"/>
             </map>
         </property>
         <!--注入配置-->

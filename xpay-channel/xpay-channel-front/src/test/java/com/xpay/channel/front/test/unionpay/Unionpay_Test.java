@@ -206,10 +206,10 @@
 //        //contentData.put("reqReserved", "111");                      					 //请求方保留域，透传字段（可以实现商户自定义参数的追踪）本交易的后台通知,对本交易的交易状态查询交易、对账文件中均会原样返回，商户可以按需上传，长度为1-1024个字节
 //
 //        /**对请求参数进行签名并发送http post请求，接收同步应答报文**/
-//        String sign = UnionpayUtil.sign(data,"UTF-8") ;//AcpService.sign(contentData,DemoBase.encoding_UTF8);			 //报文中certId,signature的值是在signData方法中获取并自动赋值的，只要证书配置正确即可。
+//        String sign = UnionpayUtilaa.sign(data,"UTF-8") ;//AcpService.sign(contentData,DemoBase.encoding_UTF8);			 //报文中certId,signature的值是在signData方法中获取并自动赋值的，只要证书配置正确即可。
 //        data.put("signature" , sign) ;			 //交易请求url从配置文件读取对应属性文件acp_sdk.properties中的 acpsdk.backTransUrl
 //
-//        UnionpayUtil.process(data,"https://101.231.204.80:5000/gateway/api/backTransReq.do");
+//        UnionpayUtilaa.process(data,"https://101.231.204.80:5000/gateway/api/backTransReq.do");
 //    }
 //
 //}

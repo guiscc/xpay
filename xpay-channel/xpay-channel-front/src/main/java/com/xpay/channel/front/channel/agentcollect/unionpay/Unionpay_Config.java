@@ -13,6 +13,7 @@ public class Unionpay_Config extends ChannelConfig {
     private String payUrl;
     private String notifyUrl;
     private String payQueryUrl;
+    private String encCerPath;
 
     /**
      * Getter method for property payQueryUrl.
@@ -84,5 +85,23 @@ public class Unionpay_Config extends ChannelConfig {
      **/
     public void setNotifyUrl(String notifyUrl) {
         this.notifyUrl = notifyUrl;
+    }
+
+    /**
+     * Getter method for property encCerPath.
+     *
+     * @return property value of encCerPath
+     **/
+    public String getEncCerPath() {
+        return encCerPath;
+    }
+
+    /**
+     * Setter method for property encCerPath.
+     *
+     * @param encCerPath value to be assigned to property encCerPath
+     **/
+    public void setEncCerPath(String encCerPath) {
+        this.encCerPath = encCerPath;
     }
 }

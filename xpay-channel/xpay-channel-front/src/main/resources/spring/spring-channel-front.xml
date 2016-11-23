@@ -62,6 +62,8 @@
         </property>
     </bean>
 
+    <!--渠道前置暴露出来的接口-->
+    <bean id="customerFrontFacade" class="com.xpay.channel.front.facade.impl.CustomerFrontFacadeImpl"/>
     <bean id="smsSendFrontFacade" class="com.xpay.channel.front.facade.impl.SmsFrontFacadeImpl"/>
     <bean id="agentCollectFrontFacade" class="com.xpay.channel.front.facade.impl.AgentCollectFrontFacadeImpl"/>
 

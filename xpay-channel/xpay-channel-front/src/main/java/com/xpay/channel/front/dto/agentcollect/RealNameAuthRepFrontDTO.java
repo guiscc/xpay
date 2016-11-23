@@ -6,6 +6,7 @@ package com.xpay.channel.front.dto.agentcollect;
 
 import com.xpay.channel.front.dto.BaseRepFrontDTO;
 import com.xpay.common.enums.EnumRtnStatus;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
  * @author qinshou
@@ -34,5 +35,10 @@ public class RealNameAuthRepFrontDTO extends BaseRepFrontDTO {
      **/
     public void setAuthStatus(EnumRtnStatus authStatus) {
         this.authStatus = authStatus;
+    }
+
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this);
     }
 }
