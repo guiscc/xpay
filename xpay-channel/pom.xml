@@ -20,6 +20,7 @@
         <module>xpay-channel-front</module>
         <module>xpay-channel-biz</module>
         <module>xpay-channel-router</module>
+        <module>xpay-channel-dao</module>
     </modules>
 
     <dependencies>

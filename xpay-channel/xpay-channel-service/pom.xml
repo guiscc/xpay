@@ -12,5 +12,11 @@
 
     <artifactId>xpay-channel-service</artifactId>
 
-
+    <dependencies>
+        <dependency>
+            <groupId>com.xpay</groupId>
+            <artifactId>xpay-channel-dao</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 </project>

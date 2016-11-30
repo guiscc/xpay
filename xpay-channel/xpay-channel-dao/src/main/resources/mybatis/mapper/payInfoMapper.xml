@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.xpay.channel.dao.PayInfoDao">
+
+    <resultMap id="BaseResultMap" type="PayInfoEntity">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+
+        <result column="payOrderNo" property="payOrderNo"/>
+        <result column="bankOrderNo" property="bankOrderNo"/>
+        <result column="payAmt" property="payAmt"/>
+
+        <result column="currency" property="currency"/>
+        <result column="signCode" property="signCode"/>
+
+        <result column="paySubToolCode" property="paySubToolCode"/>
+        <result column="channelCode" property="channelCode"/>
+        <result column="bankNo" property="bankNo"/>
+
+        <result column="merchantNo" property="merchantNo"/>
+        <result column="payStatus" property="payStatus"/>
+        <result column="createDT" property="createDT"/>
+        <result column="createDT" property="createDT"/>
+        <result column="bankFinishTime" property="bankFinishTime"/>
+        <result column="rtnCode" property="rtnCode"/>
+        <result column="rtnMsg" property="rtnMsg"/>
+        <result column="mapstr" property="mapstr"/>
+    </resultMap>
+
+    <sql id="column">
+        id,payOrderNo,bankOrderNo,payAmt,currency,
+        signCode,paySubToolCode,channelCode,bankNo,rtnCode,
+        rtnMsg,merchantNo,payStatus,createTime,finishTime,bankFinishtime,mapstr
+    </sql>
+
+    <select id="findByPayOrderNo" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="column"/>
+        from channel_payinfo
+        where payOrderNo = #{payOrderNo}
+    </select>
+
+    <insert id="add" parameterType="PayInfoEntity"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into pay_order
+        (<include refid="column"/>)
+        values
+        (#{id,jdbcType=BIGINT},
+        #{payOrderNo},
+        #{bankOrderNo},
+        #{payAmt},
+        #{currency},
+        #{signCode},
+        #{paySubToolCode},
+        #{channelCode},
+        #{bankNo},
+        #{rtnCode},
+        #{rtnMsg},
+        #{merchantNo},
+        #{payStatus},
+        #{createTime},
+        #{finishTime},
+        #{bankFinishtime},
+        #{mapstr})
+    </insert>
+
+</mapper>

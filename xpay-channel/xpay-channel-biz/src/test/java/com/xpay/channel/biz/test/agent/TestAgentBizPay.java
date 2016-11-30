@@ -8,6 +8,7 @@ import com.xpay.channel.biz.AgentCollectBiz;
 import com.xpay.channel.biz.test.BaseTest;
 import com.xpay.channel.common.dto.agentcollect.ACPayRepChannelDTO;
 import com.xpay.channel.common.dto.agentcollect.ACPayReqChannelDTO;
+import com.xpay.channel.common.dto.agentcollect.ACQueryPayReqChannelDTO;
 import com.xpay.channel.common.facade.AgentCollectFacade;
 import com.xpay.channel.common.vo.agentcollect.ACPayRepVO;
 import com.xpay.common.enums.EnumCardType;
@@ -39,5 +40,13 @@ public class TestAgentBizPay extends BaseTest {
         acPayReqChannelDTO.setHolderName("苏欣欣");
         ACPayRepChannelDTO acPayRepChannelDTO = agentCollectFacade.pay(acPayReqChannelDTO);
         System.out.println(acPayRepChannelDTO);
+    }
+
+    @Test
+    public void payQuery(){
+        ACQueryPayReqChannelDTO acQueryPayReqChannelDTO = new ACQueryPayReqChannelDTO();
+        acQueryPayReqChannelDTO.setPayOrderNo("");
+//        acQueryPayReqChannelDTO.setReqDateTime();
+//        acQueryPayReqChannelDTO.setExtMap();
     }
 }

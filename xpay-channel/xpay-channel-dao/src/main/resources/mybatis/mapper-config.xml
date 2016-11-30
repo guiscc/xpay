@@ -15,12 +15,10 @@
     </settings>
 
     <typeAliases>
-        <package name="com.xpay.payment.service.entity"/>
+        <package name="com.xpay.channel.dao.entity"/>
     </typeAliases>
 
     <mappers>
-        <mapper resource="mybatis/mapper/paymentMapper.xml"/>
-        <mapper resource="mybatis/mapper/signMapper.xml"/>
-        <mapper resource="mybatis/mapper/cardBinMapper.xml"/>
+        <mapper resource="mybatis/mapper/payInfoMapper.xml"/>
     </mappers>
 </configuration>
