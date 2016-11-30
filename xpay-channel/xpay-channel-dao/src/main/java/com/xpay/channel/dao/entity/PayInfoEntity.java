@@ -78,12 +78,12 @@ public class PayInfoEntity {
     /**
      * 完成时间
      */
-    private Date finishTime;
+    private Date finishDT;
 
     /**
      * 银行完成时间
      */
-    private Date bankFinishTime;
+    private Date bankFinishDT;
 
     /**
      * 银行返回码
@@ -94,6 +94,11 @@ public class PayInfoEntity {
      * 银行返回信息
      */
     private String rtnMsg;
+
+    /**
+     * 扩展字段
+     */
+    private String mapstr;
 
 
 
@@ -314,39 +319,39 @@ public class PayInfoEntity {
     }
 
     /**
-     * Getter method for property finishTime.
+     * Getter method for property finishDT.
      *
-     * @return property value of finishTime
+     * @return property value of finishDT
      **/
-    public Date getFinishTime() {
-        return finishTime;
+    public Date getFinishDT() {
+        return finishDT;
     }
 
     /**
-     * Setter method for property finishTime.
+     * Setter method for property finishDT.
      *
-     * @param finishTime value to be assigned to property finishTime
+     * @param finishDT value to be assigned to property finishDT
      **/
-    public void setFinishTime(Date finishTime) {
-        this.finishTime = finishTime;
+    public void setFinishDT(Date finishDT) {
+        this.finishDT = finishDT;
     }
 
     /**
-     * Getter method for property bankFinishTime.
+     * Getter method for property bankFinishDT.
      *
-     * @return property value of bankFinishTime
+     * @return property value of bankFinishDT
      **/
-    public Date getBankFinishTime() {
-        return bankFinishTime;
+    public Date getBankFinishDT() {
+        return bankFinishDT;
     }
 
     /**
-     * Setter method for property bankFinishTime.
+     * Setter method for property bankFinishDT.
      *
-     * @param bankFinishTime value to be assigned to property bankFinishTime
+     * @param bankFinishDT value to be assigned to property bankFinishDT
      **/
-    public void setBankFinishTime(Date bankFinishTime) {
-        this.bankFinishTime = bankFinishTime;
+    public void setBankFinishDT(Date bankFinishDT) {
+        this.bankFinishDT = bankFinishDT;
     }
 
     /**
@@ -383,6 +388,24 @@ public class PayInfoEntity {
      **/
     public void setRtnMsg(String rtnMsg) {
         this.rtnMsg = rtnMsg;
+    }
+
+    /**
+     * Getter method for property mapstr.
+     *
+     * @return property value of mapstr
+     **/
+    public String getMapstr() {
+        return mapstr;
+    }
+
+    /**
+     * Setter method for property mapstr.
+     *
+     * @param mapstr value to be assigned to property mapstr
+     **/
+    public void setMapstr(String mapstr) {
+        this.mapstr = mapstr;
     }
 
     @Override

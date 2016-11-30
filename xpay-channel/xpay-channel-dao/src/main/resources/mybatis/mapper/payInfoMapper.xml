@@ -30,7 +30,7 @@
     <sql id="column">
         id,payOrderNo,bankOrderNo,payAmt,currency,
         signCode,paySubToolCode,channelCode,bankNo,rtnCode,
-        rtnMsg,merchantNo,payStatus,createTime,finishTime,bankFinishtime,mapstr
+        rtnMsg,merchantNo,payStatus,createDT,finishDT,bankFinishDT,mapstr
     </sql>
 
     <select id="findByPayOrderNo" resultMap="BaseResultMap" parameterType="java.lang.String">
@@ -42,7 +42,7 @@
 
     <insert id="add" parameterType="PayInfoEntity"
             useGeneratedKeys="true" keyProperty="id">
-        insert into pay_order
+        insert into channel_payinfo
         (<include refid="column"/>)
         values
         (#{id,jdbcType=BIGINT},
@@ -58,9 +58,9 @@
         #{rtnMsg},
         #{merchantNo},
         #{payStatus},
-        #{createTime},
-        #{finishTime},
-        #{bankFinishtime},
+        #{createDT},
+        #{finishDT},
+        #{bankFinishDT},
         #{mapstr})
     </insert>
 
