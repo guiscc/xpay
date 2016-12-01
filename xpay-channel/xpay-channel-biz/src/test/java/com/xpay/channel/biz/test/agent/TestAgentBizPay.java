@@ -30,7 +30,7 @@ public class TestAgentBizPay extends BaseTest {
     @Test
     public void pay() {
         ACPayReqChannelDTO acPayReqChannelDTO = new ACPayReqChannelDTO();
-        acPayReqChannelDTO.setUserId("");
+        acPayReqChannelDTO.setUserId("20888888001");
         acPayReqChannelDTO.setAmount(new BigDecimal(1));
         acPayReqChannelDTO.setCardNo("622000111111");
         acPayReqChannelDTO.setCardType(EnumCardType.DEBIT);
@@ -38,6 +38,7 @@ public class TestAgentBizPay extends BaseTest {
         acPayReqChannelDTO.setCvv2("221");
         acPayReqChannelDTO.setExpireDate("1116");
         acPayReqChannelDTO.setHolderName("苏欣欣");
+
         ACPayRepChannelDTO acPayRepChannelDTO = agentCollectFacade.pay(acPayReqChannelDTO);
         System.out.println(acPayRepChannelDTO);
     }

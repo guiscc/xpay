@@ -68,24 +68,6 @@ public class AgentCollectFacadeImpl implements AgentCollectFacade {
         return acQueryPayRepDTO;
     }
 
-    @Override
-    public ACRepairRepChannelDTO repair(ACRepairReqChannelDTO acRepairReqDTO) {
-        ACRepairReqVO acRepairReqVO = new ACRepairReqVO();
-        ACRepairRepChannelDTO acRepairRepDTO = new ACRepairRepChannelDTO();
-        try {
-            acRepairReqVO = ACRepairConvert.getACRepairReqVO(acRepairReqVO, acRepairReqDTO);
-            ACRepairRepVO acRepairRepVO = agentCollectBiz.repair(acRepairReqVO);
-            acRepairRepDTO = ACRepairConvert.getACRepairRepDTO(acRepairRepDTO, acRepairRepVO);
-        } catch (XpayChannelException e) {
-            logger.error("补单异常", e);
-            acRepairRepDTO.setRtnResult(e.getRtnResult());
-        } catch (Exception e) {
-            logger.error("补单异常", e);
-            acRepairRepDTO.setRtnResult(EnumRtnResult.E000000);
-        }
-        return acRepairRepDTO;
-    }
-
     /**
      * Getter method for property agentCollectBiz.
      *

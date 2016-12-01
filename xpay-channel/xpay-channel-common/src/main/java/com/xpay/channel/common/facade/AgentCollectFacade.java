@@ -27,12 +27,4 @@ public interface AgentCollectFacade {
      * @return
      */
     public ACQueryPayRepChannelDTO queryPay(ACQueryPayReqChannelDTO acQueryPayReqDTO);
-
-    /**
-     * 补单
-     *
-     * @param acRepairReqDTO
-     * @return
-     */
-    public ACRepairRepChannelDTO repair(ACRepairReqChannelDTO acRepairReqDTO);
 }
