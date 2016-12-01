@@ -5,11 +5,15 @@
 package com.xpay.channel.dao;
 
 import com.xpay.channel.dao.entity.PayToolsMappingEntity;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * @author qinshou
  * @version $Id: PayToolsMappingDao.java, v 0.1 16/11/30 上午11:33 sxfans Exp $
  */
+@Repository
 public interface PayToolsMappingDao {
 
     /**
@@ -17,5 +21,5 @@ public interface PayToolsMappingDao {
      * @param payToolsMappingEntity
      * @return
      */
-    public PayToolsMappingEntity get(PayToolsMappingEntity payToolsMappingEntity);
+    public List<PayToolsMappingEntity> get(PayToolsMappingEntity payToolsMappingEntity);
 }

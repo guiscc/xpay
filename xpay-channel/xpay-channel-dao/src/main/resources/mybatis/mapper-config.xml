@@ -20,5 +20,9 @@
 
     <mappers>
         <mapper resource="mybatis/mapper/payInfoMapper.xml"/>
+        <mapper resource="mybatis/mapper/channelCfgMapper.xml"/>
+        <mapper resource="mybatis/mapper/instMerchantMapper.xml"/>
+        <mapper resource="mybatis/mapper/payToolsBankMapper.xml"/>
+        <mapper resource="mybatis/mapper/payToolsMappingMapper.xml"/>
     </mappers>
 </configuration>

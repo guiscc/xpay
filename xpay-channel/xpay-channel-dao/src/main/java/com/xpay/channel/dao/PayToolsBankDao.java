@@ -5,11 +5,15 @@
 package com.xpay.channel.dao;
 
 import com.xpay.channel.dao.entity.PayToolsBankEntity;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * @author qinshou
  * @version $Id: PayToolsBankDao.java, v 0.1 16/11/30 上午11:31 sxfans Exp $
  */
+@Repository
 public interface PayToolsBankDao {
 
     /**
@@ -17,5 +21,5 @@ public interface PayToolsBankDao {
      * 获取支付工具对应的银行
      * @param payToolsBankEntity
      */
-    public PayToolsBankEntity get(PayToolsBankEntity payToolsBankEntity);
+    public List<PayToolsBankEntity> get(PayToolsBankEntity payToolsBankEntity);
 }
