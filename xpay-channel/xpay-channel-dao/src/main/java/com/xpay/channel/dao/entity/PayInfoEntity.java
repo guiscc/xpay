@@ -48,7 +48,7 @@ public class PayInfoEntity {
     /**
      * 支付工具子类型
      */
-    private String paySubToolCode;
+    private int paySubToolCode;
 
     /**
      * 支付工具银行编码
@@ -220,7 +220,7 @@ public class PayInfoEntity {
      *
      * @return property value of paySubToolCode
      **/
-    public String getPaySubToolCode() {
+    public int getPaySubToolCode() {
         return paySubToolCode;
     }
 
@@ -229,7 +229,7 @@ public class PayInfoEntity {
      *
      * @param paySubToolCode value to be assigned to property paySubToolCode
      **/
-    public void setPaySubToolCode(String paySubToolCode) {
+    public void setPaySubToolCode(int paySubToolCode) {
         this.paySubToolCode = paySubToolCode;
     }
 

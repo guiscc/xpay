@@ -29,7 +29,7 @@
 
     <sql id="column">
         id,payOrderNo,bankOrderNo,payAmt,currency,
-        signCode,paySubToolCode,channelCode,bankNo,rtnCode,
+        signCode,paySubToolCode,channelCode,payToolsBankCode,bankNo,rtnCode,
         rtnMsg,merchantNo,payStatus,createDT,finishDT,bankFinishDT,mapstr
     </sql>
 
@@ -53,6 +53,7 @@
         #{signCode},
         #{paySubToolCode},
         #{channelCode},
+        #{payToolsBankCode},
         #{bankNo},
         #{rtnCode},
         #{rtnMsg},
