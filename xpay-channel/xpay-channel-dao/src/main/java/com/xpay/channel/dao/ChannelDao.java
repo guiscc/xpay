@@ -5,6 +5,7 @@
 package com.xpay.channel.dao;
 
 import com.xpay.channel.dao.entity.ChannelEntity;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -13,6 +14,7 @@ import java.util.List;
  * @author qinshou
  * @version $Id: ChannelEntity.java, v 0.1 16/11/30 上午11:27 sxfans Exp $
  */
+@Repository
 public interface ChannelDao {
 
     /**

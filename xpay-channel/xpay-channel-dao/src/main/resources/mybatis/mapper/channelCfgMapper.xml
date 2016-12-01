@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xpay.channel.dao.ChannelCfgDao" >
+    <resultMap id="BaseResultMap" type="ChannelCfgEntity" >
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="channelCode" property="channelCode" jdbcType="VARCHAR" />
+        <result column="callBackUrl" property="callBackUrl" jdbcType="VARCHAR" />
+        <result column="callPageUrl" property="callPageUrl" jdbcType="VARCHAR" />
+        <result column="refundCallBackUrl" property="refundCallBackUrl" jdbcType="VARCHAR" />
+        <result column="chkFileDT" property="chkFileDT" jdbcType="TIMESTAMP" />
+        <result column="chkFileType" property="chkFileType" jdbcType="TINYINT" />
+        <result column="refundType" property="refundType" jdbcType="TINYINT" />
+        <result column="orderNoPrefix" property="orderNoPrefix" jdbcType="VARCHAR" />
+        <result column="orderNoLen" property="orderNoLen" jdbcType="INTEGER" />
+        <result column="payType" property="payType" jdbcType="TINYINT" />
+        <result column="signType" property="signType" jdbcType="TINYINT" />
+        <result column="createPersion" property="createPersion" jdbcType="VARCHAR" />
+        <result column="updatePersion" property="updatePersion" jdbcType="VARCHAR" />
+        <result column="updateDT" property="updateDT" jdbcType="TIMESTAMP" />
+        <result column="createDT" property="createDT" jdbcType="TIMESTAMP" />
+        <result column="smsType" property="smsType" jdbcType="TINYINT" />
+        <result column="repairStatus" property="repairStatus" jdbcType="TINYINT" />
+        <result column="repairMinute" property="repairMinute" jdbcType="INTEGER" />
+        <result column="bankBufferMill" property="bankBufferMill" jdbcType="BIGINT" />
+        <result column="repairMaxAmt" property="repairMaxAmt" jdbcType="DOUBLE" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        id, channelCode, callBackUrl, callPageUrl, refundCallBackUrl, chkFileDT, chkFileType,
+        refundType, orderNoPrefix, orderNoLen, payType, signType, createPersion, updatePersion,
+        updateDT, createDT, smsType, repairStatus, repairMinute, bankBufferMill, repairMaxAmt
+    </sql>
+
+    <select id="get" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select
+        <include refid="Base_Column_List" />
+        from channel_channelcfg
+        where channelCode = #{channelCode}
+    </select>
+
+</mapper>

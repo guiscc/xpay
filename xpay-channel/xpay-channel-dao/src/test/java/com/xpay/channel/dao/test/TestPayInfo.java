@@ -36,13 +36,13 @@ public class TestPayInfo extends BaseTest {
         payInfoEntity.setPayOrderNo("123456");
         payInfoEntity.setBankOrderNo("654321");
         payInfoEntity.setPayAmt(new BigDecimal(1.99));
-        payInfoEntity.setCurrency(EnumCurrency.CNY.getKey());
-        payInfoEntity.setChannelCode("AC_UNION_CD_01");
-
-        payInfoEntity.setCreateDT(new Date());
-        payInfoEntity.setMerchantNo("600788881");
-        payInfoEntity.setPayStatus(EnumPayStatus.SUCCESS.getKey());
-        payInfoEntity.setPaySubToolCode(EnumPaySubTool.QUICKPAY.getVal());
+//        payInfoEntity.setCurrency(EnumCurrency.CNY.getKey());
+//        payInfoEntity.setChannelCode("AC_UNION_CD_01");
+//
+//        payInfoEntity.setCreateDT(new Date());
+//        payInfoEntity.setMerchantNo("600788881");
+//        payInfoEntity.setPayStatus(EnumPayStatus.SUCCESS.getKey());
+//        payInfoEntity.setPaySubToolCode(EnumPaySubTool.QUICKPAY.getVal());
         int i = payInfoDao.add(payInfoEntity);
         System.out.println("###########"+i);
     }

@@ -5,12 +5,14 @@
 package com.xpay.channel.dao;
 
 import com.xpay.channel.dao.entity.ChannelCfgEntity;
+import org.springframework.stereotype.Repository;
 
 /**
  * 通道配置
  * @author qinshou
  * @version $Id: ChannelCfgDao.java, v 0.1 16/12/1 上午10:07 sxfans Exp $
  */
+@Repository
 public interface ChannelCfgDao {
 
     /**
