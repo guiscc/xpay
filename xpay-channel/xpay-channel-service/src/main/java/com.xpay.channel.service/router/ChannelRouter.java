@@ -5,15 +5,16 @@
 package com.xpay.channel.service.router;
 
 /**
+ * 路由策略接口
  * @author qinshou
  * @version $Id: ChannelRouter.java, v 0.1 16/11/25 下午4:16 sxfans Exp $
  */
-public interface ChannelRouter<T> {
+public interface ChannelRouter {
 
     /**
      *
-     * @param req
+     * @param routerParam
      * @return
      */
-    public RouterContext router(T req);
+    public RouterContext router(RouterParam routerParam);
 }

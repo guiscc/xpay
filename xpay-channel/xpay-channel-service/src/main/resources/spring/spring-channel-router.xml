@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd"
+       default-autowire="byType">
+
+    <!--单个路由策略-->
+    <bean id="channel_routerHandler" class="com.xpay.channel.service.router.handler.impl.Channel_RouterHandler"/>
+    <bean id="channelConfig_routerHandler"
+          class="com.xpay.channel.service.router.handler.impl.ChannelConfig_RouterHandler"/>
+    <bean id="inst_routerHandler" class="com.xpay.channel.service.router.handler.impl.Inst_RouterHandler"/>
+    <bean id="instMer_routerHandler" class="com.xpay.channel.service.router.handler.impl.InstMer_RouterHandler"/>
+    <bean id="payToolsBank_routerHandler"
+          class="com.xpay.channel.service.router.handler.impl.PayToolsBank_RouterHandler"/>
+
+    <!--标准支付路由策略-->
+    <bean id="payRouterFactory" class="com.xpay.channel.service.router.RouterHandlerFactory">
+        <property name="routerHandlerMap">
+            <map key-type="java.lang.String" value-type="com.xpay.channel.service.router.handler.RouterHandler">
+                <entry key="ROUTER_01" value-ref="payToolsBank_routerHandler"/>
+                <entry key="ROUTER_02" value-ref="channel_routerHandler"/>
+                <entry key="ROUTER_03" value-ref="channelConfig_routerHandler"/>
+            </map>
+        </property>
+    </bean>
+
+    <!--支付路由回调策略-->
+    <bean id="callBackRouterFactory" class="com.xpay.channel.service.router.RouterHandlerFactory">
+        <property name="routerHandlerMap">
+            <map key-type="java.lang.String" value-type="com.xpay.channel.service.router.handler.RouterHandler">
+                <!--<entry key="ROUTER_01" value-ref="null"/>-->
+                <!--<entry key="ROUTER_02" value-ref=""/>-->
+                <!--<entry key="ROUTER_03" value-ref=""/>-->
+            </map>
+        </property>
+    </bean>
+
+    <!--支付路由策略-->
+    <bean id="acPayRouter" class="com.xpay.channel.service.router.impl.ACPayRouter">
+        <property name="routerHandlerFactory" ref="payRouterFactory"/>
+    </bean>
+
+</beans>
