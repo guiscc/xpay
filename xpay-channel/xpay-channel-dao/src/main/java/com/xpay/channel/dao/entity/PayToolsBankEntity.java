@@ -6,7 +6,7 @@ package com.xpay.channel.dao.entity;
 
 /**
  * @author qinshou
- * @version $Id: PayToolsEntity.java, v 0.1 16/11/30 上午11:41 sxfans Exp $
+ * @version $Id: PayToolsBankEntity.java, v 0.1 16/11/30 上午11:41 sxfans Exp $
  */
-public class PayToolsEntity {
+public class PayToolsBankEntity {
 }

@@ -18,7 +18,7 @@ public class RouterContext {
     /**
      * 通道实体
      */
-    private PayToolsEntity payToolsEntity;
+    private PayToolsBankEntity payToolsBankEntity;
 
     /**
      * 接口实体

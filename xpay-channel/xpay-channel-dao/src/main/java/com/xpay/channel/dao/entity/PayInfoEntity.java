@@ -51,6 +51,11 @@ public class PayInfoEntity {
     private String paySubToolCode;
 
     /**
+     * 支付工具银行编码
+     */
+    private String payToolsBankCode;
+
+    /**
      * 通道编码
      */
     private String channelCode;
@@ -406,6 +411,24 @@ public class PayInfoEntity {
      **/
     public void setMapstr(String mapstr) {
         this.mapstr = mapstr;
+    }
+
+    /**
+     * Getter method for property payToolsBankCode.
+     *
+     * @return property value of payToolsBankCode
+     **/
+    public String getPayToolsBankCode() {
+        return payToolsBankCode;
+    }
+
+    /**
+     * Setter method for property payToolsBankCode.
+     *
+     * @param payToolsBankCode value to be assigned to property payToolsBankCode
+     **/
+    public void setPayToolsBankCode(String payToolsBankCode) {
+        this.payToolsBankCode = payToolsBankCode;
     }
 
     @Override
