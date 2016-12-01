@@ -30,14 +30,4 @@ public interface AgentCollectBiz {
      * @throws XpayChannelException
      */
     public ACQueryPayRepVO queryPay(ACQueryPayReqVO acQueryPayReqVO) throws XpayChannelException;
-
-    /**
-     * 补单
-     *
-     * @param acRepairReqVO
-     * @return
-     * @throws XpayChannelException
-     */
-    public ACRepairRepVO repair(ACRepairReqVO acRepairReqVO) throws XpayChannelException;
-
 }
