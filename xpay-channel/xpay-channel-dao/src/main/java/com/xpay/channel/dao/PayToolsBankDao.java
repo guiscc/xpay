@@ -21,5 +21,16 @@ public interface PayToolsBankDao {
      * 获取支付工具对应的银行
      * @param payToolsBankEntity
      */
-    public List<PayToolsBankEntity> get(PayToolsBankEntity payToolsBankEntity);
+//    public List<PayToolsBankEntity> get(PayToolsBankEntity payToolsBankEntity);
+
+
+    /**
+     * 根据,支付工具,支付工具子类型,机构
+     *
+     * @param payTools
+     * @param paySubTools
+     * @param instCode
+     * @return
+     */
+    public PayToolsBankEntity get(int payTools,int paySubTools, String instCode);
 }

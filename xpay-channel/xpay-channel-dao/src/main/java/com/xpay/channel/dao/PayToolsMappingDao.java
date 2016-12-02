@@ -18,8 +18,8 @@ public interface PayToolsMappingDao {
 
     /**
      * 根据支付工具子类型对应的银行,查找相应的通道
-     * @param payToolsMappingEntity
+     * @param payToolBankCode
      * @return
      */
-    public List<PayToolsMappingEntity> get(PayToolsMappingEntity payToolsMappingEntity);
+    public List<PayToolsMappingEntity> find(String payToolBankCode);
 }

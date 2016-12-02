@@ -27,12 +27,12 @@ public class PayToolsMappingEntity {
     /**
      * 通道id
      */
-    private Long paySubToolCode;
+    private int paySubToolCode;
 
     /**
      * 接口id
      */
-    private Long channelCode;
+    private String channelCode;
 
     /**
      * 通道权重
@@ -85,19 +85,39 @@ public class PayToolsMappingEntity {
         this.payToolsBankCode = payToolsBankCode;
     }
 
-    public Long getPaySubToolCode() {
+    /**
+     * Getter method for property paySubToolCode.
+     *
+     * @return property value of paySubToolCode
+     **/
+    public int getPaySubToolCode() {
         return paySubToolCode;
     }
 
-    public void setPaySubToolCode(Long paySubToolCode) {
+    /**
+     * Setter method for property paySubToolCode.
+     *
+     * @param paySubToolCode value to be assigned to property paySubToolCode
+     **/
+    public void setPaySubToolCode(int paySubToolCode) {
         this.paySubToolCode = paySubToolCode;
     }
 
-    public Long getChannelCode() {
+    /**
+     * Getter method for property channelCode.
+     *
+     * @return property value of channelCode
+     **/
+    public String getChannelCode() {
         return channelCode;
     }
 
-    public void setChannelCode(Long channelCode) {
+    /**
+     * Setter method for property channelCode.
+     *
+     * @param channelCode value to be assigned to property channelCode
+     **/
+    public void setChannelCode(String channelCode) {
         this.channelCode = channelCode;
     }
 

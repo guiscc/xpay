@@ -4,6 +4,7 @@
  */
 package com.xpay.channel.service.router.handler;
 
+import com.xpay.channel.common.exception.ChannelRouterException;
 import com.xpay.channel.service.router.RouterContext;
 import com.xpay.channel.service.router.RouterParam;
 
@@ -18,5 +19,5 @@ public interface RouterHandler {
      * @param routerContext
      * @return
      */
-    public RouterContext routerHandler(RouterContext routerContext, RouterParam routerParam);
+    public RouterContext routerHandler(RouterContext routerContext, RouterParam routerParam) throws ChannelRouterException;
 }

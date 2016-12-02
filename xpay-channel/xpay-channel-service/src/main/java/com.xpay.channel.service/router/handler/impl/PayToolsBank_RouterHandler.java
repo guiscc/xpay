@@ -4,19 +4,30 @@
  */
 package com.xpay.channel.service.router.handler.impl;
 
+import com.xpay.channel.common.exception.ChannelRouterException;
+import com.xpay.channel.dao.entity.PayToolsBankEntity;
 import com.xpay.channel.service.router.RouterContext;
 import com.xpay.channel.service.router.RouterParam;
-import com.xpay.channel.service.router.handler.RouterHandler;
+import com.xpay.channel.service.router.handler.AbsRouterHandler;
+import com.xpay.common.enums.EnumRtnResult;
 
 /**
+ * 支付工具子类型对应的银行
+ *
  * @author qinshou
  * @version $Id: PayToolsBank_RouterHandler.java, v 0.1 16/12/1 上午11:21 sxfans Exp $
  */
-public class PayToolsBank_RouterHandler implements RouterHandler{
+public class PayToolsBank_RouterHandler extends AbsRouterHandler {
 
     @Override
-    public RouterContext routerHandler(RouterContext routerContext, RouterParam routerParam) {
-        System.out.println("###################渠道支付工具");
+    public RouterContext routerHandler(RouterContext routerContext, RouterParam routerParam) throws ChannelRouterException {
+
+        PayToolsBankEntity payToolsBankEntity = payToolsBankDao.get(routerParam.getPayTools()
+            .getKey(), routerParam.getPaySubTools().getKey(), routerParam.getInstCode());
+        if(payToolsBankEntity == null){
+            throw new ChannelRouterException(EnumRtnResult.E000000);
+        }
+        routerContext.setPayToolsBankEntity(payToolsBankEntity);
         return routerContext;
     }
 }

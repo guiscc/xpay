@@ -8,7 +8,7 @@
        default-autowire="byType">
 
     <!--单个路由策略-->
-    <bean id="channel_routerHandler" class="com.xpay.channel.service.router.handler.impl.Channel_RouterHandler"/>
+    <bean id="channel_routerHandler" class="com.xpay.channel.service.router.handler.impl.ChannelMapping_RouterHandler"/>
     <bean id="channelConfig_routerHandler" class="com.xpay.channel.service.router.handler.impl.ChannelConfig_RouterHandler"/>
     <bean id="inst_routerHandler" class="com.xpay.channel.service.router.handler.impl.Inst_RouterHandler"/>
     <bean id="instMer_routerHandler" class="com.xpay.channel.service.router.handler.impl.InstMer_RouterHandler"/>
