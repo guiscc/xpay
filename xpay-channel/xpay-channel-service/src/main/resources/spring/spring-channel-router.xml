@@ -9,12 +9,10 @@
 
     <!--单个路由策略-->
     <bean id="channel_routerHandler" class="com.xpay.channel.service.router.handler.impl.Channel_RouterHandler"/>
-    <bean id="channelConfig_routerHandler"
-          class="com.xpay.channel.service.router.handler.impl.ChannelConfig_RouterHandler"/>
+    <bean id="channelConfig_routerHandler" class="com.xpay.channel.service.router.handler.impl.ChannelConfig_RouterHandler"/>
     <bean id="inst_routerHandler" class="com.xpay.channel.service.router.handler.impl.Inst_RouterHandler"/>
     <bean id="instMer_routerHandler" class="com.xpay.channel.service.router.handler.impl.InstMer_RouterHandler"/>
-    <bean id="payToolsBank_routerHandler"
-          class="com.xpay.channel.service.router.handler.impl.PayToolsBank_RouterHandler"/>
+    <bean id="payToolsBank_routerHandler" class="com.xpay.channel.service.router.handler.impl.PayToolsBank_RouterHandler"/>
 
     <!--标准支付路由策略-->
     <bean id="payRouterFactory" class="com.xpay.channel.service.router.RouterHandlerFactory">
@@ -23,6 +21,8 @@
                 <entry key="ROUTER_01" value-ref="payToolsBank_routerHandler"/>
                 <entry key="ROUTER_02" value-ref="channel_routerHandler"/>
                 <entry key="ROUTER_03" value-ref="channelConfig_routerHandler"/>
+                <entry key="ROUTER_04" value-ref="inst_routerHandler"/>
+                <entry key="ROUTER_05" value-ref="instMer_routerHandler"/>
             </map>
         </property>
     </bean>
