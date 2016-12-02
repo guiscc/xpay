@@ -12,7 +12,7 @@ package com.xpay.channel.service.router;
 public interface ChannelRouter {
 
     /**
-     *
+     * 根据路由参数进行渠道路由
      * @param routerParam
      * @return
      */

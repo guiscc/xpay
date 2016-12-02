@@ -5,6 +5,7 @@
 package com.xpay.channel.service.router.handler.impl;
 
 import com.xpay.channel.service.router.RouterContext;
+import com.xpay.channel.service.router.RouterParam;
 import com.xpay.channel.service.router.handler.RouterHandler;
 
 /**
@@ -14,9 +15,9 @@ import com.xpay.channel.service.router.handler.RouterHandler;
  */
 public class Channel_RouterHandler implements RouterHandler {
 
-
     @Override
-    public RouterContext routerEntity(RouterContext routerContext) {
-        return null;
+    public RouterContext routerHandler(RouterContext routerContext, RouterParam routerParam) {
+        System.out.println("###################渠道路由");
+        return routerContext;
     }
 }
