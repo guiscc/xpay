@@ -48,11 +48,6 @@ public class RouterContext {
     private ChannelCfgEntity channelCfgEntity;
 
     /**
-     * 服务商映射
-     */
-    private PayToolsMappingEntity instInterfaceEntity;
-
-    /**
      * 过滤筛选后的渠道实体
      */
     private ChannelEntity channelEntity;
@@ -137,24 +132,6 @@ public class RouterContext {
      **/
     public void setInstMerchantEntity(InstMerchantEntity instMerchantEntity) {
         this.instMerchantEntity = instMerchantEntity;
-    }
-
-    /**
-     * Getter method for property instInterfaceEntity.
-     *
-     * @return property value of instInterfaceEntity
-     **/
-    public PayToolsMappingEntity getInstInterfaceEntity() {
-        return instInterfaceEntity;
-    }
-
-    /**
-     * Setter method for property instInterfaceEntity.
-     *
-     * @param instInterfaceEntity value to be assigned to property instInterfaceEntity
-     **/
-    public void setInstInterfaceEntity(PayToolsMappingEntity instInterfaceEntity) {
-        this.instInterfaceEntity = instInterfaceEntity;
     }
 
     /**

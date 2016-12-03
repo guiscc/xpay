@@ -28,4 +28,7 @@ public abstract class AbsRouterHandler implements RouterHandler {
 
     @Resource
     protected InstMerchantDao instMerchantDao;
+
+    @Resource
+    protected ChannelCfgDao channelCfgDao;
 }
