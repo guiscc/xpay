@@ -30,6 +30,15 @@ public enum EnumRtnResult {
     /*核心支付E02*/
 
     /*渠道E03*/
+    E030000(EnumRtnStatus.FAIL, "支付工具银行未配置"),
+    E030001(EnumRtnStatus.FAIL, "支付工具银行编码为空"),
+    E030002(EnumRtnStatus.FAIL, "支付工具与渠道未配置映射"),
+    E030003(EnumRtnStatus.FAIL, "支付工具没有可用的渠道"),
+    E030004(EnumRtnStatus.FAIL, "渠道未找到相应的机构"),
+    E030005(EnumRtnStatus.FAIL, "机构未找到相应的商户号"),
+    E030006(EnumRtnStatus.FAIL, "商户号未找到对应的配置"),
+
+
     E030101(EnumRtnStatus.FAIL, "未知主机名"),
     E030102(EnumRtnStatus.FAIL, "连接超时"),
     E030103(EnumRtnStatus.UNKNOW, "读取超时"),
