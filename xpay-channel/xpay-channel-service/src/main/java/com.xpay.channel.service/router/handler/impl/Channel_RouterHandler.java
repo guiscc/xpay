@@ -30,7 +30,7 @@ public class Channel_RouterHandler extends AbsRouterHandler{
         String str = getIds(routerContext);
         List<ChannelEntity> list = channelDao.findByChannelCode(str);
         if(CollectionUtils.isEmpty(list)){
-            throw new ChannelRouterException(EnumRtnResult.E000000);
+            throw new ChannelRouterException(EnumRtnResult.E030003);
         }
         routerContext.setChannelEntityList(list);
         return null;

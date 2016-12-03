@@ -27,7 +27,7 @@ public class InstMer_RouterHandler extends AbsRouterHandler {
         String ids = getIds(routerContext);
         List<InstMerchantEntity> list = instMerchantDao.findByInstCode(ids);
         if(CollectionUtils.isEmpty(list)){
-            throw new ChannelRouterException(EnumRtnResult.E000000);
+            throw new ChannelRouterException(EnumRtnResult.E030005);
         }
         //TODO 限额,权重,处理待做
         routerContext.setInstMerchantEntity(list.get(0));

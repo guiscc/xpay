@@ -28,7 +28,7 @@ public class Inst_RouterHandler extends AbsRouterHandler {
         String ids = getIds(routerContext);
         List<InstitutionEntity> list = instituionDao.findByInstCodes(ids);
         if(CollectionUtils.isEmpty(list)){
-            throw new ChannelRouterException(EnumRtnResult.E000000);
+            throw new ChannelRouterException(EnumRtnResult.E030004);
         }
         routerContext.setInstitutionEntityList(list);
         return routerContext;

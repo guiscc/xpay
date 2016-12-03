@@ -24,7 +24,7 @@ public class ChannelConfig_RouterHandler extends AbsRouterHandler {
         ChannelEntity channelEntity = routerContext.getChannelEntity();
         ChannelCfgEntity channelCfgEntity = channelCfgDao.get(channelEntity.getChannelCode());
         if(channelCfgEntity == null){
-            throw new ChannelRouterException(EnumRtnResult.E000000);
+            throw new ChannelRouterException(EnumRtnResult.E030006);
         }
         return routerContext;
     }
