@@ -22,12 +22,12 @@ public class PayToolsMappingEntity {
     /**
      *
      */
-    private String payToolsBankCode;
+    private String payToolBankCode;
 
     /**
      * 通道id
      */
-    private int paySubToolCode;
+    private String paySubToolCode;
 
     /**
      * 接口id
@@ -65,7 +65,7 @@ public class PayToolsMappingEntity {
     private Date updateDT;
 
     /**
-     *
+     * 状态
      */
     private String mappStatus;
 
@@ -77,12 +77,22 @@ public class PayToolsMappingEntity {
         this.id = id;
     }
 
-    public String getPayToolsBankCode() {
-        return payToolsBankCode;
+    /**
+     * Getter method for property payToolBankCode.
+     *
+     * @return property value of payToolBankCode
+     **/
+    public String getPayToolBankCode() {
+        return payToolBankCode;
     }
 
-    public void setPayToolsBankCode(String payToolsBankCode) {
-        this.payToolsBankCode = payToolsBankCode;
+    /**
+     * Setter method for property payToolBankCode.
+     *
+     * @param payToolBankCode value to be assigned to property payToolBankCode
+     **/
+    public void setPayToolBankCode(String payToolBankCode) {
+        this.payToolBankCode = payToolBankCode;
     }
 
     /**
@@ -90,7 +100,7 @@ public class PayToolsMappingEntity {
      *
      * @return property value of paySubToolCode
      **/
-    public int getPaySubToolCode() {
+    public String getPaySubToolCode() {
         return paySubToolCode;
     }
 
@@ -99,7 +109,7 @@ public class PayToolsMappingEntity {
      *
      * @param paySubToolCode value to be assigned to property paySubToolCode
      **/
-    public void setPaySubToolCode(int paySubToolCode) {
+    public void setPaySubToolCode(String paySubToolCode) {
         this.paySubToolCode = paySubToolCode;
     }
 

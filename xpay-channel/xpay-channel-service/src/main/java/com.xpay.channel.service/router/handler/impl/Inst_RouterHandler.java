@@ -10,7 +10,6 @@ import com.xpay.channel.dao.entity.InstitutionEntity;
 import com.xpay.channel.service.router.RouterContext;
 import com.xpay.channel.service.router.RouterParam;
 import com.xpay.channel.service.router.handler.AbsRouterHandler;
-import com.xpay.channel.service.router.handler.RouterHandler;
 import com.xpay.common.enums.EnumRtnResult;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.CollectionUtils;
@@ -26,7 +25,7 @@ public class Inst_RouterHandler extends AbsRouterHandler {
     @Override
     public RouterContext routerHandler(RouterContext routerContext, RouterParam routerParam) throws ChannelRouterException {
         String ids = getIds(routerContext);
-        List<InstitutionEntity> list = instituionDao.findByInstCodes(ids);
+        List<InstitutionEntity> list = institutionDao.findByInstCodes(ids);
         if(CollectionUtils.isEmpty(list)){
             throw new ChannelRouterException(EnumRtnResult.E030004);
         }

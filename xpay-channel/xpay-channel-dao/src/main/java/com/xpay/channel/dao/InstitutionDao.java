@@ -15,7 +15,7 @@ import java.util.List;
  * @version $Id: InstituionDao.java, v 0.1 16/11/30 上午11:29 sxfans Exp $
  */
 @Repository
-public interface InstituionDao {
+public interface InstitutionDao {
 
     /**
      * 根据多个code查找codes

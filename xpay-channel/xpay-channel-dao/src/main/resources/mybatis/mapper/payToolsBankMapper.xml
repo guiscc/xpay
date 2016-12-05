@@ -3,8 +3,8 @@
 <mapper namespace="com.xpay.channel.dao.PayToolsBankDao" >
     <resultMap id="BaseResultMap" type="PayToolsBankEntity" >
         <id column="id" property="id" jdbcType="BIGINT" />
-        <result column="payToolsCode" property="payToolsCode" jdbcType="TINYINT" />
-        <result column="paySubToolsCode" property="paySubToolsCode" jdbcType="TINYINT" />
+        <result column="payTool" property="payToolsCode" jdbcType="TINYINT" />
+        <result column="paySubTool" property="paySubToolsCode" jdbcType="TINYINT" />
         <result column="instCode" property="instCode" jdbcType="VARCHAR" />
         <result column="payToolStatus" property="payToolStatus" jdbcType="TINYINT" />
         <result column="payToolCurrency" property="payToolCurrency" jdbcType="TINYINT" />
@@ -16,15 +16,19 @@
         <result column="payToolsBankCode" property="payToolsBankCode" jdbcType="VARCHAR" />
         <result column="payToolsBankDesc" property="payToolsBankDesc" jdbcType="VARCHAR" />
     </resultMap>
+
     <sql id="Base_Column_List" >
-        id, payToolsCode, paySubToolsCode, instCode, payToolStatus, payToolCurrency, payToolCardType,
-        createPersion, updatePersion, createDT, updateDT, payToolsBankCode, payToolsBankDesc
+        id, payTool, paySubTool, instCode, payToolStatus, payToolCurrency, payToolCardType,
+        createPersion, updatePersion, createDT, updateDT, payToolBankCode, payToolBankDesc
     </sql>
-    <select id="get" resultMap="BaseResultMap" parameterType="PayToolsBankEntity" >
+    
+    <select id="get" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List" />
         from channel_paytools_bank
-        where payToolsCode = #{payToolsCode}
+        where payTool = #{payTool} and
+              paySubTool = #{paySubTool} and
+              payToolCardType = #{cardType} and
+              instCode = #{instCode}
     </select>
-
 </mapper>

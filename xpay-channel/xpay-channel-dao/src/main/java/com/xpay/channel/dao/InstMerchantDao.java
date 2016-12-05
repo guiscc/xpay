@@ -19,8 +19,8 @@ public interface InstMerchantDao {
 
     /**
      * 根据机构找到对应的商户信息
-     * @param codes
+     * @param instCodes
      * @return
      */
-    public List<InstMerchantEntity> findByInstCode(String codes);
+    public List<InstMerchantEntity> findByInstCode(String instCodes);
 }

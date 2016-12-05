@@ -26,16 +26,18 @@
         <result column="operatorPwd" property="operatorPwd" jdbcType="VARCHAR" />
         <result column="mapstr" property="mapstr" jdbcType="VARCHAR" />
     </resultMap>
+
     <sql id="Base_Column_List" >
         id, instCode, bizCode, channelCode, merchantNo, merchantDayLimit, merchantSingleLimit,
         merchantMonthLimit, merchantStatus, cfgZmk, cfgZpk, cfgZak, cfgPfxPath, cfgCerPath,
         cfgCerOutDate, cfgStatus, createPersion, updatePersion, updateDT, createDT, operatorCode,
         operatorPwd, mapstr
     </sql>
-    <select id="get" resultMap="BaseResultMap" parameterType="InstMerchantEntity" >
+
+    <select id="findByInstCode" resultMap="BaseResultMap" parameterType="String" >
         select
         <include refid="Base_Column_List" />
         from channel_instmerchant
-        where instCode = #{instCode}
+        where instCode in (${_parameter})
     </select>
 </mapper>

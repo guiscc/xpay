@@ -29,7 +29,7 @@ public class TestPayInfo extends BaseTest {
 
     @Test
     public void getPayInfo() {
-        PayInfoEntity payInfoEntity = payInfoDao.findByPayOrderNo("20161201144552706");
+        PayInfoEntity payInfoEntity = payInfoDao.findByPayOrderNo("20161203173330478");
         System.out.println(payInfoEntity);
     }
 

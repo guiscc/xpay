@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xpay.channel.dao.InstitutionDao" >
+    <resultMap id="BaseResultMap" type="InstitutionEntity" >
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="instCode" property="instCode"/>
+        <result column="instName" property="instName"/>
+        <result column="instFlag" property="instFlag"/>
+        <result column="instProvince" property="instProvince"/>
+        <result column="instCity" property="instCity"/>
+        <result column="instArea" property="instArea"/>
+        <result column="instStatus" property="instStatus"/>
+        <result column="createPersion" property="createPersion"/>
+        <result column="updatePersion" property="updatePersion"/>
+        <result column="createDT" property="createDT"/>
+        <result column="updateDT" property="updateDT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        id,instCode,instName,instFlag,instProvince,
+        instCity,instArea,instStatus,createPersion,updatePersion,createDT,updateDT
+    </sql>
+
+    <select id="findByInstCodes" resultMap="BaseResultMap" parameterType="String" >
+        select
+        <include refid="Base_Column_List" />
+        from channel_institution
+        where instCode in (${_parameter})
+    </select>
+</mapper>
