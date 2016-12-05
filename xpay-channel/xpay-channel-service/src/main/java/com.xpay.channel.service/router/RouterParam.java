@@ -4,6 +4,7 @@
  */
 package com.xpay.channel.service.router;
 
+import com.xpay.common.enums.EnumCardType;
 import com.xpay.common.enums.EnumPaySubTool;
 import com.xpay.common.enums.EnumPayTool;
 
@@ -34,6 +35,11 @@ public class RouterParam {
      * 支付金额
      */
     private BigDecimal payAmt;
+
+    /**
+     * 卡类型
+     */
+    private EnumCardType cardType;
 
 
     /**
@@ -106,5 +112,23 @@ public class RouterParam {
      **/
     public void setPayAmt(BigDecimal payAmt) {
         this.payAmt = payAmt;
+    }
+
+    /**
+     * Getter method for property cardType.
+     *
+     * @return property value of cardType
+     **/
+    public EnumCardType getCardType() {
+        return cardType;
+    }
+
+    /**
+     * Setter method for property cardType.
+     *
+     * @param cardType value to be assigned to property cardType
+     **/
+    public void setCardType(EnumCardType cardType) {
+        this.cardType = cardType;
     }
 }

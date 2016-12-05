@@ -4,6 +4,7 @@
  */
 package com.xpay.channel.service.router;
 
+import com.xpay.channel.common.exception.ChannelRouterException;
 import com.xpay.channel.service.router.handler.RouterHandler;
 import java.util.Map;
 
@@ -16,7 +17,7 @@ public class AbsChannelRouter implements ChannelRouter {
     private RouterHandlerFactory routerHandlerFactory;
 
     @Override
-    public RouterContext router(RouterParam param) {
+    public RouterContext router(RouterParam param) throws ChannelRouterException {
 
         //路由上下文
         RouterContext routerContext = new RouterContext();

@@ -23,7 +23,7 @@ public class PayToolsBank_RouterHandler extends AbsRouterHandler {
     public RouterContext routerHandler(RouterContext routerContext, RouterParam routerParam) throws ChannelRouterException {
 
         PayToolsBankEntity payToolsBankEntity = payToolsBankDao.get(routerParam.getPayTools()
-            .getKey(), routerParam.getPaySubTools().getKey(), routerParam.getInstCode());
+            .getKey(), routerParam.getPaySubTools().getKey(), routerParam.getCardType().getKey(), routerParam.getInstCode());
         if(payToolsBankEntity == null){
             throw new ChannelRouterException(EnumRtnResult.E030000);
         }
