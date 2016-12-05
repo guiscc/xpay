@@ -13,8 +13,8 @@
         <result column="updatePersion" property="updatePersion" jdbcType="VARCHAR" />
         <result column="createDT" property="createDT" jdbcType="TIMESTAMP" />
         <result column="updateDT" property="updateDT" jdbcType="TIMESTAMP" />
-        <result column="payToolsBankCode" property="payToolsBankCode" jdbcType="VARCHAR" />
-        <result column="payToolsBankDesc" property="payToolsBankDesc" jdbcType="VARCHAR" />
+        <result column="payToolBankCode" property="payToolBankCode" jdbcType="VARCHAR" />
+        <result column="payToolBankDesc" property="payToolBankDesc" jdbcType="VARCHAR" />
     </resultMap>
 
     <sql id="Base_Column_List" >

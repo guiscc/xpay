@@ -20,10 +20,10 @@
         updatePersion, createDT, updateDT, mappStatus
     </sql>
 
-    <select id="find" resultMap="BaseResultMap" parameterType="PayToolsMappingEntity" >
+    <select id="find" resultMap="BaseResultMap" parameterType="String" >
         select
         <include refid="Base_Column_List" />
         from channel_paytoolsmapping
-        where payToolBankCode = #{payToolBankCode}
+        where payToolBankCode = #{_parameter}
     </select>
 </mapper>

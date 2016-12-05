@@ -42,7 +42,7 @@ public class Inst_RouterHandler extends AbsRouterHandler {
         StringBuilder stringBuilder = new StringBuilder();
         List<ChannelEntity> list = routerContext.getChannelEntityList();
         for (ChannelEntity channelEntity : list) {
-            stringBuilder.append(channelEntity.getInstCode()+",");
+            stringBuilder.append("\""+channelEntity.getInstCode()+"\""+",");
         }
         String ids = StringUtils.removeEnd(stringBuilder.toString(),",");
         return ids;

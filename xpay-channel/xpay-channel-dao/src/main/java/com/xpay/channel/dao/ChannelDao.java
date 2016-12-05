@@ -23,4 +23,11 @@ public interface ChannelDao {
      * @return
      */
     public List<ChannelEntity> findByChannelCode(String channelCodes);
+
+    /**
+     * 根据渠道编码查询单个渠道信息
+     * @param channelCode
+     * @return
+     */
+    public ChannelEntity get(String channelCode);
 }

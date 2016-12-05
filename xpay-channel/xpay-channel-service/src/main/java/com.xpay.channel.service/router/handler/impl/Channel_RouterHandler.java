@@ -33,7 +33,7 @@ public class Channel_RouterHandler extends AbsRouterHandler{
             throw new ChannelRouterException(EnumRtnResult.E030003);
         }
         routerContext.setChannelEntityList(list);
-        return null;
+        return routerContext;
     }
 
     /**
@@ -45,7 +45,7 @@ public class Channel_RouterHandler extends AbsRouterHandler{
         StringBuilder stringBuilder = new StringBuilder();
         Set<String> keySet = routerContext.getPayToolsMappingMap().keySet();
         for(String item : keySet){
-            stringBuilder.append(item+",");
+            stringBuilder.append("\""+item+"\""+",");
         }
         String ids =StringUtils.removeEnd(stringBuilder.toString(),",");
         return ids;

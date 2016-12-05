@@ -97,6 +97,29 @@ public class ACPayReqVO {
     private Date           createDate;
 
     /**
+     * 机构编码
+     */
+    private String         instCode;
+
+    /**
+     * Getter method for property instCode.
+     *
+     * @return property value of instCode
+     **/
+    public String getInstCode() {
+        return instCode;
+    }
+
+    /**
+     * Setter method for property instCode.
+     *
+     * @param instCode value to be assigned to property instCode
+     **/
+    public void setInstCode(String instCode) {
+        this.instCode = instCode;
+    }
+
+    /**
      * Getter method for property payTool.
      *
      * @return property value of payTool

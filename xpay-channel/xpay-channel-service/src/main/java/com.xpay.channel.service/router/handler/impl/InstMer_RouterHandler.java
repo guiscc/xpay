@@ -43,7 +43,8 @@ public class InstMer_RouterHandler extends AbsRouterHandler {
         StringBuilder stringBuilder = new StringBuilder();
         List<InstitutionEntity> list = routerContext.getInstitutionEntityList();
         for (InstitutionEntity item : list) {
-            stringBuilder.append(item.getInstCode() + ",");
+            stringBuilder.append("\""+item.getInstCode()+"\""+",");
+
         }
         String ids = StringUtils.removeEnd(stringBuilder.toString(), ",");
         return ids;

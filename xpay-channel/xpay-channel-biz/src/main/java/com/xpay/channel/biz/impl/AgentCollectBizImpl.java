@@ -47,6 +47,12 @@ public class AgentCollectBizImpl implements AgentCollectBiz {
 
         //路由
         RouterParam routerParam = new RouterParam();
+        routerParam.setPayAmt(acPayReqVO.getPayAmt());
+        routerParam.setCardType(acPayReqVO.getCardType());
+        routerParam.setInstCode(acPayReqVO.getInstCode());
+        routerParam.setPayTools(acPayReqVO.getPayTool());
+        routerParam.setPaySubTools(acPayReqVO.getPaySubTool());
+
         RouterContext routerContext = payChannelRouter.router(routerParam);
 
         //插入订单

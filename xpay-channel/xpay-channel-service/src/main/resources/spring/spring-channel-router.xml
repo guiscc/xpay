@@ -50,5 +50,6 @@
     <bean id="acPayRouter" class="com.xpay.channel.service.router.impl.ACPayRouter">
         <property name="routerHandlerFactory" ref="payRouterFactory"/>
     </bean>
-
+    
+    <import resource="classpath*:spring/spring-channel-dao.xml"/>
 </beans>

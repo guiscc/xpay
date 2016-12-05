@@ -28,12 +28,12 @@ public class ChannelMapping_RouterHandler extends AbsRouterHandler {
 
     @Override
     public RouterContext routerHandler(RouterContext routerContext, RouterParam routerParam) throws ChannelRouterException {
-        String payToolsBankCode = routerContext.getPayToolsBankEntity().getPayToolsBankCode();
+        String payToolsBankCode = routerContext.getPayToolsBankEntity().getPayToolBankCode();
         if(StringUtils.isBlank(payToolsBankCode)){
             throw new ChannelRouterException(EnumRtnResult.E030001);
         }
         List<PayToolsMappingEntity> list = payToolsMappingDao.find(routerContext
-            .getPayToolsBankEntity().getPayToolsBankCode());
+            .getPayToolsBankEntity().getPayToolBankCode());
 
         Map<String,PayToolsMappingEntity> payToolsMapping = new HashMap<>();
 

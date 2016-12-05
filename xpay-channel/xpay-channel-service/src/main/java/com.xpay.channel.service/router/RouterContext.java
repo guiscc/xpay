@@ -6,11 +6,13 @@ package com.xpay.channel.service.router;
 
 
 import com.xpay.channel.dao.entity.*;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.util.List;
 import java.util.Map;
 
 /**
+ * 路由结果上下文
  * @author qinshou
  * @version $Id: RouterContext.java, v 0.1 16/11/25 下午4:47 sxfans Exp $
  */
@@ -186,5 +188,11 @@ public class RouterContext {
      **/
     public void setChannelEntity(ChannelEntity channelEntity) {
         this.channelEntity = channelEntity;
+    }
+
+
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this);
     }
 }
