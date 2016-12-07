@@ -1,7 +1,5 @@
 package com.xpay.common.utils.sequence;
 
-import org.apache.commons.lang3.StringUtils;
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
