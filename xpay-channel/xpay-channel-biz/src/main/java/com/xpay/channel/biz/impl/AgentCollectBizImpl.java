@@ -56,6 +56,8 @@ public class AgentCollectBizImpl implements AgentCollectBiz {
         RouterContext routerContext = payChannelRouter.router(routerParam);
 
         //插入订单
+//        PayInfoEntity payInfoEntity = channelPayInfoService.getByPayOrderNo(acPayReqVO.getPayAmt());
+
         PayInfoEntity payInfoEntity = channelPayInfoService.add(routerContext,acPayReqVO);
 
         //请求前置
