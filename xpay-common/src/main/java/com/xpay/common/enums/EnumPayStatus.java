@@ -38,6 +38,16 @@ public enum EnumPayStatus {
         return null;
     }
 
+    public static boolean isEnd(EnumPayStatus payStatus) {
+        if (payStatus == SUCCESS) {
+            return true;
+        } else if (payStatus == FAIL) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     private byte key;
 
     private String val;
