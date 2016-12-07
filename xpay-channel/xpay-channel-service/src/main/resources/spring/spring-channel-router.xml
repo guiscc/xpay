@@ -5,6 +5,8 @@
 	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"
        default-autowire="byType">
 
+    <bean id="randomSeq" class="com.xpay.common.utils.sequence.RandomSequenceImpl"/>
+
     <!--支付工具子类型路由-->
     <bean id="payToolsBankRouterHandler" class="com.xpay.channel.service.router.handler.impl.PayToolsBank_RouterHandler"/>
     <!--支付工具渠道映射路由-->
