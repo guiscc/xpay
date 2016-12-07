@@ -5,10 +5,20 @@ package com.xpay.common.utils.sequence;
  * Created by sxfans on 16/8/21.
  */
 public interface Sequence {
+
     /**
-     *
-     * @param Suffix
+     * 获取
+     * @param groupId
+     * @param len
      * @return
      */
-    public String getSeq(String Suffix);
+    public String getSeq(String groupId, int len);
+
+    /**
+     *
+     * @param groupId
+     * @param len
+     * @return
+     */
+    public String getDTAndSeq(String groupId,int len);
 }
