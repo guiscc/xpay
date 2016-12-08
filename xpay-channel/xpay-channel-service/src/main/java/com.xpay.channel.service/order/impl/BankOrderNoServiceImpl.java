@@ -26,7 +26,7 @@ public class BankOrderNoServiceImpl implements OrderNoService {
 
     @Override
     public String getOrderNo() {
-        String dateStr= DateUtil.communityDateToString(new Date());
+        String dateStr= DateUtil.DateStampToStringNoSp(new Date());
         String version = "0";
         String tradeType = "001";
         String tableCode = "00";

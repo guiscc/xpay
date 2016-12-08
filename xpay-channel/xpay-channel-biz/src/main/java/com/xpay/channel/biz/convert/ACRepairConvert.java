@@ -27,7 +27,7 @@ public class ACRepairConvert {
         if (payOrderModel != null) {
             acRepairRepDTO.getPayOrderDTO().setPayOrderNo(payOrderModel.getPayOrderNo());
             acRepairRepDTO.getPayOrderDTO().setPayStatus(payOrderModel.getPayStatus());
-            acRepairRepDTO.getPayOrderDTO().setTradeOrderNo(payOrderModel.getTradeOrderNo());
+            acRepairRepDTO.getPayOrderDTO().setBankOrderNo(payOrderModel.getBankOrderNo());
             acRepairRepDTO.getPayOrderDTO().setPayAmt(payOrderModel.getPayAmt());
         }
         return acRepairRepDTO;

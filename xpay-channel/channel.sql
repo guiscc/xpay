@@ -1,7 +1,7 @@
 #渠道交易流水表
 CREATE TABLE channel_tradeinfo (
   id bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  tradeOrderNo varchar(50) DEFAULT NULL COMMENT '业务订单号',
+  bankOrderNo varchar(50) DEFAULT NULL COMMENT '业务订单号',
   bankOrderNo varchar(50) DEFAULT NULL COMMENT '渠道订单号',
   payAmt double DEFAULT NULL COMMENT '金额',
   currency varchar(20) DEFAULT NULL COMMENT '币种',

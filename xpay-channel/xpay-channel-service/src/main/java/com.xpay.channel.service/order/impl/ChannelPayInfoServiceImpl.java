@@ -40,8 +40,9 @@ public class ChannelPayInfoServiceImpl implements ChannelPayInfoService{
         if(payRepVOold != null){ //如果订单存在就直接返回
             return payRepVOold;
         }
-        PayInfoEntity payInfoEntity = new PayInfoEntity();
         String orderNo = orderNoService.getOrderNo();
+        acPayReqVO.setBankOrderNo(orderNo);
+        PayInfoEntity payInfoEntity = new PayInfoEntity();
         payInfoEntity.setBankOrderNo(orderNo);
         payInfoEntity.setPayToolsBankCode(context.getPayToolsBankEntity().getPayToolBankCode());
         payInfoEntity.setMerchantNo(context.getInstMerchantEntity().getMerchantNo());
@@ -49,9 +50,10 @@ public class ChannelPayInfoServiceImpl implements ChannelPayInfoService{
         payInfoEntity.setCreateDT(new Date());
         payInfoEntity.setCurrency(acPayReqVO.getCurrency().getKey());
         payInfoEntity.setPayOrderNo(acPayReqVO.getPayOrderNo());
+        payInfoEntity.setPayAmt(acPayReqVO.getPayAmt());
         payInfoEntity.setPayStatus(EnumPayStatus.WAITING.getKey());
         int flag = payInfoDao.add(payInfoEntity);
-        if(flag == 1){
+        if(flag != 1){
             throw new XpayChannelException(EnumRtnResult.E000000);
         }
         return buildACPayRepVO(payInfoEntity);
@@ -60,7 +62,10 @@ public class ChannelPayInfoServiceImpl implements ChannelPayInfoService{
     @Override
     public ACPayRepVO getByPayOrderNo(String payOrderNo) {
         PayInfoEntity payInfoEntity = payInfoDao.findByPayOrderNo(payOrderNo);
-        return buildACPayRepVO(payInfoEntity);
+        if(payInfoEntity != null){
+            return buildACPayRepVO(payInfoEntity);
+        }
+        return null;
     }
 
     @Override

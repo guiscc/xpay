@@ -4,14 +4,15 @@
  */
 package com.xpay.channel.biz.test.agent;
 
-import com.xpay.channel.biz.AgentCollectBiz;
 import com.xpay.channel.biz.test.BaseTest;
 import com.xpay.channel.common.dto.agentcollect.ACPayRepChannelDTO;
 import com.xpay.channel.common.dto.agentcollect.ACPayReqChannelDTO;
 import com.xpay.channel.common.dto.agentcollect.ACQueryPayReqChannelDTO;
 import com.xpay.channel.common.facade.AgentCollectFacade;
-import com.xpay.channel.common.vo.agentcollect.ACPayRepVO;
 import com.xpay.common.enums.EnumCardType;
+import com.xpay.common.enums.EnumCertType;
+import com.xpay.common.enums.EnumCurrency;
+import com.xpay.common.utils.DateUtil;
 import org.junit.Test;
 
 import javax.annotation.Resource;
@@ -30,14 +31,27 @@ public class TestAgentBizPay extends BaseTest {
     @Test
     public void pay() {
         ACPayReqChannelDTO acPayReqChannelDTO = new ACPayReqChannelDTO();
+
+        acPayReqChannelDTO.setPayOrderNo(DateUtil.DateStampToStringNoSp(new Date()));
+
+        acPayReqChannelDTO.setHolderName("全渠道");
         acPayReqChannelDTO.setUserId("20888888001");
+        acPayReqChannelDTO.setMobileNo("13552535506");
+
+        acPayReqChannelDTO.setCertType(EnumCertType.IDCARD);
+        acPayReqChannelDTO.setCertNo("341126197709218366");
+
+        acPayReqChannelDTO.setCurrency(EnumCurrency.CNY);
         acPayReqChannelDTO.setAmount(new BigDecimal(1));
-        acPayReqChannelDTO.setCardNo("622000111111");
+        acPayReqChannelDTO.setCardNo("6216261000000000018");
         acPayReqChannelDTO.setCardType(EnumCardType.DEBIT);
-        acPayReqChannelDTO.setCreateDate(new Date());
         acPayReqChannelDTO.setCvv2("221");
         acPayReqChannelDTO.setExpireDate("1116");
-        acPayReqChannelDTO.setHolderName("苏欣欣");
+
+        acPayReqChannelDTO.setCreateDate(new Date());
+
+        acPayReqChannelDTO.setInstCode("ICBC");
+
 
         ACPayRepChannelDTO acPayRepChannelDTO = agentCollectFacade.pay(acPayReqChannelDTO);
         System.out.println(acPayRepChannelDTO);

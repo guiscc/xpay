@@ -47,6 +47,11 @@ public class BaseReqFrontDTO {
     private String              channelCode;
 
     /**
+     * 商户号
+     */
+    private String              merchantNo;
+
+    /**
      * Getter method for property channelCode.
      *
      * @return property value of channelCode
@@ -152,5 +157,23 @@ public class BaseReqFrontDTO {
      **/
     public void setFmkMap(Map<String, Object> fmkMap) {
         this.fmkMap = fmkMap;
+    }
+
+    /**
+     * Getter method for property merchantNo.
+     *
+     * @return property value of merchantNo
+     **/
+    public String getMerchantNo() {
+        return merchantNo;
+    }
+
+    /**
+     * Setter method for property merchantNo.
+     *
+     * @param merchantNo value to be assigned to property merchantNo
+     **/
+    public void setMerchantNo(String merchantNo) {
+        this.merchantNo = merchantNo;
     }
 }

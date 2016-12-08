@@ -7,6 +7,9 @@ package com.xpay.channel.biz.convert;
 import com.xpay.channel.common.dto.agentcollect.ACPayReqChannelDTO;
 import com.xpay.channel.front.dto.agentcollect.ACPayRepFrontDTO;
 import com.xpay.channel.front.dto.agentcollect.ACPayReqFrontDTO;
+import com.xpay.common.enums.EnumPayStatus;
+import com.xpay.common.enums.EnumPaySubTool;
+import com.xpay.common.enums.EnumPayTool;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -39,8 +42,6 @@ public class ACPayConvert {
         acPayReqFrontDTO.setCardType(acPayReqVO.getCardType());
         acPayReqFrontDTO.setCardNo(acPayReqVO.getCardNo());
         acPayReqFrontDTO.setCvv2(acPayReqVO.getCvv2());
-//      acPayReqFrontDTO.setChannelCode();
-//        acPayReqFrontDTO.setChannelType(acPayReqVO);
         acPayReqFrontDTO.setCertType(acPayReqVO.getCertType());
         acPayReqFrontDTO.setCertNo(acPayReqVO.getCertNo());
         acPayReqFrontDTO.setReqDateTime(new Date());
@@ -82,15 +83,26 @@ public class ACPayConvert {
     public static ACPayReqVO getACPayReqVO(ACPayReqVO acPayReqVO, ACPayReqChannelDTO acPayReqDTO) {
         logger.info("请求模型:{}", acPayReqDTO);
         acPayReqVO.setUserId(acPayReqDTO.getUserId());
+
+        acPayReqVO.setCurrency(acPayReqDTO.getCurrency());
         acPayReqVO.setPayAmt(acPayReqDTO.getAmount());
+
+        //卡信息
         acPayReqVO.setCardType(acPayReqDTO.getCardType());
         acPayReqVO.setCardNo(acPayReqDTO.getCardNo());
+        acPayReqVO.setCvv2(acPayReqDTO.getCvv2());
+        acPayReqVO.setExpireDate(acPayReqDTO.getExpireDate());
+
         acPayReqVO.setHolderName(acPayReqDTO.getHolderName());
         acPayReqVO.setMobileNo(acPayReqDTO.getMobileNo());
         acPayReqVO.setCertType(acPayReqDTO.getCertType());
-        acPayReqVO.setCvv2(acPayReqDTO.getCvv2());
-        acPayReqVO.setExpireDate(acPayReqDTO.getExpireDate());
+        acPayReqVO.setCertNo(acPayReqDTO.getCertNo());
+
         acPayReqVO.setCreateDate(acPayReqDTO.getCreateDate());
+        acPayReqVO.setPayTool(EnumPayTool.BANKCARD);
+        acPayReqVO.setPaySubTool(EnumPaySubTool.AGENTCOLLECT);
+        acPayReqVO.setPayOrderNo(acPayReqDTO.getPayOrderNo());
+        acPayReqVO.setInstCode(acPayReqDTO.getInstCode());
         logger.info("转换请求模型:{}", acPayReqVO);
         return acPayReqVO;
     }
@@ -106,7 +118,7 @@ public class ACPayConvert {
         PayOrderDTO payOrderDTO = acPayRepDTO.getPayOrderDTO();
         PayOrderModel payOrderModel = acPayRepVO.getPayOrderModel();
         if (payOrderModel != null) {
-            payOrderDTO.setTradeOrderNo(payOrderModel.getPayOrderNo());
+            payOrderDTO.setBankOrderNo(payOrderModel.getPayOrderNo());
             payOrderDTO.setPayOrderNo(payOrderModel.getPayOrderNo());
             payOrderDTO.setPayStatus(payOrderModel.getPayStatus());
             payOrderDTO.setPayAmt(payOrderModel.getPayAmt());
@@ -145,7 +157,7 @@ public class ACPayConvert {
         //        acPayRepVO.getPayOrderModel().setPaySubTool(payOrderModel.getPaySubTool());
         //
         //        acPayRepVO.getPayOrderModel().setChannelCode(payOrderModel.getChannelCode());
-        //        acPayRepVO.getPayOrderModel().setTradeOrderNo(payOrderModel.getTradeOrderNo());
+        //        acPayRepVO.getPayOrderModel().setBankOrderNo(payOrderModel.getBankOrderNo());
         //        acPayRepVO.getPayOrderModel().setCreateTime(payOrderModel.getCreateTime());
         //        acPayRepVO.getPayOrderModel().setUserId(payOrderModel.getUserId());
         //        acPayRepVO.getPayOrderModel().setRemark(payOrderModel.getRemark());

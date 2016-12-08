@@ -30,7 +30,7 @@ public class PayOrderDTO {
     /**
      * 交易订单号
      */
-    private String tradeOrderNo;
+    private String bankOrderNo;
 
     /**
      *
@@ -119,21 +119,21 @@ public class PayOrderDTO {
     }
 
     /**
-     * Getter method for property tradeOrderNo.
+     * Getter method for property bankOrderNo.
      *
-     * @return property value of tradeOrderNo
+     * @return property value of bankOrderNo
      **/
-    public String getTradeOrderNo() {
-        return tradeOrderNo;
+    public String getBankOrderNo() {
+        return bankOrderNo;
     }
 
     /**
-     * Setter method for property tradeOrderNo.
+     * Setter method for property bankOrderNo.
      *
-     * @param tradeOrderNo value to be assigned to property tradeOrderNo
+     * @param bankOrderNo value to be assigned to property bankOrderNo
      **/
-    public void setTradeOrderNo(String tradeOrderNo) {
-        this.tradeOrderNo = tradeOrderNo;
+    public void setBankOrderNo(String bankOrderNo) {
+        this.bankOrderNo = bankOrderNo;
     }
 
     /**

@@ -3,6 +3,7 @@ package com.xpay.channel.common.dto.agentcollect;
 import com.xpay.channel.common.dto.BaseReqChannelDTO;
 import com.xpay.common.enums.EnumCardType;
 import com.xpay.common.enums.EnumCertType;
+import com.xpay.common.enums.EnumCurrency;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.math.BigDecimal;
@@ -16,9 +17,14 @@ import java.util.Date;
 public class ACPayReqChannelDTO extends BaseReqChannelDTO {
 
     /**
+     * 支付订单号
+     */
+    private String       payOrderNo;
+
+    /**
      * 用户id
      */
-    private String userId;
+    private String       userId;
 
     /**
      * 卡号
@@ -34,6 +40,11 @@ public class ACPayReqChannelDTO extends BaseReqChannelDTO {
      * 证件号
      */
     private String       certNo;
+
+    /**
+     * 机构编码
+     */
+    private String       instCode;
 
     /**
      * 证件类型
@@ -56,6 +67,11 @@ public class ACPayReqChannelDTO extends BaseReqChannelDTO {
     private String       expireDate;
 
     /**
+     * 货币类型
+     */
+    private EnumCurrency currency;
+
+    /**
      * 交易金额
      */
     private BigDecimal   amount;
@@ -67,6 +83,24 @@ public class ACPayReqChannelDTO extends BaseReqChannelDTO {
      * 订单创建时间
      */
     private Date         createDate;
+
+    /**
+     * Getter method for property payOrderNo.
+     *
+     * @return property value of payOrderNo
+     **/
+    public String getPayOrderNo() {
+        return payOrderNo;
+    }
+
+    /**
+     * Setter method for property payOrderNo.
+     *
+     * @param payOrderNo value to be assigned to property payOrderNo
+     **/
+    public void setPayOrderNo(String payOrderNo) {
+        this.payOrderNo = payOrderNo;
+    }
 
     public String getCardNo() {
         return cardNo;
@@ -174,6 +208,42 @@ public class ACPayReqChannelDTO extends BaseReqChannelDTO {
      **/
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    /**
+     * Getter method for property instCode.
+     *
+     * @return property value of instCode
+     **/
+    public String getInstCode() {
+        return instCode;
+    }
+
+    /**
+     * Setter method for property instCode.
+     *
+     * @param instCode value to be assigned to property instCode
+     **/
+    public void setInstCode(String instCode) {
+        this.instCode = instCode;
+    }
+
+    /**
+     * Getter method for property currency.
+     *
+     * @return property value of currency
+     **/
+    public EnumCurrency getCurrency() {
+        return currency;
+    }
+
+    /**
+     * Setter method for property currency.
+     *
+     * @param currency value to be assigned to property currency
+     **/
+    public void setCurrency(EnumCurrency currency) {
+        this.currency = currency;
     }
 
     @Override

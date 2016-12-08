@@ -60,6 +60,8 @@ public class AgentCollectBizImpl implements AgentCollectBiz {
         //请求前置
         ACPayReqFrontDTO acPayReqFrontDTO = new ACPayReqFrontDTO();
         acPayReqFrontDTO = ACPayConvert.getACPayReqFrontDTO(acPayReqFrontDTO, acPayReqVO);
+        acPayReqFrontDTO.setChannelCode(routerContext.getChannelEntity().getChannelCode());
+        acPayReqFrontDTO.setMerchantNo(routerContext.getInstMerchantEntity().getMerchantNo());
         ACPayRepFrontDTO acPayRepFrontDTO = agentCollectFrontFacade.pay(acPayReqFrontDTO);
         acPayRepVO = ACPayConvert.getACPayRepFrontDTO(acPayRepVO,acPayRepFrontDTO);
 

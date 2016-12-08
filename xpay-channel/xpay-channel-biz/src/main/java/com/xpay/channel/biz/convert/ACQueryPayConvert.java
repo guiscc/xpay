@@ -71,7 +71,7 @@ public class ACQueryPayConvert {
         PayOrderModel payOrderModel = acQueryPayRepVO.getPayOrderModel();
         if (acQueryPayRepVO.getPayOrderModel() != null) {
             payOrderDTO.setPayOrderNo(payOrderModel.getPayOrderNo());
-            payOrderDTO.setTradeOrderNo(payOrderModel.getTradeOrderNo());
+            payOrderDTO.setBankOrderNo(payOrderModel.getBankOrderNo());
             payOrderDTO.setPayAmt(payOrderModel.getPayAmt());
             payOrderDTO.setPayStatus(payOrderModel.getPayStatus());
         }
