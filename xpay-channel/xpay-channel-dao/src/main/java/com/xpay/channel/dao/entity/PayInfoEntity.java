@@ -38,7 +38,7 @@ public class PayInfoEntity {
     /**
      * 货币金额
      */
-    private int currency;
+    private byte currency;
 
     /**
      * 签约号
@@ -48,7 +48,7 @@ public class PayInfoEntity {
     /**
      * 支付工具子类型
      */
-    private int paySubToolCode;
+    private byte paySubToolCode;
 
     /**
      * 支付工具银行编码
@@ -73,7 +73,7 @@ public class PayInfoEntity {
     /**
      * 支付状态
      */
-    private int payStatus;
+    private byte payStatus;
 
     /**
      * 创建时间
@@ -184,7 +184,7 @@ public class PayInfoEntity {
      *
      * @return property value of currency
      **/
-    public int getCurrency() {
+    public byte getCurrency() {
         return currency;
     }
 
@@ -193,7 +193,7 @@ public class PayInfoEntity {
      *
      * @param currency value to be assigned to property currency
      **/
-    public void setCurrency(int currency) {
+    public void setCurrency(byte currency) {
         this.currency = currency;
     }
 
@@ -220,7 +220,7 @@ public class PayInfoEntity {
      *
      * @return property value of paySubToolCode
      **/
-    public int getPaySubToolCode() {
+    public byte getPaySubToolCode() {
         return paySubToolCode;
     }
 
@@ -229,7 +229,7 @@ public class PayInfoEntity {
      *
      * @param paySubToolCode value to be assigned to property paySubToolCode
      **/
-    public void setPaySubToolCode(int paySubToolCode) {
+    public void setPaySubToolCode(byte paySubToolCode) {
         this.paySubToolCode = paySubToolCode;
     }
 
@@ -292,7 +292,7 @@ public class PayInfoEntity {
      *
      * @return property value of payStatus
      **/
-    public int getPayStatus() {
+    public byte getPayStatus() {
         return payStatus;
     }
 
@@ -301,7 +301,7 @@ public class PayInfoEntity {
      *
      * @param payStatus value to be assigned to property payStatus
      **/
-    public void setPayStatus(int payStatus) {
+    public void setPayStatus(byte payStatus) {
         this.payStatus = payStatus;
     }
 

@@ -19,6 +19,7 @@ import com.xpay.channel.service.order.ChannelPayInfoService;
 import com.xpay.channel.service.router.ChannelRouter;
 import com.xpay.channel.service.router.RouterContext;
 import com.xpay.channel.service.router.RouterParam;
+import com.xpay.common.enums.EnumPayStatus;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -52,20 +53,20 @@ public class AgentCollectBizImpl implements AgentCollectBiz {
         routerParam.setInstCode(acPayReqVO.getInstCode());
         routerParam.setPayTools(acPayReqVO.getPayTool());
         routerParam.setPaySubTools(acPayReqVO.getPaySubTool());
-
         RouterContext routerContext = payChannelRouter.router(routerParam);
 
-        //插入订单
-//        PayInfoEntity payInfoEntity = channelPayInfoService.getByPayOrderNo(acPayReqVO.getPayAmt());
-
-        PayInfoEntity payInfoEntity = channelPayInfoService.add(routerContext,acPayReqVO);
+        ACPayRepVO acPayRepVO = channelPayInfoService.add(routerContext,acPayReqVO);
 
         //请求前置
         ACPayReqFrontDTO acPayReqFrontDTO = new ACPayReqFrontDTO();
         acPayReqFrontDTO = ACPayConvert.getACPayReqFrontDTO(acPayReqFrontDTO, acPayReqVO);
         ACPayRepFrontDTO acPayRepFrontDTO = agentCollectFrontFacade.pay(acPayReqFrontDTO);
-        ACPayRepVO acPayRepVO = new ACPayRepVO();
-        acPayRepVO = ACPayConvert.getACPayRepFrontDTO(acPayRepVO, acPayRepFrontDTO);
+        acPayRepVO = ACPayConvert.getACPayRepFrontDTO(acPayRepVO,acPayRepFrontDTO);
+
+        //如果是最终状态修改数据库状态
+        if(EnumPayStatus.isEnd(acPayRepFrontDTO.getPayStatus())) {
+            channelPayInfoService.endPayInfo(acPayRepVO);
+        }
 
         return acPayRepVO;
     }
@@ -78,7 +79,7 @@ public class AgentCollectBizImpl implements AgentCollectBiz {
         RouterContext routerContext = payQuerychannelRouter.router(routerParam);
 
         //查单
-        PayInfoEntity payInfoEntity = channelPayInfoService.getByPayOrderNo(acQueryPayReqVO.getPayOrderNo());
+        ACPayRepVO payInfoEntity = channelPayInfoService.getByPayOrderNo(acQueryPayReqVO.getPayOrderNo());
 
         //根据配置处理中的订单是否请求前置
         ACQueryPayReqFrontDTO acQueryPayReqFrontDTO = new ACQueryPayReqFrontDTO();

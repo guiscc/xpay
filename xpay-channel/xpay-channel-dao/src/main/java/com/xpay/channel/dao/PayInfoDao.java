@@ -26,4 +26,11 @@ public interface PayInfoDao {
      * @return
      */
     public PayInfoEntity findByPayOrderNo(String payOrderNo);
+
+    /**
+     * 修改订单信息
+     * @param payInfoEntity
+     * @return
+     */
+    public int updateByPayOrderNo(PayInfoEntity payInfoEntity);
 }

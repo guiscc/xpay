@@ -16,6 +16,8 @@ import com.xpay.channel.common.model.PayOrderModel;
 import com.xpay.channel.common.vo.agentcollect.ACPayRepVO;
 import com.xpay.channel.common.vo.agentcollect.ACPayReqVO;
 
+import java.util.Date;
+
 /**
  * @author qinshou
  * @version $Id: ACPayConvert.java, v 0.1 16/9/10 下午4:56 sxfans Exp $
@@ -32,7 +34,19 @@ public class ACPayConvert {
      */
     public static ACPayReqFrontDTO getACPayReqFrontDTO(ACPayReqFrontDTO acPayReqFrontDTO,
                                                        ACPayReqVO acPayReqVO) {
-
+        acPayReqFrontDTO.setBankOrderNo(acPayReqVO.getBankOrderNo());
+        acPayReqFrontDTO.setPayAmt(acPayReqVO.getPayAmt());
+        acPayReqFrontDTO.setCardType(acPayReqVO.getCardType());
+        acPayReqFrontDTO.setCardNo(acPayReqVO.getCardNo());
+        acPayReqFrontDTO.setCvv2(acPayReqVO.getCvv2());
+//      acPayReqFrontDTO.setChannelCode();
+//        acPayReqFrontDTO.setChannelType(acPayReqVO);
+        acPayReqFrontDTO.setCertType(acPayReqVO.getCertType());
+        acPayReqFrontDTO.setCertNo(acPayReqVO.getCertNo());
+        acPayReqFrontDTO.setReqDateTime(new Date());
+        acPayReqFrontDTO.setExpiredDate(acPayReqVO.getExpireDate());
+        acPayReqFrontDTO.setHolderName(acPayReqVO.getHolderName());
+        acPayReqFrontDTO.setMobileNo(acPayReqVO.getMobileNo());
         return acPayReqFrontDTO;
     }
 
@@ -44,7 +58,17 @@ public class ACPayConvert {
      */
     public static ACPayRepVO getACPayRepFrontDTO(ACPayRepVO acPayRepVO,
                                                          ACPayRepFrontDTO acPayRepFrontDTO) {
+        PayOrderModel payOrderModel = acPayRepVO.getPayOrderModel();
+        if(payOrderModel == null){
+            payOrderModel = new PayOrderModel();
+        }
 
+        payOrderModel.setPayStatus(acPayRepFrontDTO.getPayStatus());
+        payOrderModel.setBankNo(acPayRepFrontDTO.getBankNo());
+        payOrderModel.setPayAmt(acPayRepFrontDTO.getPayAmt());
+        payOrderModel.setBankOrderNo(acPayRepFrontDTO.getBankOrderNo());
+        payOrderModel.setRtnCode(acPayRepFrontDTO.getBankRtnCode());
+        payOrderModel.setRtnMsg(acPayRepFrontDTO.getBankRtnMsg());
         return acPayRepVO;
     }
 
@@ -82,7 +106,7 @@ public class ACPayConvert {
         PayOrderDTO payOrderDTO = acPayRepDTO.getPayOrderDTO();
         PayOrderModel payOrderModel = acPayRepVO.getPayOrderModel();
         if (payOrderModel != null) {
-            payOrderDTO.setTradeOrderNo(payOrderModel.getTradeOrderNo());
+            payOrderDTO.setTradeOrderNo(payOrderModel.getPayOrderNo());
             payOrderDTO.setPayOrderNo(payOrderModel.getPayOrderNo());
             payOrderDTO.setPayStatus(payOrderModel.getPayStatus());
             payOrderDTO.setPayAmt(payOrderModel.getPayAmt());
@@ -99,7 +123,6 @@ public class ACPayConvert {
     public static PayOrderModel getPayOrderModel(PayOrderModel payOrderModel, ACPayReqVO acPayReqVO) {
         payOrderModel.setPayTool(acPayReqVO.getPayTool());
         payOrderModel.setPaySubTool(acPayReqVO.getPaySubTool());
-        payOrderModel.setChannelCode(acPayReqVO.getChannelCode());
         payOrderModel.setPayAmt(acPayReqVO.getPayAmt());
         payOrderModel.setCurrency(acPayReqVO.getCurrency());
         payOrderModel.setUserId(acPayReqVO.getUserId());

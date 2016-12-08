@@ -38,6 +38,9 @@ public class RouterContext {
      */
     private List<InstitutionEntity> institutionEntityList;
 
+
+    /*下面是路由过的结果*/
+
     /**
      * 机构商户
      * 过滤后的渠道

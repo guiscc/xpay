@@ -53,4 +53,19 @@ public class TestPayInfo extends BaseTest {
         int i = payInfoDao.add(payInfoEntity);
         System.out.println("###########"+i);
     }
+
+    @Test
+    public void update(){
+        PayInfoEntity payInfoEntity = new PayInfoEntity();
+        payInfoEntity.setPayOrderNo("20161203173330478");
+        payInfoEntity.setPayStatus(EnumPayStatus.SUCCESS.getKey());
+        payInfoEntity.setBankNo("123456");
+        payInfoEntity.setRtnCode("00");
+        payInfoEntity.setRtnMsg("成功");
+        payInfoEntity.setFinishDT(new Date());
+        payInfoEntity.setBankFinishDT(new Date());
+
+        int i = payInfoDao.updateByPayOrderNo(payInfoEntity);
+        System.out.println("*******"+i);
+    }
 }

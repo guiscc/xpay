@@ -4,8 +4,9 @@
  */
 package com.xpay.channel.service.order;
 
+import com.xpay.channel.common.exception.XpayChannelException;
+import com.xpay.channel.common.vo.agentcollect.ACPayRepVO;
 import com.xpay.channel.common.vo.agentcollect.ACPayReqVO;
-import com.xpay.channel.dao.entity.PayInfoEntity;
 import com.xpay.channel.service.router.RouterContext;
 
 /**
@@ -21,12 +22,19 @@ public interface ChannelPayInfoService {
      * @param acPayReqVO
      * @return
      */
-    public PayInfoEntity add(RouterContext context, ACPayReqVO acPayReqVO);
+    public ACPayRepVO add(RouterContext context, ACPayReqVO acPayReqVO) throws XpayChannelException;
 
     /**
      * 根据支付单号查询订单
      * @param payOrderNo
      * @return
      */
-    public PayInfoEntity getByPayOrderNo(String payOrderNo);
+    public ACPayRepVO getByPayOrderNo(String payOrderNo);
+
+    /**
+     *
+     * @param payOrderNo
+     * @return
+     */
+    public int endPayInfo(ACPayRepVO payOrderNo);
 }

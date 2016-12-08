@@ -31,7 +31,7 @@ public class PayOrderModel {
     /**
      * 交易订单号
      */
-    private String tradeOrderNo;
+    private String bankOrderNo;
 
     /**
      *
@@ -67,6 +67,21 @@ public class PayOrderModel {
      * 支付状态
      */
     private EnumPayStatus payStatus;
+
+    /**
+     * 银行流水
+     */
+    private String bankNo;
+
+    /**
+     * 返回码
+     */
+    private String rtnCode;
+
+    /**
+     * 返回信息
+     */
+    private String rtnMsg;
 
     /**
      * 创建时间
@@ -120,21 +135,21 @@ public class PayOrderModel {
     }
 
     /**
-     * Getter method for property tradeOrderNo.
+     * Getter method for property bankOrderNo.
      *
-     * @return property value of tradeOrderNo
+     * @return property value of bankOrderNo
      **/
-    public String getTradeOrderNo() {
-        return tradeOrderNo;
+    public String getBankOrderNo() {
+        return bankOrderNo;
     }
 
     /**
-     * Setter method for property tradeOrderNo.
+     * Setter method for property bankOrderNo.
      *
-     * @param tradeOrderNo value to be assigned to property tradeOrderNo
+     * @param bankOrderNo value to be assigned to property bankOrderNo
      **/
-    public void setTradeOrderNo(String tradeOrderNo) {
-        this.tradeOrderNo = tradeOrderNo;
+    public void setBankOrderNo(String bankOrderNo) {
+        this.bankOrderNo = bankOrderNo;
     }
 
     /**
@@ -315,5 +330,59 @@ public class PayOrderModel {
      **/
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    /**
+     * Getter method for property bankNo.
+     *
+     * @return property value of bankNo
+     **/
+    public String getBankNo() {
+        return bankNo;
+    }
+
+    /**
+     * Setter method for property bankNo.
+     *
+     * @param bankNo value to be assigned to property bankNo
+     **/
+    public void setBankNo(String bankNo) {
+        this.bankNo = bankNo;
+    }
+
+    /**
+     * Getter method for property rtnCode.
+     *
+     * @return property value of rtnCode
+     **/
+    public String getRtnCode() {
+        return rtnCode;
+    }
+
+    /**
+     * Setter method for property rtnCode.
+     *
+     * @param rtnCode value to be assigned to property rtnCode
+     **/
+    public void setRtnCode(String rtnCode) {
+        this.rtnCode = rtnCode;
+    }
+
+    /**
+     * Getter method for property rtnMsg.
+     *
+     * @return property value of rtnMsg
+     **/
+    public String getRtnMsg() {
+        return rtnMsg;
+    }
+
+    /**
+     * Setter method for property rtnMsg.
+     *
+     * @param rtnMsg value to be assigned to property rtnMsg
+     **/
+    public void setRtnMsg(String rtnMsg) {
+        this.rtnMsg = rtnMsg;
     }
 }
