@@ -25,7 +25,7 @@ public class ACQueryPayReqVO {
     /**
      * 补单标志
      */
-    private String repair;
+    private boolean repair;
 
     /**
      * Getter method for property tradeOrderNo.
@@ -68,7 +68,7 @@ public class ACQueryPayReqVO {
      *
      * @return property value of repair
      **/
-    public String getRepair() {
+    public boolean getRepair() {
         return repair;
     }
 
@@ -77,7 +77,7 @@ public class ACQueryPayReqVO {
      *
      * @param repair value to be assigned to property repair
      **/
-    public void setRepair(String repair) {
+    public void setRepair(boolean repair) {
         this.repair = repair;
     }
 

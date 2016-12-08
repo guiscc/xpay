@@ -8,6 +8,7 @@ import com.xpay.common.enums.EnumCurrency;
 import com.xpay.common.enums.EnumPayStatus;
 import com.xpay.common.enums.EnumPaySubTool;
 import com.xpay.common.enums.EnumPayTool;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -314,5 +315,10 @@ public class PayOrderDTO {
      **/
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this);
     }
 }

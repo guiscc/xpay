@@ -102,6 +102,9 @@ public class ChannelPayInfoServiceImpl implements ChannelPayInfoService{
 
         payOrderModel.setChannelCode(payInfoEntity.getChannelCode());
         payOrderModel.setCreateTime(payInfoEntity.getCreateDT());
+        payOrderModel.setPayStatus(EnumPayStatus.toPayTool(payInfoEntity.getPayStatus()));
+        payOrderModel.setRtnCode(payInfoEntity.getRtnCode());
+        payOrderModel.setRtnMsg(payInfoEntity.getRtnMsg());
         acPayRepVO.setPayOrderModel(payOrderModel);
         return acPayRepVO;
     }

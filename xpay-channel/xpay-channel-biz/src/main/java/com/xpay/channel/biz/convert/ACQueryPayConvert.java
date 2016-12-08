@@ -67,13 +67,15 @@ public class ACQueryPayConvert {
     public static ACQueryPayRepChannelDTO getACQueryPayRepDTO(ACQueryPayRepChannelDTO acQueryPayRepDTO,
                                                               ACQueryPayRepVO acQueryPayRepVO) {
         logger.info("响应模型:{}", acQueryPayRepVO.toString());
-        PayOrderDTO payOrderDTO = acQueryPayRepDTO.getPayOrderDTO();
+
         PayOrderModel payOrderModel = acQueryPayRepVO.getPayOrderModel();
         if (acQueryPayRepVO.getPayOrderModel() != null) {
+            PayOrderDTO payOrderDTO = new PayOrderDTO();
             payOrderDTO.setPayOrderNo(payOrderModel.getPayOrderNo());
             payOrderDTO.setBankOrderNo(payOrderModel.getBankOrderNo());
             payOrderDTO.setPayAmt(payOrderModel.getPayAmt());
             payOrderDTO.setPayStatus(payOrderModel.getPayStatus());
+            acQueryPayRepDTO.setPayOrderDTO(payOrderDTO);
         }
         logger.info("转换响应模型:{}", acQueryPayRepDTO.toString());
         return acQueryPayRepDTO;
