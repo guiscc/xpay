@@ -8,8 +8,8 @@ import com.xpay.channel.biz.AgentCollectBiz;
 import com.xpay.channel.biz.convert.ACPayConvert;
 import com.xpay.channel.biz.convert.ACQueryPayConvert;
 import com.xpay.channel.common.exception.XpayChannelException;
+import com.xpay.channel.common.model.ChannelOrderModel;
 import com.xpay.channel.common.vo.agentcollect.*;
-import com.xpay.channel.dao.entity.PayInfoEntity;
 import com.xpay.channel.front.dto.agentcollect.ACPayRepFrontDTO;
 import com.xpay.channel.front.dto.agentcollect.ACPayReqFrontDTO;
 import com.xpay.channel.front.dto.agentcollect.ACQueryPayRepFrontDTO;
@@ -55,21 +55,22 @@ public class AgentCollectBizImpl implements AgentCollectBiz {
         routerParam.setPaySubTools(acPayReqVO.getPaySubTool());
         RouterContext routerContext = payChannelRouter.router(routerParam);
 
-        ACPayRepVO acPayRepVO = channelPayInfoService.add(routerContext,acPayReqVO);
+        ChannelOrderModel channelOrderModel = channelPayInfoService.add(routerContext,acPayReqVO);
 
         //请求前置
         ACPayReqFrontDTO acPayReqFrontDTO = new ACPayReqFrontDTO();
-        acPayReqFrontDTO = ACPayConvert.getACPayReqFrontDTO(acPayReqFrontDTO, acPayReqVO);
-        acPayReqFrontDTO.setChannelCode(routerContext.getChannelEntity().getChannelCode());
-        acPayReqFrontDTO.setMerchantNo(routerContext.getInstMerchantEntity().getMerchantNo());
+        acPayReqFrontDTO = ACPayConvert.getACPayReqFrontDTO(acPayReqFrontDTO, acPayReqVO, channelOrderModel,routerContext);
         ACPayRepFrontDTO acPayRepFrontDTO = agentCollectFrontFacade.pay(acPayReqFrontDTO);
-        acPayRepVO = ACPayConvert.getACPayRepFrontDTO(acPayRepVO,acPayRepFrontDTO);
+
+        channelOrderModel = ACPayConvert.getACPayRepFrontDTO(channelOrderModel,acPayRepFrontDTO);
 
         //如果是最终状态修改数据库状态
         if(EnumPayStatus.isEnd(acPayRepFrontDTO.getPayStatus())) {
-            channelPayInfoService.endPayInfo(acPayRepVO);
+            channelPayInfoService.endPayInfo(channelOrderModel);
         }
 
+        ACPayRepVO acPayRepVO = new ACPayRepVO();
+        acPayRepVO.setChannelOrderModel(channelOrderModel);
         return acPayRepVO;
     }
 
@@ -79,27 +80,29 @@ public class AgentCollectBizImpl implements AgentCollectBiz {
         ACQueryPayRepVO acQueryPayRepVO = new ACQueryPayRepVO();
 
         //查单
-        ACPayRepVO acPayRepVO = channelPayInfoService.getByPayOrderNo(acQueryPayReqVO.getPayOrderNo());
-        if(acPayRepVO == null){
+        ChannelOrderModel channelOrderModel = channelPayInfoService.getByPayOrderNo(acQueryPayReqVO.getPayOrderNo());
+        acQueryPayRepVO.setChannelOrderModel(channelOrderModel);
+        if(channelOrderModel == null){
             return acQueryPayRepVO;
         }
 
         //如果不支持补单则
         if(!acQueryPayReqVO.getRepair()) {
-            acQueryPayRepVO.setPayOrderModel(acPayRepVO.getPayOrderModel());
             return acQueryPayRepVO;
         }
 
         //根据配置处理中的订单是否请求前置
         ACQueryPayReqFrontDTO acQueryPayReqFrontDTO = new ACQueryPayReqFrontDTO();
-        acQueryPayReqFrontDTO = ACQueryPayConvert.getACQueryPayReqFrontDTO(acQueryPayReqFrontDTO, acQueryPayReqVO);
+        acQueryPayReqFrontDTO = ACQueryPayConvert.getACQueryPayReqFrontDTO(acQueryPayReqFrontDTO, acQueryPayRepVO);
         ACQueryPayRepFrontDTO acPayRepFrontDTO = agentCollectFrontFacade.payQuery(acQueryPayReqFrontDTO);
-        acQueryPayRepVO = ACQueryPayConvert.getACQueryPayRepVO(acQueryPayRepVO,acPayRepFrontDTO);
+        channelOrderModel = ACQueryPayConvert.getACQueryPayRepVO(channelOrderModel, acPayRepFrontDTO);
 
         //如果是最终状态修改数据库状态
         if(EnumPayStatus.isEnd(acPayRepFrontDTO.getPayStatus())) {
-            channelPayInfoService.endPayInfo(acPayRepVO);
+            channelPayInfoService.endPayInfo(channelOrderModel);
         }
+
+        acQueryPayRepVO.setChannelOrderModel(channelOrderModel);
         return acQueryPayRepVO;
     }
 }

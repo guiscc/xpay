@@ -4,7 +4,10 @@
  */
 package com.xpay.channel.common.vo.agentcollect;
 
+import com.xpay.common.enums.EnumChannelType;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+
+import java.util.Date;
 
 /**
  * @author qinshou
@@ -13,9 +16,24 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 public class ACQueryPayReqVO {
 
     /**
-     * 交易单号
+     * 渠道类型
      */
-    private String tradeOrderNo;
+    private EnumChannelType channelType;
+
+    /**
+     *
+     */
+    private Date payOrderDT;
+
+    /**
+     *
+     */
+    private String channelCode;
+
+    /**
+     * 银行订单号
+     */
+    private String bankOrderNo;
 
     /**
      * 支付单号
@@ -28,21 +46,98 @@ public class ACQueryPayReqVO {
     private boolean repair;
 
     /**
-     * Getter method for property tradeOrderNo.
+     * 商户号
+     */
+    private String merchantNo;
+
+    /**
+     * Getter method for property merchantNo.
      *
-     * @return property value of tradeOrderNo
+     * @return property value of merchantNo
      **/
-    public String getTradeOrderNo() {
-        return tradeOrderNo;
+    public String getMerchantNo() {
+        return merchantNo;
     }
 
     /**
-     * Setter method for property tradeOrderNo.
+     * Setter method for property merchantNo.
      *
-     * @param tradeOrderNo value to be assigned to property tradeOrderNo
+     * @param merchantNo value to be assigned to property merchantNo
      **/
-    public void setTradeOrderNo(String tradeOrderNo) {
-        this.tradeOrderNo = tradeOrderNo;
+    public void setMerchantNo(String merchantNo) {
+        this.merchantNo = merchantNo;
+    }
+
+    /**
+     * Getter method for property channelType.
+     *
+     * @return property value of channelType
+     **/
+    public EnumChannelType getChannelType() {
+        return channelType;
+    }
+
+    /**
+     * Setter method for property channelType.
+     *
+     * @param channelType value to be assigned to property channelType
+     **/
+    public void setChannelType(EnumChannelType channelType) {
+        this.channelType = channelType;
+    }
+
+    /**
+     * Getter method for property payOrderDT.
+     *
+     * @return property value of payOrderDT
+     **/
+    public Date getPayOrderDT() {
+        return payOrderDT;
+    }
+
+    /**
+     * Setter method for property payOrderDT.
+     *
+     * @param payOrderDT value to be assigned to property payOrderDT
+     **/
+    public void setPayOrderDT(Date payOrderDT) {
+        this.payOrderDT = payOrderDT;
+    }
+
+    /**
+     * Getter method for property channelCode.
+     *
+     * @return property value of channelCode
+     **/
+    public String getChannelCode() {
+        return channelCode;
+    }
+
+    /**
+     * Setter method for property channelCode.
+     *
+     * @param channelCode value to be assigned to property channelCode
+     **/
+    public void setChannelCode(String channelCode) {
+        this.channelCode = channelCode;
+    }
+
+    /**
+     * Getter method for property bankOrderNo.
+     *
+     * @return property value of bankOrderNo
+     **/
+    public String getBankOrderNo() {
+        return bankOrderNo;
+    }
+
+    /**
+     * Setter method for property bankOrderNo.
+     *
+     * @param bankOrderNo value to be assigned to property bankOrderNo
+     **/
+    public void setBankOrderNo(String bankOrderNo) {
+        this.bankOrderNo = bankOrderNo;
     }
 
     /**

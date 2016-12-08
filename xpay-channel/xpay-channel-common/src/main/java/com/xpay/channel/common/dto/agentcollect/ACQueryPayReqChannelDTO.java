@@ -28,6 +28,29 @@ public class ACQueryPayReqChannelDTO extends BaseReqChannelDTO {
     private Date   createDT;
 
     /**
+     * 补单
+     */
+    private boolean repair;
+
+    /**
+     * Getter method for property repair.
+     *
+     * @return property value of repair
+     **/
+    public boolean getRepair() {
+        return repair;
+    }
+
+    /**
+     * Setter method for property repair.
+     *
+     * @param repair value to be assigned to property repair
+     **/
+    public void setRepair(boolean repair) {
+        this.repair = repair;
+    }
+
+    /**
      * Getter method for property bankOrderNo.
      *
      * @return property value of bankOrderNo

@@ -5,6 +5,7 @@
 package com.xpay.channel.service.order;
 
 import com.xpay.channel.common.exception.XpayChannelException;
+import com.xpay.channel.common.model.ChannelOrderModel;
 import com.xpay.channel.common.vo.agentcollect.ACPayRepVO;
 import com.xpay.channel.common.vo.agentcollect.ACPayReqVO;
 import com.xpay.channel.service.router.RouterContext;
@@ -22,19 +23,19 @@ public interface ChannelPayInfoService {
      * @param acPayReqVO
      * @return
      */
-    public ACPayRepVO add(RouterContext context, ACPayReqVO acPayReqVO) throws XpayChannelException;
+    public ChannelOrderModel add(RouterContext context, ACPayReqVO acPayReqVO) throws XpayChannelException;
 
     /**
      * 根据支付单号查询订单
      * @param payOrderNo
      * @return
      */
-    public ACPayRepVO getByPayOrderNo(String payOrderNo);
+    public ChannelOrderModel getByPayOrderNo(String payOrderNo);
 
     /**
-     *
-     * @param payOrderNo
+     *  完成订单
+     * @param channelOrderModel
      * @return
      */
-    public int endPayInfo(ACPayRepVO payOrderNo);
+    public int endPayInfo(ChannelOrderModel channelOrderModel);
 }

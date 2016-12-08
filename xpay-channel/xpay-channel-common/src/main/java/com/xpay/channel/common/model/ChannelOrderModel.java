@@ -2,22 +2,22 @@
  * Alipay.com Inc.
  * Copyright (c) 2004-2016 All Rights Reserved.
  */
-package com.xpay.channel.common.dto;
+package com.xpay.channel.common.model;
 
 import com.xpay.common.enums.EnumCurrency;
 import com.xpay.common.enums.EnumPayStatus;
 import com.xpay.common.enums.EnumPaySubTool;
 import com.xpay.common.enums.EnumPayTool;
-import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
 /**
  * @author qinshou
- * @version $Id: PayOrderDTO.java, v 0.1 16/10/15 下午3:20 sxfans Exp $
+ * @version $Id: ChannelOrderModel.java, v 0.1 16/10/15 下午12:44 sxfans Exp $
  */
-public class PayOrderDTO {
+public class ChannelOrderModel {
+
     /**
      * 持久化主键
      */
@@ -69,6 +69,21 @@ public class PayOrderDTO {
     private EnumPayStatus payStatus;
 
     /**
+     * 银行流水
+     */
+    private String bankNo;
+
+    /**
+     * 返回码
+     */
+    private String rtnCode;
+
+    /**
+     * 返回信息
+     */
+    private String rtnMsg;
+
+    /**
      * 创建时间
      */
     private Date createTime;
@@ -82,6 +97,66 @@ public class PayOrderDTO {
      * 备注
      */
     private String remark;
+
+    private Date bankFinishDT;
+
+    private Date finishDT;
+
+    private String merchantNo;
+
+    /**
+     * Getter method for property merchantNo.
+     *
+     * @return property value of merchantNo
+     **/
+    public String getMerchantNo() {
+        return merchantNo;
+    }
+
+    /**
+     * Setter method for property merchantNo.
+     *
+     * @param merchantNo value to be assigned to property merchantNo
+     **/
+    public void setMerchantNo(String merchantNo) {
+        this.merchantNo = merchantNo;
+    }
+
+    /**
+     * Getter method for property finishDT.
+     *
+     * @return property value of finishDT
+     **/
+    public Date getFinishDT() {
+        return finishDT;
+    }
+
+    /**
+     * Setter method for property finishDT.
+     *
+     * @param finishDT value to be assigned to property finishDT
+     **/
+    public void setFinishDT(Date finishDT) {
+        this.finishDT = finishDT;
+    }
+
+    /**
+     * Getter method for property bankFinishDT.
+     *
+     * @return property value of bankFinishDT
+     **/
+    public Date getBankFinishDT() {
+        return bankFinishDT;
+    }
+
+    /**
+     * Setter method for property bankFinishDT.
+     *
+     * @param bankFinishDT value to be assigned to property bankFinishDT
+     **/
+    public void setBankFinishDT(Date bankFinishDT) {
+        this.bankFinishDT = bankFinishDT;
+    }
 
     /**
      * Getter method for property id.
@@ -317,8 +392,57 @@ public class PayOrderDTO {
         this.remark = remark;
     }
 
-    @Override
-    public String toString() {
-        return ToStringBuilder.reflectionToString(this);
+    /**
+     * Getter method for property bankNo.
+     *
+     * @return property value of bankNo
+     **/
+    public String getBankNo() {
+        return bankNo;
+    }
+
+    /**
+     * Setter method for property bankNo.
+     *
+     * @param bankNo value to be assigned to property bankNo
+     **/
+    public void setBankNo(String bankNo) {
+        this.bankNo = bankNo;
+    }
+
+    /**
+     * Getter method for property rtnCode.
+     *
+     * @return property value of rtnCode
+     **/
+    public String getRtnCode() {
+        return rtnCode;
+    }
+
+    /**
+     * Setter method for property rtnCode.
+     *
+     * @param rtnCode value to be assigned to property rtnCode
+     **/
+    public void setRtnCode(String rtnCode) {
+        this.rtnCode = rtnCode;
+    }
+
+    /**
+     * Getter method for property rtnMsg.
+     *
+     * @return property value of rtnMsg
+     **/
+    public String getRtnMsg() {
+        return rtnMsg;
+    }
+
+    /**
+     * Setter method for property rtnMsg.
+     *
+     * @param rtnMsg value to be assigned to property rtnMsg
+     **/
+    public void setRtnMsg(String rtnMsg) {
+        this.rtnMsg = rtnMsg;
     }
 }

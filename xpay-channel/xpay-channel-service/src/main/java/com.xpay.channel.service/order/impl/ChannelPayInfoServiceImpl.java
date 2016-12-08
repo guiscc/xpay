@@ -4,9 +4,8 @@
  */
 package com.xpay.channel.service.order.impl;
 
-import com.xpay.channel.common.dto.PayOrderDTO;
 import com.xpay.channel.common.exception.XpayChannelException;
-import com.xpay.channel.common.model.PayOrderModel;
+import com.xpay.channel.common.model.ChannelOrderModel;
 import com.xpay.channel.common.vo.agentcollect.ACPayRepVO;
 import com.xpay.channel.common.vo.agentcollect.ACPayReqVO;
 import com.xpay.channel.dao.PayInfoDao;
@@ -34,14 +33,13 @@ public class ChannelPayInfoServiceImpl implements ChannelPayInfoService{
     private PayInfoDao payInfoDao;
 
     @Override
-    public ACPayRepVO add(RouterContext context, ACPayReqVO acPayReqVO) throws XpayChannelException {
+    public ChannelOrderModel add(RouterContext context, ACPayReqVO acPayReqVO) throws XpayChannelException {
         //插入订单
-        ACPayRepVO payRepVOold = this.getByPayOrderNo(acPayReqVO.getPayOrderNo());
-        if(payRepVOold != null){ //如果订单存在就直接返回
-            return payRepVOold;
+        ChannelOrderModel channelOrderModel = this.getByPayOrderNo(acPayReqVO.getPayOrderNo());
+        if(channelOrderModel != null){ //如果订单存在就直接返回
+            return channelOrderModel;
         }
         String orderNo = orderNoService.getOrderNo();
-        acPayReqVO.setBankOrderNo(orderNo);
         PayInfoEntity payInfoEntity = new PayInfoEntity();
         payInfoEntity.setBankOrderNo(orderNo);
         payInfoEntity.setPayToolsBankCode(context.getPayToolsBankEntity().getPayToolBankCode());
@@ -60,7 +58,7 @@ public class ChannelPayInfoServiceImpl implements ChannelPayInfoService{
     }
 
     @Override
-    public ACPayRepVO getByPayOrderNo(String payOrderNo) {
+    public ChannelOrderModel getByPayOrderNo(String payOrderNo) {
         PayInfoEntity payInfoEntity = payInfoDao.findByPayOrderNo(payOrderNo);
         if(payInfoEntity != null){
             return buildACPayRepVO(payInfoEntity);
@@ -69,14 +67,13 @@ public class ChannelPayInfoServiceImpl implements ChannelPayInfoService{
     }
 
     @Override
-    public int endPayInfo(ACPayRepVO acPayRepVO) {
+    public int endPayInfo(ChannelOrderModel channelOrderModel) {
         PayInfoEntity payInfoEntity = new PayInfoEntity();
-        PayOrderModel payOrderModel = acPayRepVO.getPayOrderModel();
-        payInfoEntity.setPayOrderNo(payOrderModel.getPayOrderNo());
-        payInfoEntity.setPayStatus(payOrderModel.getPayStatus().getKey());
-        payInfoEntity.setBankNo(payOrderModel.getBankNo());
-        payInfoEntity.setRtnCode(payOrderModel.getRtnCode());
-        payInfoEntity.setRtnMsg(payOrderModel.getRtnMsg());
+        payInfoEntity.setPayOrderNo(channelOrderModel.getPayOrderNo());
+        payInfoEntity.setPayStatus(channelOrderModel.getPayStatus().getKey());
+        payInfoEntity.setBankNo(channelOrderModel.getBankNo());
+        payInfoEntity.setRtnCode(channelOrderModel.getRtnCode());
+        payInfoEntity.setRtnMsg(channelOrderModel.getRtnMsg());
         payInfoEntity.setFinishDT(new Date());
         payInfoEntity.setBankFinishDT(new Date());
         int flag =payInfoDao.updateByPayOrderNo(payInfoEntity);
@@ -89,23 +86,24 @@ public class ChannelPayInfoServiceImpl implements ChannelPayInfoService{
      * @param payInfoEntity
      * @return
      */
-    private ACPayRepVO buildACPayRepVO(PayInfoEntity payInfoEntity){
+    private ChannelOrderModel buildACPayRepVO(PayInfoEntity payInfoEntity){
         ACPayRepVO acPayRepVO = new ACPayRepVO();
-        PayOrderModel payOrderModel = new PayOrderModel();
+        ChannelOrderModel channelOrderModel = new ChannelOrderModel();
 
-        payOrderModel.setPayAmt(payInfoEntity.getPayAmt());
-        payOrderModel.setCurrency(EnumCurrency.toCurrency(payInfoEntity.getCurrency()));
+        channelOrderModel.setPayAmt(payInfoEntity.getPayAmt());
+        channelOrderModel.setCurrency(EnumCurrency.toCurrency(payInfoEntity.getCurrency()));
 
-        payOrderModel.setBankOrderNo(payInfoEntity.getBankOrderNo());
-        payOrderModel.setPayOrderNo(payInfoEntity.getPayOrderNo());
-        payOrderModel.setPaySubTool(EnumPaySubTool.toPaySubTool(payInfoEntity.getPaySubToolCode()));
+        channelOrderModel.setBankOrderNo(payInfoEntity.getBankOrderNo());
+        channelOrderModel.setPayOrderNo(payInfoEntity.getPayOrderNo());
+        channelOrderModel.setPaySubTool(EnumPaySubTool.toPaySubTool(payInfoEntity.getPaySubToolCode()));
 
-        payOrderModel.setChannelCode(payInfoEntity.getChannelCode());
-        payOrderModel.setCreateTime(payInfoEntity.getCreateDT());
-        payOrderModel.setPayStatus(EnumPayStatus.toPayTool(payInfoEntity.getPayStatus()));
-        payOrderModel.setRtnCode(payInfoEntity.getRtnCode());
-        payOrderModel.setRtnMsg(payInfoEntity.getRtnMsg());
-        acPayRepVO.setPayOrderModel(payOrderModel);
-        return acPayRepVO;
+        channelOrderModel.setChannelCode(payInfoEntity.getChannelCode());
+        channelOrderModel.setCreateTime(payInfoEntity.getCreateDT());
+        channelOrderModel.setPayStatus(EnumPayStatus.toPayTool(payInfoEntity.getPayStatus()));
+        channelOrderModel.setRtnCode(payInfoEntity.getRtnCode());
+        channelOrderModel.setRtnMsg(payInfoEntity.getRtnMsg());
+        channelOrderModel.setFinishDT(payInfoEntity.getFinishDT());
+        channelOrderModel.setMerchantNo(payInfoEntity.getMerchantNo());
+        return channelOrderModel;
     }
 }

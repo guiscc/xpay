@@ -62,6 +62,7 @@ public class TestAgentBizPay extends BaseTest {
     public void payQuery(){
         ACQueryPayReqChannelDTO acQueryPayReqChannelDTO = new ACQueryPayReqChannelDTO();
         acQueryPayReqChannelDTO.setPayOrderNo("20161208164454333");
+        acQueryPayReqChannelDTO.setRepair(true);
 
         ACQueryPayRepChannelDTO acQueryPayRepChannelDTO = agentCollectFacade.queryPay(acQueryPayReqChannelDTO);
         System.out.println(acQueryPayRepChannelDTO.toString());

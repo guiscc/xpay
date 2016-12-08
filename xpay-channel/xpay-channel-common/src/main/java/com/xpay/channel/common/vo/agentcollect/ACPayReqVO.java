@@ -22,11 +22,6 @@ public class ACPayReqVO {
     private String         payOrderNo;
 
     /**
-     * 渠道
-     */
-    private String         bankOrderNo;
-
-    /**
      * 支付工具
      */
     private EnumPayTool    payTool;
@@ -176,24 +171,6 @@ public class ACPayReqVO {
      **/
     public void setPayOrderNo(String payOrderNo) {
         this.payOrderNo = payOrderNo;
-    }
-
-    /**
-     * Getter method for property bankOrderNo.
-     *
-     * @return property value of bankOrderNo
-     **/
-    public String getBankOrderNo() {
-        return bankOrderNo;
-    }
-
-    /**
-     * Setter method for property bankOrderNo.
-     *
-     * @param bankOrderNo value to be assigned to property bankOrderNo
-     **/
-    public void setBankOrderNo(String bankOrderNo) {
-        this.bankOrderNo = bankOrderNo;
     }
 
     /**

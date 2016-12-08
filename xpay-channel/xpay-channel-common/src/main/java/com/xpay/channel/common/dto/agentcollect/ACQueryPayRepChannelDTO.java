@@ -1,7 +1,7 @@
 package com.xpay.channel.common.dto.agentcollect;
 
 import com.xpay.channel.common.dto.BaseRepChannelDTO;
-import com.xpay.channel.common.dto.PayOrderDTO;
+import com.xpay.channel.common.dto.ChannelOrderDTO;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
@@ -14,24 +14,24 @@ public class ACQueryPayRepChannelDTO extends BaseRepChannelDTO {
     /**
      * 支付单模型
      */
-    private PayOrderDTO payOrderDTO;
+    private ChannelOrderDTO channelOrderDTO;
 
     /**
-     * Getter method for property payOrderDTO.
+     * Getter method for property channelOrderDTO.
      *
-     * @return property value of payOrderDTO
+     * @return property value of channelOrderDTO
      **/
-    public PayOrderDTO getPayOrderDTO() {
-        return payOrderDTO;
+    public ChannelOrderDTO getChannelOrderDTO() {
+        return channelOrderDTO;
     }
 
     /**
-     * Setter method for property payOrderDTO.
+     * Setter method for property channelOrderDTO.
      *
-     * @param payOrderDTO value to be assigned to property payOrderDTO
+     * @param channelOrderDTO value to be assigned to property channelOrderDTO
      **/
-    public void setPayOrderDTO(PayOrderDTO payOrderDTO) {
-        this.payOrderDTO = payOrderDTO;
+    public void setChannelOrderDTO(ChannelOrderDTO channelOrderDTO) {
+        this.channelOrderDTO = channelOrderDTO;
     }
 
     @Override
