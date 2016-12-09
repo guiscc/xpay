@@ -7,8 +7,6 @@ package com.xpay.channel.biz.test.agent;
 import com.xpay.channel.biz.test.BaseTest;
 import com.xpay.channel.common.dto.agentcollect.ACPayRepChannelDTO;
 import com.xpay.channel.common.dto.agentcollect.ACPayReqChannelDTO;
-import com.xpay.channel.common.dto.agentcollect.ACQueryPayRepChannelDTO;
-import com.xpay.channel.common.dto.agentcollect.ACQueryPayReqChannelDTO;
 import com.xpay.channel.common.facade.AgentCollectFacade;
 import com.xpay.common.enums.EnumCardType;
 import com.xpay.common.enums.EnumCertType;
@@ -24,11 +22,13 @@ import java.util.Date;
  * @author qinshou
  * @version $Id: TestAgentBiz.java, v 0.1 16/11/5 下午4:50 sxfans Exp $
  */
-public class TestAgentBizPay extends BaseTest {
+public class TestACPay extends BaseTest {
 
     @Resource
     private AgentCollectFacade agentCollectFacade;
 
+
+    //支付
     @Test
     public void pay() {
         ACPayReqChannelDTO acPayReqChannelDTO = new ACPayReqChannelDTO();
@@ -58,13 +58,18 @@ public class TestAgentBizPay extends BaseTest {
         System.out.println(acPayRepChannelDTO);
     }
 
+    /**
+     * 重复支付
+     */
     @Test
-    public void payQuery(){
-        ACQueryPayReqChannelDTO acQueryPayReqChannelDTO = new ACQueryPayReqChannelDTO();
-        acQueryPayReqChannelDTO.setPayOrderNo("20161208164454333");
-        acQueryPayReqChannelDTO.setRepair(true);
+    public void rePay(){
 
-        ACQueryPayRepChannelDTO acQueryPayRepChannelDTO = agentCollectFacade.queryPay(acQueryPayReqChannelDTO);
-        System.out.println(acQueryPayRepChannelDTO.toString());
+    }
+
+    /**
+     * 断网未知场景
+     */
+    public void unknowPay(){
+
     }
 }
