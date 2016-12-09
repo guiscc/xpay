@@ -19,6 +19,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 /**
+ * 支付测试case
  * @author qinshou
  * @version $Id: TestAgentBiz.java, v 0.1 16/11/5 下午4:50 sxfans Exp $
  */

@@ -13,6 +13,7 @@ import org.junit.Test;
 import javax.annotation.Resource;
 
 /**
+ * 查询测试用例
  * @author qinshou
  * @version $Id: TestACQueryPay.java, v 0.1 16/12/9 上午9:22 sxfans Exp $
  */
@@ -55,6 +56,6 @@ public class TestACQueryPay extends BaseTest{
      */
     @Test
     public void payQueryNoExists(){
-
+        
     }
 }
