@@ -4,7 +4,7 @@
  */
 package com.xpay.payment.service.dao;
 
-import com.xpay.payment.service.entity.SignEntity;
+import com.xpay.payment.service.dao.entity.SignEntity;
 import org.springframework.stereotype.Repository;
 
 /**
