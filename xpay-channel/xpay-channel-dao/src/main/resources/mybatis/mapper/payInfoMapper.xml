@@ -65,4 +65,11 @@
         #{mapstr})
     </insert>
 
+    <update id="updateByPayOrderNo" parameterType="PayInfoEntity">
+        update channel_payinfo
+        SET payStatus=#{payStatus},bankNo=#{bankNo},rtnCode=#{rtnCode},
+            rtnMsg=#{rtnMsg},finishDT=#{finishDT},bankFinishDT=#{bankFinishDT}
+        where payOrderNo = #{payOrderNo};
+    </update>
+
 </mapper>

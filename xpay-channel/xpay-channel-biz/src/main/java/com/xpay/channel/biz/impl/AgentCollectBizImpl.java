@@ -8,8 +8,8 @@ import com.xpay.channel.biz.AgentCollectBiz;
 import com.xpay.channel.biz.convert.ACPayConvert;
 import com.xpay.channel.biz.convert.ACQueryPayConvert;
 import com.xpay.channel.common.exception.XpayChannelException;
+import com.xpay.channel.common.model.ChannelOrderModel;
 import com.xpay.channel.common.vo.agentcollect.*;
-import com.xpay.channel.dao.entity.PayInfoEntity;
 import com.xpay.channel.front.dto.agentcollect.ACPayRepFrontDTO;
 import com.xpay.channel.front.dto.agentcollect.ACPayReqFrontDTO;
 import com.xpay.channel.front.dto.agentcollect.ACQueryPayRepFrontDTO;
@@ -19,6 +19,7 @@ import com.xpay.channel.service.order.ChannelPayInfoService;
 import com.xpay.channel.service.router.ChannelRouter;
 import com.xpay.channel.service.router.RouterContext;
 import com.xpay.channel.service.router.RouterParam;
+import com.xpay.common.enums.EnumPayStatus;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -47,39 +48,61 @@ public class AgentCollectBizImpl implements AgentCollectBiz {
 
         //路由
         RouterParam routerParam = new RouterParam();
+        routerParam.setPayAmt(acPayReqVO.getPayAmt());
+        routerParam.setCardType(acPayReqVO.getCardType());
+        routerParam.setInstCode(acPayReqVO.getInstCode());
+        routerParam.setPayTools(acPayReqVO.getPayTool());
+        routerParam.setPaySubTools(acPayReqVO.getPaySubTool());
         RouterContext routerContext = payChannelRouter.router(routerParam);
 
-        //插入订单
-        PayInfoEntity payInfoEntity = channelPayInfoService.add(routerContext,acPayReqVO);
+        ChannelOrderModel channelOrderModel = channelPayInfoService.add(routerContext,acPayReqVO);
 
         //请求前置
         ACPayReqFrontDTO acPayReqFrontDTO = new ACPayReqFrontDTO();
-        acPayReqFrontDTO = ACPayConvert.getACPayReqFrontDTO(acPayReqFrontDTO, acPayReqVO);
+        acPayReqFrontDTO = ACPayConvert.getACPayReqFrontDTO(acPayReqFrontDTO, acPayReqVO, channelOrderModel,routerContext);
         ACPayRepFrontDTO acPayRepFrontDTO = agentCollectFrontFacade.pay(acPayReqFrontDTO);
-        ACPayRepVO acPayRepVO = new ACPayRepVO();
-        acPayRepVO = ACPayConvert.getACPayRepFrontDTO(acPayRepVO, acPayRepFrontDTO);
 
+        channelOrderModel = ACPayConvert.getACPayRepFrontDTO(channelOrderModel,acPayRepFrontDTO);
+
+        //如果是最终状态修改数据库状态
+        if(EnumPayStatus.isEnd(acPayRepFrontDTO.getPayStatus())) {
+            channelPayInfoService.endPayInfo(channelOrderModel);
+        }
+
+        ACPayRepVO acPayRepVO = new ACPayRepVO();
+        acPayRepVO.setChannelOrderModel(channelOrderModel);
         return acPayRepVO;
     }
 
     @Override
     public ACQueryPayRepVO queryPay(ACQueryPayReqVO acQueryPayReqVO) throws XpayChannelException {
 
-        //路由
-        RouterParam routerParam = new RouterParam();
-        RouterContext routerContext = payQuerychannelRouter.router(routerParam);
+        ACQueryPayRepVO acQueryPayRepVO = new ACQueryPayRepVO();
 
         //查单
-        PayInfoEntity payInfoEntity = channelPayInfoService.getByPayOrderNo(acQueryPayReqVO.getPayOrderNo());
+        ChannelOrderModel channelOrderModel = channelPayInfoService.getByPayOrderNo(acQueryPayReqVO.getPayOrderNo());
+        acQueryPayRepVO.setChannelOrderModel(channelOrderModel);
+        if(channelOrderModel == null){
+            return acQueryPayRepVO;
+        }
+
+        //如果不支持补单则
+        if(!acQueryPayReqVO.getRepair()) {
+            return acQueryPayRepVO;
+        }
 
         //根据配置处理中的订单是否请求前置
         ACQueryPayReqFrontDTO acQueryPayReqFrontDTO = new ACQueryPayReqFrontDTO();
-        acQueryPayReqFrontDTO = ACQueryPayConvert.getACQueryPayReqFrontDTO(acQueryPayReqFrontDTO,
-            acQueryPayReqVO);
+        acQueryPayReqFrontDTO = ACQueryPayConvert.getACQueryPayReqFrontDTO(acQueryPayReqFrontDTO, acQueryPayRepVO);
         ACQueryPayRepFrontDTO acPayRepFrontDTO = agentCollectFrontFacade.payQuery(acQueryPayReqFrontDTO);
+        channelOrderModel = ACQueryPayConvert.getACQueryPayRepVO(channelOrderModel, acPayRepFrontDTO);
 
-        ACQueryPayRepVO acQueryPayRepVO =new ACQueryPayRepVO();
-        acQueryPayRepVO = ACQueryPayConvert.getACQueryPayRepVO(acQueryPayRepVO,acPayRepFrontDTO);
+        //如果是最终状态修改数据库状态
+        if(EnumPayStatus.isEnd(acPayRepFrontDTO.getPayStatus())) {
+            channelPayInfoService.endPayInfo(channelOrderModel);
+        }
+
+        acQueryPayRepVO.setChannelOrderModel(channelOrderModel);
         return acQueryPayRepVO;
     }
 }

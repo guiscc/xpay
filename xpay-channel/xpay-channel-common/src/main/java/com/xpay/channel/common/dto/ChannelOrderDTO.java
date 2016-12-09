@@ -2,22 +2,22 @@
  * Alipay.com Inc.
  * Copyright (c) 2004-2016 All Rights Reserved.
  */
-package com.xpay.channel.common.model;
+package com.xpay.channel.common.dto;
 
 import com.xpay.common.enums.EnumCurrency;
 import com.xpay.common.enums.EnumPayStatus;
 import com.xpay.common.enums.EnumPaySubTool;
 import com.xpay.common.enums.EnumPayTool;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
 /**
  * @author qinshou
- * @version $Id: PayOrderModel.java, v 0.1 16/10/15 下午12:44 sxfans Exp $
+ * @version $Id: ChannelOrderDTO.java, v 0.1 16/10/15 下午3:20 sxfans Exp $
  */
-public class PayOrderModel {
-
+public class ChannelOrderDTO {
     /**
      * 持久化主键
      */
@@ -31,7 +31,7 @@ public class PayOrderModel {
     /**
      * 交易订单号
      */
-    private String tradeOrderNo;
+    private String bankOrderNo;
 
     /**
      *
@@ -120,21 +120,21 @@ public class PayOrderModel {
     }
 
     /**
-     * Getter method for property tradeOrderNo.
+     * Getter method for property bankOrderNo.
      *
-     * @return property value of tradeOrderNo
+     * @return property value of bankOrderNo
      **/
-    public String getTradeOrderNo() {
-        return tradeOrderNo;
+    public String getBankOrderNo() {
+        return bankOrderNo;
     }
 
     /**
-     * Setter method for property tradeOrderNo.
+     * Setter method for property bankOrderNo.
      *
-     * @param tradeOrderNo value to be assigned to property tradeOrderNo
+     * @param bankOrderNo value to be assigned to property bankOrderNo
      **/
-    public void setTradeOrderNo(String tradeOrderNo) {
-        this.tradeOrderNo = tradeOrderNo;
+    public void setBankOrderNo(String bankOrderNo) {
+        this.bankOrderNo = bankOrderNo;
     }
 
     /**
@@ -315,5 +315,10 @@ public class PayOrderModel {
      **/
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this);
     }
 }

@@ -10,6 +10,7 @@ import javax.annotation.Resource;
  * Created by hui on 2016/12/1.
  */
 public class TestChannelCfg  extends BaseTest  {
+
     @Resource
     private ChannelCfgDao channelCfgDao;
 

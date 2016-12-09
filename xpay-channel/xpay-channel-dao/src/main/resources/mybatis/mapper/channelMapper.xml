@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xpay.channel.dao.ChannelDao">
+
+    <resultMap id="BaseResultMap" type="ChannelEntity">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="channelCode" property="channelCode" jdbcType="VARCHAR"/>
+        <result column="channelName" property="channelName" jdbcType="VARCHAR"/>
+        <result column="instCode" property="instCode" jdbcType="VARCHAR"/>
+        <result column="channelStatus" property="channelStatus" jdbcType="VARCHAR"/>
+        <result column="channelCardType" property="channelCardType" jdbcType="TIMESTAMP"/>
+        <result column="channelType" property="channelType" jdbcType="TINYINT"/>
+        <result column="createPersion" property="createPersion" jdbcType="TINYINT"/>
+        <result column="createDT" property="createDT" jdbcType="VARCHAR"/>
+        <result column="updateDT" property="updateDT" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,channelCode,channelName,instCode,channelStatus,
+        channelCardType,channelType,createPersion,createDT,updateDT
+    </sql>
+
+    <select id="findByChannelCode" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from channel_channel
+        where channelCode in (${_parameter})
+    </select>
+
+    <select id="get" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from channel_channel
+        where channelCode = #{_parameter};
+    </select>
+</mapper>

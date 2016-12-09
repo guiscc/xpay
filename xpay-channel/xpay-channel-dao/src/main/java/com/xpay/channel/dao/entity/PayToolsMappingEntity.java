@@ -22,17 +22,17 @@ public class PayToolsMappingEntity {
     /**
      *
      */
-    private String payToolsBankCode;
+    private String payToolBankCode;
 
     /**
      * 通道id
      */
-    private Long paySubToolCode;
+    private String paySubToolCode;
 
     /**
      * 接口id
      */
-    private Long channelCode;
+    private String channelCode;
 
     /**
      * 通道权重
@@ -65,7 +65,7 @@ public class PayToolsMappingEntity {
     private Date updateDT;
 
     /**
-     *
+     * 状态
      */
     private String mappStatus;
 
@@ -77,27 +77,57 @@ public class PayToolsMappingEntity {
         this.id = id;
     }
 
-    public String getPayToolsBankCode() {
-        return payToolsBankCode;
+    /**
+     * Getter method for property payToolBankCode.
+     *
+     * @return property value of payToolBankCode
+     **/
+    public String getPayToolBankCode() {
+        return payToolBankCode;
     }
 
-    public void setPayToolsBankCode(String payToolsBankCode) {
-        this.payToolsBankCode = payToolsBankCode;
+    /**
+     * Setter method for property payToolBankCode.
+     *
+     * @param payToolBankCode value to be assigned to property payToolBankCode
+     **/
+    public void setPayToolBankCode(String payToolBankCode) {
+        this.payToolBankCode = payToolBankCode;
     }
 
-    public Long getPaySubToolCode() {
+    /**
+     * Getter method for property paySubToolCode.
+     *
+     * @return property value of paySubToolCode
+     **/
+    public String getPaySubToolCode() {
         return paySubToolCode;
     }
 
-    public void setPaySubToolCode(Long paySubToolCode) {
+    /**
+     * Setter method for property paySubToolCode.
+     *
+     * @param paySubToolCode value to be assigned to property paySubToolCode
+     **/
+    public void setPaySubToolCode(String paySubToolCode) {
         this.paySubToolCode = paySubToolCode;
     }
 
-    public Long getChannelCode() {
+    /**
+     * Getter method for property channelCode.
+     *
+     * @return property value of channelCode
+     **/
+    public String getChannelCode() {
         return channelCode;
     }
 
-    public void setChannelCode(Long channelCode) {
+    /**
+     * Setter method for property channelCode.
+     *
+     * @param channelCode value to be assigned to property channelCode
+     **/
+    public void setChannelCode(String channelCode) {
         this.channelCode = channelCode;
     }
 

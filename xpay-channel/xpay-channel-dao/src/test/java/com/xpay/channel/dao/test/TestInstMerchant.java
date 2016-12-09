@@ -16,9 +16,8 @@ public class TestInstMerchant extends BaseTest   {
 
     @Test
     public void getInstMerchantInfo() {
-        InstMerchantEntity  inst = new InstMerchantEntity();
-        inst.setInstCode("UNIONPAY");
-        List<InstMerchantEntity> cCfgEntity = instMerchantDao.get(inst);
-        System.out.println(cCfgEntity);
+        String instCode = "\"ALIPAY\",\"UNIONPAY\"";
+        List<InstMerchantEntity> instMerchantEntityList = instMerchantDao.findByInstCode(instCode);
+        System.out.println(instMerchantEntityList);
     }
 }

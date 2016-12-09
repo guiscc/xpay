@@ -72,12 +72,12 @@ public class PayToolsBankEntity {
     /**
      *
      */
-    private String payToolsBankCode;
+    private String payToolBankCode;
 
     /**
      *
      */
-    private String payToolsBankDesc;
+    private String payToolBankDesc;
 
     public Long getId() {
         return id;
@@ -167,21 +167,44 @@ public class PayToolsBankEntity {
         this.updateDT = updateDT;
     }
 
-    public String getPayToolsBankCode() {
-        return payToolsBankCode;
+    /**
+     * Getter method for property payToolBankCode.
+     *
+     * @return property value of payToolBankCode
+     **/
+    public String getPayToolBankCode() {
+        return payToolBankCode;
     }
 
-    public void setPayToolsBankCode(String payToolsBankCode) {
-        this.payToolsBankCode = payToolsBankCode;
+    /**
+     * Getter method for property payToolBankDesc.
+     *
+     * @return property value of payToolBankDesc
+     **/
+    public String getPayToolBankDesc() {
+        return payToolBankDesc;
     }
 
-    public String getPayToolsBankDesc() {
-        return payToolsBankDesc;
+    /**
+     * Setter method for property payToolBankDesc.
+     *
+     * @param payToolBankDesc value to be assigned to property payToolBankDesc
+     **/
+    public void setPayToolBankDesc(String payToolBankDesc) {
+        this.payToolBankDesc = payToolBankDesc;
     }
 
-    public void setPayToolsBankDesc(String payToolsBankDesc) {
-        this.payToolsBankDesc = payToolsBankDesc;
+    /**
+     * Setter method for property payToolBankCode.
+     *
+     * @param payToolBankCode value to be assigned to property payToolBankCode
+     **/
+
+    public void setPayToolBankCode(String payToolBankCode) {
+        this.payToolBankCode = payToolBankCode;
     }
+
+
 
     @Override
     public String toString() {

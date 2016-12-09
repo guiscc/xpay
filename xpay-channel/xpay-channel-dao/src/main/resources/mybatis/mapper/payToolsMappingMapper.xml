@@ -3,7 +3,7 @@
 <mapper namespace="com.xpay.channel.dao.PayToolsMappingDao" >
     <resultMap id="BaseResultMap" type="PayToolsMappingEntity" >
         <id column="id" property="id" jdbcType="BIGINT" />
-        <result column="payToolsBankCode" property="payToolsBankCode" jdbcType="VARCHAR" />
+        <result column="payToolBankCode" property="payToolBankCode" jdbcType="VARCHAR" />
         <result column="paySubToolCode" property="paySubToolCode" jdbcType="BIGINT" />
         <result column="channelCode" property="channelCode" jdbcType="BIGINT" />
         <result column="channelWeight" property="channelWeight" jdbcType="INTEGER" />
@@ -16,14 +16,14 @@
     </resultMap>
 
     <sql id="Base_Column_List" >
-        id, payToolsBankCode, paySubToolCode, channelCode, channelWeight, channelRate, createPersion,
+        id, payToolBankCode, paySubToolCode, channelCode, channelWeight, channelRate, createPersion,
         updatePersion, createDT, updateDT, mappStatus
     </sql>
 
-    <select id="get" resultMap="BaseResultMap" parameterType="PayToolsMappingEntity" >
+    <select id="find" resultMap="BaseResultMap" parameterType="String" >
         select
         <include refid="Base_Column_List" />
         from channel_paytoolsmapping
-        where paySubToolCode = #{paySubToolCode}
+        where payToolBankCode = #{_parameter}
     </select>
 </mapper>

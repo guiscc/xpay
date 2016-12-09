@@ -84,7 +84,7 @@ public class Unionpay_PayQueryMsgHandler
             String respCode = respMap.get("respCode")+"";
             String respMsg = respMap.get("respMsg")+"";
             String bankNo = respMap.get("queryId")+"";
-            String oriRespCode = respMap.get("orazigRespCode")+"";
+            String oriRespCode = respMap.get("origRespCode")+"";
             String oriRespMsg = respMap.get("origRespMsg")+"";
             repDTO.setBankRtnCode(oriRespCode);
             repDTO.setBankRtnMsg(oriRespMsg);

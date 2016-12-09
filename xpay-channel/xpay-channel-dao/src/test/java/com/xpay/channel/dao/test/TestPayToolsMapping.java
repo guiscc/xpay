@@ -16,9 +16,7 @@ public class TestPayToolsMapping  extends BaseTest   {
 
     @Test
     public void getPayToolsMappingInfo() {
-        PayToolsMappingEntity inst = new PayToolsMappingEntity();
-        inst.setPaySubToolCode(1l);
-        List<PayToolsMappingEntity> cCfgEntity = payToolsMappingDao.get(inst);
-        System.out.println(cCfgEntity);
+        List<PayToolsMappingEntity> payToolsMappingEntityList = payToolsMappingDao.find("AC_ABC_D");
+        System.out.println(payToolsMappingEntityList);
     }
 }

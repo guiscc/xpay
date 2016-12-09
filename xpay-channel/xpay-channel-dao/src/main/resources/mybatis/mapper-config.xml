@@ -19,6 +19,9 @@
     </typeAliases>
 
     <mappers>
+        <mapper resource="mybatis/mapper/channelMapper.xml"/>
+        <mapper resource="mybatis/mapper/merchantMappingMapper.xml"/>
+        <mapper resource="mybatis/mapper/institutionMapper.xml"/>
         <mapper resource="mybatis/mapper/payInfoMapper.xml"/>
         <mapper resource="mybatis/mapper/channelCfgMapper.xml"/>
         <mapper resource="mybatis/mapper/instMerchantMapper.xml"/>

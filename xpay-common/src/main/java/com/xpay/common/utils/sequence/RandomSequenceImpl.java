@@ -1,7 +1,5 @@
 package com.xpay.common.utils.sequence;
 
-import org.apache.commons.lang3.StringUtils;
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -25,26 +23,27 @@ public class RandomSequenceImpl implements Sequence {
 
     private static Calendar calendar = Calendar.getInstance();
     private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddHHmmssSSS");
-    public int randomLen = 4;
 
     @Override
-    public String getSeq(String tradeType) {
-        if (StringUtils.isBlank(tradeType) || tradeType.length() == 4) {
-            tradeType = "0000";
-        }
+    public String getDTAndSeq(String groupId, int len) {
         StringBuilder stringBuilder = new StringBuilder();
         Date date = calendar.getTime();
         stringBuilder.append(simpleDateFormat.format(date));
-        stringBuilder.append(tradeType);
-        stringBuilder.append(getRandomStr());
+        stringBuilder.append(getRandomStr(len));
         return stringBuilder.toString();
     }
 
+    @Override
+    public String getSeq(String groupId, int len) {
+        return getRandomStr(len);
+    }
 
-    private String getRandomStr() {
+
+    private String getRandomStr(int len) {
+        len = len == 0 ? 1 : len;
         Random random = new Random();
         StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 1; i <= randomLen; i++) {
+        for (int i = 1; i <= len; i++) {
             int num = random.nextInt(9);
             stringBuilder.append(num);
         }
@@ -52,8 +51,6 @@ public class RandomSequenceImpl implements Sequence {
     }
 
     public static void main(String[] args) {
-        System.out.println(new RandomSequenceImpl().getSeq("0000"));
+        System.out.println(new RandomSequenceImpl().getSeq("test", 5));
     }
-
-
 }

@@ -17,9 +17,9 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 public class ACPayReqVO {
 
     /**
-     * 渠道
+     * 支付单号
      */
-    private String         channelCode;
+    private String         payOrderNo;
 
     /**
      * 支付工具
@@ -97,6 +97,29 @@ public class ACPayReqVO {
     private Date           createDate;
 
     /**
+     * 机构编码
+     */
+    private String         instCode;
+
+    /**
+     * Getter method for property instCode.
+     *
+     * @return property value of instCode
+     **/
+    public String getInstCode() {
+        return instCode;
+    }
+
+    /**
+     * Setter method for property instCode.
+     *
+     * @param instCode value to be assigned to property instCode
+     **/
+    public void setInstCode(String instCode) {
+        this.instCode = instCode;
+    }
+
+    /**
      * Getter method for property payTool.
      *
      * @return property value of payTool
@@ -133,21 +156,21 @@ public class ACPayReqVO {
     }
 
     /**
-     * Getter method for property channelCode.
+     * Getter method for property payOrderNo.
      *
-     * @return property value of channelCode
+     * @return property value of payOrderNo
      **/
-    public String getChannelCode() {
-        return channelCode;
+    public String getPayOrderNo() {
+        return payOrderNo;
     }
 
     /**
-     * Setter method for property channelCode.
+     * Setter method for property payOrderNo.
      *
-     * @param channelCode value to be assigned to property channelCode
+     * @param payOrderNo value to be assigned to property payOrderNo
      **/
-    public void setChannelCode(String channelCode) {
-        this.channelCode = channelCode;
+    public void setPayOrderNo(String payOrderNo) {
+        this.payOrderNo = payOrderNo;
     }
 
     /**

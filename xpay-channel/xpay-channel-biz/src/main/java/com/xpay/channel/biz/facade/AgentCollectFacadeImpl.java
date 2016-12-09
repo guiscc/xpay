@@ -15,7 +15,6 @@ import com.xpay.common.enums.EnumRtnResult;
 import com.xpay.channel.biz.AgentCollectBiz;
 import com.xpay.channel.biz.convert.ACPayConvert;
 import com.xpay.channel.biz.convert.ACQueryPayConvert;
-import com.xpay.channel.biz.convert.ACRepairConvert;
 
 import javax.annotation.Resource;
 

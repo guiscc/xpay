@@ -37,6 +37,8 @@ public class ACPayReqFrontDTO extends BaseReqFrontDTO {
 
     private String mobileNo;
 
+
+
     {
         super.setChannelType(EnumChannelType.PAY);
     }

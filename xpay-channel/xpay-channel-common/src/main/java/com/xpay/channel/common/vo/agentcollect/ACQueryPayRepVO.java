@@ -6,7 +6,7 @@ package com.xpay.channel.common.vo.agentcollect;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-import com.xpay.channel.common.model.PayOrderModel;
+import com.xpay.channel.common.model.ChannelOrderModel;
 
 
 /**
@@ -18,24 +18,24 @@ public class ACQueryPayRepVO {
     /**
      * 支付订单模型
      */
-    private PayOrderModel payOrderModel;
+    private ChannelOrderModel channelOrderModel;
 
     /**
-     * Getter method for property payOrderModel.
+     * Getter method for property channelOrderModel.
      *
-     * @return property value of payOrderModel
+     * @return property value of channelOrderModel
      **/
-    public PayOrderModel getPayOrderModel() {
-        return payOrderModel;
+    public ChannelOrderModel getChannelOrderModel() {
+        return channelOrderModel;
     }
 
     /**
-     * Setter method for property payOrderModel.
+     * Setter method for property channelOrderModel.
      *
-     * @param payOrderModel value to be assigned to property payOrderModel
+     * @param channelOrderModel value to be assigned to property channelOrderModel
      **/
-    public void setPayOrderModel(PayOrderModel payOrderModel) {
-        this.payOrderModel = payOrderModel;
+    public void setChannelOrderModel(ChannelOrderModel channelOrderModel) {
+        this.channelOrderModel = channelOrderModel;
     }
 
     @Override

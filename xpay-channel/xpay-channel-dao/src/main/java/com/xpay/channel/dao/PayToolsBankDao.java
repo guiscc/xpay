@@ -5,6 +5,7 @@
 package com.xpay.channel.dao;
 
 import com.xpay.channel.dao.entity.PayToolsBankEntity;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -17,9 +18,16 @@ import java.util.List;
 public interface PayToolsBankDao {
 
     /**
-     * 交易使用
-     * 获取支付工具对应的银行
-     * @param payToolsBankEntity
+     * 根据,支付工具,支付工具子类型,卡类型,机构
+     * @param payTools
+     * @param paySubTools
+     * @param cardType
+     * @param instCode
+     * @return
      */
-    public List<PayToolsBankEntity> get(PayToolsBankEntity payToolsBankEntity);
+    public PayToolsBankEntity get(@Param(value = "payTool") int payTools,
+                                  @Param(value = "paySubTool") int paySubTools,
+                                  @Param(value = "cardType") int cardType,
+                                  @Param(value = "instCode") String instCode);
+
 }

@@ -4,6 +4,8 @@
  */
 package com.xpay.channel.service.router;
 
+import com.xpay.channel.common.exception.ChannelRouterException;
+
 /**
  * 路由策略接口
  * @author qinshou
@@ -16,5 +18,5 @@ public interface ChannelRouter {
      * @param routerParam
      * @return
      */
-    public RouterContext router(RouterParam routerParam);
+    public RouterContext router(RouterParam routerParam) throws ChannelRouterException;
 }

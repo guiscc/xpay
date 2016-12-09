@@ -19,8 +19,15 @@ public interface ChannelDao {
 
     /**
      * 根据支付工具子类型的银行找到相应的渠道
-     * @param channelEntity
+     * @param channelCodes 渠道编码集合
      * @return
      */
-    public List<ChannelEntity> channelDao(ChannelEntity channelEntity);
+    public List<ChannelEntity> findByChannelCode(String channelCodes);
+
+    /**
+     * 根据渠道编码查询单个渠道信息
+     * @param channelCode
+     * @return
+     */
+    public ChannelEntity get(String channelCode);
 }

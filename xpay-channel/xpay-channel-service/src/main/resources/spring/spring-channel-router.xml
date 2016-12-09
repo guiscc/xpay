@@ -1,28 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="
-	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd"
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"
        default-autowire="byType">
 
-    <!--单个路由策略-->
-    <bean id="channel_routerHandler" class="com.xpay.channel.service.router.handler.impl.Channel_RouterHandler"/>
-    <bean id="channelConfig_routerHandler" class="com.xpay.channel.service.router.handler.impl.ChannelConfig_RouterHandler"/>
-    <bean id="inst_routerHandler" class="com.xpay.channel.service.router.handler.impl.Inst_RouterHandler"/>
-    <bean id="instMer_routerHandler" class="com.xpay.channel.service.router.handler.impl.InstMer_RouterHandler"/>
-    <bean id="payToolsBank_routerHandler" class="com.xpay.channel.service.router.handler.impl.PayToolsBank_RouterHandler"/>
+    <bean id="randomSeq" class="com.xpay.common.utils.sequence.RandomSequenceImpl"/>
+
+    <!--支付工具子类型路由-->
+    <bean id="payToolsBankRouterHandler" class="com.xpay.channel.service.router.handler.impl.PayToolsBank_RouterHandler"/>
+    <!--支付工具渠道映射路由-->
+    <bean id="channelMappingRouterHandler" class="com.xpay.channel.service.router.handler.impl.ChannelMapping_RouterHandler"/>
+    <!--支付工具渠道路由-->
+    <bean id="channelRouterHandler" class="com.xpay.channel.service.router.handler.impl.Channel_RouterHandler"/>
+    <!--机构路由-->
+    <bean id="instRouterHandler" class="com.xpay.channel.service.router.handler.impl.Inst_RouterHandler"/>
+    <!--机构商户路由-->
+    <bean id="instMerRouterHandler" class="com.xpay.channel.service.router.handler.impl.InstMer_RouterHandler"/>
+    <!--渠道权重路由-->
+    <bean id="channelWeightRouterHandler" class="com.xpay.channel.service.router.handler.impl.ChannelWeight_RouterHandler"/>
+    <!--渠道配置路由-->
+    <bean id="channelConfigRouterHandler" class="com.xpay.channel.service.router.handler.impl.ChannelConfig_RouterHandler"/>
 
     <!--标准支付路由策略-->
     <bean id="payRouterFactory" class="com.xpay.channel.service.router.RouterHandlerFactory">
         <property name="routerHandlerMap">
             <map key-type="java.lang.String" value-type="com.xpay.channel.service.router.handler.RouterHandler">
-                <entry key="ROUTER_01" value-ref="payToolsBank_routerHandler"/>
-                <entry key="ROUTER_02" value-ref="channel_routerHandler"/>
-                <entry key="ROUTER_03" value-ref="channelConfig_routerHandler"/>
-                <entry key="ROUTER_04" value-ref="inst_routerHandler"/>
-                <entry key="ROUTER_05" value-ref="instMer_routerHandler"/>
+                <entry key="ROUTER_01" value-ref="payToolsBankRouterHandler"/>
+                <entry key="ROUTER_02" value-ref="channelMappingRouterHandler"/>
+                <entry key="ROUTER_03" value-ref="channelRouterHandler"/>
+                <entry key="ROUTER_04" value-ref="instRouterHandler"/>
+                <entry key="ROUTER_05" value-ref="instMerRouterHandler"/>
+                <entry key="ROUTER_06" value-ref="channelWeightRouterHandler"/>
+                <entry key="ROUTER_07" value-ref="channelConfigRouterHandler"/>
             </map>
         </property>
     </bean>
@@ -42,5 +52,6 @@
     <bean id="acPayRouter" class="com.xpay.channel.service.router.impl.ACPayRouter">
         <property name="routerHandlerFactory" ref="payRouterFactory"/>
     </bean>
-
+    
+    <import resource="classpath*:spring/spring-channel-dao.xml"/>
 </beans>

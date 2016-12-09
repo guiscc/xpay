@@ -4,7 +4,11 @@
  */
 package com.xpay.channel.service.router;
 
+import com.xpay.channel.common.exception.ChannelRouterException;
 import com.xpay.channel.service.router.handler.RouterHandler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.Map;
 
 /**
@@ -13,10 +17,13 @@ import java.util.Map;
  */
 public class AbsChannelRouter implements ChannelRouter {
 
+    private Logger logger = LoggerFactory.getLogger(AbsChannelRouter.class);
+
     private RouterHandlerFactory routerHandlerFactory;
 
+
     @Override
-    public RouterContext router(RouterParam param) {
+    public RouterContext router(RouterParam param) throws ChannelRouterException {
 
         //路由上下文
         RouterContext routerContext = new RouterContext();
@@ -26,7 +33,7 @@ public class AbsChannelRouter implements ChannelRouter {
         for(RouterHandler routerHandler :maps.values()){
             routerContext = routerHandler.routerHandler(routerContext,param);
         }
-
+        logger.info("[渠道系统][路由模块]路由结果:{}",routerContext);
         return routerContext;
     }
 
