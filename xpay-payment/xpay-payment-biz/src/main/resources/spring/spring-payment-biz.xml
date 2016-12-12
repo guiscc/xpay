@@ -6,15 +6,8 @@
                            http://www.springframework.org/schema/context
                            http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <!--<context:annotation-config/>-->
+    <context:annotation-config/>
+    <context:component-scan base-package="com.xpay.payment"/>
 
-    <!--<context:component-scan base-package="com.xpay.trade"/>-->
-
-    <!--<context:property-placeholder location="classpath*:config/**/*.properties" ignore-unresolvable="true"/>-->
-
-    <!--<bean id="agentCollectBiz" class="com.xpay.payment.biz.impl.AgentCollectBizImpl"/>-->
-
-    <!--<bean id="customerBiz" class="com.xpay.payment.biz.impl.CustomerBizImpl"/>-->
-
-    <!--<bean id="masterDataBiz" class="com.xpay.payment.biz.impl.MasterDataBizImpl"/>-->
+    <import resource="classpath*:spring/spring-channel-biz.xml"/>
 </beans>

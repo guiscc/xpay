@@ -12,6 +12,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 
+import java.util.Date;
+
 /**
  * @author qinshou
  * @version $Id: CardBinConvert.java, v 0.1 16/10/10 下午1:37 sxfans Exp $
@@ -22,14 +24,23 @@ public class CardBinConvert {
 
     public static CardBinRepDTO getCardBinRepDTO(CardBinRepDTO cardBinRepDTO, CardBinRepVO cardBinRepVO) {
         logger.info("响应模型:{}", cardBinRepVO);
-        BeanUtils.copyProperties(cardBinRepVO, cardBinRepDTO);
+        cardBinRepDTO.setServerDate(new Date());
+        cardBinRepDTO.setCardName(cardBinRepVO.getCardName());
+        cardBinRepDTO.setCardType(cardBinRepVO.getCardType());
+        cardBinRepDTO.setMainCardNo(cardBinRepVO.getMainCardNo());
+        cardBinRepDTO.setBinLength(cardBinRepVO.getBinLength());
+        cardBinRepDTO.setBinValue(cardBinRepVO.getBinValue());
+        cardBinRepDTO.setCreatedDate(cardBinRepVO.getCreatedDate());
+        cardBinRepDTO.setNoLength(cardBinRepVO.getNoLength());
+        cardBinRepDTO.setOrgCode(cardBinRepVO.getOrgCode());
+        cardBinRepDTO.setOrgName(cardBinRepVO.getOrgName());
         logger.info("转换响应模型:{}", cardBinRepDTO);
         return cardBinRepDTO;
     }
 
     public static CardBinReqVO getCardBinReqVO(CardBinReqVO cardBinReqVO, CardBinReqDTO cardBinReqDTO) {
         logger.info("请求模型:{}", cardBinReqDTO);
-        BeanUtils.copyProperties(cardBinReqDTO, cardBinReqVO);
+        cardBinReqVO.setCardNo(cardBinReqDTO.getCardNo());
         logger.info("转换请求模型:{}", cardBinReqVO);
         return cardBinReqVO;
     }

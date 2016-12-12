@@ -16,7 +16,7 @@ import javax.annotation.Resource;
  * @author qinshou
  * @version $Id: MasterDataBizImpl.java, v 0.1 16/10/10 下午1:42 sxfans Exp $
  */
-@Component(value="masterDataPaymentData")
+@Component(value="masterDataPaymentBiz")
 public class MasterDataBizImpl implements MasterDataBiz {
 
     @Resource
