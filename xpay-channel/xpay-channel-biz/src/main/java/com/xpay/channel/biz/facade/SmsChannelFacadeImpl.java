@@ -21,7 +21,7 @@ import javax.annotation.Resource;
  */
 public class SmsChannelFacadeImpl implements SmsChannelFacade {
 
-    @Resource
+    @Resource(name = "smsChannelBiz")
     private SmsChannelBiz smsChannelBiz;
 
     @Override

@@ -26,7 +26,7 @@ public class AgentCollectFacadeImpl implements AgentCollectFacade {
 
     private Logger          logger = LoggerFactory.getLogger(AgentCollectFacadeImpl.class);
 
-    @Resource
+    @Resource(name = "acBizChannelBiz")
     private AgentCollectBiz agentCollectBiz;
 
     @Override
