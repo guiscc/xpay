@@ -2,9 +2,9 @@
  * Alipay.com Inc.
  * Copyright (c) 2004-2016 All Rights Reserved.
  */
-package com.xpay.payment.service.dao;
+package com.xpay.payment.dao;
 
-import com.xpay.payment.service.dao.entity.SignEntity;
+import com.xpay.payment.dao.entity.SignEntity;
 import org.springframework.stereotype.Repository;
 
 /**

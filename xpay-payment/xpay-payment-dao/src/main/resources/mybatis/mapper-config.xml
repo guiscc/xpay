@@ -15,7 +15,7 @@
     </settings>
 
     <typeAliases>
-        <package name="com.xpay.payment.service.entity"/>
+        <package name="com.xpay.payment.dao.entity"/>
     </typeAliases>
 
     <mappers>

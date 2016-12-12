@@ -2,7 +2,7 @@
  * Alipay.com Inc.
  * Copyright (c) 2004-2016 All Rights Reserved.
  */
-package com.xpay.payment.service.dao.entity;
+package com.xpay.payment.dao.entity;
 
 import java.math.BigDecimal;
 import java.util.Date;

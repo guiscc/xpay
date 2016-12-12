@@ -8,7 +8,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * Created by sxfans on 16/8/13.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:spring/spring-payment-dao.xml")
+@ContextConfiguration(locations = "classpath*:spring/spring-payment-dao.xml")
 public class BaseTest {
     
 }
