@@ -26,8 +26,6 @@ public class PaymentServiceImpl implements PaymentService {
     @Resource
     public PaymentDao paymentDao;
 
-    private static Sequence sequence = new RandomSequenceImpl();
-
     @Override
     public PayOrderModel add(PayOrderModel payOrderModel) {
         PaymentEntity paymentEntity = new PaymentEntity();

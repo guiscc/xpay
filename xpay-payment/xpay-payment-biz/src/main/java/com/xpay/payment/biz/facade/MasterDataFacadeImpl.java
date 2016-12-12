@@ -26,7 +26,7 @@ public class MasterDataFacadeImpl implements MasterDataFacade {
 
     private Logger logger = LoggerFactory.getLogger(MasterDataFacadeImpl.class);
 
-    @Resource(name = "masterDataPaymentBiz")
+    @Resource
     private MasterDataBiz masterDataBiz;
 
     @Override

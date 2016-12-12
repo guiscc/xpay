@@ -19,7 +19,7 @@ import java.util.Date;
 @Service
 public class OrderNoServiceImpl implements OrderNoService {
 
-    @Resource
+    @Resource(name="paymentSequeue")
     private Sequence sequence;
 
     @Override

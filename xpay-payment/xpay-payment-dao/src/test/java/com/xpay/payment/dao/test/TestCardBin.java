@@ -21,6 +21,6 @@ public class TestCardBin extends BaseTest {
     @Test
     public void getCardBin(){
         System.out.println("*************"+cardBinDao);
-        cardBinDao.getCardBin("6217730703774214");
+        System.out.println(cardBinDao.getCardBin("6217730703774214"));
     }
 }

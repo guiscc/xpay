@@ -8,7 +8,7 @@
 
     <context:component-scan base-package="com.xpay.payment.service"/>
 
-    <bean id="sequence" class="com.xpay.common.utils.sequence.RandomSequenceImpl"/>
+    <bean id="paymentSequeue" class="com.xpay.common.utils.sequence.RandomSequenceImpl"/>
 
     <import resource="classpath*:spring/spring-payment-dao.xml"/>
     <import resource="classpath*:spring/spring-channel-biz.xml"/>

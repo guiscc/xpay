@@ -13,7 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * @version $Id: BaseTest.java, v 0.1 16/12/12 上午11:54 sxfans Exp $
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath*:spring/")
+@ContextConfiguration(locations = "classpath*:spring/spring-payment-biz.xml")
 public class BaseTest {
 
 }

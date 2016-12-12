@@ -21,7 +21,4 @@
             <value>/test/</value>
         </property>
     </bean>
-
-    <import resource="classpath*:spring/spring-payment-dao.xml"/>
-    <import resource="classpath*:spring/spring-payment-biz.xml"/>
 </beans>

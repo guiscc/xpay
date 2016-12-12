@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
-<beans>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
     <bean name="agentCollectFacade" class="com.xpay.payment.biz.facade.AgentCollectFacadeImpl"/>
     <bean name="customerFacade" class="com.xpay.payment.biz.facade.CustomerFacadeImpl"/>
     <bean name="masterDataFacade" class="com.xpay.payment.biz.facade.MasterDataFacadeImpl"/>
@@ -29,4 +32,6 @@
             </map>
         </property>
     </bean>
+
+    <import resource="classpath*:spring/spring-payment-biz.xml"/>
 </beans>
