@@ -8,7 +8,7 @@
 
     <context:component-scan base-package="com.xpay.channel.service"/>
 
-    <bean id="channelSequeue" class="com.xpay.common.utils.sequence.RandomSequenceImpl"/>
+    <bean id="channelRandomSequeue" class="com.xpay.common.utils.sequence.RandomSequenceImpl"/>
 
     <!--支付工具子类型路由-->
     <bean id="payToolsBankRouterHandler"

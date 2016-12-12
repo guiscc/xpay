@@ -26,7 +26,7 @@ import java.util.Date;
 @Service
 public class ChannelPayInfoServiceImpl implements ChannelPayInfoService{
 
-    @Resource
+    @Resource(name = "bankOrderNoService")
     private OrderNoService orderNoService;
 
     @Resource

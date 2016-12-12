@@ -18,10 +18,10 @@ import java.util.Date;
  * @author qinshou
  * @version $Id: BankOrderNoServiceImpl.java, v 0.1 16/12/7 下午2:15 sxfans Exp $
  */
-@Service
+@Service(value="bankOrderNoService")
 public class BankOrderNoServiceImpl implements OrderNoService {
 
-    @Resource(name = "channelSequeue")
+    @Resource(name = "channelRandomSequeue")
     private Sequence sequence;
 
     @Override
