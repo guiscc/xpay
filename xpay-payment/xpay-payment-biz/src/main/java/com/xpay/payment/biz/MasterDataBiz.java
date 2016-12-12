@@ -19,6 +19,4 @@ public interface MasterDataBiz {
      * @return
      */
     public CardBinRepVO getCardBin(CardBinReqVO cardBinReqVO) throws XpayPaymentException;
-
-    ;
 }

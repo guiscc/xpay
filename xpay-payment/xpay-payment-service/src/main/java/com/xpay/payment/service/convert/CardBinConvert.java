@@ -5,7 +5,7 @@
 package com.xpay.payment.service.convert;
 
 import com.xpay.payment.common.vo.masterdata.CardBinRepVO;
-import com.xpay.payment.service.entity.CardBinEntity;
+import com.xpay.payment.dao.entity.CardBinEntity;
 import org.springframework.beans.BeanUtils;
 
 /**

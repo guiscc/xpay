@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 <beans>
-    <bean name="agentCollectFacade" class="com.xpay.payment.biz.facade.AgentCollectFacadeImpl">
-        <property name="agentCollectBiz" ref="agentCollectBiz"/>
-    </bean>
-    <bean name="customerFacade" class="com.xpay.payment.biz.facade.CustomerFacadeImpl">
-        <property name="customerBiz" ref="customerBiz"/>
-    </bean>
-    <bean name="masterDataFacade" class="com.xpay.payment.biz.facade.MasterDataFacadeImpl">
-        <property name="masterDataBiz" ref="masterDataBiz"/>
-    </bean>
+    <bean name="agentCollectFacade" class="com.xpay.payment.biz.facade.AgentCollectFacadeImpl"/>
+        <!--<property name="agentCollectBiz" ref="agentCollectBiz"/>-->
+    <!--</bean>-->
+    <bean name="customerFacade" class="com.xpay.payment.biz.facade.CustomerFacadeImpl"/>
+        <!--<property name="customerBiz" ref="customerBiz"/>-->
+    <!--</bean>-->
+    <bean name="masterDataFacade" class="com.xpay.payment.biz.facade.MasterDataFacadeImpl"/>
+        <!--<property name="masterDataBiz" ref="masterDataBiz"/>-->
+    <!--</bean>-->
 
 
     <bean name="agentCollectFacadeHessian" class="com.xpay.payment.server.hessian.SimpleCustomServiceExporter">

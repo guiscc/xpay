@@ -7,7 +7,7 @@ package com.xpay.payment.service.convert;
 import com.xpay.common.enums.EnumSignStatus;
 import com.xpay.payment.common.vo.customer.SignBreakRepVO;
 import com.xpay.payment.common.vo.customer.SignBreakReqVO;
-import com.xpay.payment.service.entity.SignEntity;
+import com.xpay.payment.dao.entity.SignEntity;
 
 import java.util.Date;
 

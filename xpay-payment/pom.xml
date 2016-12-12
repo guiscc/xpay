@@ -18,8 +18,7 @@
         <module>xpay-payment-service</module>
         <module>xpay-payment-biz</module>
         <module>xpay-payment-server</module>
+        <module>xpay-payment-dao</module>
     </modules>
 
-    <dependencies>
-    </dependencies>
 </project>

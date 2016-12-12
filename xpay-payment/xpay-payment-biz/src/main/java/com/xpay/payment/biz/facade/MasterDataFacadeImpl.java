@@ -26,6 +26,7 @@ public class MasterDataFacadeImpl implements MasterDataFacade {
 
     private Logger logger = LoggerFactory.getLogger(MasterDataFacadeImpl.class);
 
+    @Resource(name = "masterDataPaymentData")
     private MasterDataBiz masterDataBiz;
 
     @Override
@@ -44,23 +45,5 @@ public class MasterDataFacadeImpl implements MasterDataFacade {
             logger.error("获取卡bin错误", e);
         }
         return cardBinRepDTO;
-    }
-
-    /**
-     * Getter method for property masterDataBiz.
-     *
-     * @return property value of masterDataBiz
-     **/
-    public MasterDataBiz getMasterDataBiz() {
-        return masterDataBiz;
-    }
-
-    /**
-     * Setter method for property masterDataBiz.
-     *
-     * @param masterDataBiz value to be assigned to property masterDataBiz
-     **/
-    public void setMasterDataBiz(MasterDataBiz masterDataBiz) {
-        this.masterDataBiz = masterDataBiz;
     }
 }

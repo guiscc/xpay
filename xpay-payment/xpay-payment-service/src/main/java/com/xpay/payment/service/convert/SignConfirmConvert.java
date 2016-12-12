@@ -7,7 +7,7 @@ package com.xpay.payment.service.convert;
 import com.xpay.common.enums.EnumSignStatus;
 import com.xpay.payment.common.vo.customer.SignConfirmRepVO;
 import com.xpay.payment.common.vo.customer.SignConfirmReqVO;
-import com.xpay.payment.service.entity.SignEntity;
+import com.xpay.payment.dao.entity.SignEntity;
 
 /**
  * @author qinshou

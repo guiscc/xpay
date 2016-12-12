@@ -7,11 +7,11 @@ package com.xpay.payment.service.impl;
 import com.xpay.common.enums.EnumSignStatus;
 import com.xpay.payment.common.vo.customer.*;
 import com.xpay.payment.service.SignService;
+import com.xpay.payment.dao.SignDao;
 import com.xpay.payment.service.convert.SignBreakConvert;
 import com.xpay.payment.service.convert.SignConfirmConvert;
 import com.xpay.payment.service.convert.SignConvert;
-import com.xpay.payment.service.dao.SignDao;
-import com.xpay.payment.service.entity.SignEntity;
+import com.xpay.payment.dao.entity.SignEntity;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

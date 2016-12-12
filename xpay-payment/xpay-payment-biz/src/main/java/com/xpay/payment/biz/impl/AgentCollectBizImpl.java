@@ -15,6 +15,7 @@ import com.xpay.payment.common.model.PayOrderModel;
 import com.xpay.payment.common.vo.agentcollect.*;
 import com.xpay.payment.service.PaymentService;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 
@@ -22,6 +23,7 @@ import javax.annotation.Resource;
  * @author qinshou
  * @version $Id: AgentCollectBizImpl.java, v 0.1 16/9/10 上午10:25 sxfans Exp $
  */
+@Component(value = "acPaymentBiz")
 public class AgentCollectBizImpl implements AgentCollectBiz {
 
     @Resource

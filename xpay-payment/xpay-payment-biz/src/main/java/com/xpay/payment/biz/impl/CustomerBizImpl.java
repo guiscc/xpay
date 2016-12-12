@@ -4,21 +4,16 @@
  */
 package com.xpay.payment.biz.impl;
 
-import com.xpay.channel.common.exception.XpayChannelException;
 import com.xpay.common.enums.EnumRtnResult;
 import com.xpay.common.enums.EnumSignStatus;
-import com.xpay.common.utils.sequence.RandomSequenceImpl;
-import com.xpay.common.utils.sequence.Sequence;
 import com.xpay.payment.biz.CustomerBiz;
 import com.xpay.payment.common.exception.XpayPaymentException;
-import com.xpay.payment.common.vo.customer.AuthRealNameRepVO;
-import com.xpay.payment.common.vo.customer.AuthRealNameReqVO;
 import com.xpay.payment.common.vo.customer.*;
 import com.xpay.payment.service.SignService;
 import com.xpay.payment.service.SmsService;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 
@@ -26,6 +21,7 @@ import javax.annotation.Resource;
  * @author qinshou
  * @version $Id: CustomerBizImpl.java, v 0.1 16/8/7 上午1:06 sxfans Exp $
  */
+@Component(value="custPaymentBiz")
 public class CustomerBizImpl implements CustomerBiz {
 
     private static final Logger logger = LoggerFactory.getLogger(CustomerBizImpl.class);
@@ -35,8 +31,6 @@ public class CustomerBizImpl implements CustomerBiz {
 
     @Resource
     private SmsService smsService;
-
-    private static Sequence sequence = new RandomSequenceImpl();
 
     @Override
     public AuthRealNameRepVO authRealName(AuthRealNameReqVO authRealNameReqDTO) {
@@ -62,8 +56,9 @@ public class CustomerBizImpl implements CustomerBiz {
                 }
             }
         } else {
-            String seqNo = sequence.getSeq(null);
-            signReqVO.setSignNo(seqNo); //设置签约号
+
+//            String seqNo = sequence.getSeq(null);
+//            signReqVO.setSignNo(seqNo); //设置签约号
             signReqVO.setSignStatus(EnumSignStatus.SIGN_WAITING); //设置签约状态
             oldSignRepVO = signService.add(signReqVO);
             //如果信息为空则新增签约信息失败
@@ -117,7 +112,7 @@ public class CustomerBizImpl implements CustomerBiz {
         }
 
         //签约状态为成功
-        signBreakReqVO.setBreakSignNo(sequence.getSeq(null));
+//        signBreakReqVO.setBreakSignNo(sequence.getSeq(null));
         SignBreakRepVO signBreakRepVO = signService.signBreak(signBreakReqVO);
         if (signBreakRepVO == null) {
             throw new XpayPaymentException(EnumRtnResult.E000009);
