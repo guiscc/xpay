@@ -21,7 +21,7 @@ import java.util.Date;
 @Service
 public class BankOrderNoServiceImpl implements OrderNoService {
 
-    @Resource
+    @Resource(name = "channelSequeue")
     private Sequence sequence;
 
     @Override
