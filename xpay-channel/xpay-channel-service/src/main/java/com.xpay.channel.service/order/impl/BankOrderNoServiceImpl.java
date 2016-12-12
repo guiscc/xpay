@@ -30,7 +30,7 @@ public class BankOrderNoServiceImpl implements OrderNoService {
         String version = "0";
         String tradeType = "001";
         String tableCode = "00";
-        String seqNo = sequence.getSeq("", 8);
+        String seqNo = sequence.getSeq("", 6);
         String seq = dateStr + version + tradeType + tableCode + seqNo;
         return seq;
     }
