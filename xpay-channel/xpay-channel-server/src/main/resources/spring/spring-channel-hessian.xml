@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+<!--    <bean name="agentCollectChannelFacade" class="com.xpay.channel.biz.facade.AgentCollectFacadeImpl">
+        <property name="agentCollectBiz" ref="agentCollectChannelFacade"/>
+    </bean>
+    <bean name="smsChannelFacade" class="com.xpay.channel.biz.facade.SmsChannelFacadeImpl">
+        <property name="smsChannelBiz" ref="smsChannelFacade"/>
+    </bean>-->
+
+
+    <bean name="agentCollectChannelFacadeHessian" class="com.xpay.channel.server.hessian.SimpleCustomServiceExporter">
+        <property name="service" ref="agentCollectChannelFacade"/>
+        <property name="serviceInterface" value="com.xpay.channel.common.facade.AgentCollectFacade"/>
+    </bean>
+
+    <bean name="smsChannelFacadeHessian" class="com.xpay.channel.server.hessian.SimpleCustomServiceExporter">
+        <property name="service" ref="smsChannelFacade"/>
+        <property name="serviceInterface" value="com.xpay.channel.common.facade.SmsChannelFacade"/>
+    </bean>
+
+    <bean id="simpleUrlHandlerMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="urlMap">
+            <map>
+                <entry key="/agentCollectChannelFacade" value-ref="agentCollectChannelFacadeHessian"/>
+                <entry key="/smsChannelFacade" value-ref="smsChannelFacadeHessian"/>
+            </map>
+        </property>
+    </bean>
+</beans>

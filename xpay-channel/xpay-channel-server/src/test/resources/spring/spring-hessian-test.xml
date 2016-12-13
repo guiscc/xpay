@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <bean id="testAgentCollectFacade" class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+        <property name="serviceUrl"
+                  value="http://127.0.0.1:8083/xpay-channel-server/hessian/agentCollectChannelFacade"/>
+        <property name="serviceInterface" value="com.xpay.channel.common.facade.AgentCollectFacade"/>
+        <property name="overloadEnabled" value="false"/>
+    </bean>
+
+    <bean id="testCustomerFacade" class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+        <property name="serviceUrl"
+                  value="http://127.0.0.1:8083/xpay-channel-server/hessian/smsChannelFacade"/>
+        <property name="serviceInterface" value="com.xpay.channel.common.facade.SmsChannelFacade"/>
+        <property name="overloadEnabled" value="false"/>
+    </bean>
+
+</beans>

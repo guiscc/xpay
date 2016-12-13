@@ -28,6 +28,9 @@ public class TestACPay extends BaseTest {
     @Resource
     private AgentCollectFacade agentCollectFacade;
 
+    public void createPayOrder() {
+
+    }
 
     //支付
     @Test
@@ -65,12 +68,73 @@ public class TestACPay extends BaseTest {
     @Test
     public void rePay(){
 
+        //订单已存在的情况下，是否应该抛出 订单已存在 异常；
+        String payOrderNo = DateUtil.DateStampToStringNoSp(new Date());
+
+//        System.out.println(payOrderNo);
+        ACPayReqChannelDTO acPayReqChannelDTO = new ACPayReqChannelDTO();
+        acPayReqChannelDTO.setPayOrderNo(payOrderNo);
+
+        acPayReqChannelDTO.setHolderName("全渠道");
+        acPayReqChannelDTO.setUserId("20888888001");
+        acPayReqChannelDTO.setMobileNo("13552535506");
+
+        acPayReqChannelDTO.setCertType(EnumCertType.IDCARD);
+        acPayReqChannelDTO.setCertNo("341126197709218366");
+
+        acPayReqChannelDTO.setCurrency(EnumCurrency.CNY);
+        acPayReqChannelDTO.setAmount(new BigDecimal(10));
+        acPayReqChannelDTO.setCardNo("6216261000000000018");
+        acPayReqChannelDTO.setCardType(EnumCardType.DEBIT);
+        acPayReqChannelDTO.setCvv2("221");
+        acPayReqChannelDTO.setExpireDate("1116");
+
+        acPayReqChannelDTO.setCreateDate(new Date());
+
+        acPayReqChannelDTO.setInstCode("ICBC");
+
+
+        ACPayRepChannelDTO acPayRepChannelDTO = agentCollectFacade.pay(acPayReqChannelDTO);
+        System.out.println(acPayRepChannelDTO);
+        System.out.println("__________________________");
+//
+        ACPayRepChannelDTO acPayRepChannelDTO2 = agentCollectFacade.pay(acPayReqChannelDTO);
+        System.out.println(acPayRepChannelDTO2);
     }
 
     /**
      * 断网未知场景
      */
+    @Test
     public void unknowPay(){
+        //断网情况下，支付订单状态未更新为 unknown，而是为 waiting；
+        String payOrderNo = DateUtil.DateStampToStringNoSp(new Date());
 
+//        System.out.println(payOrderNo);
+        ACPayReqChannelDTO acPayReqChannelDTO = new ACPayReqChannelDTO();
+        acPayReqChannelDTO.setPayOrderNo(payOrderNo);
+
+        acPayReqChannelDTO.setHolderName("全渠道");
+        acPayReqChannelDTO.setUserId("20888888001");
+        acPayReqChannelDTO.setMobileNo("13552535506");
+
+        acPayReqChannelDTO.setCertType(EnumCertType.IDCARD);
+        acPayReqChannelDTO.setCertNo("341126197709218366");
+
+        acPayReqChannelDTO.setCurrency(EnumCurrency.CNY);
+        acPayReqChannelDTO.setAmount(new BigDecimal(10));
+        acPayReqChannelDTO.setCardNo("6216261000000000018");
+        acPayReqChannelDTO.setCardType(EnumCardType.DEBIT);
+        acPayReqChannelDTO.setCvv2("221");
+        acPayReqChannelDTO.setExpireDate("1116");
+
+        acPayReqChannelDTO.setCreateDate(new Date());
+
+
+        acPayReqChannelDTO.setInstCode("ICBC");
+
+
+        ACPayRepChannelDTO acPayRepChannelDTO = agentCollectFacade.pay(acPayReqChannelDTO);
+        System.out.println(acPayRepChannelDTO);
     }
 }
