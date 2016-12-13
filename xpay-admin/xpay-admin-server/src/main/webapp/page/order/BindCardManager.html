@@ -1,0 +1,242 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>签约管理</title>
+    <link href="../../css/default.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="../../js/themes/gray/easyui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../js/themes/icon.css"/>
+    <script type="text/javascript" src="../../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../js/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../../js/jquery.serializeJSON.js"></script>
+    <script type="text/javascript" src="../../js/locale/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="../../js/app.js"></script>
+</head>
+<body class="easyui-layout">
+<div id="merInfGridTB" data-options="region:'north'"
+     style="height: 40px; padding: 3px">
+    <table>
+        <tr>
+            <td>签约订单号：</td>
+            <td><input class="easyui-textbox" id="signno" style="width: 150px"/></td>
+            <td>卡类型：</td>
+            <td>
+                <input class="easyui-combobox" style="width:100px;" data-options="editable:false,valueField: 'label',textField: 'value', data: [{label: '',value: '--'},{label: '0', value: '信用卡'}, {label: '1', value: '借记卡'}, {label: '2', value: '混合卡'}, {label: '3', value: '预付费卡'}],
+						onSelect:function(param){$('#cardtype').val(param.label);}" />
+                <input type="hidden" id="cardtype"/>
+            </td>
+            <td>银行签约订单号：</td>
+            <td><input class="easyui-textbox" id="banksignno" style="width: 150px"/></td>
+           <!-- <td>breaksignno：</td>
+            <td><input class="easyui-textbox" id="breaksignno" style="width: 150px"/></td>-->
+            <td>卡号：</td>
+            <td><input class="easyui-textbox" id="cardno" style="width: 150px"/></td>
+            <td>签约状态：</td>
+            <td>
+                <input class="easyui-combobox" style="width:100px;" data-options="editable:false,valueField: 'label',textField: 'value', data: [{label: '',value: '--'},{label: '0', value: '签约成功'},{label: '1', value: '签约失败'}, {label: '2', value: '签约处理中'}, {label: '3', value: '解约成功'}, {label: '4', value: '解约失败'}, {label: '5', value: '解约处理中'}],
+						onSelect:function(param){$('#signstatus').val(param.label);}"/>
+                <input type="hidden" id="signstatus"/>
+            </td>
+            <td><a href="javascript:void(0)" id="searchBtn" class="easyui-linkbutton"
+                   data-options="iconCls:'icon-search',plain:true">查询</a></td>
+            <td><a href="javascript:void(0)"
+                   onclick="javascript:location.reload();" class="easyui-linkbutton"
+                   data-options="iconCls:'icon-reload',plain:true">重置</a></td>
+        </tr>
+    </table>
+</div>
+
+<div data-options="region:'center'" style="padding: 5px;">
+    <table id="merInfGrid" style="width: 100%; height: auto;" data-options="" fitcolumns="true">
+    </table>
+</div>
+
+<input id="hideId" type="hidden"/>
+<script>
+    (function ($) {
+        searchBusinessFlow();
+        $("#searchBtn").on("click", searchBusinessFlow);
+    })(jQuery);
+
+    function toAdd() {
+        $('<div></div>').dialog({
+            id: 'info',
+            title: '新增',
+            width: 400,
+            height: 300,
+            closed: false,
+            cache: false,
+            href: 'bankCardBinAdd.html',
+            modal: true,
+            onClose: function () {
+                $(this).dialog("destroy");
+            },
+            buttons: [
+                {
+                    iconCls: "icon-save",
+                    text: '提交',
+                    handler: function () {
+                        doAddSys();
+                    }
+                },
+                {
+                    iconCls: "icon-cancel",
+                    text: '关闭',
+                    handler: function () {
+                        $("#info").dialog("destroy");
+                    }
+                }
+            ]
+        });
+    }
+
+    function toUpdate(id) {
+        $("#hideId").val(id);
+        $('<div></div>').dialog({
+            id: 'upinfo',
+            title: '修改',
+            width: 400,
+            height: 300,
+            closed: false,
+            cache: false,
+            href: 'bankCardBinAdd.html',
+            modal: true,
+            onClose: function () {
+                $(this).dialog("destroy");
+            },
+            buttons: [
+                {
+                    iconCls: "icon-save",
+                    text: '提交',
+                    handler: function () {
+                        doUpSys();
+                    }
+                },
+                {
+                    iconCls: "icon-cancel",
+                    text: '关闭',
+                    handler: function () {
+                        $("#upinfo").dialog("destroy");
+                    }
+                }
+            ]
+        });
+    }
+
+    function searchBusinessFlow() {
+        $('#merInfGrid').datagrid({
+            pageSize: 25,//每页显示的记录条数，默认为10
+            pageList: [25, 50, 100],//可以设置每页记录条数的列表
+            url: '../../bindCard/queryList',
+            pagination: true,
+            fitColumns: false,
+            rownumbers: true,
+            singleSelect: true,
+            height: '100%',
+            queryParams: {
+                signno: $("#signno").val(),
+                banksignno: $("#banksignno").val(),
+                breaksignno: $("#breaksignno").val(),
+                cardno: $("#cardno").val(),
+                cardtype: $("#cardtype").val(),
+                signstatus: $("#signstatus").val()
+            },
+            loadFilter: function (ret) {
+                if (ret.success) {
+                    return ret;
+                } else {
+                    $.messager.alert("提示", "查询加载失败");
+                }
+            },
+            columns: [
+                [
+                    {field: 'signno', title: '签约订单号', width: 150},
+                    {field: 'cardtype', title: '卡类型', width: 150,formatter: function (value) {
+                        var str = "";
+                        if (value == "0") {
+                            str = "信用卡";
+                        } else if (value == "1") {
+                            str = "借记卡";
+                        }else if (value == "2") {
+                            str = "混合卡";
+                        }else if (value == "3") {
+                            str = "预付费卡";
+                        }
+                        return str;
+                    }},
+                    {field: 'cerno', title: '证件号码', width: 100},
+                    {field: 'banksignno', title: '银行签约订单号', width: 100},
+         /*           {field: 'breaksignno', title: 'breaksignno', width: 100},*/
+                    {field: 'cardno', title: '卡号', width: 100},
+                    {field: 'holdername', title: '姓名', width: 100},
+                    {field: 'mobileno', title: '手机号', width: 100},
+                    {field: 'signstatus', title: '状态', width: 100,formatter: function (value) {
+                        var str = "";
+                        if (value == "0") {
+                            str = "签约成功";
+                        } else if (value == "1") {
+                            str = "签约失败";
+                        } else if (value == "2") {
+                            str = "签约处理中";
+                        } else if (value == "3") {
+                            str = "节约成功";
+                        } else if (value == "4") {
+                            str = "解约失败";
+                        }else if (value == "5") {
+                            str = "节约处理中";
+                        }
+                        return str;
+                    }},
+                    {field: 'userid', title: '用户号', width: 100},
+                    {field: 'expiredate', title: '签约时间', width: 100,formatter:formatterdate}
+                    /* {field:'cz',title:'操作',width:100,formatter:function(value,row,index){
+                     return '<span><a href="#" onclick="toUpdate('+ row.id +')" style="color:blue">修改</a> </span>'+
+                     '&nbsp;<span><a href="#" onclick="doDelete('+ row.id +')" style="color:blue">删除</a> </span>';
+                     } }*/
+                ]
+            ]
+        });
+        //设置分页控件
+        var p = $('#merInfGrid').datagrid('getPager');
+        $(p).pagination({
+            beforePageText: '第',//页数文本框前显示的汉字
+            afterPageText: '页    共 {pages} 页',
+            displayMsg: '当前显示 {from} - {to} 条记录   共 {total} 条记录'
+        });
+    }
+
+    function doDelete(id) {
+        $.messager.confirm("提示框", "确定要删除吗?", function (b) {
+            if (b) {
+                if (id == null || id == "") {
+                    $.messager.alert("错误", "id为空");
+                    return;
+                }
+                $.ajax({
+                    url: "../../sysinfo/delsys?id=" + id,
+                    method: "POST",
+                    contentType: "application/json",
+                    dataType: "json",
+                    async: false,
+                    //data : {'id':id+""},
+                    success: function (data) {
+                        var ret = eval(data);
+                        if (ret.success) {
+                            $('#merInfGrid').datagrid('reload');
+                        } else {
+                            $.messager.alert('错误', '操作失败');
+                        }
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        var result = JSON
+                                .parse(XMLHttpRequest.responseText);
+                        $.messager.alert('错误', result.errorMsg);
+                    }
+                });
+            }
+        });
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>系统--新增</title>
+<link href="../../css/default.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="../../js/themes/gray/easyui.css"/>
+<link rel="stylesheet" type="text/css" href="../../js/themes/icon.css"/>
+<script type="text/javascript" src="../../js/jquery.min.js"></script>
+<script type="text/javascript" src="../../js/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../js/jquery.serializeJSON.js"></script>
+<script type="text/javascript" src="../../js/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="../../js/app.js"></script>
+</head>
+<body class="easyui-layout">
+		<div style="padding:10px 60px 20px 60px">
+		<form id="addSysForm" class="easyui-form" method="post" data-options="novalidate:true">
+	    	<table cellpadding="5">
+	    		<tr>
+	    			<td>银行全称:</td>
+	    			<td><input class="easyui-textbox" type="text" name="sysName" data-options="required:true"></input></td>
+	    		</tr>
+	    		<tr>
+	    			<td>银行简称:</td>
+	    			<td><input class="easyui-textbox" type="text" name="sysUrl" data-options="required:true"></input></td>
+	    		</tr>
+	    		<tr>
+	    			<td>银行代码:</td>
+	    				<td><input class="easyui-textbox" type="text" id="sysState" data-options="required:true,editable:false"></input></td>
+	    		</tr>
+	    		<tr>
+	    			<td>银行名英文缩写:</td>
+	    			<td><input class="easyui-textbox" type="text" name="sysRemark"></input></td>
+	    		</tr>
+	    	</table>
+	    	
+	    	<input type="hidden" id="hideStatus" name="sysState"/>
+	    </form>
+	</div>
+	<script>
+	function doAddSys(){
+		var flag = $("#addSysForm").form('enableValidation').form('validate');
+		if(!flag){
+			return;
+		}
+		var postData = JSON.stringify($("#addSysForm").serializeJSON());
+		$.ajax({
+			url : "../../sysinfo/addsys",
+			method : "POST",
+			contentType : "application/json",
+			dataType : "json",
+			async : false,
+			data : postData,
+			success : function(data) {
+				var ret = eval(data);
+				if(ret.success){
+					$("#info").dialog("close");
+					$('#merInfGrid').datagrid('reload');
+				}else{
+					$.messager.alert('错误','操作失败');
+				}
+			},
+			error : function(XMLHttpRequest, textStatus, errorThrown) {
+				var result = JSON.parse(XMLHttpRequest.responseText);
+				$.messager.alert('错误',result.errorMsg);
+			}
+		});
+		
+	}
+	</script>
+</body>
+</html>

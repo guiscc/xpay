@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Xpay-管理平台</title>
+    <link href="css/default.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="js/themes/gray/easyui.css"/>
+    <link rel="stylesheet" type="text/css" href="js/themes/icon.css"/>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="js/menu.js"></script>
+    <script type="text/javascript" src="js/jquery.serializeJSON.js"></script>
+    <script type="text/javascript" src="js/locale/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <style>
+        #css3menu li {
+            float: left;
+            list-style-type: none;
+        }
+
+        #css3menu li a {
+            color: #fff;
+            padding-right: 20px;
+        }
+
+        #css3menu li a.active {
+            color: yellow;
+        }
+    </style>
+</head>
+<body class="easyui-layout" style="overflow-y: hidden;background-color:gray; " scroll="no">
+<div region="north" split="true" border="false"
+     style="background-color: #f3f3f3; overflow: hidden; height: 85px; padding-left:10px;font-family: 微软雅黑">
+    <div class="easyui-layout" data-options="fit:true" border="false"
+         style="background-color: gray; height:50px;overflow: hidden;">
+        <table style="background-color: #f3f3f3; overflow: hidden;width:100%;">
+            <tr>
+                <td align="left"><h1 style="font-size:18px;">Xpay-管理平台</h1></td>
+                <td align="right">
+                    <span id="loName" style="font-size: 17px"></span> ,欢迎您！
+                    <a id="exitBtn" href="javascript:void(0)" onclick="javascript:doExit()" class="easyui-linkbutton"
+                       data-options="iconCls:'icon-back'">退出</a>
+                    <a id="abountBtn" href="javascript:void(0)" onclick="javascript:showAbount()"
+                       class="easyui-linkbutton" data-options="iconCls:'icon-help'">关于</a>
+                    <a id="upBtn" href="javascript:void(0)" onclick="javascript:opendialog()" class="easyui-linkbutton"
+                       data-options="iconCls:'icon-lock'">修改密码</a>
+                </td>
+            </tr>
+        </table>
+        <div style="background-color: #f3f3f3; height:35px">
+            <!-- 				<a href="#" class="easyui-linkbutton" id="1" data-options="iconCls:'icon-reload'" onclick="initMenu(1)">后台管理</a> -->
+        </div>
+    </div>
+</div>
+<div region="south" style="height: 30px; padding: 10px;text-align:center;">© 2015 9FBank All rights reserved
+</div>
+<div region="west" hide="true" split="true" title="我的菜单" style="width: 180px;" id="west">
+    <div id='wnav' class="easyui-accordion" fit="true" border="false">
+    </div>
+</div>
+<div id="mainPanle" region="center" style="overflow-y: hidden">
+    <div id="tabs" class="easyui-tabs" fit="true" border="false">
+        <div title="欢迎使用" style="padding:10px; overflow: hidden;" id="home">
+            <div class="easyui-layout" data-options="fit:true">
+                <div id="p" data-options="region:'center',split:true" class="easyui-panel" title="系统管理"
+                     style="width: 50%; height: 200px; padding: 10px;">
+                    <p>欢迎您
+
+                    <p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="tab_rightmenu" class="easyui-menu" style="width:150px;">
+    <div name="tab_menu-tabupdate">刷新</div>
+    <div name="tab_menu-tabclose">关闭</div>
+    <div name="tab_menu-tabcloseall">关闭全部标签</div>
+    <div name="tab_menu-tabcloseother">关闭其他标签</div>
+    <div class="menu-sep"></div>
+    <div name="tab_menu-tabcloseright">关闭右侧标签</div>
+    <div name="tab_menu-tabcloseleft">关闭左侧标签</div>
+</div>
+<!-- 关于 -->
+<div id="abount" title="关于" style="width:600px;height:300px;"></div>
+<!--<div id="uppass" title="密码修改" style="width:600px;height:300px;" ></div>-->
+<script>
+    /*(function($){
+     $.ajax({
+     url : "sysUser/checkPass",
+     method : "POST",
+     dataType : "json",
+     async : false,
+     success : function(data) {
+     var ret = eval(data);
+     $("#loName").append(ret.loname);
+     if(ret.success){
+     return;
+     }
+     $("#uppass").dialog("close");
+     }
+     });
+
+     })(jQuery);*/
+</script>
+</body>
+</html>

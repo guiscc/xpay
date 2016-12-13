@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xpay.admin.bank.dao.BankCardBinDictMapper">
+	<resultMap id="BaseResultMap" type="com.xpay.admin.bank.entity.BankCardBinDict">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="bank_code" property="bankCode" jdbcType="VARCHAR" />
+		<result column="org_name" property="orgName" jdbcType="VARCHAR" />
+		<result column="org_code" property="orgCode" jdbcType="VARCHAR" />
+		<result column="card_name" property="cardName" jdbcType="VARCHAR" />
+		<result column="no_length" property="noLength" jdbcType="TINYINT" />
+		<result column="main_card_no" property="mainCardNo" jdbcType="VARCHAR" />
+		<result column="bin_length" property="binLength" jdbcType="TINYINT" />
+		<result column="bin_value" property="binValue" jdbcType="VARCHAR" />
+		<result column="card_type" property="cardType" jdbcType="VARCHAR" />
+		<result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+		<result column="modified_date" property="modifiedDate" jdbcType="TIMESTAMP" />
+		<result column="delete_flag" property="deleteFlag" jdbcType="CHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, bank_code, org_name, org_code, card_name, no_length, main_card_no,
+		bin_length,
+		bin_value, card_type, created_date, modified_date, delete_flag
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from base_bank_card_bin_dict
+		where 1=1
+		<!-- 表字段条件 -->
+		<if test="bankCode != null">
+			AND bank_code = #{bankCode,jdbcType=VARCHAR}
+		</if>
+		<if test="orgName != null">
+			AND org_name = #{orgName,jdbcType=VARCHAR}
+		</if>
+		<if test="orgCode != null">
+			AND org_code = #{orgCode,jdbcType=VARCHAR}
+		</if>
+		<if test="cardName != null">
+			AND card_name = #{cardName,jdbcType=VARCHAR}
+		</if>
+		<if test="noLength != null">
+			AND no_length = #{noLength,jdbcType=TINYINT}
+		</if>
+		<if test="mainCardNo != null">
+			AND NO_LENGTH = LENGTH(#{mainCardNo })
+			AND BIN_VALUE = LEFT(#{mainCardNo },BIN_LENGTH)
+		</if>
+		<if test="binLength != null">
+			AND bin_length = #{binLength,jdbcType=TINYINT}
+		</if>
+		<if test="binValue != null">
+			AND bin_value = #{binValue,jdbcType=VARCHAR}
+		</if>
+		<if test="cardType != null">
+			AND card_type = #{cardType,jdbcType=VARCHAR}
+		</if>
+		<if test="createdDate != null">
+			AND created_date = #{createdDate,jdbcType=TIMESTAMP}
+		</if>
+		<if test="modifiedDate != null">
+			AND modified_date = #{modifiedDate,jdbcType=TIMESTAMP}
+		</if>
+		<if test="deleteFlag != null">
+			AND delete_flag = #{deleteFlag,jdbcType=CHAR}
+		</if>
+	</select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from base_bank_card_bin_dict
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.xpay.admin.bank.entity.BankCardBinDict" >
+    insert into base_bank_card_bin_dict (id, bank_code, org_name, 
+      org_code, card_name, no_length, 
+      main_card_no, bin_length, bin_value, 
+      card_type, created_date, modified_date, 
+      delete_flag)
+    values (#{id,jdbcType=BIGINT}, #{bankCode,jdbcType=VARCHAR}, #{orgName,jdbcType=VARCHAR}, 
+      #{orgCode,jdbcType=VARCHAR}, #{cardName,jdbcType=VARCHAR}, #{noLength,jdbcType=TINYINT}, 
+      #{mainCardNo,jdbcType=VARCHAR}, #{binLength,jdbcType=TINYINT}, #{binValue,jdbcType=VARCHAR}, 
+      #{cardType,jdbcType=VARCHAR}, #{createdDate,jdbcType=TIMESTAMP}, #{modifiedDate,jdbcType=TIMESTAMP}, 
+      #{deleteFlag,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xpay.admin.bank.entity.BankCardBinDict" >
+    insert into base_bank_card_bin_dict
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="bankCode != null" >
+        bank_code,
+      </if>
+      <if test="orgName != null" >
+        org_name,
+      </if>
+      <if test="orgCode != null" >
+        org_code,
+      </if>
+      <if test="cardName != null" >
+        card_name,
+      </if>
+      <if test="noLength != null" >
+        no_length,
+      </if>
+      <if test="mainCardNo != null" >
+        main_card_no,
+      </if>
+      <if test="binLength != null" >
+        bin_length,
+      </if>
+      <if test="binValue != null" >
+        bin_value,
+      </if>
+      <if test="cardType != null" >
+        card_type,
+      </if>
+      <if test="createdDate != null" >
+        created_date,
+      </if>
+      <if test="modifiedDate != null" >
+        modified_date,
+      </if>
+      <if test="deleteFlag != null" >
+        delete_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="bankCode != null" >
+        #{bankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orgName != null" >
+        #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="orgCode != null" >
+        #{orgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cardName != null" >
+        #{cardName,jdbcType=VARCHAR},
+      </if>
+      <if test="noLength != null" >
+        #{noLength,jdbcType=TINYINT},
+      </if>
+      <if test="mainCardNo != null" >
+        #{mainCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="binLength != null" >
+        #{binLength,jdbcType=TINYINT},
+      </if>
+      <if test="binValue != null" >
+        #{binValue,jdbcType=VARCHAR},
+      </if>
+      <if test="cardType != null" >
+        #{cardType,jdbcType=VARCHAR},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedDate != null" >
+        #{modifiedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteFlag != null" >
+        #{deleteFlag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xpay.admin.bank.entity.BankCardBinDict" >
+    update base_bank_card_bin_dict
+    <set >
+      <if test="bankCode != null" >
+        bank_code = #{bankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orgName != null" >
+        org_name = #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="orgCode != null" >
+        org_code = #{orgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cardName != null" >
+        card_name = #{cardName,jdbcType=VARCHAR},
+      </if>
+      <if test="noLength != null" >
+        no_length = #{noLength,jdbcType=TINYINT},
+      </if>
+      <if test="mainCardNo != null" >
+        main_card_no = #{mainCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="binLength != null" >
+        bin_length = #{binLength,jdbcType=TINYINT},
+      </if>
+      <if test="binValue != null" >
+        bin_value = #{binValue,jdbcType=VARCHAR},
+      </if>
+      <if test="cardType != null" >
+        card_type = #{cardType,jdbcType=VARCHAR},
+      </if>
+      <if test="createdDate != null" >
+        created_date = #{createdDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedDate != null" >
+        modified_date = #{modifiedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteFlag != null" >
+        delete_flag = #{deleteFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xpay.admin.bank.entity.BankCardBinDict" >
+    update base_bank_card_bin_dict
+    set bank_code = #{bankCode,jdbcType=VARCHAR},
+      org_name = #{orgName,jdbcType=VARCHAR},
+      org_code = #{orgCode,jdbcType=VARCHAR},
+      card_name = #{cardName,jdbcType=VARCHAR},
+      no_length = #{noLength,jdbcType=TINYINT},
+      main_card_no = #{mainCardNo,jdbcType=VARCHAR},
+      bin_length = #{binLength,jdbcType=TINYINT},
+      bin_value = #{binValue,jdbcType=VARCHAR},
+      card_type = #{cardType,jdbcType=VARCHAR},
+      created_date = #{createdDate,jdbcType=TIMESTAMP},
+      modified_date = #{modifiedDate,jdbcType=TIMESTAMP},
+      delete_flag = #{deleteFlag,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>SSM应用框架-系统用户管理</title>
+<link href="../../css/default.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="../../js/themes/gray/easyui.css"/>
+<link rel="stylesheet" type="text/css" href="../../js/themes/icon.css"/>
+<script type="text/javascript" src="../../js/jquery.min.js"></script>
+<script type="text/javascript" src="../../js/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../js/jquery.serializeJSON.js"></script>
+<script type="text/javascript" src="../../js/locale/easyui-lang-zh_CN.js"></script>
+</head>
+<body class="easyui-layout">
+		<div data-options="region:'center'" style="padding:5px;">
+			<table id="sysUserGrid" style="width:100%;height:auto;" data-options="toolbar:'#sysUserGridTB'">
+			</table>
+		</div>
+		
+		<div id="sysUserGridTB">
+			<a href="javascript:void(0)" id="addBtn" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true">新增</a>
+			<a href="javascript:void(0)" id="editBtn" class="easyui-linkbutton" data-options="iconCls:'icon-edit',plain:true">修改</a>
+			<a href="javascript:void(0)" id="removeBtn" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true">删除</a>
+			<a href="javascript:void(0)"  class="easyui-linkbutton" data-options="plain:true">查询条件</a>
+			<input class="easyui-textbox" id="condition" style="width:280px" prompt="用户名/姓名/身份证/手机/邮箱/地址模糊匹配"> 
+			<a href="javascript:void(0)" id="searchBtn" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true">查询</a>
+		</div>
+
+		
+		<div id="addSysUser" title="新增用户" style="width:400px;height:200px;"></div>
+		<div id="updateSysUser" title="修改用户" style="width:400px;height:200px;"></div>
+		
+	<script>
+		(function($){
+			
+			searchSysUser();
+		    $("#addBtn").on("click", addSysUser);
+		    $("#editBtn").on("click", updateSysUser);
+		    $("#removeBtn").on("click", delSysUser);
+		    $("#searchBtn").on("click", searchSysUser);
+		    
+		})(jQuery);
+		
+		function searchSysUser(){
+			var conditionVal = $("#condition").val();
+			$('#sysUserGrid').datagrid({    
+			    url:'../../sysUser/querySysUser',
+			    pagination:true,
+			    rownumbers:true,
+			    singleSelect:true,
+			    height:'100%',
+			    queryParams:{
+			    	pageSize:10,
+			    	currentPageNum:1,
+			    	condition:conditionVal
+			    },
+			    loadFilter: function(ret){    
+			        if (ret.success){    
+			            return ret;    
+			        } else {    
+			            alert("用户加载失败");
+			        }    
+			    },   
+			    columns:[[    
+			        {field:'trueName',title:'姓名',width:80}, 
+			        {field:'loginName',title:'用户名',width:80}, 
+			        {field:'idNo',title:'身份证号',width:150}, 
+			        {field:'mobile',title:'联系电话',width:100}, 
+			        {field:'address',title:'联系地址',width:200}, 
+			        {field:'userMail',title:'邮箱',width:200}, 
+			        {field:'userState',title:'状态',width:80,formatter:function(value,row,index){
+			        	if (value == "1"){
+							return "正常";
+						} else {
+							return "冻结";
+						}
+
+			        }}, 
+			        {field:'lastLoginTime',title:'上次登录时间',width:150}
+			    ]]
+
+			});  
+			//设置分页控件 
+		    var p = $('#sysUserGrid').datagrid('getPager'); 
+		    $(p).pagination({ 
+		        pageSize: 10,//每页显示的记录条数，默认为10 
+		        pageList: [5,10,15],//可以设置每页记录条数的列表 
+		        beforePageText: '第',//页数文本框前显示的汉字 
+		        afterPageText: '页    共 {pages} 页', 
+		        displayMsg: '当前显示 {from} - {to} 条记录   共 {total} 条记录', 
+		    });
+		}
+		
+		
+		//新增用户
+		function addSysUser(){
+			$('#addSysUser').dialog({    
+			    title: '新增用户',    
+			    width: 600,    
+			    height: 420,    
+			    closed: false,    
+			    cache: false,    
+			    href: 'sysUserAdd.html',    
+			    modal: true,
+			    buttons:[{
+			    	iconCls:"icon-ok",
+					text:'提交',
+					handler:function(){
+						doAddSysUser();
+					}
+				},{
+			    	iconCls:"icon-undo",
+					text:'重置',
+					handler:function(){
+						$("#addSysUserForm").form('clear');
+					}
+				},{
+					iconCls:"icon-cancel",
+					text:'取消',
+					handler:function(){
+						$("#addSysUser").dialog("close");
+					}
+				}]
+			});
+		}
+		
+		//删除用户
+		function delSysUser(){
+			var selSysUser = $('#sysUserGrid').datagrid('getSelected');
+			if(null == selSysUser || undefined == selSysUser){
+				$.messager.alert('提示','请选择要删除的用户');
+				return;
+			}
+			$.messager.confirm('确认','您确认要删除用户【'+selSysUser.trueName+'】吗？',function(flag){    
+			    if (flag){    
+			    	$.ajax({
+						url : "../../sysUser/delSysUser",
+						method : "POST",
+						dataType : "json",
+						async : false,
+						data : {"id" : selSysUser.id},
+						success : function(data) {
+							var ret = eval(data);
+							if(ret.success){
+								$('#sysUserGrid').datagrid('reload');
+							}else{
+								$.messager.alert('错误','操作失败');
+							}
+						},
+						error : function(XMLHttpRequest, textStatus, errorThrown) {
+							var result = JSON.parse(XMLHttpRequest.responseText);
+							$.messager.alert('错误',result.errorMsg);
+						}
+					});
+			    }    
+			});  
+		}
+		
+		//修改用户
+		function updateSysUser(){
+			var selSysUser = $('#sysUserGrid').datagrid('getSelected');
+			if(null == selSysUser || undefined == selSysUser){
+				$.messager.alert('提示','请选择要修改的用户');
+				return;
+			}
+			$('#updateSysUser').dialog({    
+			    title: '修改用户',    
+			    width: 600,    
+			    height: 420,    
+			    closed: false,    
+			    cache: false,    
+			    href: 'sysUserUpdate.html',    
+			    modal: true,
+			    buttons:[{
+			    	iconCls:"icon-ok",
+					text:'提交',
+					handler:function(){
+						doUpdateSysUser();
+					}
+				},{
+			    	iconCls:"icon-undo",
+					text:'重置',
+					handler:function(){
+						$("#updateSysUserForm").form('clear');
+					}
+				},{
+					iconCls:"icon-cancel",
+					text:'取消',
+					handler:function(){
+						$("#updateSysUser").dialog("close");
+					}
+				}]
+			});
+		}
+	</script>
+</body>
+</html>
