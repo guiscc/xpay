@@ -6,6 +6,8 @@ package com.xpay.channel.facade.test;
 
 import com.xpay.channel.common.dto.agentcollect.ACPayRepChannelDTO;
 import com.xpay.channel.common.dto.agentcollect.ACPayReqChannelDTO;
+import com.xpay.channel.common.dto.agentcollect.ACQueryPayRepChannelDTO;
+import com.xpay.channel.common.dto.agentcollect.ACQueryPayReqChannelDTO;
 import com.xpay.channel.common.facade.AgentCollectFacade;
 import com.xpay.common.enums.*;
 
@@ -29,7 +31,18 @@ public class TestPayment extends BaseTest {
     private AgentCollectFacade collectFacade;
 
     @Test
+    public void payQuery(){
+        ACQueryPayReqChannelDTO acQueryPayReqChannelDTO = new ACQueryPayReqChannelDTO();
+        acQueryPayReqChannelDTO.setPayOrderNo("20161210142332336");
+        acQueryPayReqChannelDTO.setRepair(false);
+
+        ACQueryPayRepChannelDTO acQueryPayRepChannelDTO = collectFacade.queryPay(acQueryPayReqChannelDTO);
+        System.out.println(acQueryPayRepChannelDTO.toString());
+    }
+
+    @Test
     public void payment() {
+
         String payOrderNo = DateUtil.DateStampToStringNoSp(new Date());
 
 //        System.out.println(payOrderNo);

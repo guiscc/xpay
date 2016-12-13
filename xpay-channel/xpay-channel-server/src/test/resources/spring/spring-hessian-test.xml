@@ -6,14 +6,14 @@
 
     <bean id="testAgentCollectFacade" class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
         <property name="serviceUrl"
-                  value="http://127.0.0.1:8083/xpay-channel-server/hessian/agentCollectChannelFacade"/>
+                  value="http://139.196.17.122:8088/hessian/agentCollectChannelFacade"/>
         <property name="serviceInterface" value="com.xpay.channel.common.facade.AgentCollectFacade"/>
         <property name="overloadEnabled" value="false"/>
     </bean>
 
     <bean id="testCustomerFacade" class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
         <property name="serviceUrl"
-                  value="http://127.0.0.1:8083/xpay-channel-server/hessian/smsChannelFacade"/>
+                  value="http://139.196.17.122:8088/hessian/smsChannelFacade"/>
         <property name="serviceInterface" value="com.xpay.channel.common.facade.SmsChannelFacade"/>
         <property name="overloadEnabled" value="false"/>
     </bean>

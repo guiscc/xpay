@@ -24,7 +24,6 @@ import com.xpay.channel.service.router.RouterContext;
 import com.xpay.channel.service.router.RouterParam;
 import com.xpay.common.enums.EnumPayStatus;
 import com.xpay.common.enums.EnumRtnResult;
-import com.xpay.common.enums.EnumRtnStatus;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
