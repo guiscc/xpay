@@ -13,6 +13,7 @@ import com.xpay.common.exception.BaseException;
  */
 public class XpayAdminException extends BaseException{
 
+
     public XpayAdminException() {
         super();
     }
@@ -27,6 +28,28 @@ public class XpayAdminException extends BaseException{
         this.setErrorCode(rtnResult.name());
         this.setErrorMsg(rtnResult.getMsg());
         this.setRtnStatus(rtnResult.getStatus());
+    }
+
+    private String errorCode;
+
+    /**
+     * Getter method for property errorCode.
+     *
+     * @return property value of errorCode
+     **/
+    @Override
+    public String getErrorCode() {
+        return errorCode;
+    }
+
+    /**
+     * Setter method for property errorCode.
+     *
+     * @param errorCode value to be assigned to property errorCode
+     **/
+    @Override
+    public void setErrorCode(String errorCode) {
+        this.errorCode = errorCode;
     }
 
     /**

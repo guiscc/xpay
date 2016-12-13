@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+                http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                http://www.springframework.org/schema/mvc
+                http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+                http://www.springframework.org/schema/context
+                http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+    <!-- 自动扫描且只扫描@Controller -->
+    <context:component-scan base-package="com.xpay.admin" use-default-filters="false">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
+    <mvc:resources mapping="/css/**" location="/css/"/>
+    <mvc:resources mapping="/images/**" location="/images/"/>
+    <mvc:resources mapping="/js/**" location="/js/"/>
+
+    <!-- 注册转发请求的bean -->
+    <mvc:annotation-driven/>
+    <bean id="viewResolver"
+          class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass"
+                  value="org.springframework.web.servlet.view.JstlView"/>
+        <property name="prefix" value="/WEB-INF/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <!-- SpringMVC上传文件时，需要配置MultipartResolver处理器 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="104857600"/>  <!-- byte -->
+    </bean>
+
+    <bean id="mappingJacksonHttpMessageConverter"
+          class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+        <property name="supportedMediaTypes">
+            <list>
+                <value>application/json;charset=UTF-8</value>
+                <value>text/html;charset=UTF-8</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+        <property name="messageConverters">
+            <list>
+                <ref bean="mappingJacksonHttpMessageConverter"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="handlerExceptionResolver"
+          class="com.xpay.admin.bank.controller.ExceptionHandlerResolver">
+        <property name="defaultErrorView" value="error/error"/>
+        <property name="messageConverters" ref="mappingJacksonHttpMessageConverter"/>
+        <property name="exceptionMappings">
+            <props>
+                <prop key="com.ninefbank.smallpay.common.exception.HtmlException">error/error-html</prop>
+            </props>
+        </property>
+    </bean>
+</beans>
