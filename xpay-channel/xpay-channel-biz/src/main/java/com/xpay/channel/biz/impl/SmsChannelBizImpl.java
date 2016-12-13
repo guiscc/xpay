@@ -23,7 +23,7 @@ import java.util.Date;
  * @author qinshou
  * @version $Id: SmsChannelBizImpl.java, v 0.1 16/10/26 上午11:29 sxfans Exp $
  */
-@Component
+@Component(value = "smsChannelBiz")
 public class SmsChannelBizImpl implements SmsChannelBiz {
 
     @Resource

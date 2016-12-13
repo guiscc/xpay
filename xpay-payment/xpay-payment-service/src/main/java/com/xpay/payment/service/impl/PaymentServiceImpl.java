@@ -8,9 +8,9 @@ import com.xpay.common.utils.sequence.RandomSequenceImpl;
 import com.xpay.common.utils.sequence.Sequence;
 import com.xpay.payment.common.model.PayOrderModel;
 import com.xpay.payment.service.PaymentService;
+import com.xpay.payment.dao.PaymentDao;
 import com.xpay.payment.service.convert.PaymentConvert;
-import com.xpay.payment.service.dao.PaymentDao;
-import com.xpay.payment.service.entity.PaymentEntity;
+import com.xpay.payment.dao.entity.PaymentEntity;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -26,15 +26,13 @@ public class PaymentServiceImpl implements PaymentService {
     @Resource
     public PaymentDao paymentDao;
 
-    private static Sequence sequence = new RandomSequenceImpl();
-
     @Override
     public PayOrderModel add(PayOrderModel payOrderModel) {
         PaymentEntity paymentEntity = new PaymentEntity();
         paymentEntity = PaymentConvert.convertPayOrderModel(paymentEntity, payOrderModel);
         PaymentEntity oldPaymentEntity = paymentDao.getByOrderNo(paymentEntity);
         if (oldPaymentEntity == null) {
-            String seqNo = sequence.getSeq(null);
+            String seqNo = "";
             paymentEntity.setPayOrderNo(seqNo);
             paymentEntity.setCreateTime(new Date());
             int flag = paymentDao.add(paymentEntity);

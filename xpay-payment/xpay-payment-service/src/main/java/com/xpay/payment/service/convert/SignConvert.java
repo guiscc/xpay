@@ -4,10 +4,11 @@
  */
 package com.xpay.payment.service.convert;
 
+
 import com.xpay.common.enums.EnumSignStatus;
 import com.xpay.payment.common.vo.customer.SignRepVO;
 import com.xpay.payment.common.vo.customer.SignReqVO;
-import com.xpay.payment.service.entity.SignEntity;
+import com.xpay.payment.dao.entity.SignEntity;
 
 /**
  * @author qinshou

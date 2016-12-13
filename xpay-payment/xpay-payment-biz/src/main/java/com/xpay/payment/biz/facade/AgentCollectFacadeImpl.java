@@ -16,6 +16,8 @@ import com.xpay.payment.common.vo.agentcollect.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.annotation.Resource;
+
 /**
  * @author qinshou
  * @version $Id: AgentCollectFacadeImpl.java, v 0.1 16/8/6 下午9:27 sxfans Exp $
@@ -24,6 +26,7 @@ public class AgentCollectFacadeImpl implements AgentCollectFacade {
 
     private Logger logger = LoggerFactory.getLogger(AgentCollectFacadeImpl.class);
 
+    @Resource(name = "acPaymentBiz")
     private AgentCollectBiz agentCollectBiz;
 
     @Override
@@ -79,24 +82,5 @@ public class AgentCollectFacadeImpl implements AgentCollectFacade {
             acRepairRepDTO.setRtnResult(EnumRtnResult.E000000);
         }
         return acRepairRepDTO;
-    }
-
-
-    /**
-     * Getter method for property agentCollectBiz.
-     *
-     * @return property value of agentCollectBiz
-     **/
-    public AgentCollectBiz getAgentCollectBiz() {
-        return agentCollectBiz;
-    }
-
-    /**
-     * Setter method for property agentCollectBiz.
-     *
-     * @param agentCollectBiz value to be assigned to property agentCollectBiz
-     **/
-    public void setAgentCollectBiz(AgentCollectBiz agentCollectBiz) {
-        this.agentCollectBiz = agentCollectBiz;
     }
 }

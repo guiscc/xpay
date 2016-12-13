@@ -4,13 +4,11 @@
  */
 package com.xpay.payment.service.impl;
 
-import com.xpay.channel.common.dto.sms.SmsRepChannelDTO;
 import com.xpay.channel.common.dto.sms.SmsReqChannelDTO;
 import com.xpay.channel.common.enums.EnumSMSMapKey;
 import com.xpay.channel.common.exception.XpayChannelException;
 import com.xpay.channel.common.facade.SmsChannelFacade;
 import com.xpay.common.enums.EnumRtnResult;
-import com.xpay.common.enums.EnumRtnStatus;
 import com.xpay.payment.common.exception.XpayPaymentException;
 import com.xpay.payment.common.vo.customer.SignConfirmRepVO;
 import com.xpay.payment.common.vo.customer.SignConfirmReqVO;

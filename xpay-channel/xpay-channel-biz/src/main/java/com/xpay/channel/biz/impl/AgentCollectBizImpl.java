@@ -33,7 +33,7 @@ import javax.annotation.Resource;
  * @author qinshou
  * @version $Id: AgentCollectBizImpl.java, v 0.1 16/10/26 上午11:31 sxfans Exp $
  */
-@Component
+@Component(value = "acBizChannelBiz")
 public class AgentCollectBizImpl implements AgentCollectBiz {
 
     @Resource

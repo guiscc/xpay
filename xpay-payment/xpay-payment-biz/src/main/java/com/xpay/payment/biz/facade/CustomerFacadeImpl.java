@@ -19,6 +19,8 @@ import com.xpay.payment.common.vo.customer.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.annotation.Resource;
+
 /**
  * @author qinshou
  * @version $Id: UserFacade.java, v 0.1 16/8/6 下午10:11 sxfans Exp $
@@ -27,6 +29,7 @@ public class CustomerFacadeImpl implements CustomerFacade {
 
     private Logger logger = LoggerFactory.getLogger(CustomerFacadeImpl.class);
 
+    @Resource(name = "custPaymentBiz")
     private CustomerBiz customerBiz;
 
     @Override
@@ -99,23 +102,5 @@ public class CustomerFacadeImpl implements CustomerFacade {
             logger.error("解约异常:", e);
         }
         return signBreakRepDTO;
-    }
-
-    /**
-     * Getter method for property customerBiz.
-     *
-     * @return property value of customerBiz
-     **/
-    public CustomerBiz getCustomerBiz() {
-        return customerBiz;
-    }
-
-    /**
-     * Setter method for property customerBiz.
-     *
-     * @param customerBiz value to be assigned to property customerBiz
-     **/
-    public void setCustomerBiz(CustomerBiz customerBiz) {
-        this.customerBiz = customerBiz;
     }
 }

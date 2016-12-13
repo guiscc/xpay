@@ -14,7 +14,7 @@ import com.xpay.payment.common.vo.agentcollect.*;
 public interface AgentCollectBiz {
 
     /**
-     * 代付
+     * 代收
      *
      * @param acPayReqVO
      * @return

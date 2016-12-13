@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.xpay.payment.dao.PaymentDao">
+
+    <resultMap id="BaseResultMap" type="PaymentEntity">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+
+        <result column="payOrderNo" property="payOrderNo"/>
+        <result column="tradeOrderNo" property="tradeOrderNo"/>
+
+        <result column="payTool" property="payTool"/>
+        <result column="paySubTool" property="paySubTool"/>
+
+        <result column="channelCode" property="channelCode"/>
+        <result column="payAmt" property="payAmt"/>
+
+        <result column="currency" property="currency"/>
+        <result column="userId" property="userId"/>
+        <result column="payStatus" property="payStatus"/>
+
+        <result column="createTime" property="createTime"/>
+        <result column="updateTime" property="updateTime"/>
+        <result column="remark" property="remark"/>
+    </resultMap>
+
+    <sql id="column">
+        id,payOrderNo,tradeOrderNo,payTool,paySubTool,channelCode,payAmt,
+        currency,userId,payStatus,createTime,updateTime,remark
+	</sql>
+
+    <insert id="add" parameterType="PaymentEntity"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into pay_order
+        (<include refid="column"/>)
+        values
+        (#{id,jdbcType=BIGINT},
+        #{payOrderNo},
+        #{tradeOrderNo},
+        #{payTool},
+        #{paySubTool},
+        #{channelCode},
+        #{payAmt},
+        #{currency},
+        #{userId},
+        #{payStatus},
+        #{createTime},
+        #{updateTime},
+        #{remark})
+    </insert>
+
+    <select id="getByOrderNo" resultMap="BaseResultMap" parameterType="PaymentEntity">
+        select
+        <include refid="column"/>
+        from pay_order
+        where
+        <choose>
+            <when test="tradeOrderNo != null and tradeOrderNo != ''">
+                tradeOrderNo = #{tradeOrderNo}
+            </when>
+            <otherwise>
+                payOrderNo = #{payOrderNo}
+            </otherwise>
+        </choose>
+    </select>
+
+    <update id="updateOrderStatus" parameterType="PaymentEntity">
+        update pay_order
+        set payStatus=#{payStatus},updateTime=#{updateTime}
+        where
+        <choose>
+            <when test="tradeOrderNo != null and tradeOrderNo != ''">
+                tradeOrderNo = #{tradeOrderNo}
+            </when>
+            <otherwise>
+                payOrderNo = #{payOrderNo}
+            </otherwise>
+        </choose>
+    </update>
+
+</mapper>

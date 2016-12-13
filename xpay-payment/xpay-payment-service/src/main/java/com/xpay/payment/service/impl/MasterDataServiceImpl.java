@@ -7,9 +7,9 @@ package com.xpay.payment.service.impl;
 import com.xpay.payment.common.vo.masterdata.CardBinRepVO;
 import com.xpay.payment.common.vo.masterdata.CardBinReqVO;
 import com.xpay.payment.service.MasterDataService;
+import com.xpay.payment.dao.CardBinDao;
 import com.xpay.payment.service.convert.CardBinConvert;
-import com.xpay.payment.service.dao.CardBinDao;
-import com.xpay.payment.service.entity.CardBinEntity;
+import com.xpay.payment.dao.entity.CardBinEntity;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

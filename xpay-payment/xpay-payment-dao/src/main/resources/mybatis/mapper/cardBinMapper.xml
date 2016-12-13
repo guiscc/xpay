@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.xpay.payment.dao.CardBinDao">
+
+    <resultMap id="BaseResultMap" type="CardBinEntity">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+
+        <result column="bank_code" property="bankCode"/>
+        <result column="org_name" property="orgName"/>
+        <result column="org_code" property="orgCode"/>
+
+        <result column="card_name" property="cardName"/>
+        <result column="no_length" property="noLength"/>
+
+        <result column="main_card_no" property="mainCardNo"/>
+        <result column="bin_length" property="binLength"/>
+        <result column="bin_value" property="binValue"/>
+
+        <result column="card_type" property="cardType"/>
+        <result column="created_date" property="createdDate"/>
+        <result column="modified_date" property="modifiedDate"/>
+        <result column="delete_flag" property="deleteFlag"/>
+    </resultMap>
+
+    <sql id="column">
+        id,bank_code,org_name,org_code,card_name,no_length,
+        main_card_no,bin_length,bin_value,card_Type,created_date,modified_date,delete_flag
+    </sql>
+
+    <select id="getCardBin" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="column"/>
+        from base_bank_card_bin_dict
+        where NO_LENGTH = LENGTH(#{cardNo }) AND
+        BIN_VALUE = LEFT(#{cardNo },BIN_LENGTH)
+        ORDER BY BIN_LENGTH DESC
+    </select>
+
+</mapper>
