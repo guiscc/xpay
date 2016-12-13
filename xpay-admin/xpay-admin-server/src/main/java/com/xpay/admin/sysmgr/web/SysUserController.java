@@ -3,12 +3,12 @@ package com.xpay.admin.sysmgr.web;
 import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.xpay.admin.common.constants.AppConstants;
+import com.xpay.admin.common.control.BaseController;
+import com.xpay.admin.common.exception.XpayAdminException;
 import com.xpay.admin.sysmgr.entity.SysUser;
 import com.xpay.admin.sysmgr.service.XpaySysUserService;
-import com.ninefbank.smallpay.common.exception.ApplicationException;
-import com.ninefbank.smallpay.common.util.MD5Util;
-import com.ninefbank.smallpay.common.util.StringUtil;
-import com.ninefbank.smallpay.common.web.BaseController;
+import com.xpay.common.utils.jce.DigestUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,8 +49,8 @@ public class SysUserController extends BaseController {
 				return buildErrorResult("验证码错误");
 			}
 			//校验登录名和登录密码
-			if(StringUtil.isNotBlank(loginPwd) && StringUtil.isNotBlank(loginName)){
-				loginPwd = MD5Util.MD5(loginPwd);
+			if(!StringUtils.isBlank(loginPwd) && !StringUtils.isBlank(loginName)){
+				loginPwd = DigestUtil.md5(loginPwd.getBytes());
 				SysUser loginUser = sysUserService.login(loginName, loginPwd);
 				if(null == loginUser){
 					return buildErrorResult("用户名或密码错误");
@@ -79,13 +79,13 @@ public class SysUserController extends BaseController {
 
 	/**
 	 * 分页查询角色/岗位
-	 * @param pageSize
-	 * @param currentPageNum
+	 * @param page
+	 * @param condition
 	 * @return
 	 */
 	@RequestMapping(value = "/querySysUser", method = RequestMethod.POST)
 	public @ResponseBody
-	Map<String, Object> querySysUser(@RequestParam Integer rows, @RequestParam Integer page, @RequestParam String condition) {
+	Map<String, Object> querySysUser(@RequestParam Integer rows, @RequestParam Integer page, @RequestParam String condition) throws XpayAdminException {
 		
 		Map<String, Object> params = new HashMap<String, Object>();
 		
@@ -105,7 +105,7 @@ public class SysUserController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = "/queryUserRoles", method = RequestMethod.POST)
-	public @ResponseBody Map<String, Object> queryUserRoles(@RequestParam long userId) {
+	public @ResponseBody Map<String, Object> queryUserRoles(@RequestParam long userId) throws XpayAdminException {
 		
 		long[] urrs = sysUserService.getUserRoles(userId);
 		
@@ -114,12 +114,12 @@ public class SysUserController extends BaseController {
 	
 	/**
 	 * 新增角色/岗位
-	 * @param p2pUser
+	 * @param 
 	 * @return
 	 */
 	@RequestMapping(value = "/addSysUser", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> addSysUser(@RequestBody SysUser sysUser)throws ApplicationException {
+	public Map<String, Object> addSysUser(@RequestBody SysUser sysUser)throws XpayAdminException {
 		Map<String, Object> ret = new HashMap<String, Object>();
 		sysUserService.saveSysUser(sysUser);
 		ret.put("success", true);
@@ -128,12 +128,12 @@ public class SysUserController extends BaseController {
 	
 	/**
 	 * 更新角色/岗位
-	 * @param p2pUser
+	 * @param 
 	 * @return
 	 */
 	@RequestMapping(value = "/updateSysUser", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> updateSysUser(@RequestBody SysUser sysUser)throws ApplicationException {
+	public Map<String, Object> updateSysUser(@RequestBody SysUser sysUser)throws XpayAdminException {
 		Map<String, Object> ret = new HashMap<String, Object>();
 		sysUserService.updateSysUser(sysUser);
 		ret.put("success", true);
@@ -144,11 +144,11 @@ public class SysUserController extends BaseController {
 	 * 删除角色/岗位
 	 * @param id 角色/岗位ID
 	 * @return
-	 * @throws com.ninefbank.smallpay.common.exception.ApplicationException
+	 * @throws 
 	 */
 	@RequestMapping(value = "/delSysUser", method = RequestMethod.POST)
 	public @ResponseBody
-	Map<String, Object> delSysUser(@RequestParam long id) throws ApplicationException {
+	Map<String, Object> delSysUser(@RequestParam long id) throws XpayAdminException {
 		Map<String, Object> ret = new HashMap<String, Object>();
 		sysUserService.delSysUser(id);
 		ret.put("success", true);
@@ -160,7 +160,7 @@ public class SysUserController extends BaseController {
 		Map<String, Object> ret = new HashMap<String, Object>();
 		try {
 			SysUser sysUser = (SysUser) request.getSession().getAttribute(AppConstants.CURRENT_LOGIN_USER);
-			sysUserService.updatePwd(MD5Util.MD5(newPwd), String.valueOf(sysUser.getId()));
+			sysUserService.updatePwd(DigestUtil.md5(newPwd.getBytes()), String.valueOf(sysUser.getId()));
 			ret.put("success", true);
 		} catch (Exception e) {
 			logger.error("系统用户-修改密码失败",e);
@@ -172,10 +172,10 @@ public class SysUserController extends BaseController {
 	 * 根据ID获取角色/岗位
 	 * @param id 角色/岗位ID
 	 * @return
-	 * @throws com.ninefbank.smallpay.common.exception.ApplicationException
+	 * @throws 
 	 */
 	@RequestMapping(value = "/getSysUser", method = RequestMethod.POST)
-	public @ResponseBody Map<String, Object> getSysUser(@RequestParam long id) throws ApplicationException {
+	public @ResponseBody Map<String, Object> getSysUser(@RequestParam long id) throws XpayAdminException {
 		Map<String, Object> result = new HashMap<String, Object>();
 		SysUser data = sysUserService.getSysUser(id);
 		result.put("success", true);

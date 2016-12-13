@@ -4,6 +4,7 @@ import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.xpay.admin.common.constants.AppConstants;
 import com.xpay.admin.common.control.BaseController;
+import com.xpay.admin.common.exception.XpayAdminException;
 import com.xpay.admin.sysmgr.entity.SysMenu;
 import com.xpay.admin.sysmgr.entity.SysUser;
 import com.xpay.admin.sysmgr.service.XpaySysMenuService;
@@ -36,12 +37,12 @@ public class SysMenuController extends BaseController {
 	/**
 	 * 分页查询菜单
 	 * @param pageSize
-	 * @param currentPageNum
+	 * @param
 	 * @return
 	 */
 	@RequestMapping(value = "/querySysMenu", method = RequestMethod.POST)
 	public @ResponseBody
-	Map<String, Object> querySysMenu(@RequestParam Integer pageSize, @RequestParam Integer page, @RequestParam String condition) {
+	Map<String, Object> querySysMenu(@RequestParam Integer pageSize, @RequestParam Integer page, @RequestParam String condition) throws XpayAdminException {
 		
 		Map<String, Object> params = new HashMap<String, Object>();
 		
@@ -58,12 +59,12 @@ public class SysMenuController extends BaseController {
 	
 	/**
 	 * 新增菜单
-	 * @param p2pUser
+	 * @param 
 	 * @return
 	 */
 	@RequestMapping(value = "/addSysMenu", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> addSysMenu(@RequestBody SysMenu sysMenu)throws XpayPaymentException {
+	public Map<String, Object> addSysMenu(@RequestBody SysMenu sysMenu)throws XpayAdminException {
 		Map<String, Object> ret = new HashMap<String, Object>();
 		sysMenuService.saveSysMenu(sysMenu);
 		ret.put("success", true);
@@ -72,12 +73,12 @@ public class SysMenuController extends BaseController {
 	
 	/**
 	 * 更新菜单
-	 * @param p2pUser
+	 * @param 
 	 * @return
 	 */
 	@RequestMapping(value = "/updateSysMenu", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> updateSysMenu(@RequestBody SysMenu sysMenu)throws XpayPaymentException {
+	public Map<String, Object> updateSysMenu(@RequestBody SysMenu sysMenu)throws XpayAdminException {
 		Map<String, Object> ret = new HashMap<String, Object>();
 		sysMenuService.updateSysMenu(sysMenu);
 		ret.put("success", true);
@@ -88,11 +89,11 @@ public class SysMenuController extends BaseController {
 	 * 删除菜单
 	 * @param id 菜单ID
 	 * @return
-	 * @throws com.ninefbank.smallpay.common.exception.XpayPaymentException
+	 * @throws 
 	 */
 	@RequestMapping(value = "/delSysMenu", method = RequestMethod.POST)
 	public @ResponseBody
-	Map<String, Object> delSysMenu(@RequestParam long id) throws XpayPaymentException {
+	Map<String, Object> delSysMenu(@RequestParam long id) throws XpayAdminException {
 		Map<String, Object> ret = new HashMap<String, Object>();
 		sysMenuService.delSysMenu(id);
 		ret.put("success", true);
@@ -103,10 +104,10 @@ public class SysMenuController extends BaseController {
 	 * 根据ID获取菜单
 	 * @param id 菜单ID
 	 * @return
-	 * @throws com.ninefbank.smallpay.common.exception.XpayPaymentException
+	 * @throws 
 	 */
 	@RequestMapping(value = "/getSysMenu", method = RequestMethod.POST)
-	public @ResponseBody Map<String, Object> getSysMenu(@RequestParam long id) throws XpayPaymentException {
+	public @ResponseBody Map<String, Object> getSysMenu(@RequestParam long id) throws XpayAdminException {
 		Map<String, Object> result = new HashMap<String, Object>();
 		SysMenu data = sysMenuService.getSysMenu(id);
 		result.put("success", true);
@@ -117,10 +118,10 @@ public class SysMenuController extends BaseController {
 	/**
 	 * 获取菜单�?
 	 * @return
-	 * @throws com.ninefbank.smallpay.common.exception.XpayPaymentException
+	 * @throws 
 	 */
 	@RequestMapping(value = "/getSysMenuTree", method = RequestMethod.POST)
-	public @ResponseBody Map<String, Object> getMenuTree() throws XpayPaymentException {
+	public @ResponseBody Map<String, Object> getMenuTree() throws XpayAdminException {
 		Map<String, Object> result = new HashMap<String, Object>();
 		List<TreeNode> data = sysMenuService.getMenuTree(true, null);
 		result.put("success", true);
@@ -131,10 +132,10 @@ public class SysMenuController extends BaseController {
 	/**
 	 * 获取二级菜单�?
 	 * @return
-	 * @throws com.ninefbank.smallpay.common.exception.XpayPaymentException
+	 * @throws 
 	 */
 	@RequestMapping(value = "/getSysMenuTreeLeaf1", method = RequestMethod.POST)
-	public @ResponseBody Map<String, Object> getMenuTreeLeaf1() throws XpayPaymentException {
+	public @ResponseBody Map<String, Object> getMenuTreeLeaf1() throws XpayAdminException {
 		Map<String, Object> result = new HashMap<String, Object>();
 		List<TreeNode> data = sysMenuService.getMenuTree(false, null);
 		result.put("success", true);
@@ -144,15 +145,15 @@ public class SysMenuController extends BaseController {
 
 	/**
 	 * 查询角色授权菜单
-	 * @param roleId 角色ID
+	 * @param
 	 * @return
-	 * @throws com.ninefbank.smallpay.common.exception.XpayPaymentException
+	 * @throws 
 	 */
 	@RequestMapping(value = "/getCurrentRoleMenus", method = RequestMethod.POST)
-	public @ResponseBody Map<String, Object> getRoleMenus(HttpServletRequest request) throws XpayPaymentException {
+	public @ResponseBody Map<String, Object> getRoleMenus(HttpServletRequest request) throws XpayAdminException {
 		SysUser currentLoginUser = (SysUser)request.getSession().getAttribute(AppConstants.CURRENT_LOGIN_USER);
 		if(null == currentLoginUser || null == currentLoginUser.getCurrentRole()){
-			throw new XpayPaymentException("wrong.login");
+			throw new XpayAdminException("wrong.login");
 		}
 		Map<String, Object> result = new HashMap<String, Object>();
 		List<TreeNode> data = sysMenuService.getRoleMenus(currentLoginUser.getCurrentRole().getId());
@@ -172,7 +173,7 @@ public class SysMenuController extends BaseController {
 	 * @throws java.io.IOException
 	 */
 	@RequestMapping(value = "/sessiontimeout", method = RequestMethod.POST)
-	public @ResponseBody Map<String, Object> sessiontimeout(HttpServletRequest request,HttpServletResponse response) throws XpayPaymentException, IOException {
+	public @ResponseBody Map<String, Object> sessiontimeout(HttpServletRequest request,HttpServletResponse response) throws XpayAdminException, IOException {
 	              
 	        Map<String, Object> result = new HashMap<String, Object>();
 	         HttpSession session = request.getSession(false);

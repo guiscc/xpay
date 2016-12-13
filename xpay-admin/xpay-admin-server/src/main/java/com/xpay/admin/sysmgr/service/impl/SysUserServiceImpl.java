@@ -2,6 +2,7 @@ package com.xpay.admin.sysmgr.service.impl;
 
 import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.github.miemiedev.mybatis.paginator.domain.PageList;
+import com.xpay.admin.common.exception.XpayAdminException;
 import com.xpay.admin.sysmgr.dao.SysRoleMapper;
 import com.xpay.admin.sysmgr.dao.SysUserMapper;
 import com.xpay.admin.sysmgr.dao.SysUserRoleRelMapper;
@@ -9,8 +10,7 @@ import com.xpay.admin.sysmgr.entity.SysRole;
 import com.xpay.admin.sysmgr.entity.SysUser;
 import com.xpay.admin.sysmgr.entity.SysUserRoleRel;
 import com.xpay.admin.sysmgr.service.XpaySysUserService;
-import com.ninefbank.smallpay.common.exception.ApplicationException;
-import com.ninefbank.smallpay.common.util.MD5Util;
+import com.xpay.common.utils.jce.DigestUtil;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +45,7 @@ public class SysUserServiceImpl implements XpaySysUserService {
 	/* (non-Javadoc)
 	 * @see com.wangzhenlei.ssm.sysmgr.service.XpaySysUserService#login(java.lang.String, java.lang.String)
 	 */
-	public SysUser login(String loginName, String loginPwd) throws ApplicationException {
+	public SysUser login(String loginName, String loginPwd) throws XpayAdminException {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("loginName", loginName);
 		params.put("loginPwd", loginPwd);
@@ -54,7 +54,7 @@ public class SysUserServiceImpl implements XpaySysUserService {
 			ret = sysUserMapper.queryByParams(params);
 		} catch (Exception e) {
 			logger.error("登录失败", e);
-			throw new ApplicationException("error.sysuser.login");
+			throw new XpayAdminException("error.sysuser.login");
 		}
 		if(ret == null || ret.size() == 0){
 			return null;
@@ -76,7 +76,7 @@ public class SysUserServiceImpl implements XpaySysUserService {
 			return sysUser;
 		} catch (Exception e) {
 			logger.error("登录失败", e);
-			throw new ApplicationException("error.sysuser.login");
+			throw new XpayAdminException("error.sysuser.login");
 		}
 	}
 	
@@ -87,10 +87,10 @@ public class SysUserServiceImpl implements XpaySysUserService {
 	 */
 	@Transactional(readOnly = false, rollbackFor=Exception.class )
 	public void saveSysUser(SysUser sysUser)
-			throws ApplicationException {
+			throws XpayAdminException {
 		try{
 			//插入用户主表
-			sysUser.setLoginPwd(MD5Util.MD5("123456"));
+			sysUser.setLoginPwd(DigestUtil.md5("123456".getBytes()));
 			sysUserMapper.insertSysUser(sysUser);
 			
 			//删除用户角色
@@ -111,12 +111,12 @@ public class SysUserServiceImpl implements XpaySysUserService {
 			
 		}catch(Exception e){
 			logger.error("添加用户失败", e);
-			throw new ApplicationException("error.dictitem.add");
+			throw new XpayAdminException("error.dictitem.add");
 		}
 	}
 
 	@Transactional(readOnly = false, rollbackFor=Exception.class )
-	public void updateSysUser(SysUser sysUser) throws ApplicationException {
+	public void updateSysUser(SysUser sysUser) throws XpayAdminException {
 		try{
 			sysUserMapper.updateSysUser(sysUser);
 			
@@ -138,12 +138,12 @@ public class SysUserServiceImpl implements XpaySysUserService {
 			
 		}catch(Exception e){
 			logger.error("更新用户失败", e);
-			throw new ApplicationException("error.dictitem.update");
+			throw new XpayAdminException("error.dictitem.update");
 		}
 	}
 
 	@Transactional(readOnly = false, rollbackFor=Exception.class )
-	public void delSysUser(long id) throws ApplicationException {
+	public void delSysUser(long id) throws XpayAdminException {
 		try{
 			//删除系统用户
 			sysUserMapper.delSysUser(id);
@@ -153,32 +153,32 @@ public class SysUserServiceImpl implements XpaySysUserService {
 			
 		}catch(Exception e){
 			logger.error("删除用户失败", e);
-			throw new ApplicationException("error.dictitem.delete");
+			throw new XpayAdminException("error.dictitem.delete");
 		}
 	}
 	
-	public SysUser getSysUser(long id) throws ApplicationException {
+	public SysUser getSysUser(long id) throws XpayAdminException {
 		try{
 			return sysUserMapper.getSysUserById(id);
 		}catch(Exception e){
 			logger.error("获取用户失败", e);
-			throw new ApplicationException("error.sysUser.get");
+			throw new XpayAdminException("error.sysUser.get");
 		}
 	}
 
-	public PageList<SysUser> queryWithPage( Map<String, Object> params, PageBounds pageBounds) throws ApplicationException {
+	public PageList<SysUser> queryWithPage( Map<String, Object> params, PageBounds pageBounds) throws XpayAdminException {
 		try{
 			return sysUserMapper.queryWithPage(params, pageBounds);
 		} catch (Exception e) {
 			logger.error("查询用户失败", e);
-			throw new ApplicationException("error.membermain.query");
+			throw new XpayAdminException("error.membermain.query");
 		}
 	}
 	
 	/* (non-Javadoc)
 	 * @see com.wangzhenlei.ssm.sysmgr.service.XpaySysUserService#getUserRoles(long)
 	 */
-	public long[] getUserRoles(long userId) throws ApplicationException {
+	public long[] getUserRoles(long userId) throws XpayAdminException {
 		long[] userRoleIds = null;
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("userId", userId);
@@ -193,7 +193,7 @@ public class SysUserServiceImpl implements XpaySysUserService {
 			}
 		} catch (Exception e) {
 			logger.error("查询用户授权角色失败", e);
-			throw new ApplicationException("error.membermain.query");
+			throw new XpayAdminException("error.membermain.query");
 		}
 		return userRoleIds;
 	}

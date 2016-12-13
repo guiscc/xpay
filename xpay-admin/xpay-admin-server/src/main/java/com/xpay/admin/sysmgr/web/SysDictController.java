@@ -2,12 +2,12 @@ package com.xpay.admin.sysmgr.web;
 
 import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.github.miemiedev.mybatis.paginator.domain.PageList;
+import com.xpay.admin.common.control.BaseController;
+import com.xpay.admin.common.exception.XpayAdminException;
 import com.xpay.admin.sysmgr.entity.SysDictItem;
 import com.xpay.admin.sysmgr.entity.SysDictType;
 import com.xpay.admin.sysmgr.service.XpaySysDictItemService;
 import com.xpay.admin.sysmgr.service.XpaySysDictTypeService;
-import com.ninefbank.smallpay.common.exception.ApplicationException;
-import com.ninefbank.smallpay.common.web.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -37,12 +37,12 @@ public class SysDictController extends BaseController {
 	 * @param typeCode 字典类型编码
 	 * @param itemCode 字典项编�?
 	 * @return 字典项名�?
-	 * @throws com.ninefbank.smallpay.common.exception.ApplicationException
+	 * @throws 
 	 */
 	@RequestMapping(value = "getItemName", method = RequestMethod.POST)
 	public @ResponseBody
 	Map<String, Object> getItemName(@RequestParam String typeCode,
-			@RequestParam String itemCode) throws ApplicationException {
+			@RequestParam String itemCode) throws XpayAdminException {
 		Map<String, Object> ret = new HashMap<String, Object>();
 		String data = dictItemService.getItemName(typeCode, itemCode);
 		ret.put("success", true);
@@ -55,12 +55,12 @@ public class SysDictController extends BaseController {
 	 * @param typeCode 字典类型编码
 	 * @param itemCode 字典项编�?
 	 * @return 字典项名�?
-	 * @throws com.ninefbank.smallpay.common.exception.ApplicationException
+	 * @throws 
 	 */
 	@RequestMapping(value = "getItemClass", method = RequestMethod.POST)
 	public @ResponseBody
 	Map<String, Object> getItemClass(@RequestParam String typeCode,
-			@RequestParam String itemCode) throws ApplicationException {
+			@RequestParam String itemCode) throws XpayAdminException {
 		Map<String, Object> ret = new HashMap<String, Object>();
 		String data = dictItemService.getItemClass(typeCode, itemCode);
 		ret.put("success", true);
@@ -72,10 +72,10 @@ public class SysDictController extends BaseController {
 	 * 根据字典类型编码，获取该类型的所有字典项
 	 * @param typeCode 字典类型编码
 	 * @return
-	 * @throws com.ninefbank.smallpay.common.exception.ApplicationException
+	 * @throws 
 	 */
 	@RequestMapping(value = "getDictItems", method = RequestMethod.POST)
-	public @ResponseBody Map<String, Object> getDictItems(@RequestParam String typeCode) throws ApplicationException {
+	public @ResponseBody Map<String, Object> getDictItems(@RequestParam String typeCode) throws XpayAdminException {
 		Map<String, Object> ret = new HashMap<String, Object>();
 		List<SysDictItem> data = dictItemService.getDictItems(typeCode);
 		ret.put("success", true);
@@ -86,10 +86,10 @@ public class SysDictController extends BaseController {
 	/**
 	 * 从缓存中获取�?��字典数据，用户也页面端进行字典数据缓�?
 	 * @return
-	 * @throws com.ninefbank.smallpay.common.exception.ApplicationException
+	 * @throws 
 	 */
 	@RequestMapping(value = "getAllFromCache", method = RequestMethod.POST)
-	public @ResponseBody Map<String, Object> getAll() throws ApplicationException {
+	public @ResponseBody Map<String, Object> getAll() throws XpayAdminException {
 		Map<String, Object> dictData = dictItemService.getMap();
 		return this.buildResult(dictData);
 	}
@@ -102,7 +102,7 @@ public class SysDictController extends BaseController {
 	 */
 	@RequestMapping(value = "/queryDictItem", method = RequestMethod.POST)
 	public @ResponseBody
-	Map<String, Object> queryDictItem(@RequestParam Integer pageSize, @RequestParam Integer page, @RequestParam String condition) {
+	Map<String, Object> queryDictItem(@RequestParam Integer pageSize, @RequestParam Integer page, @RequestParam String condition) throws XpayAdminException {
 
 		Map<String, Object> params = new HashMap<String, Object>();
 
@@ -118,12 +118,12 @@ public class SysDictController extends BaseController {
 
 	/**
 	 * 新增字典�?
-	 * @param p2pUser
+	 * @param 
 	 * @return
 	 */
 	@RequestMapping(value = "/addDictItem", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> addDictItem(@RequestBody SysDictItem dictType)throws ApplicationException {
+	public Map<String, Object> addDictItem(@RequestBody SysDictItem dictType)throws XpayAdminException {
 		Map<String, Object> ret = new HashMap<String, Object>();
 		dictItemService.saveSysDictItem(dictType);
 		ret.put("success", true);
@@ -132,12 +132,12 @@ public class SysDictController extends BaseController {
 
 	/**
 	 * 更新字典�?
-	 * @param p2pUser
+	 * @param 
 	 * @return
 	 */
 	@RequestMapping(value = "/updateDictItem", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> updateDictItem(@RequestBody SysDictItem dictType)throws ApplicationException {
+	public Map<String, Object> updateDictItem(@RequestBody SysDictItem dictType)throws XpayAdminException {
 		Map<String, Object> ret = new HashMap<String, Object>();
 		dictItemService.updateSysDictItem(dictType);
 		ret.put("success", true);
@@ -148,11 +148,11 @@ public class SysDictController extends BaseController {
 	 * 删除字典�?
 	 * @param id 字典项ID
 	 * @return
-	 * @throws com.ninefbank.smallpay.common.exception.ApplicationException
+	 * @throws 
 	 */
 	@RequestMapping(value = "/delDictItem", method = RequestMethod.POST)
 	public @ResponseBody
-	Map<String, Object> delDictItem(@RequestParam long id) throws ApplicationException {
+	Map<String, Object> delDictItem(@RequestParam long id) throws XpayAdminException {
 		Map<String, Object> ret = new HashMap<String, Object>();
 		dictItemService.delSysDictItem(id);
 		ret.put("success", true);
@@ -163,10 +163,10 @@ public class SysDictController extends BaseController {
 	 * 根据ID获取字典�?
 	 * @param id 字典项ID
 	 * @return
-	 * @throws com.ninefbank.smallpay.common.exception.ApplicationException
+	 * @throws 
 	 */
 	@RequestMapping(value = "/getDictItem", method = RequestMethod.POST)
-	public @ResponseBody Map<String, Object> getDictItem(@RequestParam long id) throws ApplicationException {
+	public @ResponseBody Map<String, Object> getDictItem(@RequestParam long id) throws XpayAdminException {
 		Map<String, Object> result = new HashMap<String, Object>();
 		SysDictItem data = dictItemService.getSysDictItem(id);
 		result.put("success", true);
@@ -186,7 +186,7 @@ public class SysDictController extends BaseController {
 	 */
 	@RequestMapping(value = "/queryDictType", method = RequestMethod.POST)
 	public @ResponseBody
-	Map<String, Object> queryDictType(@RequestParam Integer pageSize, @RequestParam Integer page, @RequestParam String condition) {
+	Map<String, Object> queryDictType(@RequestParam Integer pageSize, @RequestParam Integer page, @RequestParam String condition) throws XpayAdminException {
 
 		Map<String, Object> params = new HashMap<String, Object>();
 
@@ -202,12 +202,12 @@ public class SysDictController extends BaseController {
 
 	/**
 	 * 新增字典类型
-	 * @param p2pUser
+	 * @param 
 	 * @return
 	 */
 	@RequestMapping(value = "/addDictType", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> addDictType(@RequestBody SysDictType dictType)throws ApplicationException {
+	public Map<String, Object> addDictType(@RequestBody SysDictType dictType)throws XpayAdminException {
 		Map<String, Object> ret = new HashMap<String, Object>();
 		dictTypeService.saveSysDictType(dictType);
 		ret.put("success", true);
@@ -216,12 +216,12 @@ public class SysDictController extends BaseController {
 
 	/**
 	 * 更新字典类型
-	 * @param p2pUser
+	 * @param 
 	 * @return
 	 */
 	@RequestMapping(value = "/updateDictType", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> updateDictType(@RequestBody SysDictType dictType)throws ApplicationException {
+	public Map<String, Object> updateDictType(@RequestBody SysDictType dictType)throws XpayAdminException {
 		Map<String, Object> ret = new HashMap<String, Object>();
 		dictTypeService.updateSysDictType(dictType);
 		ret.put("success", true);
@@ -232,11 +232,11 @@ public class SysDictController extends BaseController {
 	 * 删除字典类型
 	 * @param id 字典类型ID
 	 * @return
-	 * @throws com.ninefbank.smallpay.common.exception.ApplicationException
+	 * @throws 
 	 */
 	@RequestMapping(value = "/delDictType", method = RequestMethod.POST)
 	public @ResponseBody
-	Map<String, Object> delDictType(@RequestParam long id) throws ApplicationException {
+	Map<String, Object> delDictType(@RequestParam long id) throws XpayAdminException {
 		Map<String, Object> ret = new HashMap<String, Object>();
 		dictTypeService.delSysDictType(id);
 		ret.put("success", true);
@@ -247,10 +247,10 @@ public class SysDictController extends BaseController {
 	 * 根据ID获取字典类型
 	 * @param id 字典类型ID
 	 * @return
-	 * @throws com.ninefbank.smallpay.common.exception.ApplicationException
+	 * @throws 
 	 */
 	@RequestMapping(value = "/getDictType", method = RequestMethod.POST)
-	public @ResponseBody Map<String, Object> getDictType(@RequestParam long id) throws ApplicationException {
+	public @ResponseBody Map<String, Object> getDictType(@RequestParam long id) throws XpayAdminException {
 		Map<String, Object> result = new HashMap<String, Object>();
 		SysDictType data = dictTypeService.getSysDictType(id);
 		result.put("success", true);
@@ -260,7 +260,7 @@ public class SysDictController extends BaseController {
 	
 	
 	@RequestMapping(value = "/getDictTree", method = RequestMethod.POST)
-	public @ResponseBody Map<String, Object> getDictTree() throws ApplicationException {
+	public @ResponseBody Map<String, Object> getDictTree() throws XpayAdminException {
 		Map<String, Object> result = new HashMap<String, Object>();
 		List<TreeNode> data = dictTypeService.getDictTypeTree();
 		result.put("success", true);

@@ -2,11 +2,11 @@ package com.xpay.admin.sysmgr.service.impl;
 
 import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.github.miemiedev.mybatis.paginator.domain.PageList;
+import com.xpay.admin.common.exception.XpayAdminException;
 import com.xpay.admin.sysmgr.dao.SysDictTypeMapper;
 import com.xpay.admin.sysmgr.entity.SysDictType;
 import com.xpay.admin.sysmgr.service.XpaySysDictTypeService;
 import com.xpay.admin.sysmgr.web.TreeNode;
-import com.ninefbank.smallpay.common.exception.ApplicationException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,12 +36,12 @@ public class SysDictTypeServiceImpl implements XpaySysDictTypeService {
 //	@Autowired
 //	private SysDictItemMapper sysDictItemMapper;
 	
-	public PageList<SysDictType> queryWithPage( Map<String, Object> params, PageBounds pageBounds) throws ApplicationException {
+	public PageList<SysDictType> queryWithPage( Map<String, Object> params, PageBounds pageBounds) throws XpayAdminException {
 		try{
 			return sysDictTypeMapper.queryWithPage(params, pageBounds);
 		}catch(Exception e){
 			logger.error("分页查询字典类型失败", e);
-			throw new ApplicationException("error.dict.query");
+			throw new XpayAdminException("error.dict.query");
 		}
 	}
 
@@ -49,12 +49,12 @@ public class SysDictTypeServiceImpl implements XpaySysDictTypeService {
 	 * @see org.pbccrc.devplatform.component.dictionary.service.XpaySysDictTypeService#saveSysDictType(javax.servlet.http.HttpSession, org.pbccrc.devplatform.component.dictionary.entity.SysDictType)
 	 */
 	@Transactional(readOnly = false, rollbackFor=Exception.class )
-	public void saveSysDictType(SysDictType dictType) throws ApplicationException {
+	public void saveSysDictType(SysDictType dictType) throws XpayAdminException {
 		try{
 			sysDictTypeMapper.insertDictType(dictType);
 		}catch(Exception e){
 			logger.error("添加字典类型失败", e);
-			throw new ApplicationException("error.dict.add");
+			throw new XpayAdminException("error.dict.add");
 		}
 	}
 
@@ -63,12 +63,12 @@ public class SysDictTypeServiceImpl implements XpaySysDictTypeService {
 	 */
 	@Transactional(readOnly = false, rollbackFor=Exception.class )
 	public void updateSysDictType(SysDictType dictType)
-			throws ApplicationException {
+			throws XpayAdminException {
 		try{
 			sysDictTypeMapper.updateDictType(dictType);
 		}catch(Exception e){
 			logger.error("更新字典类型失败", e);
-			throw new ApplicationException("error.dict.update");
+			throw new XpayAdminException("error.dict.update");
 		}
 	}
 
@@ -76,24 +76,24 @@ public class SysDictTypeServiceImpl implements XpaySysDictTypeService {
 	 * @see org.pbccrc.devplatform.component.dictionary.service.XpaySysDictTypeService#delSysDictType(long)
 	 */
 	@Transactional(readOnly = false, rollbackFor=Exception.class )
-	public void delSysDictType(long id) throws ApplicationException {
+	public void delSysDictType(long id) throws XpayAdminException {
 		try{
 			sysDictTypeMapper.delDictType(id);
 		}catch(Exception e){
 			logger.error("删除字典类型失败", e);
-			throw new ApplicationException("error.dict.delete");
+			throw new XpayAdminException("error.dict.delete");
 		}
 	}
 
 	/* (non-Javadoc)
 	 * @see org.pbccrc.devplatform.component.dictionary.service.XpaySysDictTypeService#getSysDictType(long)
 	 */
-	public SysDictType getSysDictType(long id) throws ApplicationException {
+	public SysDictType getSysDictType(long id) throws XpayAdminException {
 		try{
 			return sysDictTypeMapper.getDictTypeById(id);
 		}catch(Exception e){
 			logger.error("获取字典类型失败", e);
-			throw new ApplicationException("error.dict.get");
+			throw new XpayAdminException("error.dict.get");
 		}
 	}
 
@@ -101,7 +101,7 @@ public class SysDictTypeServiceImpl implements XpaySysDictTypeService {
 	 * 获取字典类型树形结构数据
 	 * @see com.wangzhenlei.ssm.sysmgr.service.XpaySysDictTypeService#getDictTypeTree()
 	 */
-	public List<TreeNode> getDictTypeTree() throws ApplicationException {
+	public List<TreeNode> getDictTypeTree() throws XpayAdminException {
 		
 		List<TreeNode> ret = new ArrayList<TreeNode>();
 		
@@ -112,7 +112,7 @@ public class SysDictTypeServiceImpl implements XpaySysDictTypeService {
 			bizDictTypes = sysDictTypeMapper.queryByParams(bizParams);
 		} catch (Exception e) {
 			logger.error("查询字典类型失败", e);
-			throw new ApplicationException("error.dict.query");
+			throw new XpayAdminException("error.dict.query");
 		}
 		List<TreeNode> bizDictNodes = new ArrayList<TreeNode>();
 		for(SysDictType type : bizDictTypes){
@@ -132,7 +132,7 @@ public class SysDictTypeServiceImpl implements XpaySysDictTypeService {
 			sysDictTypes = sysDictTypeMapper.queryByParams(sysParams);
 		} catch (Exception e) {
 			logger.error("查询字典类型失败", e);
-			throw new ApplicationException("error.dict.query");
+			throw new XpayAdminException("error.dict.query");
 		}
 		List<TreeNode> sysDictItems = new ArrayList<TreeNode>();
 		for(SysDictType type : sysDictTypes){

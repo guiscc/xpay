@@ -2,6 +2,7 @@ package com.xpay.admin.sysmgr.service.impl;
 
 import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.github.miemiedev.mybatis.paginator.domain.PageList;
+import com.xpay.admin.common.exception.XpayAdminException;
 import com.xpay.admin.sysmgr.dao.SysRoleMapper;
 import com.xpay.admin.sysmgr.dao.SysRoleMenuRelMapper;
 import com.xpay.admin.sysmgr.entity.SysRole;
@@ -39,7 +40,7 @@ public class SysRoleServiceImpl implements XpaySysRoleService {
 	 * @see com.wangzhenlei.ssm.sysmgr.service.XpaySysRoleService#saveSysRole(com.wangzhenlei.ssm.sysmgr.entity.SysRole)
 	 */
 	@Transactional(readOnly = false, rollbackFor=Exception.class )
-	public void saveSysRole(SysRole sysRole)throws ApplicationException {
+	public void saveSysRole(SysRole sysRole)throws XpayAdminException {
 		try{
 			//保存角色信息
 			sysRoleMapper.insertSysRole(sysRole);
@@ -62,7 +63,7 @@ public class SysRoleServiceImpl implements XpaySysRoleService {
 			
 		}catch(Exception e){
 			logger.error("添加角色/岗位失败", e);
-			throw new ApplicationException("error.dictitem.add");
+			throw new XpayAdminException("error.dictitem.add");
 		}
 	}
 
@@ -70,7 +71,7 @@ public class SysRoleServiceImpl implements XpaySysRoleService {
 	 * @see com.wangzhenlei.ssm.sysmgr.service.XpaySysRoleService#updateSysRole(com.wangzhenlei.ssm.sysmgr.entity.SysRole)
 	 */
 	@Transactional(readOnly = false, rollbackFor=Exception.class )
-	public void updateSysRole(SysRole sysRole) throws ApplicationException {
+	public void updateSysRole(SysRole sysRole) throws XpayAdminException {
 		try{
 			//更新角色信息
 			sysRoleMapper.updateSysRole(sysRole);
@@ -93,7 +94,7 @@ public class SysRoleServiceImpl implements XpaySysRoleService {
 			
 		}catch(Exception e){
 			logger.error("更新角色/岗位失败", e);
-			throw new ApplicationException("error.dictitem.update");
+			throw new XpayAdminException("error.dictitem.update");
 		}
 	}
 
@@ -101,7 +102,7 @@ public class SysRoleServiceImpl implements XpaySysRoleService {
 	 * @see com.wangzhenlei.ssm.sysmgr.service.XpaySysRoleService#delSysRole(long)
 	 */
 	@Transactional(readOnly = false, rollbackFor=Exception.class )
-	public void delSysRole(long id) throws ApplicationException {
+	public void delSysRole(long id) throws XpayAdminException {
 		try{
 			//删除角色
 			sysRoleMapper.delSysRole(id);
@@ -111,38 +112,38 @@ public class SysRoleServiceImpl implements XpaySysRoleService {
 			
 		}catch(Exception e){
 			logger.error("删除角色/岗位失败", e);
-			throw new ApplicationException("error.dictitem.delete");
+			throw new XpayAdminException("error.dictitem.delete");
 		}
 	}
 	
 	/* (non-Javadoc)
 	 * @see com.wangzhenlei.ssm.sysmgr.service.XpaySysRoleService#getSysRole(long)
 	 */
-	public SysRole getSysRole(long id) throws ApplicationException {
+	public SysRole getSysRole(long id) throws XpayAdminException {
 		try{
 			return sysRoleMapper.getSysRoleById(id);
 		}catch(Exception e){
 			logger.error("获取角色/岗位失败", e);
-			throw new ApplicationException("error.sysRole.get");
+			throw new XpayAdminException("error.sysRole.get");
 		}
 	}
 
 	/* (non-Javadoc)
 	 * @see com.wangzhenlei.ssm.sysmgr.service.XpaySysRoleService#queryWithPage(java.util.Map, com.github.miemiedev.mybatis.paginator.domain.PageBounds)
 	 */
-	public PageList<SysRole> queryWithPage( Map<String, Object> params, PageBounds pageBounds) throws ApplicationException {
+	public PageList<SysRole> queryWithPage( Map<String, Object> params, PageBounds pageBounds) throws XpayAdminException {
 		try{
 			return sysRoleMapper.queryWithPage(params, pageBounds);
 		} catch (Exception e) {
 			logger.error("查询角色/岗位失败", e);
-			throw new ApplicationException("error.membermain.query");
+			throw new XpayAdminException("error.membermain.query");
 		}
 	}
 
 	/* (non-Javadoc)
 	 * @see com.wangzhenlei.ssm.sysmgr.service.XpaySysRoleService#getRoleMenus(long)
 	 */
-	public long[] getRoleMenus(long roleId) throws ApplicationException {
+	public long[] getRoleMenus(long roleId) throws XpayAdminException {
 		long[] roleMenuIds = null;
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("roleId", roleId);
@@ -157,7 +158,7 @@ public class SysRoleServiceImpl implements XpaySysRoleService {
 			}
 		} catch (Exception e) {
 			logger.error("查询角色授权功能菜单失败", e);
-			throw new ApplicationException("error.membermain.query");
+			throw new XpayAdminException("error.membermain.query");
 		}
 		return roleMenuIds;
 	}

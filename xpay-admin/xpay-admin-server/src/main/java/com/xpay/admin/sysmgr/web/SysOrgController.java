@@ -2,10 +2,10 @@ package com.xpay.admin.sysmgr.web;
 
 import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.github.miemiedev.mybatis.paginator.domain.PageList;
+import com.xpay.admin.common.control.BaseController;
+import com.xpay.admin.common.exception.XpayAdminException;
 import com.xpay.admin.sysmgr.entity.SysOrg;
 import com.xpay.admin.sysmgr.service.XpaySysOrgService;
-import com.ninefbank.smallpay.common.exception.ApplicationException;
-import com.ninefbank.smallpay.common.web.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -35,7 +35,7 @@ public class SysOrgController extends BaseController {
 	 */
 	@RequestMapping(value = "/querySysOrg", method = RequestMethod.POST)
 	public @ResponseBody
-	Map<String, Object> querySysOrg(@RequestParam Integer pageSize, @RequestParam Integer currentPageNum, @RequestParam String condition) {
+	Map<String, Object> querySysOrg(@RequestParam Integer pageSize, @RequestParam Integer currentPageNum, @RequestParam String condition) throws XpayAdminException {
 		
 		Map<String, Object> params = new HashMap<String, Object>();
 		
@@ -52,12 +52,12 @@ public class SysOrgController extends BaseController {
 	
 	/**
 	 * 新增机构
-	 * @param p2pUser
+	 * @param 
 	 * @return
 	 */
 	@RequestMapping(value = "/addSysOrg", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> addSysOrg(@RequestBody SysOrg sysOrg)throws ApplicationException {
+	public Map<String, Object> addSysOrg(@RequestBody SysOrg sysOrg)throws XpayAdminException {
 		Map<String, Object> ret = new HashMap<String, Object>();
 		sysOrgService.saveSysOrg(sysOrg);
 		ret.put("success", true);
@@ -66,12 +66,12 @@ public class SysOrgController extends BaseController {
 	
 	/**
 	 * 更新机构
-	 * @param p2pUser
+	 * @param 
 	 * @return
 	 */
 	@RequestMapping(value = "/updateSysOrg", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> updateSysOrg(@RequestBody SysOrg sysOrg)throws ApplicationException {
+	public Map<String, Object> updateSysOrg(@RequestBody SysOrg sysOrg)throws XpayAdminException {
 		Map<String, Object> ret = new HashMap<String, Object>();
 		sysOrgService.updateSysOrg(sysOrg);
 		ret.put("success", true);
@@ -82,11 +82,11 @@ public class SysOrgController extends BaseController {
 	 * 删除机构
 	 * @param id 机构ID
 	 * @return
-	 * @throws com.ninefbank.smallpay.common.exception.ApplicationException
+	 * @throws 
 	 */
 	@RequestMapping(value = "/delSysOrg", method = RequestMethod.POST)
 	public @ResponseBody
-	Map<String, Object> delSysOrg(@RequestParam long id) throws ApplicationException {
+	Map<String, Object> delSysOrg(@RequestParam long id) throws XpayAdminException {
 		Map<String, Object> ret = new HashMap<String, Object>();
 		sysOrgService.delSysOrg(id);
 		ret.put("success", true);
@@ -97,10 +97,10 @@ public class SysOrgController extends BaseController {
 	 * 根据ID获取机构
 	 * @param id 机构ID
 	 * @return
-	 * @throws com.ninefbank.smallpay.common.exception.ApplicationException
+	 * @throws 
 	 */
 	@RequestMapping(value = "/getSysOrg", method = RequestMethod.POST)
-	public @ResponseBody Map<String, Object> getSysOrg(@RequestParam long id) throws ApplicationException {
+	public @ResponseBody Map<String, Object> getSysOrg(@RequestParam long id) throws XpayAdminException {
 		Map<String, Object> result = new HashMap<String, Object>();
 		SysOrg data = sysOrgService.getSysOrg(id);
 		result.put("success", true);
@@ -109,7 +109,7 @@ public class SysOrgController extends BaseController {
 	}
 	
 	@RequestMapping(value = "/getSysOrgTree", method = RequestMethod.POST)
-	public @ResponseBody Map<String, Object> getDictTree(long id) throws ApplicationException {
+	public @ResponseBody Map<String, Object> getDictTree(long id) throws XpayAdminException {
 		Map<String, Object> result = new HashMap<String, Object>();
 		List<TreeNode> data = sysOrgService.getSysOrgTree(id);
 		result.put("success", true);

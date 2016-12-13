@@ -3,9 +3,9 @@ package com.xpay.admin.order.controller;
 import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.xpay.admin.common.Common;
+import com.xpay.admin.common.control.BaseController;
 import com.xpay.admin.order.entity.TradeOrder;
 import com.xpay.admin.order.service.TradeOrderService;
-import com.ninefbank.smallpay.common.web.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +18,7 @@ import java.util.Map;
 
 @Controller
 @RequestMapping("trade")
-public class TradeOrderController extends BaseController{
+public class TradeOrderController extends BaseController {
 
 	@Autowired
 	private TradeOrderService xtradeOrderService;

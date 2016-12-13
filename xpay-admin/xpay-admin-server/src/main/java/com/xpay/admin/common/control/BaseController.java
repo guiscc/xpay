@@ -8,9 +8,6 @@ import com.github.miemiedev.mybatis.paginator.domain.PageList;
 
 /**
  *
- * 
- * @author TanDong
- *
  */
 public class BaseController {
 
@@ -18,6 +15,7 @@ public class BaseController {
      *
      * @param pageSize
      * @param currentPageNum
+     * @param isContainsTotalCount
      * @return
      */
     public PageBounds buildPageBounds(Integer pageSize, Integer currentPageNum,
@@ -75,6 +73,15 @@ public class BaseController {
         return result;
     }
 
+    /**
+     *
+     * @param pageSize
+     * @param currentPageNum
+     * @param ret
+     * @param income
+     * @param outcome
+     * @return
+     */
     public Map<String, Object> buildResult(Integer pageSize, Integer currentPageNum,
                                            PageList<?> ret, String income, String outcome) {
         Map<String, Object> result = new HashMap<String, Object>();
@@ -97,7 +104,7 @@ public class BaseController {
     }
 
     /**
-     * 
+     *
      * @param errorMsg
      * @return
      */

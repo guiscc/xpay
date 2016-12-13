@@ -1,6 +1,9 @@
 package com.xpay.admin.order.controller;
 
+import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
+import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.xpay.admin.common.Common;
+import com.xpay.admin.common.control.BaseController;
 import com.xpay.admin.order.entity.PayOrder;
 import com.xpay.admin.order.service.PayOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +18,7 @@ import java.util.Map;
 
 @Controller
 @RequestMapping("pay")
-public class PayOrderController extends BaseController{
+public class PayOrderController extends BaseController {
 
 	@Autowired
 	private PayOrderService xpayOrderService;

@@ -2,10 +2,10 @@ package com.xpay.admin.sysmgr.web;
 
 import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.github.miemiedev.mybatis.paginator.domain.PageList;
+import com.xpay.admin.common.control.BaseController;
+import com.xpay.admin.common.exception.XpayAdminException;
 import com.xpay.admin.sysmgr.entity.SysRole;
 import com.xpay.admin.sysmgr.service.XpaySysRoleService;
-import com.ninefbank.smallpay.common.exception.ApplicationException;
-import com.ninefbank.smallpay.common.web.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -34,7 +34,7 @@ public class SysRoleController extends BaseController {
 	 */
 	@RequestMapping(value = "/querySysRole", method = RequestMethod.POST)
 	public @ResponseBody
-	Map<String, Object> querySysRole(@RequestParam Integer pageSize, @RequestParam Integer currentPageNum, @RequestParam String condition) {
+	Map<String, Object> querySysRole(@RequestParam Integer pageSize, @RequestParam Integer currentPageNum, @RequestParam String condition) throws XpayAdminException {
 		
 		Map<String, Object> params = new HashMap<String, Object>();
 		
@@ -50,12 +50,12 @@ public class SysRoleController extends BaseController {
 	
 	/**
 	 * 新增角色/岗位
-	 * @param p2pUser
+	 * @param 
 	 * @return
 	 */
 	@RequestMapping(value = "/addSysRole", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> addSysRole(@RequestBody SysRole sysRole)throws ApplicationException {
+	public Map<String, Object> addSysRole(@RequestBody SysRole sysRole)throws XpayAdminException {
 		Map<String, Object> ret = new HashMap<String, Object>();
 		sysRoleService.saveSysRole(sysRole);
 		ret.put("success", true);
@@ -64,12 +64,12 @@ public class SysRoleController extends BaseController {
 	
 	/**
 	 * 更新角色/岗位
-	 * @param p2pUser
+	 * @param 
 	 * @return
 	 */
 	@RequestMapping(value = "/updateSysRole", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> updateSysRole(@RequestBody SysRole sysRole)throws ApplicationException {
+	public Map<String, Object> updateSysRole(@RequestBody SysRole sysRole)throws XpayAdminException {
 		Map<String, Object> ret = new HashMap<String, Object>();
 		sysRoleService.updateSysRole(sysRole);
 		ret.put("success", true);
@@ -80,11 +80,11 @@ public class SysRoleController extends BaseController {
 	 * 删除角色/岗位
 	 * @param id 角色/岗位ID
 	 * @return
-	 * @throws com.ninefbank.smallpay.common.exception.ApplicationException
+	 * @throws 
 	 */
 	@RequestMapping(value = "/delSysRole", method = RequestMethod.POST)
 	public @ResponseBody
-	Map<String, Object> delSysRole(@RequestParam long id) throws ApplicationException {
+	Map<String, Object> delSysRole(@RequestParam long id) throws XpayAdminException {
 		Map<String, Object> ret = new HashMap<String, Object>();
 		sysRoleService.delSysRole(id);
 		ret.put("success", true);
@@ -95,10 +95,10 @@ public class SysRoleController extends BaseController {
 	 * 根据ID获取角色/岗位
 	 * @param id 角色/岗位ID
 	 * @return
-	 * @throws com.ninefbank.smallpay.common.exception.ApplicationException
+	 * @throws 
 	 */
 	@RequestMapping(value = "/getSysRole", method = RequestMethod.POST)
-	public @ResponseBody Map<String, Object> getSysRole(@RequestParam long id) throws ApplicationException {
+	public @ResponseBody Map<String, Object> getSysRole(@RequestParam long id) throws XpayAdminException {
 		Map<String, Object> result = new HashMap<String, Object>();
 		SysRole data = sysRoleService.getSysRole(id);
 		result.put("success", true);
@@ -112,7 +112,7 @@ public class SysRoleController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = "/queryRoleMenus", method = RequestMethod.POST)
-	public @ResponseBody Map<String, Object> queryRoleMenus(@RequestParam long roleId) {
+	public @ResponseBody Map<String, Object> queryRoleMenus(@RequestParam long roleId) throws XpayAdminException {
 		
 		long[] rmrs = sysRoleService.getRoleMenus(roleId);
 		

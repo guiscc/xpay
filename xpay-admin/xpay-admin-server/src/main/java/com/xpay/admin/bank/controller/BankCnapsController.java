@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.xpay.admin.bank.service.BankCnapsService;
+import com.xpay.admin.common.control.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,11 +16,10 @@ import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.xpay.admin.bank.entity.BankCnapsDict;
 import com.xpay.admin.common.Common;
-import com.ninefbank.smallpay.common.web.BaseController;
 
 @Controller
 @RequestMapping("bankCardCnaps")
-public class BankCnapsController extends BaseController{
+public class BankCnapsController extends BaseController {
 
 	@Autowired
 	private BankCnapsService bCnapsService;

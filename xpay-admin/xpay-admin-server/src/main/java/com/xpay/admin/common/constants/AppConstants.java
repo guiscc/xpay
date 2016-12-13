@@ -1,9 +1,8 @@
 package com.xpay.admin.common.constants;
 
-import com.ninefbank.smallpay.common.constants.SmallpayConstants;
 
 
-public interface AppConstants extends SmallpayConstants {
+public interface AppConstants {
 	
 	public static String LOCALHOST_IP = "0:0:0:0:0:0:0:1";
 	public static String LOCALHOST_IP_T = "127.0.0.1";
@@ -19,13 +18,13 @@ public interface AppConstants extends SmallpayConstants {
 	public static String LOGIN_USER_IP = "USERIP";
 	
 	// 待审核（审核状态）
-	public static final String PENDING_AUDIT = SmallpayConstants.PENDING_AUDIT;
+	public static final String PENDING_AUDIT = "00";
 	
 	// 审核通过（审核状态）
-	public static final String AUDIT_THROUGH = SmallpayConstants.AUDIT_THROUGH;
+	public static final String AUDIT_THROUGH = "01";
 	
 	// 审核未通过（审核状态）
-	public static final String AUDIT_NO_THROUGH = SmallpayConstants.AUDIT_NO_THROUGH;
+	public static final String AUDIT_NO_THROUGH = "02";
 	
 	// 正常（机构提供资金产品状态）
 	public static final String ORG_STATUS_NORMAL = "00";
@@ -43,7 +42,7 @@ public interface AppConstants extends SmallpayConstants {
 	public static final String ORG_SETTLE_STATUS_STOP = "01";
 	
 	// 币种
-	public static final String CURRENCY_CNY = SmallpayConstants.PLAT_CURRENCY_CHINA;
+	public static final String CURRENCY_CNY = "156";
 	
 	// yyyyMMddHHmmss 
 	public static final String DATE_FORMAT_STANDARD = "yyyyMMddHHmmss";

@@ -2,13 +2,13 @@ package com.xpay.admin.sysmgr.service.impl;
 
 import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.github.miemiedev.mybatis.paginator.domain.PageList;
+import com.xpay.admin.common.exception.XpayAdminException;
 import com.xpay.admin.sysmgr.dao.SysMenuMapper;
 import com.xpay.admin.sysmgr.dao.SysRoleMenuRelMapper;
 import com.xpay.admin.sysmgr.entity.SysMenu;
 import com.xpay.admin.sysmgr.entity.SysRoleMenuRel;
 import com.xpay.admin.sysmgr.service.XpaySysMenuService;
 import com.xpay.admin.sysmgr.web.TreeNode;
-import com.ninefbank.smallpay.common.exception.ApplicationException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,61 +40,61 @@ public class SysMenuServiceImpl implements XpaySysMenuService {
 	
 	@Transactional(readOnly = false, rollbackFor=Exception.class )
 	public void saveSysMenu(SysMenu sysMenu)
-			throws ApplicationException {
+			throws XpayAdminException {
 		try{
 			sysMenuMapper.insertSysMenu(sysMenu);
 		}catch(Exception e){
 			logger.error("添加菜单失败", e);
-			throw new ApplicationException("error.dictitem.add");
+			throw new XpayAdminException("error.dictitem.add");
 		}
 	}
 
 	@Transactional(readOnly = false, rollbackFor=Exception.class )
 	public void updateSysMenu(SysMenu sysMenu)
-			throws ApplicationException {
+			throws XpayAdminException {
 		try{
 			sysMenuMapper.updateSysMenu(sysMenu);
 		}catch(Exception e){
 			logger.error("更新菜单失败", e);
-			throw new ApplicationException("error.dictitem.update");
+			throw new XpayAdminException("error.dictitem.update");
 		}
 	}
 
 	@Transactional(readOnly = false, rollbackFor=Exception.class )
-	public void delSysMenu(long id) throws ApplicationException {
+	public void delSysMenu(long id) throws XpayAdminException {
 		try{
 			sysMenuMapper.delSysMenu(id);
 		}catch(Exception e){
 			logger.error("删除菜单失败", e);
-			throw new ApplicationException("error.dictitem.delete");
+			throw new XpayAdminException("error.dictitem.delete");
 		}
 	}
 	
-	public SysMenu getSysMenu(long id) throws ApplicationException {
+	public SysMenu getSysMenu(long id) throws XpayAdminException {
 		try{
 			return sysMenuMapper.getSysMenuById(id);
 		}catch(Exception e){
 			logger.error("获取菜单失败", e);
-			throw new ApplicationException("error.sysMenu.get");
+			throw new XpayAdminException("error.sysMenu.get");
 		}
 	}
 
 	/* (non-Javadoc)
 	 * @see com.wangzhenlei.ssm.sysmgr.service.XpaySysMenuService#queryWithPage(java.util.Map, com.github.miemiedev.mybatis.paginator.domain.PageBounds)
 	 */
-	public PageList<SysMenu> queryWithPage( Map<String, Object> params, PageBounds pageBounds) throws ApplicationException {
+	public PageList<SysMenu> queryWithPage( Map<String, Object> params, PageBounds pageBounds) throws XpayAdminException {
 		try{
 			return sysMenuMapper.queryWithPage(params, pageBounds);
 		} catch (Exception e) {
 			logger.error("查询菜单失败", e);
-			throw new ApplicationException("error.membermain.query");
+			throw new XpayAdminException("error.membermain.query");
 		}
 	}
 
 	/* (non-Javadoc)
 	 * @see com.wangzhenlei.ssm.sysmgr.service.XpaySysMenuService#getMenuTree(boolean)
 	 */
-	public List<TreeNode> getMenuTree(boolean withRoot, long[] menuIds) throws ApplicationException {
+	public List<TreeNode> getMenuTree(boolean withRoot, long[] menuIds) throws XpayAdminException {
 		
 		List<TreeNode> menuTreeNodes = new ArrayList<TreeNode>();
 		List<SysMenu> topMenus = new ArrayList<SysMenu>();
@@ -147,7 +147,7 @@ public class SysMenuServiceImpl implements XpaySysMenuService {
 			}
 		} catch (Exception e) {
 			logger.error("查询菜单失败", e);
-			throw new ApplicationException("error.membermain.query");
+			throw new XpayAdminException("error.membermain.query");
 		}
 		return menuTreeNodes;
 	}
@@ -174,7 +174,7 @@ public class SysMenuServiceImpl implements XpaySysMenuService {
 	/* (non-Javadoc)
 	 * @see com.wangzhenlei.ssm.sysmgr.service.XpaySysMenuService#getRoleMenus(long)
 	 */
-	public List<TreeNode> getRoleMenus(long roleId) throws ApplicationException {
+	public List<TreeNode> getRoleMenus(long roleId) throws XpayAdminException {
 		List<TreeNode> ret = new ArrayList<TreeNode>();
 		long[] roleMenuIds = null;
 		Map<String, Object> params = new HashMap<String, Object>();
@@ -192,7 +192,7 @@ public class SysMenuServiceImpl implements XpaySysMenuService {
 			
 		} catch (Exception e) {
 			logger.error("查询角色授权功能菜单失败", e);
-			throw new ApplicationException("error.membermain.query");
+			throw new XpayAdminException("error.membermain.query");
 		}
 		return ret;
 	}

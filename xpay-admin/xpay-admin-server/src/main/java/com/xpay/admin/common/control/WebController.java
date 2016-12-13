@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.github.miemiedev.mybatis.paginator.domain.Paginator;
+import com.xpay.admin.common.model.PageModel;
 
 public class WebController extends BaseController{
 

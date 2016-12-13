@@ -3,9 +3,12 @@ package com.xpay.admin.bank.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
+import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.xpay.admin.bank.entity.BankCardBinDict;
 import com.xpay.admin.bank.entity.BankCodeDict;
 import com.xpay.admin.common.Common;
+import com.xpay.admin.common.control.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
