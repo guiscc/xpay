@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xpay.admin.order.dao.PayOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.xpay.admin.order.entity.PayOrder" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="payOrderNo" property="payorderno" jdbcType="VARCHAR" />
+    <result column="tradeOrderNo" property="tradeorderno" jdbcType="VARCHAR" />
+    <result column="payTool" property="paytool" jdbcType="TINYINT" />
+    <result column="paySubTool" property="paysubtool" jdbcType="TINYINT" />
+    <result column="channelCode" property="channelcode" jdbcType="VARCHAR" />
+    <result column="payAmt" property="payamt" jdbcType="DECIMAL" />
+    <result column="currency" property="currency" jdbcType="TINYINT" />
+    <result column="userId" property="userid" jdbcType="VARCHAR" />
+    <result column="payStatus" property="paystatus" jdbcType="TINYINT" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="updateTime" property="updatetime" jdbcType="TIMESTAMP" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, payOrderNo, tradeOrderNo, payTool, paySubTool, channelCode, payAmt, currency, 
+    userId, payStatus, createTime, updateTime, remark
+  </sql>
+
+    <select id="selectByParams" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from pay_order
+        where 1=1
+        <!-- 表字段条件 -->
+        <if test="payorderno != null">
+            AND payOrderNo = #{payorderno,jdbcType=VARCHAR}
+        </if>
+        <if test="paytool != null">
+            AND payTool = #{paytool,jdbcType=VARCHAR}
+        </if>
+        <if test="channelcode != null">
+            AND channelCode = #{channelcode,jdbcType=VARCHAR}
+        </if>
+        <if test="paytooltype != null">
+            AND payToolType = #{paytooltype,jdbcType=VARCHAR}
+        </if>
+        <if test="accountno != null">
+            AND accountNo = #{accountno,jdbcType=VARCHAR}
+        </if>
+        <if test="userid != null">
+            AND userId = #{userid,jdbcType=VARCHAR}
+        </if>
+        <if test="tradeorderno != null">
+            AND tradeOrderNo = #{tradeorderno,jdbcType=VARCHAR}
+        </if>
+        <if test="paystatus != null">
+            AND payStatus = #{paystatus,jdbcType=VARCHAR}
+        </if>
+    </select>
+
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from pay_order
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from pay_order
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.xpay.admin.order.entity.PayOrder" >
+    insert into pay_order (id, payOrderNo, tradeOrderNo, 
+      payTool, paySubTool, channelCode, 
+      payAmt, currency, userId, 
+      payStatus, createTime, updateTime, 
+      remark)
+    values (#{id,jdbcType=BIGINT}, #{payorderno,jdbcType=VARCHAR}, #{tradeorderno,jdbcType=VARCHAR}, 
+      #{paytool,jdbcType=TINYINT}, #{paysubtool,jdbcType=TINYINT}, #{channelcode,jdbcType=VARCHAR}, 
+      #{payamt,jdbcType=DECIMAL}, #{currency,jdbcType=TINYINT}, #{userid,jdbcType=VARCHAR}, 
+      #{paystatus,jdbcType=TINYINT}, #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xpay.admin.order.entity.PayOrder" >
+    insert into pay_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="payorderno != null" >
+        payOrderNo,
+      </if>
+      <if test="tradeorderno != null" >
+        tradeOrderNo,
+      </if>
+      <if test="paytool != null" >
+        payTool,
+      </if>
+      <if test="paysubtool != null" >
+        paySubTool,
+      </if>
+      <if test="channelcode != null" >
+        channelCode,
+      </if>
+      <if test="payamt != null" >
+        payAmt,
+      </if>
+      <if test="currency != null" >
+        currency,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="paystatus != null" >
+        payStatus,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="updatetime != null" >
+        updateTime,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="payorderno != null" >
+        #{payorderno,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeorderno != null" >
+        #{tradeorderno,jdbcType=VARCHAR},
+      </if>
+      <if test="paytool != null" >
+        #{paytool,jdbcType=TINYINT},
+      </if>
+      <if test="paysubtool != null" >
+        #{paysubtool,jdbcType=TINYINT},
+      </if>
+      <if test="channelcode != null" >
+        #{channelcode,jdbcType=VARCHAR},
+      </if>
+      <if test="payamt != null" >
+        #{payamt,jdbcType=DECIMAL},
+      </if>
+      <if test="currency != null" >
+        #{currency,jdbcType=TINYINT},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="paystatus != null" >
+        #{paystatus,jdbcType=TINYINT},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xpay.admin.order.entity.PayOrder" >
+    update pay_order
+    <set >
+      <if test="payorderno != null" >
+        payOrderNo = #{payorderno,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeorderno != null" >
+        tradeOrderNo = #{tradeorderno,jdbcType=VARCHAR},
+      </if>
+      <if test="paytool != null" >
+        payTool = #{paytool,jdbcType=TINYINT},
+      </if>
+      <if test="paysubtool != null" >
+        paySubTool = #{paysubtool,jdbcType=TINYINT},
+      </if>
+      <if test="channelcode != null" >
+        channelCode = #{channelcode,jdbcType=VARCHAR},
+      </if>
+      <if test="payamt != null" >
+        payAmt = #{payamt,jdbcType=DECIMAL},
+      </if>
+      <if test="currency != null" >
+        currency = #{currency,jdbcType=TINYINT},
+      </if>
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="paystatus != null" >
+        payStatus = #{paystatus,jdbcType=TINYINT},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xpay.admin.order.entity.PayOrder" >
+    update pay_order
+    set payOrderNo = #{payorderno,jdbcType=VARCHAR},
+      tradeOrderNo = #{tradeorderno,jdbcType=VARCHAR},
+      payTool = #{paytool,jdbcType=TINYINT},
+      paySubTool = #{paysubtool,jdbcType=TINYINT},
+      channelCode = #{channelcode,jdbcType=VARCHAR},
+      payAmt = #{payamt,jdbcType=DECIMAL},
+      currency = #{currency,jdbcType=TINYINT},
+      userId = #{userid,jdbcType=VARCHAR},
+      payStatus = #{paystatus,jdbcType=TINYINT},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

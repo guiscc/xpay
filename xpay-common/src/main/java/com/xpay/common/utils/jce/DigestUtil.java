@@ -10,6 +10,15 @@ import java.security.NoSuchAlgorithmException;
  */
 public class DigestUtil {
 
+
+    public final static String md5(byte[] data) throws NoSuchAlgorithmException {
+        MessageDigest mdInst = MessageDigest.getInstance("MD5");
+        mdInst.reset();
+        mdInst.update(data);
+        byte[] md = mdInst.digest();
+        return Hex.encodeHexString(md);
+    }
+
     /**
      * @param data
      * @return
@@ -22,8 +31,10 @@ public class DigestUtil {
     }
 
     public static void main(String[] args) throws Exception {
-        String str = "accessType=0&bizType=000201&certId=68759663125&encoding=UTF-8&merId=777290058110097&orderId=12345678&signMethod=01&txnSubType=00&txnTime=20160321201006&txnType=00&version=5.0.0";
-        String temp = Hex.encodeHexString(sha1(str.getBytes("UTF-8")));
-        System.out.println(temp);
+//        String str = "accessType=0&bizType=000201&certId=68759663125&encoding=UTF-8&merId=777290058110097&orderId=12345678&signMethod=01&txnSubType=00&txnTime=20160321201006&txnType=00&version=5.0.0";
+//        String temp = Hex.encodeHexString(sha1(str.getBytes("UTF-8")));
+//        System.out.println(temp);
+
+//        System.out.println(md5("aaaa".getBytes()));
     }
 }
