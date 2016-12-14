@@ -87,10 +87,8 @@ public class AgentCollectBizImpl implements AgentCollectBiz {
         ChannelOrderModel channelOrderModel = channelPayInfoService.getByPayOrderNo(acQueryPayReqVO.getPayOrderNo());
         acQueryPayRepVO.setChannelOrderModel(channelOrderModel);
 
-        //订单不存在时，抛出 订单不存在 异常
         if(channelOrderModel == null){
-            throw new XpayChannelException(EnumRtnResult.E000001);
-        //  return acQueryPayRepVO;
+            return acQueryPayRepVO;
         }
 
         //订单状态为 成功、失败、等待 时不做补单；

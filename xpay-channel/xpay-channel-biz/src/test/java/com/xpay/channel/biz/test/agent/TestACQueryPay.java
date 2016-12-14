@@ -8,6 +8,8 @@ import com.xpay.channel.biz.test.BaseTest;
 import com.xpay.channel.common.dto.agentcollect.ACQueryPayRepChannelDTO;
 import com.xpay.channel.common.dto.agentcollect.ACQueryPayReqChannelDTO;
 import com.xpay.channel.common.facade.AgentCollectFacade;
+import com.xpay.common.enums.EnumRtnResult;
+import org.junit.Assert;
 import org.junit.Test;
 
 import javax.annotation.Resource;
@@ -68,7 +70,6 @@ public class TestACQueryPay extends BaseTest{
         acQueryPayReqChannelDTO.setRepair(true);
 
         ACQueryPayRepChannelDTO acQueryPayRepChannelDTO = agentCollectFacade.queryPay(acQueryPayReqChannelDTO);
-
-        System.out.println(acQueryPayRepChannelDTO.toString());
+        Assert.assertEquals(acQueryPayRepChannelDTO.getRtnResult(), EnumRtnResult.E000001);
     }
 }
