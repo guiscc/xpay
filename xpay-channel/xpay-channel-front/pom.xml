@@ -19,9 +19,7 @@
         <dependency>
             <groupId>com.taobao</groupId>
             <artifactId>sms</artifactId>
-            <version>1.0-SNAPSHOT</version>
-<!--            <scope>system</scope>
-            <systemPath>H:/taobao-sdk-java-auto_1455552377940-20160607.jar</systemPath>-->
+            <version>1.0</version>
         </dependency>
 
         <dependency>
