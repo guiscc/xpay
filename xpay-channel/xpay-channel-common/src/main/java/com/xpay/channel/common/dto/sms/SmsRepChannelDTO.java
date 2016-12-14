@@ -7,11 +7,13 @@ package com.xpay.channel.common.dto.sms;
 import com.xpay.common.enums.EnumRtnStatus;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import java.io.Serializable;
+
 /**
  * @author qinshou
  * @version $Id: SmsRepChannelDTO.java, v 0.1 16/10/26 上午11:06 sxfans Exp $
  */
-public class SmsRepChannelDTO {
+public class SmsRepChannelDTO implements Serializable{
 
     /**
      * 发送状态

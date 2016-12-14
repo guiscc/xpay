@@ -2,6 +2,7 @@ package com.xpay.channel.common.dto;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -9,7 +10,7 @@ import java.util.Map;
 /**
  * Created by suxinxin on 16/2/5.
  */
-public class BaseReqChannelDTO {
+public class BaseReqChannelDTO implements Serializable{
 
     private Map<String, String> extMap = new HashMap<>();
 

@@ -10,6 +10,7 @@ import com.xpay.common.enums.EnumPaySubTool;
 import com.xpay.common.enums.EnumPayTool;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -17,7 +18,7 @@ import java.util.Date;
  * @author qinshou
  * @version $Id: ChannelOrderDTO.java, v 0.1 16/10/15 下午3:20 sxfans Exp $
  */
-public class ChannelOrderDTO {
+public class ChannelOrderDTO  implements Serializable {
     /**
      * 持久化主键
      */

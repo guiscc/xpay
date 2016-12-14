@@ -28,9 +28,9 @@ public class TestSmsTaobao extends BaseTest {
     public void sendSms() throws FrontException {
         SmsReqFrontDTO smsReqDTO = new SmsReqFrontDTO();
         smsReqDTO.setUserId("123456");
-        smsReqDTO.setTitle("注册验证aa");
+        smsReqDTO.setTitle("注册验证");
         smsReqDTO.setContent("内容");
-        smsReqDTO.setMobileNo("18317888059");
+        smsReqDTO.setMobileNo("13393705178");
         smsReqDTO.setReqDateTime(new Date());
         smsReqDTO.getSmsExtMap().put(EnumSMSMapKey.SMSCODE, "aaa");
         smsReqDTO.getSmsExtMap().put(EnumSMSMapKey.SMS_PRODUCT_NAME, "bbb");

@@ -19,5 +19,6 @@
         <module>xpay-channel-front</module>
         <module>xpay-channel-biz</module>
         <module>xpay-channel-dao</module>
+        <module>xpay-channel-server</module>
     </modules>
 </project>

@@ -9,7 +9,10 @@ import com.xpay.channel.biz.convert.ACPayConvert;
 import com.xpay.channel.biz.convert.ACQueryPayConvert;
 import com.xpay.channel.common.exception.XpayChannelException;
 import com.xpay.channel.common.model.ChannelOrderModel;
-import com.xpay.channel.common.vo.agentcollect.*;
+import com.xpay.channel.common.vo.agentcollect.ACPayRepVO;
+import com.xpay.channel.common.vo.agentcollect.ACPayReqVO;
+import com.xpay.channel.common.vo.agentcollect.ACQueryPayRepVO;
+import com.xpay.channel.common.vo.agentcollect.ACQueryPayReqVO;
 import com.xpay.channel.front.dto.agentcollect.ACPayRepFrontDTO;
 import com.xpay.channel.front.dto.agentcollect.ACPayReqFrontDTO;
 import com.xpay.channel.front.dto.agentcollect.ACQueryPayRepFrontDTO;
@@ -20,6 +23,7 @@ import com.xpay.channel.service.router.ChannelRouter;
 import com.xpay.channel.service.router.RouterContext;
 import com.xpay.channel.service.router.RouterParam;
 import com.xpay.common.enums.EnumPayStatus;
+import com.xpay.common.enums.EnumRtnResult;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -82,9 +86,17 @@ public class AgentCollectBizImpl implements AgentCollectBiz {
         //查单
         ChannelOrderModel channelOrderModel = channelPayInfoService.getByPayOrderNo(acQueryPayReqVO.getPayOrderNo());
         acQueryPayRepVO.setChannelOrderModel(channelOrderModel);
+
         if(channelOrderModel == null){
             return acQueryPayRepVO;
         }
+
+        //订单状态为 成功、失败、等待 时不做补单；
+        //订单状态为 未知 时做补单操作
+        if(channelOrderModel.getPayStatus() == EnumPayStatus.FAIL
+                || channelOrderModel.getPayStatus() == EnumPayStatus.SUCCESS
+                || channelOrderModel.getPayStatus() == EnumPayStatus.WAITING)
+            return acQueryPayRepVO;
 
         //如果不支持补单则
         if(!acQueryPayReqVO.getRepair()) {

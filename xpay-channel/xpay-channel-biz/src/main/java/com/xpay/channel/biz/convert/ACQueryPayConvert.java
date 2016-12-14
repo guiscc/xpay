@@ -6,6 +6,7 @@ package com.xpay.channel.biz.convert;
 
 import com.xpay.channel.front.dto.agentcollect.ACQueryPayRepFrontDTO;
 import com.xpay.channel.front.dto.agentcollect.ACQueryPayReqFrontDTO;
+import com.xpay.common.enums.EnumRtnResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -99,7 +100,9 @@ public class ACQueryPayConvert {
             channelOrderDTO.setCurrency(channelOrderModel.getCurrency());
             channelOrderDTO.setUpdateTime(channelOrderModel.getUpdateTime());
             acQueryPayRepDTO.setChannelOrderDTO(channelOrderDTO);
-        }
+        } else
+            acQueryPayRepDTO.setRtnResult(EnumRtnResult.E000001);
+
         logger.info("转换响应模型:{}", acQueryPayRepDTO.toString());
         return acQueryPayRepDTO;
     }

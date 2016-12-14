@@ -58,7 +58,7 @@
         <property name="mappingMap">
             <map key-type="java.lang.String"
                  value-type="com.xpay.channel.front.executor.AbsFrontExecutor">
-                <entry key="AC_ALIPAY_CD_01" value-ref="taobaoSmsChanneExecuter"/>
+                <entry key="SMS_TAOBAO" value-ref="taobaoSmsChanneExecuter"/>
                 <entry key="AC_UNIONPAY_CD_01" value-ref="unionACExecutor"/>
             </map>
         </property>
